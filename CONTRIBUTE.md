@@ -6,6 +6,6 @@ Reading articles and watching tutorials can help, but what's better than actuall
 This is how you can [build](https://github.com/tessify-org/CORE/wiki#installation-instructions) your own Tessify-CORE practice environment.
 
 The CORE is built on top of the Laravel framework.
-Here you can find free [reading](https://coursesity.com/free-tutorials-learn/laravel), [learning](https://laracasts.com/series/laravel-6-from-scratch/episodes/1) and [video](https://www.youtube.com/watch?v=zckH4xalOns&list=PL4cUxeGkcC9hL6aCFKyagrT1RCfVN4w2Q) material which 
+Here you can find free [reading](https://coursesity.com/free-tutorials-learn/laravel), [learning](https://laracasts.com/series/laravel-6-from-scratch/episodes/1) and [video](https://www.youtube.com/watch?v=zckH4xalOns&list=PL4cUxeGkcC9hL6aCFKyagrT1RCfVN4w2Q) material which can help get familiar with the framework.
 
 This page aims at providing guidance and simplifying the way beginners make their first contribution. If you are looking to make your first contribution, follow the steps below.
