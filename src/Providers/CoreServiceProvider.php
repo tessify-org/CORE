@@ -14,8 +14,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register("Tessify\Core\Providers\CoreRouteServiceProvider");
 
         // Setup integration & publishing of the config file
-        $this->mergeConfigFrom(__DIR__."/../config/config.php", "tessify-core");
-        $this->publishes([__DIR__."/../config/config.php" => config_path("tessify-core.php")], "config");
+        $this->mergeConfigFrom(__DIR__."/../../config/config.php", "tessify-core");
+        $this->publishes([__DIR__."/../../config/config.php" => config_path("tessify-core.php")], "config");
     }
 
     public function register()
