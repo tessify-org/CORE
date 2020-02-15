@@ -1,4 +1,4 @@
-#Challenges ahead
+# Challenges ahead
 
 It's always hard the first time you do something. Especially when you are collaborating, making mistakes isn't an easy thing. We wanted to simplify the way new open-source contributors learn and contribute for the first time.
 
