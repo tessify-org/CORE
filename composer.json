@@ -1,0 +1,38 @@
+{
+    "name": "tessify/core",
+    "description": "The CORE of the Tessify project.",
+    "authors": [
+        {
+            "name": "Nick Verheijen",
+            "email": "verheijen.webdevelopment@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tessify\\Core\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tessify\\Core\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "illuminate/support": "~6.2"
+    },
+    "require-dev": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tessify\\Core\\Providers\\CoreServiceProvider"
+            ],
+            "aliases": {
+                "Core": "Tessify\\Core\\Facades\\CoreFacade"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
