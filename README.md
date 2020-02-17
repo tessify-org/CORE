@@ -16,12 +16,8 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 
 ## Roadmap
 
-- [x] Move functionality into it's own package from PoC
-- [X] Asset publishing
-- [X] Breadcrumbs package resources
-- [X] Breadcrumb translations
-- [X] Flash package resources
-- [ ] Artisan install command to completely install the CORE into a fresh laravel application
+- [ ] Make the location of the User model configurable; as we can not force developers to create a Models directory
+- [ ] Create an artisan install command to completely install the CORE into a fresh laravel application
 - [ ] Complete "skills" functionality
 - [ ] Complete "view & manage project" functionality
 - [ ] Navigation management (frontend & admin)
