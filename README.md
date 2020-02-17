@@ -19,7 +19,7 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 - [x] Move functionality into it's own package from PoC
 - [X] Asset publishing
 - [X] Breadcrumbs package resources
-- [ ] Breadcrumb translations
+- [X] Breadcrumb translations
 - [X] Flash package resources
 - [ ] Artisan install command to completely install the CORE into a fresh laravel application
 - [ ] Complete "skills" functionality
