@@ -32,7 +32,7 @@ class ProjectController extends Controller
         if (!$project)
         {
             flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("Projects");
+            return redirect()->route("projects");
         }
 
         return view("tessify-core::pages.projects.view", [

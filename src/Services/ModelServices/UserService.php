@@ -6,7 +6,7 @@ use Auth;
 use Uuid;
 use Carbon\Carbon;
 
-use Tessify\Core\Models\User;
+use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
