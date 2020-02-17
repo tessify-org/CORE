@@ -17,14 +17,16 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 ## Roadmap
 
 - [x] Move functionality into it's own package from PoC
-- [ ] Asset publishing
-- [ ] Breadcrumbs package resources
-- [ ] Flash package resources
+- [X] Asset publishing
+- [X] Breadcrumbs package resources
+- [ ] Breadcrumb translations
+- [X] Flash package resources
 - [ ] Artisan install command to completely install the CORE into a fresh laravel application
 - [ ] Complete "skills" functionality
 - [ ] Complete "view & manage project" functionality
-- [ ] Add navigation management
-- [ ] Add admin dashboard
+- [ ] Navigation management (frontend & admin)
+- [ ] Admin dashboard with charts and relevant stats
+- [ ] Create a way to extend user profiles (ui)
 
 ## Contribute
 Everything you need to contribute can be found [here](https://github.com/tessify-org/CORE/blob/master/CONTRIBUTE.md).
