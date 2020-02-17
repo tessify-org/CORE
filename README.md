@@ -11,3 +11,4 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 ## Credits
 
 ## Contribute
+Everything you need to contribute is [here](https://github.com/tessify-org/CORE/blob/master/CONTRIBUTE.md).
