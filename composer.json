@@ -20,7 +20,12 @@
         }
     },
     "require": {
-        "illuminate/support": "~6.2"
+        "illuminate/support": "~6.2",
+        "laravolt/avatar": "^3.0",
+        "webpatser/laravel-uuid": "^3.0",
+        "laracasts/flash": "^3.0",
+        "cviebrock/eloquent-sluggable": "^6.0",
+        "davejamesmiller/laravel-breadcrumbs": "5.x"
     },
     "require-dev": {},
     "extra": {
