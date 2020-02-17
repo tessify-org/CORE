@@ -7,7 +7,7 @@
             "email": "verheijen.webdevelopment@gmail.com"
         }
     ],
-    "version": "1.0.0",
+    "version": "dev-master",
     "license": "MIT",
     "autoload": {
         "psr-4": {
