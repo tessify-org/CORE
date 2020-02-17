@@ -10,6 +10,6 @@ Route::group(["prefix" => "core"], function() {
 
     Route::get("test", function() {
         return "hurai";
-    });
+    })->name("core.test");
 
 });
