@@ -41,7 +41,7 @@
                 <div class="page-controls__right">
                     <v-btn color="success" href="{{ route('projects.create') }}">
                         <i class="fas fa-plus"></i>
-                        @lang("tessify-core::projects.overview_title")
+                        @lang("tessify-core::projects.overview_create_button")
                     </v-btn>
                 </div>
             </div>
