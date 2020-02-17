@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
     {!! Breadcrumbs::render("projects.delete", $project) !!}

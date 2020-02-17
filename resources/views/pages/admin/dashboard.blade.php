@@ -1,4 +1,4 @@
-@extends("layouts.admin")
+@extends("tessify-core::layouts.admin")
 
 @section("breadcrumbs")
     {!! Breadcrumbs::render("admin.dashboard") !!}

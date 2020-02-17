@@ -1,0 +1,22 @@
+/*
+ |
+ | 3rd party imports
+ |
+*/
+
+// Google webfonts
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:300,400,500,700|Roboto+Condensed:400,700&display=swap|Material+Icons');
+
+// Material icons
+@import url('https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css');
+
+// Vuetify Framework
+@import '~vuetify/dist/vuetify.min.css';
+
+// Air datepicker
+@import "node_modules/air-datepicker/dist/css/datepicker";
+
+// Load hamburgers
+@import "node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
+$hamburger-layer-width: 10px !default;
+$hamburger-layer-height: 2px !default;

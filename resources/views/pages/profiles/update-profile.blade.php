@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
     {!! Breadcrumbs::render("profile.update", $user) !!}

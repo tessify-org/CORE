@@ -46,6 +46,27 @@ class CoreServiceProvider extends ServiceProvider
         
         // Define the authorization Gates
         $this->defineGates();
+
+        // Config publishing
+        $this->publishes([
+            __DIR__."/../../config/config.php" => config_path("tessify-core.php"),
+            __DIR__."/../../config/breadcrumbs.php" => config_path("breadcrumbs.php"),
+        ], "config");
+        
+        // Database related publishing
+        $this->publishes([
+            __DIR__."/../Database/migrations" => database_path("migrations"),
+            __DIR__."/../Database/seeders" => database_path("seeders"),
+        ], "db");
+
+        // View publishing
+        $this->publishes([__DIR__."/../../resources/views", resource_path("views/vendor/core")], "views");
+        
+        // Vue component publishing
+        $this->publishes([__DIR__."/../../resources/js/components" => resource_path("js/components/core")], "components");
+
+        // Stylesheet publishing
+        $this->publishes([__DIR__."/../../resources/sass" => resource_path("sass")], "scss");
     }
 
     public function register()
