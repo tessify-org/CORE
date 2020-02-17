@@ -32,4 +32,9 @@ class TeamRole extends Model
     {
         return $this->hasMany(TeamMemberApplication::class);
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
 }
