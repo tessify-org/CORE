@@ -11,7 +11,14 @@
 */
 
 return [
-        
+      
+    //
+    // Middleware
+    //
+    
+    'middleware_login_required' => 'Je moet ingelogd zijn om die pagina te mogen bekijken.',
+    'middleware_guest_required' => 'Die pagina kun je alleen zien als je niet bent ingelogd.',
+
     //
     // Login page
     // 

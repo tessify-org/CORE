@@ -12,6 +12,16 @@
 
 return [
 
-    "saved_changes" => "Wijzigingen zijn opgeslagen,
+    //
+    // General strings
+    //
+
+    "saved_changes" => "Wijzigingen zijn opgeslagen",
+    
+    //
+    // Emails
+    //
+
+    "email_closing_text" => "Met vriendelijke groeten,\nDe Tessify Staff.",
 
 ];

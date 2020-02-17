@@ -13,6 +13,13 @@
 return [
         
     //
+    // Middleware
+    //
+
+    'middleware_login_required' => 'You must be logged in to view that page.',
+    'middleware_guest_required' => 'You can only view that page if you\'re not logged in.',
+
+    //
     // Login page
     //
 
