@@ -32,4 +32,15 @@ Route::group(["middleware" => "auth"], function() {
     // Logout
     Route::get("uitloggen", "Auth\LogoutController@getLogout")->name("auth.logout");
     
+    // Memberlist
+    Route::get("ledenlijst", "Profiles\MemberlistController@getMemberList")->name("memberlist");
+
+    // Update profiel
+    Route::get("profiel/updaten", "Profiles\ProfileController@getUpdateProfile")->name("profile.update");
+    Route::post("profiel/updaten", "Profiles\ProfileController@postUpdateProfile")->name("profile.update.post");
+
+    // Profiel
+    Route::get("profiel/{slug?}", "Profiles\ProfileController@getProfile")->name("profile");
+
+    
 });
