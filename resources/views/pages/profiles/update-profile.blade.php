@@ -12,7 +12,7 @@
             <h1 class="page-title centered">Update Profiel</h1>
 
             <!-- Feedback -->
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <form action="{{ route('profile.update.post') }}" method="post">
                 {{ csrf_field() }}

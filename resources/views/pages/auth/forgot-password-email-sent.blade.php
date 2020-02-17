@@ -10,7 +10,7 @@
 
             <h1 class="page-title centered">@lang('tessify-core::auth.forgot_password_email_sent_title')</h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <div id="forgot-password-email-sent" class="elevation-1">
                 <div id="forgot-password-email-sent__text">

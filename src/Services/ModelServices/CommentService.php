@@ -44,7 +44,7 @@ class CommentService implements ModelServiceContract
 
         foreach ($this->getAllPreloaded() as $comment)
         {
-            if ($comment->commentable_type == "App\\Models\\Project" and $comment->commentable_id == $project->id)
+            if ($comment->commentable_type == "Tessify\Core\\Models\\Project" and $comment->commentable_id == $project->id)
             {
                 $out[] = $comment;
             }
@@ -59,7 +59,7 @@ class CommentService implements ModelServiceContract
 
         foreach ($this->getAllPreloaded() as $comment)
         {
-            if ($comment->commentable_type == "App\\Models\\User" and $comment->commentable_id == $user->id)
+            if ($comment->commentable_type == "Tessify\Core\\Models\\User" and $comment->commentable_id == $user->id)
             {
                 $out[] = $comment;
             }
@@ -74,7 +74,7 @@ class CommentService implements ModelServiceContract
 
         foreach ($this->getAllPreloaded() as $comment)
         {
-            if ($comment->commentable_type == "App\\Models\\Task" and $comment->commentable_id == $task->id)
+            if ($comment->commentable_type == "Tessify\Core\\Models\\Task" and $comment->commentable_id == $task->id)
             {
                 $out[] = $comment;
             }
@@ -90,17 +90,17 @@ class CommentService implements ModelServiceContract
         switch ($request->target_type)
         {
             case "project":
-                $target_type = "App\\Models\\Project";
+                $target_type = "Tessify\Core\\Models\\Project";
                 $project = Projects::find($request->target_id);
                 if (!$project) throw new Exception("Invalid job id received.");
             break;
             case "user":
-                $target_type = "App\\Models\\User";
+                $target_type = "Tessify\Core\\Models\\User";
                 $user = Users::find($request->target_id);
                 if (!$user) throw new Exception("Invalid user id received.");
             break;
             case "task":
-                $target_type = "App\\Models\\Task";
+                $target_type = "Tessify\Core\\Models\\Task";
                 $task = Tasks::find($request->target_id);
                 if (!$task) throw new Exception("Invalid task id received");
             break;

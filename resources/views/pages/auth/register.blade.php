@@ -12,7 +12,7 @@
 
                 <h1 class="page-title centered">@lang('tessify-core::auth.register_title')</h1>
             
-                @include("partials.feedback")
+                @include("tessify-core::partials.feedback")
 
                 <form action="{{ route('auth.register.post') }}" method="post">
                     {{ csrf_field() }}

@@ -12,7 +12,7 @@
                 @lang("tessify-core::profiles.memberlist_title")
             </h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             @if ($users->count())
                 <div id="memberlist" class="elevation-1">

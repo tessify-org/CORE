@@ -10,7 +10,7 @@
 
             <h1 class="page-title centered">Dashboard</h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <div>Content goes here</div>
 

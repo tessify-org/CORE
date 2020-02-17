@@ -2,6 +2,8 @@
 
 namespace Tessify\Core\Providers;
 
+use Auth;
+
 use Tessify\Core\Services\CoreService;
 use Tessify\Core\Services\Utilities\DateService;
 use Tessify\Core\Services\Utilities\UploadService;
@@ -20,6 +22,7 @@ use Tessify\Core\Services\ModelServices\ProjectResourceService;
 use Tessify\Core\Services\ModelServices\TeamMemberApplicationService;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
@@ -46,6 +49,9 @@ class CoreServiceProvider extends ServiceProvider
         
         // Define the authorization Gates
         $this->defineGates();
+
+        // Compose views
+        $this->composeViews();
 
         // Config publishing
         $this->publishes([
@@ -152,6 +158,17 @@ class CoreServiceProvider extends ServiceProvider
     {
         Gate::define("access-admin-panel", function($user) {
             return $user->is_admin;
+        });
+    }
+
+    private function composeViews()
+    {
+        View::composer("tessify-core::layouts.app", function($view) {
+            $view->with("user", Auth::user());
+        });
+        
+        View::composer("tessify-core::layouts.admin", function($view) {
+            $view->with("user", Auth::user());
         });
     }
 }

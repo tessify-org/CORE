@@ -8,7 +8,7 @@
     <div class="content-section__wrapper">
         <div class="content-section">
 
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <div id="login" class="elevation-1">
                 <div id="login-left">

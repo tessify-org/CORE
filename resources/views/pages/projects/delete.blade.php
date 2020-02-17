@@ -12,7 +12,7 @@
                 @lang("tessify-core::projects.delete_title")
             </h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <form action="{{ route('projects.delete', $project->slug) }}" method="post">
                 {{ csrf_field() }}

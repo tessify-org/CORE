@@ -25,7 +25,7 @@
                 </div>
 
                 <!-- Feedback -->
-                @include("partials.feedback")
+                @include("tessify-core::partials.feedback")
 
                 <!-- Profile information -->
                 <div id="profile__info">

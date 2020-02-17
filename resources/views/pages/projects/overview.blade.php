@@ -12,7 +12,7 @@
                 @lang("tessify-core::projects.overview_title")
             </h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             @if ($projects->count() > 0)
                 <div id="projects" class="elevation-1">

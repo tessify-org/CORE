@@ -13,7 +13,7 @@
             <div id="project-header__content" class="content-section">
 
                 <!-- Feedback -->
-                @include("partials.feedback")
+                @include("tessify-core::partials.feedback")
 
                 <div id="project-header__text">
                     <h1 id="project-header__title">{{ $project->title }}</h1>

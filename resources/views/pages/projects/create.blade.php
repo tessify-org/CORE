@@ -12,7 +12,7 @@
                 @lang("tessify-core::projects.create_title")
             </h1>
         
-            @include("partials.feedback")
+            @include("tessify-core::partials.feedback")
 
             <form action="{{ route('projects.create.post') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
