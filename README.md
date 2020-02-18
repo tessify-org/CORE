@@ -21,6 +21,7 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 - [ ] Complete "skills" functionality
 - [ ] Complete "view & manage project" functionality
 - [ ] Navigation management (frontend & admin)
+- [ ] Admin panel dashboard
 - [ ] Admin dashboard with charts and relevant stats
 - [ ] Create a way to extend user profiles (ui)
 
