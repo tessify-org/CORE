@@ -33,6 +33,18 @@ return [
     // View
     // 
 
+    "view_description" => "Projectomschrijving",
+    "view_owner" => "Eigenaar",
+    "view_details" => "Details",
+    "view_resources" => "Bijlagen",
+    "view_no_resources" => "Er zijn nog geen bijlagen aan dit project toegevoegd",
+    "view_category" => "Categorie",
+    "view_work_method" => "Werk methode",
+    "view_start_date" => "Start datum",
+    "view_end_date" => "Eind datum",
+    "view_created_at" => "Toegevoegd op",
+    "view_updated_at" => "Laatst geupdate op",
+
     //
     // Create
     //

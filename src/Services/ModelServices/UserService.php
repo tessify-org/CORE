@@ -10,7 +10,7 @@ use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Jobs\Auth\SendAccountRecoveryEmail;
+use Tessify\Core\Projects\Auth\SendAccountRecoveryEmail;
 use Tessify\Core\Http\Requests\Auth\ResetPasswordRequest;
 use Tessify\Core\Http\Requests\Profiles\UpdateProfileRequest;
 

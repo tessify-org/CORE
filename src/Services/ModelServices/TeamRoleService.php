@@ -10,7 +10,7 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Api\Jobs\TeamRoles\UnassignTeamRoleRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\UnassignTeamRoleRequest;
 
 class TeamRoleService implements ModelServiceContract
 {

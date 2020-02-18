@@ -9,8 +9,8 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\ProjectResource;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Api\Jobs\Resources\CreateProjectResourceRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\Resources\UpdateProjectResourceRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\CreateProjectResourceRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\UpdateProjectResourceRequest;
 
 class ProjectResourceService implements ModelServiceContract
 {

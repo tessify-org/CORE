@@ -10,10 +10,10 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Api\Jobs\TeamMemberApplications\CreateTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\TeamMemberApplications\UpdateTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\TeamMemberApplications\AcceptTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\TeamMemberApplications\DenyTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\CreateTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\UpdateTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\AcceptTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\DenyTeamMemberApplicationRequest;
 
 class TeamMemberApplicationService implements ModelServiceContract
 {

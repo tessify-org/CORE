@@ -214,4 +214,21 @@ class ProjectService implements ModelServiceContract
 
         return $project;
     }
+
+    public function getResources(Project $project)
+    {
+        $out = ProjectResources::getAllPreloadedForProject($project);
+        return collect($out);
+    }
+
+    public function getAuthor(Project $project)
+    {
+        return Users::findAuthorForProject($project);
+    }
+
+    public function getTeamApplications(Project $project)
+    {
+        $out = TeamMemberApplications::getAllForProject($project);
+        return collect($out);
+    }
 }

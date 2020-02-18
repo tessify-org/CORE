@@ -33,6 +33,18 @@ return [
     // View
     // 
 
+    "view_description" => "Project description",
+    "view_owner" => "Owner",
+    "view_details" => "Details",
+    "view_resources" => "Resources",
+    "view_no_resources" => "No resources have been added to this project",
+    "view_category" => "Category",
+    "view_work_method" => "Work method",
+    "view_start_date" => "Start date",
+    "view_end_date" => "End date",
+    "view_created_at" => "Created on",
+    "view_updated_at" => "Last updated on",
+
     //
     // Create
     //

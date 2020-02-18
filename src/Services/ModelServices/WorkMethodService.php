@@ -6,8 +6,8 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\WorkMethod;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Jobs\WorkMethods\CreateWorkMethodRequest;
-use Tessify\Core\Http\Requests\Jobs\WorkMethods\UpdateWorkMethodRequest;
+use Tessify\Core\Http\Requests\Projects\WorkMethods\CreateWorkMethodRequest;
+use Tessify\Core\Http\Requests\Projects\WorkMethods\UpdateWorkMethodRequest;
 
 class WorkMethodService implements ModelServiceContract
 {

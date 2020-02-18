@@ -38,7 +38,24 @@ class ProjectController extends Controller
         return view("tessify-core::pages.projects.view", [
             "project" => $project,
             "user" => Users::current(),
+            "author" => Projects::getAuthor($project),
+            "resources" => Projects::getResources($project),
             "comments" => Comments::getAllPreloadedForProject($project),
+        ]);
+    }
+
+    public function getTeamApplications($slug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        return view("tessify-core::pages.projects.team-applications", [
+            "project" => $project,
+            "teamApplications" => Projects::getTeamApplications($project),
         ]);
     }
 

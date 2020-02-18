@@ -26,14 +26,105 @@
         <!-- Content -->
         <div id="project-content" class="content-section__wrapper">
             <div class="content-section">
-                
+
+                <!-- Navigation -->
+                @include("tessify-core::partials.projects.navigation", [
+                    "page" => "info",
+                    "project" => $project,                    
+                ])
+
+                <!-- Project information -->
+                <div id="project-info">
+
+                    <!-- Main content -->
+                    <div id="project-info__main">
+
+                        <!-- Description -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_description")</h3>
+                            <div id="project-description">
+                                {!! nl2br($project->description) !!}
+                            </div>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_resources")</h3>
+                            <project-resource-list
+                                :resources="{{ $resources->toJson() }}"
+                                empty-text="@lang('tessify-core::projects.view_no_resources')">
+                            </project-resource-list>
+                        </div>
+                        
+                        <!-- Comments -->
+                        <div class="content-box elevation-1">
+                            <comments
+                                :user="{{ $user->toJson() }}"
+                                :comments="{{ $comments->toJson() }}"
+                                per-page="3"
+                                target-type="project"
+                                target-id="{{ $project->id }}"
+                                create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
+                                update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
+                                delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}">
+                            </comments>
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div id="project-info__sidebar">
+
+                        <!-- Status -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_owner")</h3>
+                            <user-pill 
+                                dark
+                                :user="{{ $author->toJson() }}">
+                            </user-pill>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_details")</h3>
+                            <div class="details compact bordered mb-0">
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_category")</div>
+                                    <div class="val">{{ $project->category->label }}</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_work_method")</div>
+                                    <div class="val">{{ $project->workMethod->label }}</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_start_date")</div>
+                                    <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_end_date")</div>
+                                    <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_created_at")</div>
+                                    <div class="val">{{ $project->created_at->format("d-m-Y") }}</div>
+                                </div>
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_updated_at")</div>
+                                    <div class="val">{{ $project->updated_at->format("d-m-Y") }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <!-- Interactive view project -->
                 <project-view
                     :project="{{ $project->toJson() }}"
                     :user="{{ $user->toJson() }}"
                     :comments="{{ $comments->toJson() }}"
-                    create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
+                    create-comment-api-endpoint=""
                     update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
                     delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}"
                     create-team-member-application-api-endpoint="{{ route('api.team-member-applications.create.post') }}"
@@ -41,7 +132,7 @@
                     delete-team-member-application-api-endpoint="{{ route('api.team-member-applications.delete.post') }}"
                     accept-team-member-application-api-endpoint="{{ route('api.team-member-applications.accept.post') }}"
                     deny-team-member-application-api-endpoint="{{ route('api.team-member-applications.deny.post') }}">
-                </job-view>
+                </project-view>
 
             </div>
         </div>

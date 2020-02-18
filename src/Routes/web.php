@@ -54,7 +54,19 @@ Route::group(["middleware" => "auth"], function() {
         
         // View
         Route::get("{slug}", "Projects\ProjectController@getView")->name("projects.view");
-        
+
+        // View team
+        Route::get("{slug}/team", "Projects\ProjectTeamController@getTeam")->name("projects.team.view");
+        Route::get("{slug}/team/aanmelden/{roleSlug?}", "Projects\ProjectTeamController@getApply")->name("projects.team.apply");
+        Route::post("{slug}/team/aanmelden/{roleSlug?}", "Projects\ProjectTeamController@postApply")->name("projects.team.apply.post");
+        Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
+        Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
+        Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
+        Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
+
+        // View applications
+        Route::get("{slug}/team-applications", "Projects\ProjectController@getTeamApplications")->name("projects.view.team-applications");
+
         // Update
         Route::get("{slug}/aanpassen", "Projects\ProjectController@getEdit")->name("projects.edit");
         Route::post("{slug}/aanpassen", "Projects\ProjectController@postEdit")->name("projects.edit.post");
