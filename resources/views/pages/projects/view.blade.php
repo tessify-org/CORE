@@ -120,7 +120,7 @@
                 </div>
 
                 <!-- Interactive view project -->
-                <project-view
+                <!-- <project-view
                     :project="{{ $project->toJson() }}"
                     :user="{{ $user->toJson() }}"
                     :comments="{{ $comments->toJson() }}"
@@ -132,7 +132,7 @@
                     delete-team-member-application-api-endpoint="{{ route('api.team-member-applications.delete.post') }}"
                     accept-team-member-application-api-endpoint="{{ route('api.team-member-applications.accept.post') }}"
                     deny-team-member-application-api-endpoint="{{ route('api.team-member-applications.deny.post') }}">
-                </project-view>
+                </project-view> -->
 
             </div>
         </div>

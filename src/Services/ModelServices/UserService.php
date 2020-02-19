@@ -5,7 +5,6 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Uuid;
 use Carbon\Carbon;
-
 use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;

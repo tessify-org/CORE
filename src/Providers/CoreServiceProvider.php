@@ -29,11 +29,12 @@ class CoreServiceProvider extends ServiceProvider
 {
     // Define policies
     protected $policies = [
-        'Tessify\Core\Models\Job' => 'Tessify\Core\Policies\JobPolicy',
+        'Tessify\Core\Models\Project' => 'Tessify\Core\Policies\ProjectPolicy',
     ];
 
     public function boot()
     {
+
         // Register the service provider responsible for the package's routes
         $this->app->register("Tessify\Core\Providers\CoreRouteServiceProvider");
 
@@ -49,6 +50,9 @@ class CoreServiceProvider extends ServiceProvider
         
         // Define the authorization Gates
         $this->defineGates();
+
+        // Register the package's policies
+        $this->registerPolicies();
 
         // Compose views
         $this->composeViews();
@@ -159,6 +163,14 @@ class CoreServiceProvider extends ServiceProvider
         Gate::define("access-admin-panel", function($user) {
             return $user->is_admin;
         });
+    }
+
+    private function registerPolicies()
+    {
+        foreach ($this->policies as $key => $value)
+        {
+            Gate::policy($key, $value);
+        }
     }
 
     private function composeViews()

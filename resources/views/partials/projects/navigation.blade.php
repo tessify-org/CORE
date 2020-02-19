@@ -4,21 +4,23 @@
             <!-- Information -->
             <li @if($page == 'info') class="active" @endif>
                 <a href="{{ route('projects.view', $project->slug) }}">
-                    Project informatie
+                    @lang("tessify-core::projects.project_navigation_info")
                 </a>
             </li>
             <!-- Team members -->
             <li @if($page == 'team') class="active" @endif>
-                <a href="{{ route('projects.view.team', $project->slug) }}">
-                    Het team
+                <a href="{{ route('projects.team.view', $project->slug) }}">
+                    @lang("tessify-core::projects.project_navigation_team")
                 </a>
             </li>
             <!-- Team applications -->
-            <li @if($page == 'team-applications') class="active" @endif>
-                <a href="{{ route('projects.view.team-applications', $project->slug) }}">
-                    Aanmeldingen
-                </a>
-            </li>
+            @can ("manage-team-members", $project)
+                <li @if($page == 'team-applications') class="active" @endif>
+                    <a href="{{ route('projects.team.applications', $project->slug) }}">
+                        @lang("tessify-core::projects.project_navigation_applications")
+                    </a>
+                </li>
+            @endcan
         </ul>
     </nav>
 </div>

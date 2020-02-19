@@ -2,6 +2,7 @@
 
 namespace Tessify\Core\Http\Controllers\Projects;
 
+use Users;
 use Projects;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Teams\InviteTeamMemberRequest;
@@ -18,8 +19,25 @@ class ProjectTeamController extends Controller
             return redirect()->route("projects");
         }
 
-        return view("tessify-core::pages.projects.team", [
+        return view("tessify-core::pages.projects.teams.view", [
             "project" => $project,
+            "user" => Users::current(),
+            "outstandingRoles" => Projects::getOutstandingRoles($project),
+        ]);
+    }
+
+    public function getApplications($slug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        return view("tessify-core::pages.projects.teams.applications", [
+            "project" => $project,
+            "teamApplications" => Projects::getTeamApplications($project),
         ]);
     }
 
@@ -59,8 +77,7 @@ class ProjectTeamController extends Controller
         
         return view("tessify-core::pages.projects.teams.remove-member", [
             "project" => $project,
-            
-        ])
+        ]);
     }
 
     public function postRemoveMember(RemoveMemberFromTeamRequest $request, $slug)

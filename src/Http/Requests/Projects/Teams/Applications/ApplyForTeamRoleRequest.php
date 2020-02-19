@@ -1,11 +1,11 @@
 <?php
 
-namespace Tessify\Core\Http\Requests\Projects\Teams;
+namespace Tessify\Core\Http\Requests\Projects\Teams\Applications;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class InviteTeamMemberRequest extends FormRequest
+class ApplyForTeamRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,8 @@ class InviteTeamMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id" => "required|exists:users,id",
+            "project_id" => "required|integer|exists:projects,id",
+            "team_role_id" => "required|integer|exists:team_roles,id",
         ];
     }
 }

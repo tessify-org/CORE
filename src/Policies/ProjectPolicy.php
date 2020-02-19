@@ -2,12 +2,13 @@
 
 namespace Tessify\Core\Policies;
 
-use Tessify\Core\Models\User;
-use Tessify\Core\Models\Job;
+use Projects;
+use App\Models\User;
+use Tessify\Core\Models\Project;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class JobPolicy
+class ProjectPolicy
 {
     use HandlesAuthorization;
 
@@ -41,10 +42,10 @@ class JobPolicy
      * Determine whether the user can view the job.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function view(User $user, Job $job)
+    public function view(User $user, Project $project)
     {
         // Any user can view any job
         return true;
@@ -66,13 +67,13 @@ class JobPolicy
      * Determine whether the user can update the job.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function update(User $user, Job $job)
+    public function update(User $user, Project $project)
     {
         // Only the job's author can update the job
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan dit project aanpassen.");
     }
@@ -81,12 +82,12 @@ class JobPolicy
      * Determine whether the user can delete the job.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function delete(User $user, Job $job)
+    public function delete(User $user, Project $project)
     {
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan dit project verwijderen.");
     }
@@ -95,12 +96,12 @@ class JobPolicy
      * Determine whether the user can update this job's status.
      * 
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function updateStatus(User $user, Job $job)
+    public function updateStatus(User $user, Project $project)
     {
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan de status wijzigen.");
     }
@@ -109,12 +110,12 @@ class JobPolicy
      * Determine whether the user can manage this job's team roles.
      * 
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function manageTeamRoles(User $user, Job $job)
+    public function manageTeamRoles(User $user, Project $project)
     {
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan team rollen managen.");
     }
@@ -123,24 +124,30 @@ class JobPolicy
      * Determine whether the user can apply for team roles on this job.
      * 
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function apply(User $user, Job $job)
+    public function applyForRoles(User $user, Project $project)
     {
-        return true;
+        // Make sure the user is not the author
+        if ($project->author_id == $user->id) Response::deny("De eigenaar kan zich niet aanmelden voor een rol.");
+
+        // Make sure the user is not already a team member
+        if (Projects::isTeamMember($user, $project)) Response::deny("Teamleden kunnen zich niet meer aanmelding.");
+        
+        return Response::allow();
     }
 
     /**
      * Determine whether the user can manage this job's team role applications.
      * 
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function manageApplications(User $user, Job $job)
+    public function manageApplications(User $user, Project $project)
     {
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan aanmeldingen managen.");
     }
@@ -149,12 +156,12 @@ class JobPolicy
      * Determine whether the user can manage this job's team members.
      * 
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Job  $job
+     * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function manageTeamMembers(User $user, Job $job)
+    public function manageTeamMembers(User $user, Project $project)
     {
-        return $job->author_id == $user->id
+        return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan team leden managen.");
     }

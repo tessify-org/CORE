@@ -30,9 +30,9 @@ class RegisterController extends Controller
             "email" => $request->email,
             "password" => $request->password,
         ]);
-
+        
         Auth::login($user);
-
+        
         flash(__('tessify-core::auth.register_success'))->success();
         return redirect()->route("home");
     }

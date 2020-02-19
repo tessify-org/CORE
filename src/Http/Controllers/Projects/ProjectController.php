@@ -44,21 +44,6 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function getTeamApplications($slug)
-    {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        return view("tessify-core::pages.projects.team-applications", [
-            "project" => $project,
-            "teamApplications" => Projects::getTeamApplications($project),
-        ]);
-    }
-
     public function getCreate()
     {
         return view("tessify-core::pages.projects.create", [

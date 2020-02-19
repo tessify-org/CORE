@@ -14,6 +14,7 @@ use ProjectResources;
 use ProjectCategories;
 use TeamMemberApplications;
 
+use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -230,5 +231,39 @@ class ProjectService implements ModelServiceContract
     {
         $out = TeamMemberApplications::getAllForProject($project);
         return collect($out);
+    }
+
+    public function getOutstandingRoles(Project $project)
+    {
+        $out = [];
+
+        foreach ($project->teamRoles as $teamRole)
+        {
+            if ($teamRole->teamMembers->count() and $teamRole->teamMembers->count() == $teamRole->positions)
+            {
+                // dd($teamRole, $teamRole->teamMembers, $teamRole->teamMembers->count() == $teamRole->positions);
+                continue;
+            }
+            
+            $out[] = $teamRole;
+        }
+
+        return collect($out);
+    }
+
+    public function isTeamMember(User $user, Project $project)
+    {
+        if ($project->teamMembers->count())
+        {
+            foreach ($project->teamMembers as $teamMember)
+            {
+                if ($teamMember->user_id == $user->id)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return false;
     }
 }

@@ -34,11 +34,7 @@ class Project extends Model
 
     public function sluggable()
     {
-        return [
-            "slug" => [
-                "source" => 'title',
-            ]
-        ];
+        return ["slug" => ["source" => 'title']];
     }
 
     //
@@ -47,7 +43,7 @@ class Project extends Model
 
     public function author()
     {
-        return $this->belongsTo(App\Models\User::class, "author_id", "id");
+        return $this->belongsTo(\App\Models\User::class, "author_id", "id");
     }
 
     public function category()

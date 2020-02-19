@@ -18,6 +18,15 @@ return [
     'project_not_found' => 'Project could not be found.',
     'project_created' => 'Project has been added.',
     'project_deleted' => 'Project has been deleted.',
+    
+    'team_role_not_found' => 'Team role could not be found.',
+    'team_role_created' => 'Team role has been added to the project.',
+    'team_role_updated' => 'Team role has been succesfully updated.',
+    'team_role_deleted' => 'Team role has been succesfully removed.',
+
+    'project_navigation_info' => 'Project information',
+    'project_navigation_team' => 'The team',
+    'project_navigation_applications' => 'Applications',
 
     //
     // Overview
@@ -44,6 +53,24 @@ return [
     "view_end_date" => "End date",
     "view_created_at" => "Created on",
     "view_updated_at" => "Last updated on",
+
+    //
+    // View team
+    //
+
+    "view_team_outstanding_roles" => "Outstanding roles",
+    "view_team_outstanding_roles_intro" => "The roles you see below are still available lorem ipsum dolor sit emet en dan nog wat latijnse woorden.",
+    "view_team_assign_to_me" => "Assign to yourself",
+    "view_team_role_edit" => "Edit role",
+    "view_team_role_delete" => "Delete role",
+    "view_team_apply" => "Sign me up!",
+    "view_team_no_roles" => "There are no outstanding roles at this moment",
+
+    //
+    // View applications
+    //
+
+    "view_applications_title" => "Team applications",
 
     //
     // Create

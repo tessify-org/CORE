@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.view", $project) !!}
+    {!! Breadcrumbs::render("projects.team.applications", $project) !!}
 @stop
 
 @section("content")
@@ -36,7 +36,7 @@
                 <!-- Project's team member applications -->
                 <div id="project-member-applications" class="content-box elevation-1">
 
-                    <h3 class="content-subtitle">Team member applications</h3>
+                    <h3 class="content-subtitle">@lang("tessify-core::projects.view_applications_title")</h3>
 
                     <project-team-applications
                         :project="{{ $project->toJson() }}"
