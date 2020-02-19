@@ -22,6 +22,11 @@ class ProjectTeamRoleController extends Controller
 
         return view("tessify-core::pages.projects.teams.roles.create", [
             "project" => $project,
+            "oldInput" => collect([
+                "name" => old("name"),
+                "description" => old("description"),
+                "positions" => old("positions"),
+            ])
         ]);
     }
 
@@ -34,7 +39,12 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        dd($request->all());
+        $this->authorize("manage-team-roles", $project);
+
+        TeamRoles::createFromRequest($project, $request);
+
+        flash(__("tessify-core::projects.create_role_succeeded"))->success();
+        return redirect()->route("projects.team.view", $project->slug);
     }
 
     public function getUpdate($slug, $roleSlug)
@@ -46,16 +56,21 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        $teamRole = TeamRoles::findPreloadedBySlug($slug);
+        $teamRole = TeamRoles::findPreloadedBySlug($roleSlug);
         if (!$teamRole)
         {
             flash(__("tessify-core::projects.team_role_not_found"))->error();
-            return redirect()->route("projects.view", $project->slug);
+            return redirect()->route("projects.team.view", $project->slug);
         }
 
         return view("tessify-core::pages.projects.teams.roles.edit", [
             "project" => $project,
             "teamRole" => $teamRole,
+            "oldInput" => collect([
+                "name" => old("name"),
+                "description" => old("description"),
+                "positions" => old("positions"),
+            ])
         ]);
     }
 
@@ -68,14 +83,19 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        $teamRole = TeamRoles::findPreloadedBySlug($slug);
+        $this->authorize("manage-team-roles", $project);
+
+        $teamRole = TeamRoles::findPreloadedBySlug($roleSlug);
         if (!$teamRole)
         {
             flash(__("tessify-core::projects.team_role_not_found"))->error();
-            return redirect()->route("projects.view", $project->slug);
+            return redirect()->route("projects.team.view", $project->slug);
         }
         
-        dd($request->all());
+        TeamRoles::updateFromRequest($teamRole, $request);
+
+        flash(__("tessify-core::general.saved_changes"))->success();
+        return redirect()->route("projects.team.view", $project->slug);
     }
 
     public function getDelete($slug, $roleSlug)
@@ -87,7 +107,7 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        $teamRole = TeamRoles::findPreloadedBySlug($slug);
+        $teamRole = TeamRoles::findPreloadedBySlug($roleSlug);
         if (!$teamRole)
         {
             flash(__("tessify-core::projects.team_role_not_found"))->error();
@@ -109,12 +129,18 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        $teamRole = TeamRoles::findPreloadedBySlug($slug);
+        $this->authorize("manage-team-roles", $project);
+
+        $teamRole = TeamRoles::findPreloadedBySlug($roleSlug);
         if (!$teamRole)
         {
             flash(__("tessify-core::projects.team_role_not_found"))->error();
-            return redirect()->route("projects.view", $project->slug);
+            return redirect()->route("projects.team.view", $project->slug);
         }
         
+        $teamRole->delete();
+
+        flash(__("tessify-core::projects.delete_role_succeeded"))->success();
+        return redirect()->route("projects.team.view", $project->slug);
     }
 }

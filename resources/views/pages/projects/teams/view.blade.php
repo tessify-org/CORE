@@ -35,7 +35,9 @@
 
                 <!-- Team members -->
                 <div class="content-box elevation-1">
-                    <h3 class="content-subtitle">Teamleden</h3>
+                    <h3 class="content-subtitle">
+                        @lang("tessify-core::projects.view_team_team_members")
+                    </h3>
                     @if ($project->teamMembers->count())
                         <div id="team-members">
                             @foreach ($project->teamMembers as $teamMember)
@@ -46,7 +48,7 @@
                                         </div>
                                         <div class="team-member__text-wrapper">
                                             <div class="team-member__user">{{ $teamMember->user->formattedName }}</div>
-                                            <div class="team-member__title">als <span>{{ $teamMember->title }}</span></div>
+                                            <div class="team-member__title">@lang("tessify-core::general.as") <span>{{ $teamMember->title }}</span></div>
                                         </div>
                                         <div class="team-member__actions">
                                             <v-btn depressed small href="{{ route('profile', $teamMember->user->slug) }}">
@@ -59,7 +61,7 @@
                         </div>
                     @else
                         <div id="no-team-members">
-                            Wees de eerste die dit team joined!
+                            @lang("tessify-core::projects.view_team_no_team_members")
                         </div>
                     @endif
                 </div>
@@ -91,7 +93,7 @@
                                             <div class="role-description">{{ $teamRole->description }}</div>
                                         </div>
                                         <!-- Actions -->
-                                        @cannot("manage-team-roles", $project)
+                                        @can("manage-team-roles", $project)
                                             <div class="team-role__actions">
                                                 <!-- Assign to me -->
                                                 <v-tooltip bottom>
@@ -101,11 +103,11 @@
                                                         </a>
                                                     </template>
                                                     <span>@lang("tessify-core::projects.view_team_assign_to_me")</span>
-                                                </v-tooltip>1
+                                                </v-tooltip>
                                                 <!-- Update -->
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on }">
-                                                        <a v-on="on" class="team-role__action" href="{{ route('projects.team.roles.update', ['slug' => $project->slug, 'roleSlug' => $teamRole->slug]) }}">
+                                                        <a v-on="on" class="team-role__action" href="{{ route('projects.team.roles.edit', ['slug' => $project->slug, 'roleSlug' => $teamRole->slug]) }}">
                                                             <i class="fas fa-pen-square"></i>
                                                         </a>
                                                     </template>
@@ -121,18 +123,29 @@
                                                     <span>@lang("tessify-core::projects.view_team_role_delete")</span>
                                                 </v-tooltip>
                                             </div>
-                                        @endcannot
+                                        @endcan
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        @can("apply-for-roles", $project)
-                            <div id="team-roles__actions">
-                                <v-btn large depressed color="primary" href="{{ route('projects.team.apply', $project->slug) }}">
-                                    @lang("tessify-core::projects.view_team_apply")
-                                </v-btn>
-                            </div>
-                        @endcan
+                        <div id="team-roles__actions">
+                            @can("apply-for-team", $project)
+                                <div id="team-roles__actions-left">
+                                    <v-btn large depressed color="primary" href="{{ route('projects.team.apply', $project->slug) }}">
+                                        <i class="fas fa-user-plus"></i>
+                                        @lang("tessify-core::projects.view_team_apply")
+                                    </v-btn>
+                                </div>
+                            @endcan
+                            @can("manage-team-roles", $project)
+                                <div id="team-roles__actions-right">
+                                    <v-btn large depressed color="primary" href="{{ route('projects.team.roles.create', $project->slug) }}">
+                                        <i class="fas fa-plus"></i>
+                                        @lang("tessify-core::projects.view_team_add_roles")
+                                    </v-btn>
+                                </div>
+                            @endcan
+                        </div>
                     @else
                         <div id="no-team-roles">@lang("tessify-core::projects.view_team_no_roles")</div>
                     @endif

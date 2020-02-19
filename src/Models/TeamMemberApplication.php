@@ -2,6 +2,7 @@
 
 namespace Tessify\Core\Models;
 
+use Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class TeamMemberApplication extends Model
@@ -12,6 +13,7 @@ class TeamMemberApplication extends Model
         "project_id",
         "user_id",
         "team_role_id",
+        "uuid",
         "motivation",
         "processed",
         "accepted",
@@ -20,6 +22,18 @@ class TeamMemberApplication extends Model
         "processed" => "boolean",
         "accepted" => "boolean",
     ];
+
+    //
+    // UUID generation
+    //
+    
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->uuid = (string) Uuid::generate(4);
+        });
+    }
 
     //
     // Relationships

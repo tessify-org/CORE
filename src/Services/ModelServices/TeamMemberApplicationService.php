@@ -10,10 +10,12 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\CreateTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\UpdateTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\AcceptTeamMemberApplicationRequest;
-use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\DenyTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\Applications\CreateTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\Applications\UpdateTeamMemberApplicationRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\CreateTeamMemberApplicationRequest as ApiCreateRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\UpdateTeamMemberApplicationRequest as ApiUpdateRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\AcceptTeamMemberApplicationRequest as ApiAcceptRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamMemberApplications\DenyTeamMemberApplicationRequest as ApiDenyRequest;
 
 class TeamMemberApplicationService implements ModelServiceContract
 {
@@ -25,7 +27,7 @@ class TeamMemberApplicationService implements ModelServiceContract
     
     public function __construct()
     {
-        $this->model = "Tessify\Core\Models\Task";
+        $this->model = "Tessify\Core\Models\TeamMemberApplication";
     }
 
     public function preload($instance)
@@ -52,7 +54,81 @@ class TeamMemberApplicationService implements ModelServiceContract
         return $out;
     }
 
-    public function deny(DenyTeamMemberApplicationRequest $request)
+    public function findByUuid($uuid)
+    {
+        foreach ($this->getAll() as $application)
+        {
+            if ($application->uuid == $uuid)
+            {
+                return $application;
+            }
+        }
+
+        return false;
+    }
+
+    public function findPreloadedByUuid($uuid)
+    {
+        foreach ($this->getAllPreloaded() as $application)
+        {
+            if ($application->uuid == $uuid)
+            {
+                return $application;
+            }
+        }
+
+        return false;
+    }
+
+    public function createFromRequest(Project $project, CreateTeamMemberApplicationRequest $request)
+    {
+        $user = Users::current();
+
+        return TeamMemberApplication::create([
+            "project_id" => $project->id,
+            "user_id" => $user->id,
+            "team_role_id" => $request->team_role_id,
+            "motivation" => $request->motivation,
+        ]);
+    }
+
+    public function updateFromRequest(TeamMemberApplication $application, UpdateTeamMemberApplicationRequest $request)
+    {
+        $application->team_role_id = $request->team_role_id;
+        $application->motivation = $request->motivation;
+        $application->save();
+
+        return $application;
+    }
+
+    public function accept(TeamMemberApplication $application)
+    {
+        $application->processed = true;
+        $application->accepted = true;
+        $application->save();
+
+        return $application;
+    }
+
+    public function reject(TeamMemberApplication $application)
+    {
+        $application->processed = true;
+        $application->accepted = false;
+        $application->save();
+        
+        return $application;
+    }
+    
+    public function reopen(TeamMemberApplication $application)
+    {
+        $application->processed = false;
+        $application->accepted = false;
+        $application->save();
+        
+        return $application;
+    }
+
+    public function apiDeny(ApiDenyReject $request)
     {
         $application = $this->find($request->team_member_application_id);
         $application->processed = true;
@@ -62,7 +138,7 @@ class TeamMemberApplicationService implements ModelServiceContract
         return $application;
     }
 
-    public function accept(AcceptTeamMemberApplicationRequest $request)
+    public function apiAccept(ApiAcceptRequest $request)
     {
         $application = $this->find($request->team_member_application_id);
         $application->processed = true;
@@ -72,7 +148,7 @@ class TeamMemberApplicationService implements ModelServiceContract
         return $application;
     }
 
-    public function createFromRequest(CreateTeamMemberApplicationRequest $request)
+    public function apiCreateFromRequest(ApiCreateRequest $request)
     {
         $application = TeamMemberApplication::create([
             "project_id" => $request->project_id,
@@ -84,12 +160,13 @@ class TeamMemberApplicationService implements ModelServiceContract
         return $this->preload($application);
     }
 
-    public function updateFromRequest(UpdateTeamMemberApplicationRequest $request)
+    public function apiUpdateFromRequest(ApiUpdateRequest $request)
     {
         $application = $this->find($request->team_member_application_id);
+        $application->team_role_id = $request->team_role_id;
         $application->motivation = $request->motivation;
         $application->save();
-
+        
         return $this->preload($application);
     }
 }

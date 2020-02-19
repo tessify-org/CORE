@@ -58,29 +58,37 @@ Route::group(["middleware" => "auth"], function() {
         // View team
         Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
         
-        // View applications
-        Route::get("{slug}/team/applications", "Projects\ProjectTeamController@getApplications")->name("projects.team.applications");
-        
         // Manage team roles
-        Route::get("{slug}/team/rol-toevoegen", "Projects\ProjectTeamRoleController@getCreate")->name("projects.team.roles.create");
-        Route::post("{slug}/team/rol-toevoegen", "Projects\ProjectTeamRoleController@postCreate")->name("projects.team.roles.create.post");
-        Route::get("{slug}/team/rol-{roleSlug}/aanpassen", "Projects\ProjectTeamRoleController@getUpdate")->name("projects.team.roles.update");
-        Route::post("{slug}/team/rol-{roleSlug}/aanpassen", "Projects\ProjectTeamRoleController@postUpdate")->name("projects.team.roles.update.post");
-        Route::get("{slug}/team/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@getDelete")->name("projects.team.roles.delete");
-        Route::post("{slug}/team/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@postDelete")->name("projects.team.roles.delete.post");
+        Route::get("{slug}/team/rollen/toevoegen", "Projects\ProjectTeamRoleController@getCreate")->name("projects.team.roles.create");
+        Route::post("{slug}/team/rollen/toevoegen", "Projects\ProjectTeamRoleController@postCreate")->name("projects.team.roles.create.post");
+        Route::get("{slug}/team/rollen/{roleSlug}/aanpassen", "Projects\ProjectTeamRoleController@getUpdate")->name("projects.team.roles.edit");
+        Route::post("{slug}/team/rollen/{roleSlug}/aanpassen", "Projects\ProjectTeamRoleController@postUpdate")->name("projects.team.roles.edit.post");
+        Route::get("{slug}/team/rollen/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@getDelete")->name("projects.team.roles.delete");
+        Route::post("{slug}/team/rollen/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@postDelete")->name("projects.team.roles.delete.post");
+
+        // View applications
+        Route::get("{slug}/team/aanmeldingen", "Projects\ProjectTeamMemberApplicationController@getOverview")->name("projects.team.applications");
+        Route::get("{slug}/team/aanmeldingen/{uuid}", "Projects\ProjectTeamMemberApplicationController@getView")->name("projects.team.applications.view");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/aanpassen", "Projects\ProjectTeamMemberApplicationController@getEdit")->name("projects.team.applications.edit");
+        Route::post("{slug}/team/aanmeldingen/{uuid}/aanpassen", "Projects\ProjectTeamMemberApplicationController@postEdit")->name("projects.team.applications.edit.post");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/verwijderen", "Projects\ProjectTeamMemberApplicationControllerProjectTeamMemberApplicationController@getDelete")->name("projects.team.applications.delete");
+        Route::post("{slug}/team/aanmeldingen/{uuid}/verwijderen", "Projects\ProjectTeamMemberApplicationController@postDelete")->name("projects.team.applications.delete.post");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/accepteren", "Projects\ProjectTeamMemberApplicationController@getAccept")->name("projects.team.applications.accept");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/afwijzen", "Projects\ProjectTeamMemberApplicationController@getReject")->name("projects.team.applications.reject");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/heropenen", "Projects\ProjectTeamMemberApplicationController@getReopen")->name("projects.team.applications.reopen");
 
         // Apply for team role(s)
-        Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamController@getApply")->name("projects.team.apply");
-        Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamController@postApply")->name("projects.team.apply.post");
-        
-        // Remove member from team
-        Route::get("{slug}/team/team-lid-{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
-        Route::post("{slug}/team/team-lid-{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
+        Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
+        Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@postCreate")->name("projects.team.apply.post");
         
         // Invite member to team
         Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
         Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
 
+        // Remove member from team
+        Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
+        Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
+        
     });
     
 });

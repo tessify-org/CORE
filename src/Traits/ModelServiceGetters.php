@@ -36,10 +36,12 @@ trait ModelServiceGetters
 
             foreach ($this->getAll() as $record)
             {
-                $out[] = $this->preload($record);
+                $clonedRecord = clone $record;
+
+                $out[] = $this->preload($clonedRecord);
             }
 
-            return collect($out);
+            $this->preloadedRecords = collect($out);
         }
 
         return $this->preloadedRecords;

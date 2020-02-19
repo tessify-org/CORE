@@ -18,13 +18,10 @@ class ProjectPolicy
      * @param  \App\Models\User  $user
      * @return true|void
      */
-    public function before(User $user)
-    {
-        if ($user->is_admin)
-        {
-            return true;
-        }
-    }
+    // public function before(User $user)
+    // {
+    //     if ($user->is_admin) return true;
+    // }
 
     /**
      * Determine whether the user can view any jobs.
@@ -34,7 +31,6 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        // Every logged in user can view any job
         return true;
     }
 
@@ -47,7 +43,6 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        // Any user can view any job
         return true;
     }
 
@@ -59,7 +54,6 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        // Any user can create a job
         return true;
     }
 
@@ -72,7 +66,6 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        // Only the job's author can update the job
         return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan dit project aanpassen.");
@@ -121,31 +114,13 @@ class ProjectPolicy
     }
 
     /**
-     * Determine whether the user can apply for team roles on this job.
-     * 
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project   $project
-     * @return mixed
-     */
-    public function applyForRoles(User $user, Project $project)
-    {
-        // Make sure the user is not the author
-        if ($project->author_id == $user->id) Response::deny("De eigenaar kan zich niet aanmelden voor een rol.");
-
-        // Make sure the user is not already a team member
-        if (Projects::isTeamMember($user, $project)) Response::deny("Teamleden kunnen zich niet meer aanmelding.");
-        
-        return Response::allow();
-    }
-
-    /**
      * Determine whether the user can manage this job's team role applications.
      * 
      * @param  \App\Models\User  $user
      * @param  \App\Models\Project   $project
      * @return mixed
      */
-    public function manageApplications(User $user, Project $project)
+    public function manageTeamMemberApplications(User $user, Project $project)
     {
         return $project->author_id == $user->id
             ? Response::allow()
@@ -164,5 +139,35 @@ class ProjectPolicy
         return $project->author_id == $user->id
             ? Response::allow()
             : Response::deny("Alleen de eigenaar kan team leden managen.");
+    }
+
+    /**
+     * Determine whether the user can apply for team roles on this job.
+     * 
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Project   $project
+     * @return mixed
+     */
+    public function applyForTeam(User $user, Project $project)
+    {
+        // Make sure the user is not the author
+        if ($project->author_id == $user->id)
+        {
+            return Response::deny("De eigenaar kan zich niet aanmelden voor een rol.");
+        }
+
+        // Make sure the user is not already a team member
+        if (Projects::isTeamMember($user, $project))
+        {
+            return Response::deny("Teamleden kunnen zich niet meer aanmelding.");
+        }
+        
+        // Make sure the user does not already have an outstanding application
+        if (Projects::hasOutstandingTeamApplication($user, $project))
+        {
+            return Response::deny("Je hebt je al aangemeld voor dit team.");
+        }
+
+        return Response::allow();
     }
 }

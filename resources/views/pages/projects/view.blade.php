@@ -77,7 +77,9 @@
 
                         <!-- Status -->
                         <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_owner")</h3>
+                            <h3 class="content-subtitle">
+                                @lang("tessify-core::projects.view_owner")
+                            </h3>
                             <user-pill 
                                 dark
                                 :user="{{ $author->toJson() }}">
@@ -86,7 +88,9 @@
 
                         <!-- Details -->
                         <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_details")</h3>
+                            <h3 class="content-subtitle">
+                                @lang("tessify-core::projects.view_details")
+                            </h3>
                             <div class="details compact bordered mb-0">
                                 <div class="detail">
                                     <div class="key">@lang("tessify-core::projects.view_category")</div>
@@ -114,6 +118,29 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Actions -->
+                        @canany(["update", "delete"], $project)
+                            <div class="content-box elevation-1">
+                                <h3 class="content-subtitle">
+                                    @lang("tessify-core::projects.view_actions")
+                                </h3>
+                                <div id="project-actions">
+                                    @can("update", $project)
+                                        <v-btn depressed block color="warning" href="{{ route('projects.edit', $project->slug) }}">
+                                            <i class="fas fa-pen-square"></i>
+                                            @lang("tessify-core::general.edit")
+                                        </v-btn>
+                                    @endcan
+                                    @can("delete", $project)
+                                        <v-btn depressed block color="red" dark href="{{ route('projects.delete', $project->slug) }}">
+                                            <i class="fas fa-trash"></i>
+                                            @lang("tessify-core::general.delete")
+                                        </v-btn>
+                                    @endcan
+                                </div>
+                            </div>
+                        @endcanany
 
                     </div>
 

@@ -16,7 +16,32 @@ return [
     // General strings
     //
 
+    "as" => "als",
+
+    "yes" => "Ja",
+    "no" => "Nee",
+
+    "edit" => "Aanpassen",
+    "delete" => "Verwijderen",
+
+    "accept" => "Accepteren",
+    "reject" => "Afwijzen",
+    "reopen" => "Heropenen",
+
+    "accepted" => "Geaccepteerd",
+    "rejected" => "Afgewezen",
+    "pending" => "In afwachting",
+    
+    "created_at" => "Toegevoegd op",
+    "updated_at" => "Laatst aangepast op",
+
+    "go_back" => "Ga terug",
+
+    "save_changes" => "Wijzigingen opslaan",
     "saved_changes" => "Wijzigingen zijn opgeslagen",
+    
+    "delete_cancel" => "Nee, <span class='extra-text'>ga terug</span>",
+    "delete_confirm" => "Ja, <span class='extra-text'>verwijderen</span>",
     
     //
     // Emails

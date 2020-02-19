@@ -34,6 +34,9 @@ return [
     "projects_team_role_update" => "Rol aanpassen",
     "projects_team_role_delete" => "Rol verwijderen",
     "projects_team_applications" => "Aanmeldingen",
+    "projects_team_applications_view" => "Bekijk aanmelding",
+    "projects_team_applications_edit" => "Aanmelding aanpassen",
+    "projects_team_applications_delete" => "Aanmelding verwijderen",
     "admin_dashboard" => "Administratie dashboard",
 
 ];

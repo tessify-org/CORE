@@ -10,7 +10,9 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\UnassignTeamRoleRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\Roles\CreateTeamRoleRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\Roles\UpdateTeamRoleRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\UnassignTeamRoleRequest as ApiUnassignTeamRoleRequest;
 
 class TeamRoleService implements ModelServiceContract
 {
@@ -77,9 +79,53 @@ class TeamRoleService implements ModelServiceContract
         return $teamMember;
     }
 
-    public function unassignFromRequest(UnassignFromRequest $request)
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $role)
+        {
+            if ($role->slug == $slug)
+            {
+                return $role;
+            }
+        }
+        
+        return false;
+    }
+
+    public function findPreloadedBySlug($slug)
+    {
+        foreach ($this->getAllPreloaded() as $role)
+        {
+            if ($role->slug == $slug)
+            {
+                return $role;
+            }
+        }
+        
+        return false;
+    }
+
+    public function unassignFromRequest(ApiUnassignTeamRoleRequest $request)
     {
         $role = $this->find($request->team_role_id);
         $role->teamMembers()->detach();
+    }
+
+    public function createFromRequest(Project $project, CreateTeamRoleRequest $request)
+    {
+        return TeamRole::create([
+            "project_id" => $project->id,
+            "name" => $request->name,
+            "description" => $request->description,
+            "positions" => $request->positions,
+        ]);
+    }
+
+    public function updateFromRequest(TeamRole $role, UpdateTeamRoleRequest $request)
+    {
+        $role->name = $request->name;
+        $role->description = $request->description;
+        $role->positions = $request->positions;
+        $role->save();
     }
 }

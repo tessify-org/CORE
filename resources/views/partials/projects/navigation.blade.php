@@ -14,13 +14,11 @@
                 </a>
             </li>
             <!-- Team applications -->
-            @can ("manage-team-members", $project)
-                <li @if($page == 'team-applications') class="active" @endif>
-                    <a href="{{ route('projects.team.applications', $project->slug) }}">
-                        @lang("tessify-core::projects.project_navigation_applications")
-                    </a>
-                </li>
-            @endcan
+            <li @if($page == 'team-applications') class="active" @endif>
+                <a href="{{ route('projects.team.applications', $project->slug) }}">
+                    @lang("tessify-core::projects.project_navigation_applications")
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

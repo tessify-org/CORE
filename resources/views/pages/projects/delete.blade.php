@@ -14,7 +14,7 @@
         
             @include("tessify-core::partials.feedback")
 
-            <form action="{{ route('projects.delete', $project->slug) }}" method="post">
+            <form action="{{ route('projects.delete.post', $project->slug) }}" method="post">
                 {{ csrf_field() }}
 
                 <div id="delete-dialog" class="elevation-1">

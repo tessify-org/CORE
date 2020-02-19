@@ -17,10 +17,12 @@ use TeamMemberApplications;
 use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
+use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Projects\CreateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\UpdateProjectRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\Applications\ApplyForTeamRoleRequest;
 
 class ProjectService implements ModelServiceContract
 {
@@ -149,7 +151,7 @@ class ProjectService implements ModelServiceContract
         $project->save();
 
         $this->processProjectResources($project, $request->resources);
-        $this->processTeamRoles($project, $request->team_roles);
+        // $this->processTeamRoles($project, $request->team_roles);
 
         return $project;
     }
@@ -216,6 +218,18 @@ class ProjectService implements ModelServiceContract
         return $project;
     }
 
+    public function processTeamApplication(Project $project, ApplyForTeamRoleRequest $request)
+    {
+        $user = Users::current();
+
+        return TeamMemberApplication::create([
+            "project_id" => $project->id,
+            "user_id" => $user->id,
+            "team_role_id" => $request->team_role_id,
+            "motivation" => $request->motivation
+        ]);
+    }
+
     public function getResources(Project $project)
     {
         $out = ProjectResources::getAllPreloadedForProject($project);
@@ -227,9 +241,30 @@ class ProjectService implements ModelServiceContract
         return Users::findAuthorForProject($project);
     }
 
-    public function getTeamApplications(Project $project)
+    public function getTeamMemberApplications(Project $project)
     {
-        $out = TeamMemberApplications::getAllForProject($project);
+        $applications = collect(TeamMemberApplications::getAllForProject($project));
+        
+        $applications->map(function($application) use ($project) {
+            $application->view_href = route("projects.team.applications.view", ["slug" => $project->slug, "uuid" => $application->uuid]);
+            return $application;
+        });
+
+        return $applications;
+    }
+
+    public function getMyTeamMemberApplications(Project $project)
+    {
+        $out = [];
+
+        $user = Users::current();
+        
+        $applications = TeamMemberApplications::getAllForProject($project);
+        foreach ($applications as $application)
+        {
+            if ($application->user_id == $user->id) $out[] = $application;
+        }
+
         return collect($out);
     }
 
@@ -260,6 +295,24 @@ class ProjectService implements ModelServiceContract
                 if ($teamMember->user_id == $user->id)
                 {
                     return false;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function hasOutstandingTeamApplication(User $user, Project $project)
+    {
+        $applications = TeamMemberApplications::getAllForProject($project);
+
+        if (count($applications))
+        {
+            foreach($applications as $application)
+            {
+                if ($application->user_id == $user->id)
+                {
+                    return true;
                 }
             }
         }

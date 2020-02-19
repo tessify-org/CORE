@@ -29,7 +29,8 @@ class CoreServiceProvider extends ServiceProvider
 {
     // Define policies
     protected $policies = [
-        'Tessify\Core\Models\Project' => 'Tessify\Core\Policies\ProjectPolicy',
+        "Tessify\Core\Models\Project" => "Tessify\Core\Policies\ProjectPolicy",
+        "Tessify\Core\Models\TeamMemberApplication" => "Tessify\Core\Policies\TeamMemberApplicationPolicy",
     ];
 
     public function boot()
