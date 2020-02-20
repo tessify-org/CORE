@@ -31,7 +31,7 @@
                                 </v-btn>
                             </div>
                             <div id="delete-dialog__actions-right">
-                                <v-btn type="submit" color="red" dark>
+                                <v-btn type="submit" color="red" dark depressed>
                                     <i class="fas fa-trash-alt"></i>
                                     @lang("tessify-core::projects.delete_confirm")
                                 </v-btn>

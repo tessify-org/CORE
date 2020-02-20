@@ -170,4 +170,18 @@ class ProjectPolicy
 
         return Response::allow();
     }
+
+    /**
+     * Determine whether the user can leave the team of a given project.
+     * 
+     * @param  \App\Models\User     $user
+     * @param  \App\Models\Project  $project
+     * @return mixed
+     */
+    public function leaveTeam(User $user, Project $project)
+    {
+        return Projects::isTeamMember($user, $project)
+            ? Response::allow()
+            : Response::deny("Only team members can leave the team");
+    }
 }

@@ -28,6 +28,7 @@ return [
     "projects_delete" => "Delete project",
     "projects_team_view" => "Het team",
     "projects_team_apply" => "Sign up",
+    "projects_team_leave" => "Leave",
     "projects_team_member_remove" => "Remove team member",
     "projects_team_member_invite" => "Invite people",
     "projects_team_role_create" => "Add a role",

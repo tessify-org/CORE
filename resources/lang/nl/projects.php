@@ -91,7 +91,24 @@ return [
     "view_team_team_members" => "Teamleden",
     "view_team_no_team_members" => "Wees de eerste die zich bij dit team voegt!",
     "view_team_add_roles" => "Rol toevoegen",
+    "view_team_leave" => "Team verlaten",
 
+    //
+    // Remove from team
+    //
+
+    "removed_from_team" => ":name is uit het team verwijderd",
+
+    //
+    // Leave team
+    //
+
+    "leave_team_title" => "Team verlaten",
+    "leave_team_text" => "Weet je zeker dat je dit team wilt verlaten?",
+    "leave_team_back" => "Nee, terug",
+    "leave_team_submit" => "Ja, verlaat team",
+    "leave_team_success" => "Je hebt het team verlaten",
+    
     //
     // Apply to team
     //

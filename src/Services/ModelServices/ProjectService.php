@@ -294,7 +294,7 @@ class ProjectService implements ModelServiceContract
             {
                 if ($teamMember->user_id == $user->id)
                 {
-                    return false;
+                    return true;
                 }
             }
         }

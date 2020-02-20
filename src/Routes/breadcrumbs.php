@@ -77,6 +77,8 @@ Breadcrumbs::for("projects.delete", function($t, $project) {
     $t->push(__('tessify-core::breadcrumbs.projects_delete'), route("projects.delete", $project->slug));
 });
 
+
+
 //
 // Admin Panel Breadcrumbs
 //

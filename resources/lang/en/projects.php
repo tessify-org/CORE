@@ -91,7 +91,24 @@ return [
     "view_team_team_members" => "Team members",
     "view_team_no_team_members" => "Be the first to join this team!",
     "view_team_add_roles" => "Add role",
-    
+    "view_team_leave" => "Leave team",
+
+    //
+    // Remove from team
+    //
+
+    "removed_from_team" => ":name has been removed from the team",
+
+    //
+    // Leave team
+    //
+
+    "leave_team_title" => "Leave team",
+    "leave_team_text" => "Are you sure you want to leave this team?",
+    "leave_team_back" => "No, go back",
+    "leave_team_submit" => "Yes, leave team",
+    "leave_team_success" => "Succesfully left the team",
+
     //
     // Apply to team
     //

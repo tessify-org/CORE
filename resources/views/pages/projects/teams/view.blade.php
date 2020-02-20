@@ -50,6 +50,28 @@
                                             <div class="team-member__user">{{ $teamMember->user->formattedName }}</div>
                                             <div class="team-member__title">@lang("tessify-core::general.as") <span>{{ $teamMember->title }}</span></div>
                                         </div>
+                                        @can ("manage-team-members")
+                                            <div class="team-manager__actions">
+                                                <!-- Change roles -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <a class="team-manager_action" href="{{ route('projects.team.roles.assign-to-me', ['slug' => $project->slug, 'roleSlug' => $teamRole->slug]) }}" v-on="on">
+                                                            <i class="fas fa-user-plus"></i>
+                                                        </a>
+                                                    </template>
+                                                    <span>@lang("tessify-core::projects.view_team_assign_to_me")</span>
+                                                </v-tooltip>
+                                                <!-- Remove member -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <a v-on="on" class="team-manager__action" href="{{ route('projects.team.roles.edit', ['slug' => $project->slug, 'roleSlug' => $teamRole->slug]) }}">
+                                                            <i class="fas fa-pen-square"></i>
+                                                        </a>
+                                                    </template>
+                                                    <span>@lang("tessify-core::projects.view_team_role_edit")</span>
+                                                </v-tooltip>
+                                            </div>
+                                        @endcan
                                         <div class="team-member__actions">
                                             <v-btn depressed small href="{{ route('profile', $teamMember->user->slug) }}">
                                                 Bekijk profiel
@@ -64,6 +86,14 @@
                             @lang("tessify-core::projects.view_team_no_team_members")
                         </div>
                     @endif
+                    @can ("leave-team", $project)
+                        <div id="team-members__actions">
+                            <v-btn color="red" dark depressed href="{{ route('projects.team.leave', $project->slug) }}">
+                                
+                                @lang("tessify-core::projects.view_team_leave")
+                            </v-btn>
+                        </div>
+                    @endcan
                 </div>
 
                 <!-- Outstanding roles -->
