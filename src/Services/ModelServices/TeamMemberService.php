@@ -2,8 +2,11 @@
 
 namespace Tessify\Core\Services\ModelServices;
 
+use Auth;
 use Users;
-
+use App\Models\User;
+use Tessify\Core\Models\Project;
+use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Models\TeamMember;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
@@ -26,5 +29,36 @@ class TeamMemberService implements ModelServiceContract
         $instance->user = Users::findPreloaded($instance->user_id);
 
         return $instance;
+    }
+
+    public function addUserToTeam(TeamRole $teamRole, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        // Create the team member
+        $teamMember = TeamMember::create([
+            "project_id" => $teamRole->project_id,
+            "user_id" => $user->id,
+        ]);
+
+        // Associate the team member with the role
+        $teamMember->teamRoles()->attach($teamRole->id);
+
+        // Return the team member
+        return $teamMember;
+    }
+
+    public function removeUserFromTeam(Project $project, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        foreach ($project->teamMembers as $teamMember)
+        {
+            if ($teamMember->user_id == $user->id)
+            {
+                $teamMember->teamRoles()->detach();
+                $teamMember->delete();
+            }
+        }
     }
 }

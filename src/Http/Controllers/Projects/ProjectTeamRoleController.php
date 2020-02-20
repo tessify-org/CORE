@@ -4,6 +4,7 @@ namespace Tessify\Core\Http\Controllers\Projects;
 
 use Projects;
 use TeamRoles;
+use TeamMembers;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Teams\Roles\CreateTeamRoleRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\Roles\UpdateTeamRoleRequest;
@@ -138,9 +139,33 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects.team.view", $project->slug);
         }
         
-        $teamRole->delete();
+        TeamRoles::deleteRole($teamRole);
 
         flash(__("tessify-core::projects.delete_role_succeeded"))->success();
+        return redirect()->route("projects.team.view", $project->slug);
+    }
+
+    public function getAssignToMe($slug, $roleSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $this->authorize("manage-team-roles", $project);
+
+        $teamRole = TeamRoles::findPreloadedBySlug($roleSlug);
+        if (!$teamRole)
+        {
+            flash(__("tessify-core::projects.team_role_not_found"))->error();
+            return redirect()->route("projects.view", $project->slug);
+        }
+        
+        TeamMembers::addUserToTeam($teamRole);
+
+        flash(__("tessify-core::projects.view_team_assigned_to_self", ["name" => $teamRole->name]))->success();
         return redirect()->route("projects.team.view", $project->slug);
     }
 }

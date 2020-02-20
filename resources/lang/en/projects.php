@@ -83,6 +83,7 @@ return [
     "view_team_outstanding_roles" => "Outstanding roles",
     "view_team_outstanding_roles_intro" => "The roles you see below are still available lorem ipsum dolor sit emet en dan nog wat latijnse woorden.",
     "view_team_assign_to_me" => "Assign to yourself",
+    "view_team_assigned_to_self" => "The :name role has been assigned to yourself",
     "view_team_role_edit" => "Edit role",
     "view_team_role_delete" => "Delete role",
     "view_team_apply" => "Sign me up!",

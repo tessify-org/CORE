@@ -65,6 +65,7 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/team/rollen/{roleSlug}/aanpassen", "Projects\ProjectTeamRoleController@postUpdate")->name("projects.team.roles.edit.post");
         Route::get("{slug}/team/rollen/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@getDelete")->name("projects.team.roles.delete");
         Route::post("{slug}/team/rollen/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@postDelete")->name("projects.team.roles.delete.post");
+        Route::get("{slug}/team/rollen/{roleSlug}/toewijzen-aan-mijzelf", "Projects\ProjectTeamRoleController@getAssignToMe")->name("projects.team.roles.assign-to-me");
 
         // View applications
         Route::get("{slug}/team/aanmeldingen", "Projects\ProjectTeamMemberApplicationController@getOverview")->name("projects.team.applications");

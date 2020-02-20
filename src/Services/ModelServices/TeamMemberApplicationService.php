@@ -5,7 +5,6 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Users;
 use TeamRoles;
-
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -103,10 +102,15 @@ class TeamMemberApplicationService implements ModelServiceContract
 
     public function accept(TeamMemberApplication $application)
     {
+        // Update the application
         $application->processed = true;
         $application->accepted = true;
         $application->save();
 
+        // Add user to project as a team member
+        TeamMembers::addUserToProject($application->user, $application->teamRole, $application->project);
+
+        // Return updated application
         return $application;
     }
 

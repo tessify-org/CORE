@@ -83,6 +83,7 @@ return [
     "view_team_outstanding_roles" => "Openstaande team rollen",
     "view_team_outstanding_roles_intro" => "De rollen hieronder zijn nog beschikbaar en zou jij in kunnen vullen! Lorem ipsum bladiebla.",
     "view_team_assign_to_me" => "Aan jezelf toewijzen",
+    "view_team_assigned_to_self" => "De :name rol is aan jezelf toegewezen",
     "view_team_role_edit" => "Rol aanpassen",
     "view_team_role_delete" => "Rol verwijderen",
     "view_team_apply" => "Ik wil mij aanmelden!",

@@ -98,7 +98,7 @@
                                                 <!-- Assign to me -->
                                                 <v-tooltip bottom>
                                                     <template v-slot:activator="{ on }">
-                                                        <a class="team-role__action" href="#" v-on="on">
+                                                        <a class="team-role__action" href="{{ route('projects.team.roles.assign-to-me', ['slug' => $project->slug, 'roleSlug' => $teamRole->slug]) }}" v-on="on">
                                                             <i class="fas fa-user-plus"></i>
                                                         </a>
                                                     </template>

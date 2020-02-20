@@ -101,7 +101,7 @@ class TeamRoleService implements ModelServiceContract
                 return $role;
             }
         }
-        
+
         return false;
     }
 
@@ -127,5 +127,11 @@ class TeamRoleService implements ModelServiceContract
         $role->description = $request->description;
         $role->positions = $request->positions;
         $role->save();
+    }
+
+    public function deleteRole(TeamRole $role)
+    {
+        $role->teamMembers()->detach();
+        $role->delete();
     }
 }
