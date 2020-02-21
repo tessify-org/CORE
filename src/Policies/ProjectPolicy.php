@@ -68,7 +68,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan dit project aanpassen.");
+            : Response::deny(__("tessify-core::policies.update_deny"));
     }
 
     /**
@@ -82,7 +82,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan dit project verwijderen.");
+            : Response::deny(__("tessify-core::policies.delete_deny"));
     }
 
     /**
@@ -96,7 +96,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan de status wijzigen.");
+            : Response::deny(__("tessify-core::policies.status_deny"));
     }
 
     /**
@@ -110,7 +110,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan team rollen managen.");
+            : Response::deny(__("tessify-core::policies.manage_team_roles_deny"));
     }
 
     /**
@@ -124,7 +124,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan aanmeldingen managen.");
+            : Response::deny(__("tessify-core::policies.manage_team_applications_deny"));
     }
 
     /**
@@ -138,7 +138,7 @@ class ProjectPolicy
     {
         return $project->author_id == $user->id
             ? Response::allow()
-            : Response::deny("Alleen de eigenaar kan team leden managen.");
+            : Response::deny(__("tessify-core::policies.manage_team_members_deny"));
     }
 
     /**
@@ -153,19 +153,19 @@ class ProjectPolicy
         // Make sure the user is not the author
         if ($project->author_id == $user->id)
         {
-            return Response::deny("De eigenaar kan zich niet aanmelden voor een rol.");
+            return Response::deny(__("tessify-core::policies.apply_for_team_deny_owner"));
         }
 
         // Make sure the user is not already a team member
         if (Projects::isTeamMember($user, $project))
         {
-            return Response::deny("Teamleden kunnen zich niet meer aanmelding.");
+            return Response::deny(__("tessify-core::policies.apply_for_team_deny_team_member"));
         }
         
         // Make sure the user does not already have an outstanding application
         if (Projects::hasOutstandingTeamApplication($user, $project))
         {
-            return Response::deny("Je hebt je al aangemeld voor dit team.");
+            return Response::deny(__("tessify-core::policies.apply_for_team_deny_application_exists"));
         }
 
         return Response::allow();
@@ -182,6 +182,6 @@ class ProjectPolicy
     {
         return Projects::isTeamMember($project, $user)
             ? Response::allow()
-            : Response::deny("Only team members can leave the team");
+            : Response::deny(__("tessify-core::policies.leave_team_deny"));
     }
 }
