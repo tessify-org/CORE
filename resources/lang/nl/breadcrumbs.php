@@ -29,6 +29,7 @@ return [
     "projects_team_view" => "Het team",
     "projects_team_apply" => "Aanmelden",
     "projects_team_leave" => "Verlaten",
+    "projects_team_change_roles" => "Rollen aanpassen",
     "projects_team_member_remove" => "Teamlid afzetten",
     "projects_team_member_invite" => "Mensen uitnodigen",
     "projects_team_role_create" => "Rol toevoegen",

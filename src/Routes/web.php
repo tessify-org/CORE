@@ -58,6 +58,26 @@ Route::group(["middleware" => "auth"], function() {
         // View team
         Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
         
+        // Apply for team role(s)
+        Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
+        Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@postCreate")->name("projects.team.apply.post");
+        
+        // Leave team
+        Route::get("{slug}/team/verlaten", "Projects\ProjectTeamController@getLeaveTeam")->name("projects.team.leave");
+        Route::post("{slug}/team/verlaten", "Projects\ProjectTeamController@postLeaveTeam")->name("projects.team.leave.post");
+        
+        // Invite member to team
+        Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
+        Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
+
+        // Remove member from team
+        Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
+        Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
+        
+        // Change roles
+        Route::get("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@getChangeMemberRoles")->name("projects.team.change-roles");
+        Route::post("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@postChangeMemberRoles")->name("projects.team.change-roles.post");
+
         // Manage team roles
         Route::get("{slug}/team/rollen/toevoegen", "Projects\ProjectTeamRoleController@getCreate")->name("projects.team.roles.create");
         Route::post("{slug}/team/rollen/toevoegen", "Projects\ProjectTeamRoleController@postCreate")->name("projects.team.roles.create.post");
@@ -77,22 +97,6 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/team/aanmeldingen/{uuid}/accepteren", "Projects\ProjectTeamMemberApplicationController@getAccept")->name("projects.team.applications.accept");
         Route::get("{slug}/team/aanmeldingen/{uuid}/afwijzen", "Projects\ProjectTeamMemberApplicationController@getReject")->name("projects.team.applications.reject");
         Route::get("{slug}/team/aanmeldingen/{uuid}/heropenen", "Projects\ProjectTeamMemberApplicationController@getReopen")->name("projects.team.applications.reopen");
-
-        // Apply for team role(s)
-        Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
-        Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@postCreate")->name("projects.team.apply.post");
-        
-        // Invite member to team
-        Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
-        Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
-
-        // Remove member from team
-        Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
-        Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
-        
-        // Leave team
-        Route::get("{slug}/team/verlaten", "Projects\ProjectTeamController@getLeaveTeam")->name("projects.team.leave");
-        Route::post("{slug}/team/verlaten", "Projects\ProjectTeamController@postLeaveTeam")->name("projects.team.leave.post");
 
     });
     

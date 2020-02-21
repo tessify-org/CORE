@@ -8,6 +8,7 @@ use Users;
 use Skills;
 use Uploader;
 use TeamRoles;
+use TeamMembers;
 use WorkMethods;
 use ProjectStatuses;
 use ProjectResources;
@@ -286,8 +287,10 @@ class ProjectService implements ModelServiceContract
         return collect($out);
     }
 
-    public function isTeamMember(User $user, Project $project)
+    public function isTeamMember(Project $project, User $user = null)
     {
+        if (is_null($user)) $user = Auth::user();
+
         if ($project->teamMembers->count())
         {
             foreach ($project->teamMembers as $teamMember)
@@ -295,6 +298,24 @@ class ProjectService implements ModelServiceContract
                 if ($teamMember->user_id == $user->id)
                 {
                     return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function findTeamMember(Project $project, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        if ($project->teamMembers->count())
+        {
+            foreach ($project->teamMembers as $teamMember)
+            {
+                if ($teamMember->user_id == $user->id)
+                {
+                    return TeamMembers::preload($teamMember);
                 }
             }
         }

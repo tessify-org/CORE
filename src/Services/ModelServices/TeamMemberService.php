@@ -4,12 +4,14 @@ namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
 use Users;
+use TeamRoles;
 use App\Models\User;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Models\TeamMember;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
+use Tessify\Core\Http\Requests\Projects\Teams\UpdateTeamMemberRolesRequest;
 
 class TeamMemberService implements ModelServiceContract
 {
@@ -27,6 +29,7 @@ class TeamMemberService implements ModelServiceContract
     public function preload($instance)
     {
         $instance->user = Users::findPreloaded($instance->user_id);
+        $instance->team_roles = TeamRoles::findAllForMember($instance);
 
         return $instance;
     }
@@ -60,5 +63,11 @@ class TeamMemberService implements ModelServiceContract
                 $teamMember->delete();
             }
         }
+    }
+
+    public function updateRolesFromRequest(TeamMember $teamMember, UpdateTeamMemberRolesRequest $request)
+    {
+        $teamMember->teamRoles()->detach();
+        $teamMember->teamRoles()->attach([$request->team_role_id]);
     }
 }

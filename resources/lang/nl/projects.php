@@ -15,9 +15,9 @@ return [
     // General
     //
 
-    'project_not_found' => 'Project kon niet worden gevonden.',
     'project_created' => 'Project is opgestart!.',
     'project_deleted' => 'Project is verwijderd!',
+    'project_not_found' => 'Project kon niet worden gevonden.',
 
     'team_role_not_found' => 'Team rol kon niet worden gevonden.',
     'team_role_created' => 'Team rol is toegevoegd aan het project.',
@@ -27,6 +27,8 @@ return [
     'project_navigation_info' => 'Project informatie',
     'project_navigation_team' => 'Het Team',
     'project_navigation_applications' => 'Aanmeldingen',
+
+    'team_member_not_found' => 'Team lid kon niet worden gevonden',
     
     //
     // Overview
@@ -92,6 +94,8 @@ return [
     "view_team_no_team_members" => "Wees de eerste die zich bij dit team voegt!",
     "view_team_add_roles" => "Rol toevoegen",
     "view_team_leave" => "Team verlaten",
+    "view_team_change_roles" => "Verander de rol van gebruiker",
+    "view_team_remove_member" => "Verwijder uit het team",
 
     //
     // Remove from team
@@ -121,6 +125,18 @@ return [
     "apply_form_motivation" => "Motivatie",
     "apply_thanks" => "Bedankt voor je aanmelding! De projecteigenaar zal hem binnenkort verwerken.",
 
+    //
+    // Change roles of team member
+    //
+
+    "change_roles_title" => "Update rollen van teamlid",
+    "change_roles_project" => "Project",
+    "change_roles_user" => "Team lid",
+    "change_roles_role" => "Rol",
+    "change_roles_select_role" => "Selecteer de rol om toe te wijzen aan de gebruiker",
+    "change_roles_no_roles_available" => "Geen rollen beschikbaar om toe te wijzen aan de gebruiker",
+    "change_roles_success" => "De rol van het teamlid is aangepast",
+    
     //
     // View applications
     //

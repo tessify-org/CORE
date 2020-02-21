@@ -15,9 +15,9 @@ return [
     // General
     //
 
-    'project_not_found' => 'Project could not be found.',
     'project_created' => 'Project has been added.',
     'project_deleted' => 'Project has been deleted.',
+    'project_not_found' => 'Project could not be found.',
     
     'team_role_not_found' => 'Team role could not be found.',
     'team_role_created' => 'Team role has been added to the project.',
@@ -27,6 +27,8 @@ return [
     'project_navigation_info' => 'Project information',
     'project_navigation_team' => 'The Team',
     'project_navigation_applications' => 'Applications',
+
+    'team_member_not_found' => 'Team member could not be found',
 
     //
     // Overview
@@ -92,6 +94,8 @@ return [
     "view_team_no_team_members" => "Be the first to join this team!",
     "view_team_add_roles" => "Add role",
     "view_team_leave" => "Leave team",
+    "view_team_change_roles" => "Change user's roles",
+    "view_team_remove_member" => "Remove user from team",
 
     //
     // Remove from team
@@ -120,6 +124,18 @@ return [
     "apply_form_role" => "Roles you're interested in",
     "apply_form_motivation" => "Motivation",
     "apply_thanks" => "Thank you for your interest, the project owner will review your application.",
+
+    //
+    // Change roles of team member
+    //
+
+    "change_roles_title" => "Update member's roles",
+    "change_roles_project" => "Project",
+    "change_roles_user" => "Team member",
+    "change_roles_role" => "Role",
+    "change_roles_select_role" => "Select the role to assign to the user",
+    "change_roles_no_roles_available" => "No roles available to assign to this user",
+    "change_roles_success" => "Succesfully saved changes to user's roles.",
 
     //
     // View applications

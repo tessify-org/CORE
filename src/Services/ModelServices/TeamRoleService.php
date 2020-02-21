@@ -8,6 +8,7 @@ use TeamMembers;
 
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamRole;
+use Tessify\Core\Models\TeamMember;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Projects\Teams\Roles\CreateTeamRoleRequest;
@@ -103,6 +104,21 @@ class TeamRoleService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function findAllForMember(TeamMember $teamMember)
+    {
+        $out = [];
+
+        foreach ($this->getTeamMemberPivots() as $pivot)
+        {
+            if ($pivot->team_member_id == $teamMember->id)
+            {
+                $out[] = $this->find($pivot->team_role_id);
+            }
+        }
+
+        return collect($out);
     }
 
     public function unassignFromRequest(ApiUnassignTeamRoleRequest $request)

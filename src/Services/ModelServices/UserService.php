@@ -4,6 +4,7 @@ namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
 use Uuid;
+use Projects;
 use Carbon\Carbon;
 use App\Models\User;
 use Tessify\Core\Models\Project;
@@ -52,6 +53,21 @@ class UserService implements ModelServiceContract
         return $instance;
     }
 
+    public function getAllNotInProjectTeam(Project $project)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $user)
+        {
+            if (!Projects::isTeamMember($user, $project))
+            {
+                $out[] = $user;
+            }
+        }
+
+        return collect($out);
+    }
+
     public function findAuthorForProject(Project $project)
     {
         foreach ($this->getAllPreloaded() as $user)
@@ -70,6 +86,32 @@ class UserService implements ModelServiceContract
         foreach ($this->getAll() as $user)
         {
             if ($user->email == $email)
+            {
+                return $user;
+            }
+        }
+
+        return false;
+    }
+
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $user)
+        {
+            if ($user->slug == $slug)
+            {
+                return $user;
+            }
+        }
+
+        return false;
+    }
+
+    public function findPreloadedBySlug($slug)
+    {
+        foreach ($this->getAllPreloaded() as $user)
+        {
+            if ($user->slug == $slug)
             {
                 return $user;
             }

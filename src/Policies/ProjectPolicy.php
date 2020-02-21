@@ -180,7 +180,7 @@ class ProjectPolicy
      */
     public function leaveTeam(User $user, Project $project)
     {
-        return Projects::isTeamMember($user, $project)
+        return Projects::isTeamMember($project, $user)
             ? Response::allow()
             : Response::deny("Only team members can leave the team");
     }
