@@ -62,14 +62,16 @@
                                                     <span>@lang("tessify-core::projects.view_team_change_roles")</span>
                                                 </v-tooltip>
                                                 <!-- Remove member -->
-                                                <v-tooltip bottom>
-                                                    <template v-slot:activator="{ on }">
-                                                        <a v-on="on" class="team-manager__action" href="{{ route('projects.team.remove-member', ['slug' => $project->slug, 'userSlug' => $teamMember->user->slug]) }}">
-                                                            <i class="fas fa-user-minus"></i>
-                                                        </a>
-                                                    </template>
-                                                    <span>@lang("tessify-core::projects.view_team_remove_member")</span>
-                                                </v-tooltip>
+                                                @if ($teamMember->user_id != $user->id)
+                                                    <v-tooltip bottom>
+                                                        <template v-slot:activator="{ on }">
+                                                            <a v-on="on" class="team-manager__action" href="{{ route('projects.team.remove-member', ['slug' => $project->slug, 'userSlug' => $teamMember->user->slug]) }}">
+                                                                <i class="fas fa-user-minus"></i>
+                                                            </a>
+                                                        </template>
+                                                        <span>@lang("tessify-core::projects.view_team_remove_member")</span>
+                                                    </v-tooltip>
+                                                @endif
                                             </div>
                                         @endcan
                                         <div class="team-member__actions">

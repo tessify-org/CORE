@@ -15,7 +15,7 @@
             @include("tessify-core::partials.feedback")
 
             <form action="{{ route('projects.edit.post', $project->slug) }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                @csrf
 
                 <project-form
                     :project="{{ $project->toJson() }}"

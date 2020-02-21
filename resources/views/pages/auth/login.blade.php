@@ -16,7 +16,7 @@
                     <h1 id="login-title">@lang('tessify-core::auth.login_title')</h1>
 
                     <form action="{{ route('auth.login.post') }}" method="post">
-                        {{ csrf_field() }}
+                        @csrf
                         
                         <login-form
                             :errors="{{ $errors->toJson() }}"

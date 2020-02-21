@@ -7,6 +7,7 @@ use Projects;
 use TeamMembers;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Teams\LeaveTeamRequest;
+use Tessify\Core\Http\Requests\Projects\Teams\RemoveMemberFromTeamRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\UpdateTeamMemberRolesRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\Applications\InviteTeamMemberRequest;
 
@@ -75,8 +76,9 @@ class ProjectTeamController extends Controller
             return redirect()->route("projects.view", $project->slug);
         }
         
-        return view("tessify-core::pages.projects.teams.remove-member", [
+        return view("tessify-core::pages.projects.teams.members.remove-member", [
             "project" => $project,
+            "user" => $user,
         ]);
     }
 
@@ -101,7 +103,7 @@ class ProjectTeamController extends Controller
         TeamMembers::removeUserFromTeam($project, $user);
 
         flash(__("tessify-core::projects.removed_from_team", ["name" => $user->formattedName]))->success();
-        return redirect()->route("projects.teams.view", $project->slug);
+        return redirect()->route("projects.team.view", $project->slug);
     }
 
     public function getInvite($slug)

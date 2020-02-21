@@ -15,7 +15,7 @@
             @include("tessify-core::partials.feedback")
 
             <form action="{{ route('profile.update.post') }}" method="post">
-                {{ csrf_field() }}
+                @csrf
 
                 <update-profile-form
                     :user="{{ $user->toJson() }}"

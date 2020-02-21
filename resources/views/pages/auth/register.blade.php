@@ -15,7 +15,7 @@
                 @include("tessify-core::partials.feedback")
 
                 <form action="{{ route('auth.register.post') }}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <register-form
                         :errors="{{ $errors->toJson() }}"

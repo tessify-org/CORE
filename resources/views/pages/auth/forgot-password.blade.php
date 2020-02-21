@@ -15,7 +15,7 @@
                 @include("tessify-core::partials.feedback")
 
                 <form action="{{ route('auth.forgot-password.post') }}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <forgot-password-form
                         email-text="@lang('tessify-core::auth.forgot_password_email')"

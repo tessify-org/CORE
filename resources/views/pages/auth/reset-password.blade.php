@@ -15,7 +15,7 @@
                 @include("tessify-core::partials.feedback")
 
                 <form action="{{ route('auth.reset-password.post', ['email' => $email, 'code' => $code]) }}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <reset-password-form
                         code="{{ $code }}"

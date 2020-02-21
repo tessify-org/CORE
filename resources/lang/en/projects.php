@@ -101,6 +101,10 @@ return [
     // Remove from team
     //
 
+    "remove_from_team_title" => "Remove team member",
+    "remove_from_team_text" => "Are you sure you want to remove :name from the team?",
+    "remove_from_team_cancel" => "No, go back",
+    "remove_from_team_submit" => "Yes, remove from team",
     "removed_from_team" => ":name has been removed from the team",
 
     //
