@@ -87,7 +87,7 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/team/rollen/{roleSlug}/verwijderen", "Projects\ProjectTeamRoleController@postDelete")->name("projects.team.roles.delete.post");
         Route::get("{slug}/team/rollen/{roleSlug}/toewijzen-aan-mijzelf", "Projects\ProjectTeamRoleController@getAssignToMe")->name("projects.team.roles.assign-to-me");
         
-        // View applications
+        // Manage applications
         Route::get("{slug}/team/aanmeldingen", "Projects\ProjectTeamMemberApplicationController@getOverview")->name("projects.team.applications");
         Route::get("{slug}/team/aanmeldingen/{uuid}", "Projects\ProjectTeamMemberApplicationController@getView")->name("projects.team.applications.view");
         Route::get("{slug}/team/aanmeldingen/{uuid}/aanpassen", "Projects\ProjectTeamMemberApplicationController@getEdit")->name("projects.team.applications.edit");
@@ -98,6 +98,16 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/team/aanmeldingen/{uuid}/afwijzen", "Projects\ProjectTeamMemberApplicationController@getReject")->name("projects.team.applications.reject");
         Route::get("{slug}/team/aanmeldingen/{uuid}/heropenen", "Projects\ProjectTeamMemberApplicationController@getReopen")->name("projects.team.applications.reopen");
 
+        // Manage tasks
+        Route::get("{slug}/taken", "Projects\TaskController@getOverview")->name("projects.tasks");
+        Route::get("{slug}/taken/toevoegen", "Projects\TaskController@getCreate")->name("projects.tasks.create");
+        Route::post("{slug}/taken/toevoegen", "Projects\TaskController@postCreate")->name("projects.tasks.create.post");
+        Route::get("{slug}/taken/{taskSlug}", "Projects\TaskController@getView")->name("projects.tasks.view");
+        Route::get("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@getEdit")->name("projects.tasks.edit");
+        Route::post("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@postEdit")->name("projects.tasks.edit.post");
+        Route::get("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@getDelete")->name("projects.tasks.delete");
+        Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
+        
     });
     
 });

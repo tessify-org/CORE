@@ -14,6 +14,8 @@ use Tessify\Core\Services\ModelServices\ProjectService;
 use Tessify\Core\Services\ModelServices\CommentService;
 use Tessify\Core\Services\ModelServices\TeamRoleService;
 use Tessify\Core\Services\ModelServices\TaskStatusService;
+use Tessify\Core\Services\ModelServices\TaskCategoryService;
+use Tessify\Core\Services\ModelServices\TaskSeniorityService;
 use Tessify\Core\Services\ModelServices\TeamMemberService;
 use Tessify\Core\Services\ModelServices\WorkMethodService;
 use Tessify\Core\Services\ModelServices\ProjectStatusService;
@@ -125,9 +127,17 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton("tasks", function() {
             return new TaskService;
         });
-        
+
         $this->app->singleton("task-statuses", function() {
             return new TaskStatusService;
+        });
+
+        $this->app->singleton("task-categories", function() {
+            return new TaskCategoryService;
+        });
+
+        $this->app->singleton("task-seniorities", function() {
+            return new TaskSeniorityService;
         });
         
         $this->app->singleton("team-members", function() {

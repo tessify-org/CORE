@@ -18,10 +18,10 @@ class ProjectPolicy
      * @param  \App\Models\User  $user
      * @return true|void
      */
-    // public function before(User $user)
-    // {
-    //     if ($user->is_admin) return true;
-    // }
+    public function before(User $user)
+    {
+        if ($user->is_admin) return true;
+    }
 
     /**
      * Determine whether the user can view any jobs.
@@ -157,7 +157,7 @@ class ProjectPolicy
         }
 
         // Make sure the user is not already a team member
-        if (Projects::isTeamMember($user, $project))
+        if (Projects::isTeamMember($project, $user))
         {
             return Response::deny(__("tessify-core::policies.apply_for_team_deny_team_member"));
         }

@@ -18,6 +18,7 @@ return [
     'project_created' => 'Project is opgestart!.',
     'project_deleted' => 'Project is verwijderd!',
     'project_not_found' => 'Project kon niet worden gevonden.',
+    'project_navigation_tasks' => 'Taken',
 
     'team_role_not_found' => 'Team rol kon niet worden gevonden.',
     'team_role_created' => 'Team rol is toegevoegd aan het project.',
@@ -29,6 +30,8 @@ return [
     'project_navigation_applications' => 'Aanmeldingen',
 
     'team_member_not_found' => 'Team lid kon niet worden gevonden',
+
+    'task_not_found' => 'Taak kon niet worden gevonden',
     
     //
     // Overview
@@ -211,5 +214,50 @@ return [
     "delete_role_text" => "Weet je zeker dat je deze rol (:name) wilt verwijderen?\nAlle data wordt gewist en geassocieerde gebruikers worden uit het team verwijderd.",
     "delete_role_succeeded" => "Rol is verwijderd",
 
+    //
+    // Tasks overview
+    //
+
+    "tasks_overview_title" => "Taken",
+    "tasks_overview_create" => "Taak toevoegen",
+    "tasks_overview_open" => "Openstaande taken",
+    "tasks_overview_open_empty" => "Er zijn momenteel geen openstaande taken",
+    "tasks_overview_in_progress" => "Taken in behandeling",
+    "tasks_overview_in_progress_empty" => "Er zijn momenteel geen taken in behandeling",
+    "tasks_overview_completed" => "Voltooide taken",
+    "tasks_overview_completed_empty" => "Er zijn nog geen voltooide taken",
+    "tasks_overview_title" => "Titel",
+    "tasks_overview_category" => "Categorie",
+    "tasks_overview_complexity" => "Complexiteit",
+
+    "tasks_view_title" => "Taak",
+
+    "tasks_create_title" => "Taak toevoegen",
+    "tasks_create_back" => "Terug naar taken",
+    "tasks_create_submit" => "Taak opslaan!",
+    "tasks_created" => "Taak is toegevoegd!",
+
+    "tasks_edit_title" => "Taak aanpassen",
+    "tasks_edit_back" => "Annuleren",
+    "tasks_updated" => "Taak aangepast!",
+    
+    "tasks_form_status" => "Status",
+    "tasks_form_category" => "Categorie",
+    "tasks_form_seniority" => "Senioriteit",
+    "tasks_form_title" => "Titel",
+    "tasks_form_description" => "Beschrijving",
+    "tasks_form_complexity" => "Complexiteit",
+    "tasks_form_estimated_hours" => "Geschatte aantal uren",
+    "tasks_form_realized_hours" => "Gerealiseerd aantal uren",
+    "tasks_form_select_category" => "Selecteer een passende categorie",
+    "tasks_form_no_categories" => "Geen categorieen gevonden",
+    "tasks_form_select_seniority" => "Selecteer de vereiste senioriteit",
+    "tasks_form_no_seniorities" => "Geen senioriteiten gevonden",
+    "tasks_form_select_status" => "Status",
+    "tasks_form_no_statuses" => "Geen statussen gevonden",
+
+    "tasks_delete_title" => "Taak verwijderen",
+    "tasks_delete_text" => "Weet je zeker dat je deze taak (:title) wilt verwijderen?",
+    "tasks_deleted" => "Taak is verwijderd!",
 
 ];

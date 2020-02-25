@@ -27,8 +27,11 @@ return [
     'project_navigation_info' => 'Project information',
     'project_navigation_team' => 'The Team',
     'project_navigation_applications' => 'Applications',
+    'project_navigation_tasks' => 'Tasks',
 
     'team_member_not_found' => 'Team member could not be found',
+
+    'task_not_found' => 'Task could not be found',
 
     //
     // Overview
@@ -210,5 +213,51 @@ return [
     "delete_role_title" => "",
     "delete_role_text" => "Are you sure you want to delete this role (:name)?\nAll data will be deleted and any associated user will be removed from the team.",
     "delete_role_succeeded" => "Role has been removed",
+
+    //
+    // Tasks overview
+    //
+
+    "tasks_overview_title" => "Tasks",
+    "tasks_overview_create" => "Add task",
+    "tasks_overview_open" => "Open tasks",
+    "tasks_overview_open_empty" => "There are no open tasks at the moment",
+    "tasks_overview_in_progress" => "Tasks in progress",
+    "tasks_overview_in_progress_empty" => "There are no tasks currently in progress",
+    "tasks_overview_completed" => "Tasks completed",
+    "tasks_overview_completed_empty" => "There are no completed tasks yet",
+    "tasks_overview_title" => "Title",
+    "tasks_overview_category" => "Category",
+    "tasks_overview_complexity" => "Complexity",
+    
+    "tasks_view_title" => "Task",
+
+    "tasks_create_title" => "Create task",
+    "tasks_create_back" => "Back to tasks",
+    "tasks_create_submit" => "Save task",
+    "tasks_created" => "Task has been created!",
+
+    "tasks_edit_title" => "Update task",
+    "tasks_edit_back" => "Cancel",
+    "tasks_updated" => "Task has been updated!",
+
+    "tasks_form_status" => "Status",
+    "tasks_form_category" => "Category",
+    "tasks_form_seniority" => "Seniority",
+    "tasks_form_title" => "Title",
+    "tasks_form_description" => "Description",
+    "tasks_form_complexity" => "Complexity",
+    "tasks_form_estimated_hours" => "Estimated hours",
+    "tasks_form_realized_hours" => "Realized hours",
+    "tasks_form_select_category" => "Select an appropriate category",
+    "tasks_form_no_categories" => "No categories found",
+    "tasks_form_select_seniority" => "Select the required seniority",
+    "tasks_form_no_seniorities" => "No seniorities found",
+    "tasks_form_select_status" => "Status",
+    "tasks_form_no_statuses" => "No statuses found",
+
+    "tasks_delete_title" => "Delete task",
+    "tasks_delete_text" => "Are you sure you want to delete this (:title) task?",
+    "tasks_deleted" => "Task has been deleted!",
 
 ];

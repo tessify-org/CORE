@@ -27,6 +27,9 @@ class Project extends Model
         "starts_at", 
         "ends_at",
     ];
+    protected $casts = [
+        "has_tasks" => "boolean",
+    ];
 
     //
     // Slug configuration
@@ -84,5 +87,10 @@ class Project extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, "commentable");
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

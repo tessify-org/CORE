@@ -3,11 +3,12 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Tessify\Core\Models\Task;
-use Tessify\Core\Models\TaskStatus;
+use Tessify\Core\Models\Project;
+use Tessify\Core\Models\TaskCategory;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 
-class TaskStatusService implements ModelServiceContract
+class TaskCategoryService implements ModelServiceContract
 {
     use ModelServiceGetters;
 
@@ -17,7 +18,7 @@ class TaskStatusService implements ModelServiceContract
     
     public function __construct()
     {
-        $this->model = "Tessify\Core\Models\TaskStatus";
+        $this->model = "Tessify\Core\Models\TaskCategory";
     }
     
     public function preload($instance)
@@ -27,24 +28,11 @@ class TaskStatusService implements ModelServiceContract
 
     public function findForTask(Task $task)
     {
-        foreach ($this->getAll() as $status)
+        foreach ($this->getAll() as $category)
         {
-            if ($status->id == $task->task_status_id)
+            if ($category->id == $task->task_category_id)
             {
-                return $status;
-            }
-        }
-
-        return false;
-    }
-
-    public function findByName($name)
-    {
-        foreach ($this->getAll() as $status)
-        {
-            if ($status->name == $name)
-            {
-                return $status;
+                return $category;
             }
         }
 

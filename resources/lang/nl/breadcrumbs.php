@@ -39,6 +39,11 @@ return [
     "projects_team_applications_view" => "Bekijk aanmelding",
     "projects_team_applications_edit" => "Aanmelding aanpassen",
     "projects_team_applications_delete" => "Aanmelding verwijderen",
+    "projects_tasks" => "Taken",
+    "projects_tasks_view" => "Taak bekijken",
+    "projects_tasks_create" => "Taak toevoegen",
+    "projects_tasks_edit" => "Taak aanpassen",
+    "projects_tasks_delete" => "Taak verwijderen",
     "admin_dashboard" => "Administratie dashboard",
 
 ];

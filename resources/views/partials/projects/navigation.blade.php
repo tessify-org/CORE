@@ -19,6 +19,12 @@
                     @lang("tessify-core::projects.project_navigation_applications")
                 </a>
             </li>
+            <!-- Tasks -->
+            <li @if($page == 'tasks') class="active" @endif>
+                <a href="{{ route('projects.tasks', $project->slug) }}">
+                    @lang("tessify-core::projects.project_navigation_tasks")
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

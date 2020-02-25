@@ -12,9 +12,6 @@
             <div id="project-header__overlay"></div>
             <div id="project-header__content" class="content-section">
 
-                <!-- Feedback -->
-                @include("tessify-core::partials.feedback")
-
                 <div id="project-header__text">
                     <h1 id="project-header__title">{{ $project->title }}</h1>
                     <h2 id="project-header__slogan">{{ $project->slogan }}</h2>
@@ -25,7 +22,10 @@
 
         <!-- Content -->
         <div id="project-content" class="content-section__wrapper">
-            <div class="content-section">
+            <div class="content-section pt50">
+
+                <!-- Feedback -->
+                @include("tessify-core::partials.feedback")
 
                 <!-- Navigation -->
                 @include("tessify-core::partials.projects.navigation", [

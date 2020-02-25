@@ -44,6 +44,8 @@
                 "WorkMethods": "Tessify\\Core\\Facades\\WorkMethodsFacade",
                 "Tasks": "Tessify\\Core\\Facades\\TasksFacade",
                 "TaskStatuses": "Tessify\\Core\\Facades\\TaskStatusesFacade",
+                "TaskCategories": "Tessify\\Core\\Facades\\TaskCategoriesFacade",
+                "TaskSeniorities": "Tessify\\Core\\Facades\\TaskSenioritiesFacade",
                 "TeamMembers": "Tessify\\Core\\Facades\\TeamMembersFacade",
                 "TeamMemberApplications": "Tessify\\Core\\Facades\\TeamMemberApplicationsFacade",
                 "TeamRoles": "Tessify\\Core\\Facades\\TeamRolesFacade",

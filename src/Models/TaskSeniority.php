@@ -4,9 +4,9 @@ namespace Tessify\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TaskStatus extends Model
+class TaskSeniority extends Model
 {
-    protected $table = "task_statuses";
+    protected $table = "task_seniorities";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
         "name",
@@ -17,8 +17,8 @@ class TaskStatus extends Model
     // Relationships
     //
 
-    public function task()
+    public function tasks()
     {
-        return $this->belongsTo(Task::class);
+        return $this->hasMany(Task::class);
     }
 }

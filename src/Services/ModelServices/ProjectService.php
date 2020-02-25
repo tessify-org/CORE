@@ -5,6 +5,7 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Dates;
 use Users;
+use Tasks;
 use Skills;
 use Uploader;
 use TeamRoles;
@@ -64,6 +65,8 @@ class ProjectService implements ModelServiceContract
         // Load the project's team member applications
         $instance->team_member_applications = TeamMemberApplications::getAllForProject($instance);
 
+        $instance->tasks = Tasks::getAllForProject($instance);
+
         // Format the dates
         $instance->formatted_starts_at = is_null($instance->starts_at) ? null : $instance->starts_at->format("d-m-Y");
         $instance->formatted_ends_at = is_null($instance->ends_at) ? null : $instance->ends_at->format("d-m-Y");
@@ -102,9 +105,11 @@ class ProjectService implements ModelServiceContract
 
     public function createFromRequest(CreateProjectRequest $request)
     {
+        // Parse dates to Carbon objects
         $starts_at = Dates::parse($request->starts_at, "/");
         $ends_at = Dates::parse($request->ends_at, "/");
 
+        // Compose all of the data we know will be part of the new project
         $data = [
             "author_id" => Auth::user()->id,
             "project_status_id" => $request->project_status_id,
@@ -115,18 +120,32 @@ class ProjectService implements ModelServiceContract
             "description" => $request->description,
             "starts_at" => $starts_at->format("Y-m-d"),
             "ends_at" => $ends_at->format("Y-m-d"),
+            "has_tasks" => $request->has_tasks == "true" ? true : false,
         ];
 
+        // Process optional header image
         if ($request->hasFile("header_image"))
         {
             $data["header_image_url"] = Uploader::upload($request->file("header_image"), "images/projects/header");
         }
 
+        // Create the project
         $project = Project::create($data);
 
+        // Process project's resources
         $this->processProjectResources($project, $request->resources);
+
+        // Process project's team roles
         $this->processTeamRoles($project, $request->team_roles);
 
+        // If this project has tasks
+        if ($project->has_tasks)
+        {
+            // Create default task columns
+            $this->createDefaultTaskColumnsForProject($project);
+        }
+
+        // Return the created project
         return $project;
     }
     
@@ -217,6 +236,18 @@ class ProjectService implements ModelServiceContract
         }
 
         return $project;
+    }
+
+    private function createDefaultTaskColumnsForProject(Project $project)
+    {
+        $defaultColumns = ["To do", "In progress", "Completed"];
+        for ($i = 0; $i < count($defaultColumns); $i++) {
+            TaskColumn::create([
+                "project_id" => $project->id,
+                "order" => $i,
+                "title" => $defaultColumns[$i],
+            ]);
+        }
     }
 
     public function processTeamApplication(Project $project, ApplyForTeamRoleRequest $request)
