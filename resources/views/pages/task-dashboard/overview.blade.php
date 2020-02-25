@@ -17,20 +17,35 @@
                 <div id="task-dashboard__sidebar">
 
                     <!-- Search bar -->
-                    <task-dashboard-sidebar-search-bar></task-dashboard-sidebar-search-bar>
+                    <task-dashboard-sidebar-search-bar
+                        title="@lang('tessify-core::tasks.overview_sidebar_search')">
+                    </task-dashboard-sidebar-search-bar>
+
+                    <!-- Status -->
+                    <task-dashboard-sidebar-statuses
+                        title="@lang('tessify-core::tasks.overview_sidebar_statuses')"
+                        no-records-text="@lang('tessify-core::tasks.overview_sidebar_statuses_empty')"
+                        :statuses="{{ $statuses->toJson() }}">
+                    </task-dashboard-sidebar-statuses>
 
                     <!-- Categories -->
                     <task-dashboard-sidebar-categories
+                        title="@lang('tessify-core::tasks.overview_sidebar_categories')"
+                        no-records-text="@lang('tessify-core::tasks.overview_sidebar_categories_empty')"
                         :categories="{{ $categories->toJson() }}">
                     </task-dashboard-sidebar-categories>
 
                     <!-- Seniorities -->
                     <task-dashboard-sidebar-seniorities
+                        title="@lang('tessify-core::tasks.overview_sidebar_seniorities')"
+                        no-records-text="@lang('tessify-core::tasks.overview_sidebar_seniorities_empty')"
                         :seniorities="{{ $seniorities->toJson() }}">
                     </task-dashboard-sidebar-seniorities>
 
                     <!-- Duration -->
-                    <task-dashboard-sidebar-duration></task-dashboard-sidebar-duration>
+                    <task-dashboard-sidebar-duration
+                        title="@lang('tessify-core::tasks.overview_sidebar_timespan')">
+                    </task-dashboard-sidebar-duration>
 
                 </div>
                 <div id="task-dashboard__content">

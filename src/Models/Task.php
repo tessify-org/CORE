@@ -12,6 +12,7 @@ class Task extends Model
     protected $table = "tasks";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
+        "author_id",
         "project_id",
         "task_status_id",
         "task_category_id",
@@ -21,6 +22,7 @@ class Task extends Model
         "complexity",
         "estimated_hours",
         "realized_hours",
+        "num_positions",
     ];
 
     //
@@ -35,6 +37,11 @@ class Task extends Model
     //
     // Relationships
     //
+
+    public function author()
+    {
+        return $this->belongsTo(\App\Models\User::class, "author_id", "id");
+    }
 
     public function project()
     {

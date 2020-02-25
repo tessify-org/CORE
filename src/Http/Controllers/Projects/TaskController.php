@@ -188,4 +188,19 @@ class TaskController extends Controller
         flash(__("tessify-core::projects.tasks_deleted"))->error();
         return redirect()->route("projects.tasks", $project->slug);
     }
+
+    public function getAssignToSelf($slug, $taskSlug)
+    {
+
+    }
+
+    public function getAbandon($slug, $taskSlug)
+    {
+
+    }
+
+    public function postAbandon(AbandonTaskRequest $request, $slug, $taskSlug)
+    {
+        
+    }
 }

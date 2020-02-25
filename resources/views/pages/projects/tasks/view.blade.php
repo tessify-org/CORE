@@ -30,6 +30,10 @@
                                 <div class="val">{{ $task->id }}</div>
                             </div>
                             <div class="detail">
+                                <div class="key">Author</div>
+                                <div class="val">{{ $task->author->formattedName }}</div>
+                            </div>
+                            <div class="detail">
                                 <div class="key">Status</div>
                                 <div class="val">{{ $task->status->label }}</div>
                             </div>
@@ -62,20 +66,8 @@
                                 <div class="val">{{ $task->realized_hours }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">Skills</div>
-                                <div class="val">
-                                    @if ($task->skills->count())
-                                        <ul>
-                                            @foreach ($task->skills as $skill)
-                                                <li>
-                                                    {{ $skill->name }}
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @else
-                                        No required skills
-                                    @endif
-                                </div>
+                                <div class="key">Number of positions</div>
+                                <div class="val">{{ $task->num_positions }}</div>
                             </div>
                             <div class="detail">
                                 <div class="key">Users</div>
@@ -88,6 +80,22 @@
                                         </ul>
                                     @else
                                         No users
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <div class="key">Skills</div>
+                                <div class="val">
+                                    @if ($task->skills->count())
+                                        <ul>
+                                            @foreach ($task->skills as $skill)
+                                                <li>
+                                                    {{ $skill->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        No required skills
                                     @endif
                                 </div>
                             </div>
