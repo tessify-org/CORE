@@ -16,19 +16,26 @@
             <div id="task-dashboard">
                 <div id="task-dashboard__sidebar">
 
+                    <!-- Search bar -->
                     <task-dashboard-sidebar-search-bar></task-dashboard-sidebar-search-bar>
 
+                    <!-- Categories -->
                     <task-dashboard-sidebar-categories
                         :categories="{{ $categories->toJson() }}">
                     </task-dashboard-sidebar-categories>
 
+                    <!-- Seniorities -->
                     <task-dashboard-sidebar-seniorities
                         :seniorities="{{ $seniorities->toJson() }}">
                     </task-dashboard-sidebar-seniorities>
 
+                    <!-- Duration -->
+                    <task-dashboard-sidebar-duration></task-dashboard-sidebar-duration>
+
                 </div>
                 <div id="task-dashboard__content">
 
+                    <!-- Task overview -->
                     <task-dashboard-overview
                         :tasks="{{ $tasks->toJson() }}">
                     </task-dashboard-overview>

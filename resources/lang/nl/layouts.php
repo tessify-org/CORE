@@ -15,7 +15,7 @@ return [
     // Navigation links
     "login_link" => "Inloggen",
     "register_link" => "Registreren",
-    "tasks_link" => "Werk Paketten",
+    "tasks_link" => "Werkpakketten",
     "projects_link" => "Projecten",
     "members_link" => "Leden",
     "profile_link" => "Mijn Profiel",

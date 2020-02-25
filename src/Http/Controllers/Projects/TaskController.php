@@ -38,7 +38,7 @@ class TaskController extends Controller
             return redirect()->route("projects");
         }
 
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findBySlug($taskSlug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();

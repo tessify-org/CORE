@@ -43,17 +43,17 @@ class Task extends Model
     
     public function status()
     {
-        return $this->belongsTo(TaskStatus::class);
+        return $this->belongsTo(TaskStatus::class, "task_status_id", "id");
     }
 
     public function category()
     {
-        return $this->belongsTo(TaskCategory::class);
+        return $this->belongsTo(TaskCategory::class, "task_category_id", "id");
     }
 
     public function seniority()
     {
-        return $this->belongsTo(TaskSeniority::class);
+        return $this->belongsTo(TaskSeniority::class, "task_seniority_id", "id");
     }
 
     public function skills()

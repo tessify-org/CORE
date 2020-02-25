@@ -12,7 +12,7 @@
 
 return [
 
-    "overview_title" => "Werk Pakketten",
+    "overview_title" => "Werkpakketten",
     "overview_subtitle" => "Wat zou je willen doen?",
 
 ];

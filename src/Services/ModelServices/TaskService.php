@@ -2,6 +2,9 @@
 
 namespace Tessify\Core\Services\ModelServices;
 
+use DB;
+use Users;
+use Skills;
 use Projects;
 use TaskStatuses;
 use TaskCategories;
@@ -21,6 +24,9 @@ class TaskService implements ModelServiceContract
     private $records;
     private $preloadedRecords;
     
+    private $userPivots;
+    private $skillPivots;
+    
     public function __construct()
     {
         $this->model = "Tessify\Core\Models\Task";
@@ -32,12 +38,64 @@ class TaskService implements ModelServiceContract
         $instance->status = TaskStatuses::findForTask($instance);
         $instance->category = TaskCategories::findForTask($instance);
         $instance->seniority = TaskSeniorities::findForTask($instance);
+        $instance->skills = $this->getRequiredSkills($instance);
+        $instance->users = $this->getAssignedUsers($instance);
 
         // Add HREF to the view task page for this task
         $project = Projects::find($instance->project_id);
         $instance->view_href = route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $instance->slug]);
 
         return $instance;
+    }
+
+    public function getUserPivots()
+    {
+        if (is_null($this->userPivots))
+        {
+            $this->userPivots = DB::table("task_user")->get();
+        }
+
+        return $this->userPivots;
+    }
+
+    public function getSkillPivots()
+    {
+        if (is_null($this->skillPivots))
+        {
+            $this->skillPivots = DB::table("skill_task")->get();
+        }
+
+        return $this->skillPivots;
+    }
+
+    public function getAssignedUsers(Task $task)
+    {
+        $out = [];
+
+        foreach ($this->getUserPivots() as $userPivot)
+        {
+            if ($userPivot->task_id == $task->id)
+            {
+                $out = Users::findPreloaded($userPivot->user_id);
+            }
+        }
+
+        return $out;
+    }
+
+    public function getRequiredSkills(Task $task)
+    {
+        $out = [];
+
+        foreach ($this->getSkillPivots() as $skillPivot)
+        {
+            if ($skillPivot->task_id == $task->id)
+            {
+                $out[] = Skills::find($skillPivot->skill_id);
+            }
+        }
+
+        return $out;
     }
 
     public function getAllForProject(Project $project)
