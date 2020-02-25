@@ -44,45 +44,51 @@
                                 <!-- Login -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('auth.login') }}">
-                                        @lang("layouts.login_link")
+                                        @lang("tessify-core::layouts.login_link")
                                     </a>
                                 </li>
                                 <!-- Register -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('auth.register') }}">
-                                        @lang("layouts.register_link")
+                                        @lang("tessify-core::layouts.register_link")
                                     </a>
                                 </li>
                             @else
                                 <!-- Jobs -->
                                 <li class="topnav-link__wrapper">
+                                    <a class="topnav-link" href="{{ route('tasks') }}">
+                                        @lang("tessify-core::layouts.tasks_link")
+                                    </a>
+                                </li>   
+                                <!-- Projects -->
+                                <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('projects') }}">
-                                        @lang("layouts.projects_link")
+                                        @lang("tessify-core::layouts.projects_link")
                                     </a>
                                 </li>
                                 <!-- Members -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('memberlist') }}">
-                                        @lang("layouts.members_link")
+                                        @lang("tessify-core::layouts.members_link")
                                     </a>
                                 </li>
                                 <!-- My profile -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('profile') }}">
-                                        @lang("layouts.profile_link")
+                                        @lang("tessify-core::layouts.profile_link")
                                     </a>
                                 </li>
                                 @can("access-admin-panel")
                                     <li class="topnav-link__wrapper">
                                         <a class="topnav-link" href="{{ route('admin.dashboard') }}">
-                                            @lang("layouts.admin_link")
+                                            @lang("tessify-core::layouts.admin_link")
                                         </a>
                                     </li>
                                 @endcan
                                 <!-- Logout -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('auth.logout') }}">
-                                        @lang("layouts.logout_link")
+                                        @lang("tessify-core::layouts.logout_link")
                                     </a>
                                 </li>
                             @endif
@@ -109,40 +115,40 @@
                 @if (Auth::check())
                     <a class="sidemenu-link" href="{{ route('projects') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.projects_link")
+                            @lang("tessify-core::layouts.projects_link")
                         </span>
                     </a>
                     <a class="sidemenu-link" href="{{ route('memberlist') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.members_link")
+                            @lang("tessify-core::layouts.members_link")
                         </span>
                     </a>
                     <a class="sidemenu-link" href="{{ route('profile') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.profile_link")
+                            @lang("tessify-core::layouts.profile_link")
                         </span>
                     </a>
                     @can("access-admin-panel")
                         <a class="sidemenu-link" href="{{ route('admin.dashboard') }}">
                             <span class="sidemenu-link__text">
-                                @lang("layouts.admin_link")
+                                @lang("tessify-core::layouts.admin_link")
                             </span>
                         </a>
                     @endcan
                     <a class="sidemenu-link" href="{{ route('auth.logout') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.logout_link")
+                            @lang("tessify-core::layouts.logout_link")
                         </span>
                     </a>
                 @else
                     <a class="sidemenu-link" href="{{ route('auth.login') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.login_link")
+                            @lang("tessify-core::layouts.login_link")
                         </span>
                     </a>
                     <a class="sidemenu-link" href="{{ route('auth.register') }}">
                         <span class="sidemenu-link__text">
-                            @lang("layouts.register_link")
+                            @lang("tessify-core::layouts.register_link")
                         </span>
                     </a>
                 @endif
@@ -165,26 +171,26 @@
                         <div class="footer-upper__column-wrapper">
                             <div class="footer-upper__column">
                                 <h4 class="column-title">
-                                    @lang("layouts.footer_first_column_title")
+                                    @lang("tessify-core::layouts.footer_first_column_title")
                                 </h4>
                                 <div class="column-links">
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_press_link")
+                                        @lang("tessify-core::layouts.footer_press_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_partners_link")
+                                        @lang("tessify-core::layouts.footer_partners_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_about_link")
+                                        @lang("tessify-core::layouts.footer_about_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_do_more_link")
+                                        @lang("tessify-core::layouts.footer_do_more_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_faq_link")
+                                        @lang("tessify-core::layouts.footer_faq_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_contact_link")
+                                        @lang("tessify-core::layouts.footer_contact_link")
                                     </a>
                                 </div>
                             </div>
@@ -192,17 +198,17 @@
                         <div class="footer-upper__column-wrapper">
                             <div class="footer-upper__column">
                                 <h4 class="column-title">
-                                    @lang("layouts.footer_second_column_title")
+                                    @lang("tessify-core::layouts.footer_second_column_title")
                                 </h4>
                                 <div class="column-links">
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_financial_link")
+                                        @lang("tessify-core::layouts.footer_financial_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_employer_downloads_link")
+                                        @lang("tessify-core::layouts.footer_employer_downloads_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_employer_do_more_link")
+                                        @lang("tessify-core::layouts.footer_employer_do_more_link")
                                     </a>
                                 </div>
                             </div>
@@ -210,17 +216,17 @@
                         <div class="footer-upper__column-wrapper">
                             <div class="footer-upper__column">
                                 <h4 class="column-title">
-                                    @lang("layouts.footer_third_column_title")
+                                    @lang("tessify-core::layouts.footer_third_column_title")
                                 </h4>
                                 <div class="column-links">
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_group_link")
+                                        @lang("tessify-core::layouts.footer_group_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_employee_downloads_link")
+                                        @lang("tessify-core::layouts.footer_employee_downloads_link")
                                     </a>
                                     <a class="column-link" href="#">
-                                        @lang("layouts.footer_employee_do_more_link")
+                                        @lang("tessify-core::layouts.footer_employee_do_more_link")
                                     </a>
                                 </div>
                             </div>
@@ -228,24 +234,24 @@
                         <div class="footer-upper__column-wrapper">
                             <div class="footer-upper__column">
                                 <h4 class="column-title">
-                                    @lang("layouts.footer_newsletter_title")
+                                    @lang("tessify-core::layouts.footer_newsletter_title")
                                 </h4>
                                 <div class="column-text">
-                                    @lang("layouts.footer_newsletter_text")
+                                    @lang("tessify-core::layouts.footer_newsletter_text")
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="footer-bottom">
                         <div id="footer-bottom__left">
-                            @lang("layouts.footer_copyright")
+                            @lang("tessify-core::layouts.footer_copyright")
                         </div>
                         <div id="footer-bottom__right">
                             <a href="#" class="footer-bottom-link">
-                                @lang("layouts.footer_cookies_link")
+                                @lang("tessify-core::layouts.footer_cookies_link")
                             </a>
                             <a href="#" class="footer-bottom-link">
-                                @lang("layouts.footer_disclaimer_link")
+                                @lang("tessify-core::layouts.footer_disclaimer_link")
                             </a>
                         </div>
                     </div>

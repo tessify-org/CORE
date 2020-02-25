@@ -109,6 +109,8 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
         
     });
+
+    Route::get("werk-paketten", "Projects\TaskDashboardController@getOverview")->name("tasks");
     
 });
 
