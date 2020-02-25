@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Projects\Tasks\UpdateTaskRequest;
 use Tessify\Core\Http\Requests\Projects\Tasks\DeleteTaskRequest;
+use Tessify\Core\Http\Requests\Projects\Tasks\AbandonTaskRequest;
 
 class TaskController extends Controller
 {
@@ -191,16 +192,67 @@ class TaskController extends Controller
 
     public function getAssignToSelf($slug, $taskSlug)
     {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
 
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        Tasks::assignToUser($task);
+
+        flash(__("tessify-core::tasks.assign_to_self_success"))->success();
+        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
     }
 
     public function getAbandon($slug, $taskSlug)
     {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
 
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        return view("tessify-core::pages.projects.tasks.unassign-from-self", [
+            "project" => $project,
+            "task" => $task,
+        ]);
     }
 
     public function postAbandon(AbandonTaskRequest $request, $slug, $taskSlug)
     {
-        
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        Tasks::unassignUser($task);
+
+        flash(__("tessify-core::tasks.abandon_success"))->success();
+        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
     }
 }

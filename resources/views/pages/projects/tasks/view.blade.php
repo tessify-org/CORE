@@ -9,7 +9,7 @@
         <div class="content-section">
 
             <!-- Title -->
-            <h1 class="page-title centered">@lang("tessify-core::projects.tasks_view_title")</h1>
+            <h1 class="page-title centered">@lang("tessify-core::tasks.view_title")</h1>
             
             <!-- Application -->
             <div id="task__wrapper">
@@ -112,16 +112,38 @@
 
                     <!-- Controls -->
                     <div class="form-controls">
-                        <div class="form-controls__right">
-                            <v-btn color="warning" href="{{ route('projects.tasks.edit', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
-                                <i class="fas fa-edit"></i>
-                                @lang("tessify-core::general.edit")
-                            </v-btn>
-                            <v-btn color="red" dark href="{{ route('projects.tasks.delete', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
-                                <i class="fas fa-trash-alt"></i>
-                                @lang("tessify-core::general.delete")
-                            </v-btn>
-                        </div>
+                        @canany(["update", "delete"], $task)
+                            <div class="form-controls__left">
+                                @can("update", $task)
+                                    <v-btn color="warning" href="{{ route('projects.tasks.edit', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                                        <i class="fas fa-edit"></i>
+                                        @lang("tessify-core::general.edit")
+                                    </v-btn>
+                                @endcan
+                                @can("delete", $task)
+                                    <v-btn color="red" dark href="{{ route('projects.tasks.delete', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                                        <i class="fas fa-trash-alt"></i>
+                                        @lang("tessify-core::general.delete")
+                                    </v-btn>
+                                @endcan
+                            </div>
+                        @endcanany
+                        @canany(["assign-to-self", "abandon"], $task)
+                            <div class="form-controls__right">
+                                @can("assign-to-self", $task)
+                                    <v-btn color="primary" href="{{ route('projects.tasks.assign-to-me', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                                        <i class="fas fa-user-plus"></i>
+                                        @lang("tessify-core::tasks.view_assign_to_self")
+                                    </v-btn>
+                                @endcan
+                                @can("abandon", $task)
+                                    <v-btn color="red" dark href="{{ route('projects.tasks.abandon', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                                        <i class="fas fa-user-minus"></i>
+                                        @lang("tessify-core::tasks.view_abandon")
+                                    </v-btn>
+                                @endcan
+                            </div>
+                        @endcanany
                     </div>
                     
                 </div>

@@ -44,6 +44,8 @@ return [
     "projects_tasks_create" => "Create task",
     "projects_tasks_edit" => "Update task",
     "projects_tasks_delete" => "Delete task",
+    "tasks" => "Tasks",
+    "task_abandon" => "Abandon task",
     "admin_dashboard" => "Admin dashboard",
 
 ];

@@ -109,8 +109,8 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
 
         Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
-        Route::get("{slug}/taken/{taskSlug}/vrijgeven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
-        Route::post("{slug}/taken/{taskSlug}/vrijgeven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
+        Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
+        Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
 
     });
 

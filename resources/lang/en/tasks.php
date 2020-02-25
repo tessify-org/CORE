@@ -24,4 +24,16 @@ return [
     "overview_sidebar_seniorities_empty" => "No seniorities found",
     "overview_sidebar_timespan" => "Estimated workload",
 
+    "view_title" => "Task",
+    "view_assign_to_self" => "Sign me up!",
+    "view_abandon" => "Abandon this task",
+
+    "assign_to_self_success" => "Succesfully assigned yourself this task!",
+
+    "abandon_title" => "Abandon task",
+    "abandon_text" => "Are you sure you want to abandon this (:title) task?",
+    "abandon_cancel" => "No, cancel",
+    "abandon_confirm" => "Yes, abandon task",
+    "abandon_success" => "Succesfully abandoned this task!",
+
 ];

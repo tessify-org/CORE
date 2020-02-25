@@ -44,6 +44,8 @@ return [
     "projects_tasks_create" => "Taak toevoegen",
     "projects_tasks_edit" => "Taak aanpassen",
     "projects_tasks_delete" => "Taak verwijderen",
+    "tasks" => "Werkpakketen",
+    "task_abandon" => "Jezelf uitschrijven",
     "admin_dashboard" => "Administratie dashboard",
 
 ];

@@ -3,12 +3,14 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use DB;
+use Auth;
 use Users;
 use Skills;
 use Projects;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
+use App\Models\User;
 use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -166,5 +168,36 @@ class TaskService implements ModelServiceContract
         $task->estimated_hours = $request->estimated_hours;
         $task->realized_hours = $request->realized_hours;
         $task->save();
+    }
+
+    public function hasAvailableSlot(Task $task)
+    {
+        return $task->num_positions > $task->users->count();
+    }
+
+    public function assignedToUser(Task $task, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        foreach ($task->users as $assignedUser)
+        {
+            if ($assignedUser->id == $user->id) return true;
+        }
+
+        return false;
+    }
+
+    public function assignToUser(Task $task, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $task->users()->attach($user->id);
+    }
+
+    public function unassignUser(Task $task, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $task->users()->detach($user->id);
     }
 }
