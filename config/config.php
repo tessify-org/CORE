@@ -9,7 +9,12 @@
 
 return [
 
-    // Available locales
+    /**
+     * Available locales
+     * This array will be used to populate the LocaleSwitcher component in the app layout.
+     * 
+     * @array
+     */
     "locales" => ["nl", "en"],
 
 ];
