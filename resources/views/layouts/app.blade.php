@@ -19,12 +19,23 @@
             <!-- Topnav -->
             <div id="topnav__wrapper">
                 <div id="topnav">
+
                     <!-- Logo -->
                     <div id="topnav-logo__wrapper">
                         <a id="topnav-logo" href="{{ route('home') }}">
                             N<sup>2</sup>W
                         </a>
                     </div>
+
+                    <!-- Locale switcher -->
+                    <div id="topnav-locale__wrapper">
+                        <locale-switcher 
+                            :locales="{{ json_encode($locales) }}"
+                            active-locale="{{ $activeLocale }}"
+                            endpoint="{{ route('api.locale.set-active.post') }}">
+                        </locale-switcher>
+                    </div>
+
                     <!-- Search -->
                     <div id="topnav-search__wrapper">
                         <form action="{{ route('search.post') }}" method="post">
@@ -37,6 +48,7 @@
                             </div>
                         </form>
                     </div>
+
                     <!-- Navigation -->
                     <nav id="topnav-links__wrapper">
                         <ul id="topnav-links">
@@ -59,7 +71,7 @@
                                     <a class="topnav-link" href="{{ route('tasks') }}">
                                         @lang("tessify-core::layouts.tasks_link")
                                     </a>
-                                </li>   
+                                </li>
                                 <!-- Projects -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('projects') }}">
@@ -102,6 +114,7 @@
                             <hamburger-button></hamburger-button>
                         </div>
                     </nav>
+                    
                 </div>
             </div>
 
@@ -153,7 +166,7 @@
                     </a>
                 @endif
             </mobile-navigation>
-            
+
             <!-- Breadcrumbs -->
             @if (!Request::is('/'))
                 @yield("breadcrumbs")

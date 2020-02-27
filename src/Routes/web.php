@@ -6,6 +6,10 @@
  |
  */
 
+// General endpoints
+Route::post("switch-locales", "Translation\LocaleController@postSwitchLocale")->name("switch-locale.post");
+
+// Guest only endpoints
 Route::group(["middleware" => "guest"], function() {
     
     // Registration
@@ -114,6 +118,7 @@ Route::group(["middleware" => "auth"], function() {
 
     });
 
+    // Task overview
     Route::get("werk-paketten", "Projects\TaskDashboardController@getOverview")->name("tasks");
     
 });
@@ -128,6 +133,11 @@ Route::group(["prefix" => "admin", "middleware" => ["can:access-admin-panel"]], 
 
 // Api endpoints
 Route::group(["prefix" => "api"], function() {
+
+    // Locale
+    Route::group(["prefix" => "locale"], function() {
+        Route::post("set-active-locale", "Api\LocaleController@postSetActiveLocale")->name("api.locale.set-active.post");
+    });
 
     // Project resources
     Route::group(["prefix" => "project-resources"], function() {

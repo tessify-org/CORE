@@ -30,10 +30,6 @@
                                 <div class="val">{{ $task->id }}</div>
                             </div>
                             <div class="detail">
-                                <div class="key">Author</div>
-                                <div class="val">{{ $task->author->formattedName }}</div>
-                            </div>
-                            <div class="detail">
                                 <div class="key">Status</div>
                                 <div class="val">{{ $task->status->label }}</div>
                             </div>
@@ -109,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Controls -->
                     <div class="form-controls">
                         @canany(["update", "delete"], $task)

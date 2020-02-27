@@ -9,6 +9,7 @@
 
 return [
 
-    // ..
+    // Available locales
+    "locales" => ["nl", "en"],
 
 ];

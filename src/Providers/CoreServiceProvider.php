@@ -38,7 +38,6 @@ class CoreServiceProvider extends ServiceProvider
 
     public function boot()
     {
-
         // Register the service provider responsible for the package's routes
         $this->app->register("Tessify\Core\Providers\CoreRouteServiceProvider");
 
@@ -50,8 +49,11 @@ class CoreServiceProvider extends ServiceProvider
 
         // Setup integration & publishing of the config file
         $this->mergeConfigFrom(__DIR__."/../../config/config.php", "tessify-core");
-        $this->publishes([__DIR__."/../../config/config.php" => config_path("tessify-core.php")], "config");
-        
+        $this->publishes([
+            __DIR__."/../../config/config.php" => config_path("tessify-core.php"),
+            __DIR__."/../../config/breadcrumbs.php" => config_path("breadcrumbs.php"),
+        ], "config");
+
         // Define the authorization Gates
         $this->defineGates();
 
@@ -61,12 +63,6 @@ class CoreServiceProvider extends ServiceProvider
         // Compose views
         $this->composeViews();
 
-        // Config publishing
-        $this->publishes([
-            __DIR__."/../../config/config.php" => config_path("tessify-core.php"),
-            __DIR__."/../../config/breadcrumbs.php" => config_path("breadcrumbs.php"),
-        ], "config");
-        
         // Database related publishing
         $this->publishes([
             __DIR__."/../Database/migrations" => database_path("migrations"),
@@ -75,7 +71,7 @@ class CoreServiceProvider extends ServiceProvider
 
         // View publishing
         $this->publishes([__DIR__."/../../resources/views", resource_path("views/vendor/core")], "views");
-        
+
         // Vue component publishing
         $this->publishes([__DIR__."/../../resources/js/components" => resource_path("js/components/core")], "components");
 
@@ -84,6 +80,11 @@ class CoreServiceProvider extends ServiceProvider
     }
 
     public function register()
+    {
+        $this->registerServices();
+    }
+
+    private function registerServices()
     {
         //
         // Register the Core Service
@@ -100,7 +101,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton("users", function() {
             return new UserService;
         });
-        
+
         $this->app->singleton("skills", function() {
             return new SkillService;
         });
@@ -140,7 +141,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton("task-seniorities", function() {
             return new TaskSeniorityService;
         });
-        
+
         $this->app->singleton("team-members", function() {
             return new TeamMemberService;
         });
@@ -187,10 +188,14 @@ class CoreServiceProvider extends ServiceProvider
 
     private function composeViews()
     {
+        // dd(app()->getLocale());
+
         View::composer("tessify-core::layouts.app", function($view) {
             $view->with("user", Auth::user());
+            $view->with("locales", config("tessify-core.locales"));
+            $view->with("activeLocale", app()->getLocale());
         });
-        
+
         View::composer("tessify-core::layouts.admin", function($view) {
             $view->with("user", Auth::user());
         });
