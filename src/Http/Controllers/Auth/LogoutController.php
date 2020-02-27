@@ -3,7 +3,7 @@
 namespace Tessify\Core\Http\Controllers\Auth;
 
 use Auth;
-use Tessify\Core\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class LogoutController extends Controller
 {
