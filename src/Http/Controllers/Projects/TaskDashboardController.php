@@ -3,6 +3,7 @@
 namespace Tessify\Core\Http\Controllers\Projects;
 
 use Tasks;
+use Skills;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
@@ -14,6 +15,7 @@ class TaskDashboardController extends Controller
     {
         return view("tessify-core::pages.task-dashboard.overview", [
             "tasks" => Tasks::getAllPreloaded(),
+            "skills" => Skills::getAll(),
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),

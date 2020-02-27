@@ -14,12 +14,20 @@ return [
 
     "overview_title" => "Work Packages",
     "overview_subtitle" => "What would you like to do?",
+
+    "overview_description" => "Description",
+    "overview_skills" => "Required skills",
+    "overview_complexity" => "Complexity",
+    "overview_view" => "View job",
+    "overview_no_tasks" => "No jobs found",
     
     "overview_sidebar_search" => "Search",
     "overview_sidebar_statuses" => "Status",
     "overview_sidebar_statuses_empty" => "No statuses found",
     "overview_sidebar_categories" => "Categories",
     "overview_sidebar_categories_empty" => "No categories found",
+    "overview_sidebar_skills" => "Skills",
+    "overview_sidebar_skills_empty" => "No skills found",
     "overview_sidebar_seniorities" => "Seniorities",
     "overview_sidebar_seniorities_empty" => "No seniorities found",
     "overview_sidebar_timespan" => "Estimated workload",

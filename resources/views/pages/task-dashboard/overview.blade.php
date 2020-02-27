@@ -35,6 +35,13 @@
                         :categories="{{ $categories->toJson() }}">
                     </task-dashboard-sidebar-categories>
 
+                    <!-- Skills -->
+                    <task-dashboard-sidebar-skills
+                        title="@lang('tessify-core::tasks.overview_sidebar_skills')"
+                        no-records-text="@lang('tessify-core::tasks.overview_sidebar_skills_empty')"
+                        :skills="{{ $skills->toJson() }}">
+                    </task-dashboard-sidebar-skills>
+
                     <!-- Seniorities -->
                     <task-dashboard-sidebar-seniorities
                         title="@lang('tessify-core::tasks.overview_sidebar_seniorities')"
@@ -52,7 +59,12 @@
 
                     <!-- Task overview -->
                     <task-dashboard-overview
-                        :tasks="{{ $tasks->toJson() }}">
+                        :tasks="{{ $tasks->toJson() }}"
+                        description-text="@lang('tessify-core::tasks.overview_description')"
+                        skills-text="@lang('tessify-core::tasks.overview_skills')"
+                        complexity-text="@lang('tessify-core::tasks.overview_complexity')"
+                        view-text="@lang('tessify-core::tasks.overview_view')"
+                        no-tasks-text="@lang('tessify-core::tasks.overview_no_tasks')">
                     </task-dashboard-overview>
 
                 </div>
