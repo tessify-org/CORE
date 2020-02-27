@@ -5,6 +5,7 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Users;
 use TeamRoles;
+use TeamMembers;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;

@@ -51,6 +51,15 @@ class TeamMemberService implements ModelServiceContract
         return $teamMember;
     }
 
+    public function addUserToProject(User $user, TeamRole $teamRole, Project $project)
+    {
+        $teamMember = TeamMember::create([
+            "project_id" => $project->id,
+            "user_id" => $user->id,
+        ]);
+        $teamMember->teamRoles()->attach($teamRole->id);
+    }
+
     public function removeUserFromTeam(Project $project, User $user = null)
     {
         if (is_null($user)) $user = Auth::user();
