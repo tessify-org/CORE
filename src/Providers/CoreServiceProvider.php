@@ -22,6 +22,13 @@ use Tessify\Core\Services\ModelServices\ProjectStatusService;
 use Tessify\Core\Services\ModelServices\ProjectCategoryService;
 use Tessify\Core\Services\ModelServices\ProjectResourceService;
 use Tessify\Core\Services\ModelServices\TeamMemberApplicationService;
+use Tessify\Core\Services\ModelServices\AssignmentService;
+use Tessify\Core\Services\ModelServices\AssignmentTypeService;
+use Tessify\Core\Services\ModelServices\MinistryService;
+use Tessify\Core\Services\ModelServices\OrganizationService;
+use Tessify\Core\Services\ModelServices\OrganizationTypeService;
+use Tessify\Core\Services\ModelServices\OrganizationLocationService;
+use Tessify\Core\Services\ModelServices\OrganizationDepartmentService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -156,6 +163,34 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("comments", function() {
             return new CommentService;
+        });
+
+        $this->app->singleton("assignments", function() {
+            return new AssignmentService;
+        });
+
+        $this->app->singleton("assignment-types", function() {
+            return new AssignmentTypeService;
+        });
+        
+        $this->app->singleton("ministries", function() {
+            return new MinistryService;
+        });
+        
+        $this->app->singleton("organizations", function() {
+            return new OrganizationService;
+        });
+        
+        $this->app->singleton("organization-types", function() {
+            return new OrganizationTypeService;
+        });
+        
+        $this->app->singleton("organization-departments", function() {
+            return new OrganizationDepartmentService;
+        });
+
+        $this->app->singleton("organization-locations", function() {
+            return new OrganizationLocationService;
         });
 
         //

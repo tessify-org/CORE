@@ -50,6 +50,13 @@
                 "TeamMemberApplications": "Tessify\\Core\\Facades\\TeamMemberApplicationsFacade",
                 "TeamRoles": "Tessify\\Core\\Facades\\TeamRolesFacade",
                 "Comments": "Tessify\\Core\\Facades\\CommentsFacade",
+                "Assignments": "Tessify\\Core\\Facades\\AssignmentsFacade",
+                "AssignmentTypes": "Tessify\\Core\\Facades\\AssignmentTypesFacade",
+                "Ministries": "Tessify\\Core\\Facades\\MinistriesFacade",
+                "Organizations": "Tessify\\Core\\Facades\\OrganizationsFacade",
+                "OrganizationTypes": "Tessify\\Core\\Facades\\OrganizationTypesFacade",
+                "OrganizationDepartments": "Tessify\\Core\\Facades\\OrganizationDepartmentsFacade",
+                "OrganizationLocations": "Tessify\\Core\\Facades\\OrganizationLocationsFacade",
                 "Dates": "Tessify\\Core\\Facades\\DatesFacade",
                 "Uploader": "Tessify\\Core\\Facades\\UploaderFacade"
             }

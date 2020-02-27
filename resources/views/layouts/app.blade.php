@@ -37,7 +37,7 @@
                     </div>
 
                     <!-- Search -->
-                    <div id="topnav-search__wrapper">
+                    <!-- <div id="topnav-search__wrapper">
                         <form action="{{ route('search.post') }}" method="post">
                             {{ csrf_field() }}
                             <div id="topnav-search">
@@ -47,22 +47,22 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                     <!-- Navigation -->
                     <nav id="topnav-links__wrapper">
                         <ul id="topnav-links">
                             @if (!Auth::check())
-                                <!-- Login -->
-                                <li class="topnav-link__wrapper">
-                                    <a class="topnav-link" href="{{ route('auth.login') }}">
-                                        @lang("tessify-core::layouts.login_link")
-                                    </a>
-                                </li>
                                 <!-- Register -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('auth.register') }}">
                                         @lang("tessify-core::layouts.register_link")
+                                    </a>
+                                </li>
+                                <!-- Login -->
+                                <li class="topnav-link__wrapper">
+                                    <a class="topnav-link" href="{{ route('auth.login') }}">
+                                        @lang("tessify-core::layouts.login_link")
                                     </a>
                                 </li>
                             @else
