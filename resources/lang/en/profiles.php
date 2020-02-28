@@ -33,6 +33,8 @@ return [
 
     "profile_title" => "Profile",
     "profile_name" => "Name",
+    "profile_function" => "Job title",
+    "profile_function_text" => ":title with :company (:department)",
     "profile_email" => "Email",
     "profile_email_activated" => "Email activated",
     "profile_email_not_activated" => "Not activated",

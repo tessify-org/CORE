@@ -29,6 +29,8 @@ return [
 
     "profile_title" => "Profiel",
     "profile_name" => "Naam",
+    "profile_function" => "Functie",
+    "profile_function_text" => ":title bij :company (:department)",
     "profile_email" => "E-mailadres",
     "profile_email_activated" => "E-mailadres geactiveerd",
     "profile_email_not_activated" => "Niet geactiveerd",

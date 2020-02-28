@@ -37,6 +37,20 @@
                             <div class="val">{{ $user->formattedName }}</div>
                         </div>
                         <div class="detail">
+                            <div class="key">@lang("tessify-core::profiles.profile_function")</div>
+                            <div class="val">
+                                @if ($user->currentAssignment)
+                                    @lang("tessify-core::profiles.profile_function_text", [
+                                        "title" => $user->currentAssignment->title,
+                                        "company" => $user->currentAssignment->organization->name,
+                                        "department" => $user->currentAssignment->department->name,
+                                    ])
+                                @else
+                                    Niet opgegeven
+                                @endif
+                            </div>
+                        </div>
+                        <div class="detail">
                             <div class="key">@lang("tessify-core::profiles.profile_email")</div>
                             <div class="val">{{ $user->email }}</div>
                         </div>
