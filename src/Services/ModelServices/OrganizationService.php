@@ -50,4 +50,19 @@ class OrganizationService implements ModelServiceContract
 
         return $out;
     }
+
+    public function findOrCreateByName($name)
+    {
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->name == $name)
+            {
+                return $organization;
+            }
+        }
+        
+        return Organization::create([
+            "name" => $name
+        ]);
+    }
 }

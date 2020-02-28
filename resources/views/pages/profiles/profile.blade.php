@@ -75,7 +75,7 @@
                             <div class="val">{{ $user->updated_at->format("d-m-Y") }}</div>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div id="profile__actions">

@@ -24,4 +24,9 @@ class OrganizationLocation extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
 }

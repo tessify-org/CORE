@@ -46,6 +46,11 @@ class Assignment extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function organizationLocation()
+    {
+        return $this->belongsTo(OrganizationLocation::class);
+    }
+
     public function department()
     {
         return $this->belongsTo(OrganizationDepartment::class, "organization_department_id", "id");

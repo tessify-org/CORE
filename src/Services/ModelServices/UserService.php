@@ -5,6 +5,7 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Uuid;
 use Projects;
+use Assignments;
 use Carbon\Carbon;
 use App\Models\User;
 use Tessify\Core\Models\Project;
@@ -48,6 +49,7 @@ class UserService implements ModelServiceContract
         $instance->combined_name = $instance->combined_name;
 
         // TODO: load relationships.. not necessary yet
+        $instance->assignments = Assignments::findAllPreloadedForUser($instance);
 
         // Return the upgraded user
         return $instance;
@@ -157,6 +159,33 @@ class UserService implements ModelServiceContract
     {
         $user->password = bcrypt($request->password);
         $user->save();
+        return $user;
+    }
+
+    public function updateProfileFromRequest(UpdateProfileRequest $request, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->headline = $request->headline;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->save();
+
+        if ($request->current_assignment_id !== "0")
+        {
+            $assignment = Assignments::find($request->current_assignment_id);
+
+            if (!$assignment->current)
+            {
+                Assignments::deactiveAllForUser($user);
+
+                $assignment->current = true;
+                $assignment->save();
+            }
+        }
+
         return $user;
     }
 }

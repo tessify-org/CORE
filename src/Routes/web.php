@@ -167,5 +167,12 @@ Route::group(["prefix" => "api"], function() {
         Route::post("unassign", "Api\TeamRoleController@postUnassign")->name("api.team-roles.unassign");
     });
     
+    // Assignments
+    Route::group(["prefix" => "assignments"], function() {
+        Route::post("create", "Api\AssignmentController@postCreateAssignment")->name("api.assignments.create.post");
+        Route::post("update", "Api\AssignmentController@postUpdateAssignment")->name("api.assignments.update.post");
+        Route::post("delete", "Api\AssignmentController@postDeleteAssignment")->name("api.assignments.delete.post");
+    });
+
 });
 // TODO: Move these to the api.php file and add proper token-based authentication instead of session hijacking like this

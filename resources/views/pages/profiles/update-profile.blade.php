@@ -19,17 +19,24 @@
 
                 <update-profile-form
                     :user="{{ $user->toJson() }}"
+                    :assignment-types="{{ $assignmentTypes->toJson() }}"
+                    :organizations="{{ $organizations->toJson() }}"
+                    :organization-locations="{{ $organizationLocations->toJson() }}"
+                    :departments="{{ $departments->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     annotation-text="@lang('tessify-core::profiles.update_profile_annotation')"
                     first-name-text="@lang('tessify-core::profiles.update_profile_first_name')"
                     last-name-text="@lang('tessify-core::profiles.update_profile_last_name')"
+                    headline-text="@lang('tessify-core::profiles.update_profile_headline')"
                     email-text="@lang('tessify-core::profiles.update_profile_email')"
                     phone-text="@lang('tessify-core::profiles.update_profile_phone')"
                     avatar-text="@lang('tessify-core::profiles.update_profile_avatar')"
+                    assignments-text="@lang('tessify-core::profiles.update_profile_assignments')"
                     back-href="{{ route('profile') }}"
                     back-text="@lang('tessify-core::profiles.update_profile_go_back')"
-                    save-text="@lang('tessify-core::profiles.update_profile_save_changes')">
+                    save-text="@lang('tessify-core::profiles.update_profile_save_changes')"
+                    create-assignment-api-endpoint="{{ route('api.assignments.create.post') }}">
                 </update-profile-form>
 
             </form>

@@ -11,7 +11,7 @@ use Tessify\Core\Http\Requests\Organizations\Locations\UpdateOrganizationLocatio
 use Tessify\Core\Http\Requests\Api\Organizations\Locations\UpdateOrganizationLocationRequest as ApiCreateRequest;
 use Tessify\Core\Http\Requests\Api\Organizations\Locations\CreateOrganizationLocationRequest as ApiUpdateRequest;
 
-class ProjectResourceService implements ModelServiceContract
+class OrganizationLocationService implements ModelServiceContract
 {
     use ModelServiceGetters;
 

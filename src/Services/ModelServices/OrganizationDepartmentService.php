@@ -43,4 +43,20 @@ class OrganizationDepartmentService implements ModelServiceContract
 
         return $out;
     }
+
+    public function findOrCreateByName(Organization $organization, $name)
+    {
+        foreach ($this->getAll() as $department)
+        {
+            if ($department->organization_id == $organization->id and $department->name == $name)
+            {
+                return $department;
+            }
+        }
+
+        return OrganizationDepartment::create([
+            "organization_id" => $organization->id,
+            "name" => $name,
+        ]);
+    }
 }

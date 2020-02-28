@@ -4,6 +4,10 @@ namespace Tessify\Core\Http\Controllers\Profiles;
 
 use Auth;
 use Users;
+use AssignmentTypes;
+use Organizations;
+use OrganizationLocations;
+use OrganizationDepartments;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Profiles\UpdateProfileRequest;
@@ -27,11 +31,15 @@ class ProfileController extends Controller
     public function getUpdateProfile()
     {
         return view("tessify-core::pages.profiles.update-profile", [
-            "user" => Auth::user(),
+            "user" => Users::current(),
+            "assignmentTypes" => AssignmentTypes::getAll(),
+            "organizations" => Organizations::getAll(),
+            "departments" => OrganizationDepartments::getAll(),
+            "organizationLocations" => OrganizationLocations::getAll(),
             "oldInput" => collect([
-                "annotation" => old("annotation"),
                 "first_name" => old("first_name"),
                 "last_name" => old("last_name"),
+                "headline" => old("headline"),
                 "email" => old("email"),
                 "phone" => old("phone"),
                 "current_assignment_id" => old("current_assignment_id"),
@@ -41,13 +49,7 @@ class ProfileController extends Controller
 
     public function postUpdateProfile(UpdateProfileRequest $request)
     {
-        $user = Auth::user();
-        $user->annotation = $request->annotation;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->save();
+        Users::updateProfileFromRequest($request);
 
         flash(__('tessify-core::general.saved_changes'))->success();
         return redirect()->route("profile");
