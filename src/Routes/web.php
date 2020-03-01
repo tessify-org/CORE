@@ -6,7 +6,7 @@
  |
  */
 
-// General endpoints
+// Layout element related endpoints
 Route::post("switch-locales", "Translation\LocaleController@postSwitchLocale")->name("switch-locale.post");
 
 // Guest only endpoints
@@ -48,7 +48,9 @@ Route::group(["middleware" => "auth"], function() {
     Route::get("profiel/{slug}/follow", "Profiles\ProfileController@getFollow")->name("profile.follow");
     Route::get("profiel/{slug}/unfollow", "Profiles\ProfileController@getUnfollow")->name("profile.unfollow");
 
-
+    // Dashboard
+    Route::get("dashboard", "Dashboard\DashboardController@getDashboard")->name("dashboard");
+    
     // Settings
     Route::get("instellingen", "Settings\SettingsController@getSettings")->name("settings");
 

@@ -1,14 +1,14 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("settings") !!}
+    {!! Breadcrumbs::render("dashboard") !!}
 @stop
 
 @section("content")
     <div class="content-section__wrapper">
         <div class="content-section">
 
-            <h1 class="page-title centered">@lang("tessify-core::settings.title")</h1>
+            <h1 class="page-title centered">@lang("tessify-core::dashboard.title")</h1>
 
         </div>
     </div>

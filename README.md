@@ -9,6 +9,7 @@ This is the CORE module of the Tessify codebase. This package provides your Lara
 - [webpatser/laravel-uuid](https://github.com/webpatser/laravel-uuid)
 - [cviebrock/eloquent-sluggable](https://github.com/cviebrock/eloquent-sluggable)
 - [davejamesmiller/laravel-breadcrumbs](https://github.com/davejamesmiller/laravel-breadcrumbs)
+- [overtrue/laravel-follow](https://github.com/overtrue/laravel-follow)
 
 ## Installation instructions
 
@@ -16,14 +17,7 @@ You can find the [installation instructions](https://github.com/tessify-org/CORE
 
 ## Roadmap
 
-- [ ] Make the location of the User model configurable; as we can not force developers to create a Models directory
-- [ ] Create an artisan install command to completely install the CORE into a fresh laravel application
-- [ ] Complete "skills" functionality
-- [ ] Complete "view & manage project" functionality
-- [ ] Navigation management (frontend & admin)
-- [ ] Admin panel dashboard
-- [ ] Admin dashboard with charts and relevant stats
-- [ ] Create a way to extend user profiles (ui)
+Still constantly changing as priorities are being determined. When the alpha releases at the end of next month a long-term roadmap will be published.
 
 ## Contribute
 Everything you need to contribute can be found [here](https://github.com/tessify-org/CORE/blob/master/CONTRIBUTE.md).

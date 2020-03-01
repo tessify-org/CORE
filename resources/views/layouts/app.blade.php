@@ -66,6 +66,12 @@
                                     </a>
                                 </li>
                             @else
+                                <!-- Dashboard -->
+                                <li class="topnav-link__wrapper">
+                                    <a class="topnav-link" href="{{ route('dashboard') }}">
+                                        @lang("tessify-core::layouts.dashboard_link")
+                                    </a>
+                                </li>
                                 <!-- Jobs -->
                                 <li class="topnav-link__wrapper">
                                     <a class="topnav-link" href="{{ route('tasks') }}">
@@ -211,22 +217,22 @@
                                     @lang("tessify-core::layouts.footer_first_column_title")
                                 </h4>
                                 <div class="column-links">
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('press') }}">
                                         @lang("tessify-core::layouts.footer_press_link")
                                     </a>
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('partners') }}">
                                         @lang("tessify-core::layouts.footer_partners_link")
                                     </a>
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('about') }}">
                                         @lang("tessify-core::layouts.footer_about_link")
                                     </a>
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('do-more') }}">
                                         @lang("tessify-core::layouts.footer_do_more_link")
                                     </a>
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('faq') }}">
                                         @lang("tessify-core::layouts.footer_faq_link")
                                     </a>
-                                    <a class="column-link" href="#">
+                                    <a class="column-link" href="{{ route('contact') }}">
                                         @lang("tessify-core::layouts.footer_contact_link")
                                     </a>
                                 </div>

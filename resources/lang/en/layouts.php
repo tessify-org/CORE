@@ -15,6 +15,7 @@ return [
     // Navigation links
     "login_link" => "Login",
     "register_link" => "Register",
+    "dashboard_link" => "Dashboard",
     "tasks_link" => "Jobs",
     "projects_link" => "Projects",
     "members_link" => "Memberlist",
