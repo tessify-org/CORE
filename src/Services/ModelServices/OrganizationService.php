@@ -2,6 +2,7 @@
 
 namespace Tessify\Core\Services\ModelServices;
 
+use Ministries;
 use OrganizationTypes;
 use OrganizationLocations;
 use OrganizationDepartments;
@@ -29,6 +30,7 @@ class OrganizationService implements ModelServiceContract
     
     public function preload($instance)
     {
+        $instance->ministry = Ministries::find($instance->ministry_id);
         $instance->type = OrganizationTypes::find($instance->organization_type_id);
         $instance->locations = OrganizationLocations::findAllForOrganization($instance);
         $instance->departments = OrganizationDepartments::findAllForOrganization($instance);

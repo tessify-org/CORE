@@ -50,6 +50,11 @@ class Organization extends Model
         return $this->hasMany(OrganizationLocation::class);
     }
 
+    public function departments()
+    {
+        return $this->hasMany(OrganizationDepartment::class);
+    }
+
     public function assignments()
     {
         return $this->hasMany(Assigment::class);

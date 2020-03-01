@@ -4,6 +4,7 @@ namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
 use Dates;
+use AssignmentTypes;
 use Organizations;
 use OrganizationTypes;
 use OrganizationLocations;
@@ -32,15 +33,17 @@ class AssignmentService implements ModelServiceContract
     
     public function preload($instance)
     {
-        $instance->type = OrganizationTypes::find($instance->assignment_type_id);
-        $instance->organization = Organizations::find($instance->organization_id);
+        $instance->type = AssignmentTypes::find($instance->assignment_type_id);
+        $instance->organization = Organizations::findPreloaded($instance->organization_id);
         $instance->department = OrganizationDepartments::find($instance->organization_department_id);
 
         return $instance;
     }
 
-    public function findAllPreloadedForUser(User $user)
+    public function findAllPreloadedForUser(User $user = null)
     {
+        if (is_null($user)) $user = Auth::user();
+
         $out = [];
 
         foreach ($this->getAllPreloaded() as $assignment)
@@ -87,6 +90,7 @@ class AssignmentService implements ModelServiceContract
             "organization_department_id" => $department->id,
             "organization_location_id" => $request->organization_location_id,
             "title" => $request->title,
+            "description" => $request->description,
             "order" => $order,
             "current" => $current,
             "start_date" => $start_date,

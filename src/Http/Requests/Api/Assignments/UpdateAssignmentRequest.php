@@ -30,6 +30,7 @@ class UpdateAssignmentRequest extends FormRequest
             "organization" => "required",
             "department" => "required",
             "title" => "required",
+            "description" => "nullable",
             "current" => "required",
             "start_date" => "required",
             "end_date" => "nullable",

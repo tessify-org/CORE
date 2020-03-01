@@ -15,7 +15,15 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-
+            "first_name" => "required",
+            "last_name" => "required",
+            "headline" => "nullable",
+            "email" => "required|email",
+            "phone" => "nullable",
+            "current_assignment_id" => "nullable|exists:assignments,id",
+            "skills" => "nullable",
+            "avatar" => "nullable|image",
+            "header_bg" => "nullable|image",
         ];
     }
 

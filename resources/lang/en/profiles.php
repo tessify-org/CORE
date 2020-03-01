@@ -59,6 +59,5 @@ return [
     "update_profile_avatar" => "Profile picture",
     "update_profile_go_back" => "Go back",
     "update_profile_save_changes" => "Save changes",
-    
 
 ];

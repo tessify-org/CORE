@@ -4,7 +4,9 @@ namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
 use Uuid;
+use Skills;
 use Projects;
+use Uploader;
 use Assignments;
 use Carbon\Carbon;
 use App\Models\User;
@@ -49,6 +51,7 @@ class UserService implements ModelServiceContract
         $instance->combined_name = $instance->combined_name;
 
         // TODO: load relationships.. not necessary yet
+        $instance->skills = Skills::getAllForUser($instance);
         $instance->assignments = Assignments::findAllPreloadedForUser($instance);
 
         // Return the upgraded user
@@ -164,15 +167,20 @@ class UserService implements ModelServiceContract
 
     public function updateProfileFromRequest(UpdateProfileRequest $request, User $user = null)
     {
+        // Grab the user
         if (is_null($user)) $user = Auth::user();
 
+        // Update the user's direct attributes
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->headline = $request->headline;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        if ($request->hasFile("avatar")) $user->avatar_url = Uploader::upload($request->file("avatar"), "images/users/avatars");
+        if ($request->hasFile("header_bg")) $user->header_bg_url = Uploader::upload($request->file("header_bg"), "images/users/headers");
         $user->save();
 
+        // Process assignments
         if ($request->current_assignment_id !== "0")
         {
             $assignment = Assignments::find($request->current_assignment_id);
@@ -183,6 +191,26 @@ class UserService implements ModelServiceContract
 
                 $assignment->current = true;
                 $assignment->save();
+            }
+        }
+
+        // Process skills
+        if ($request->skills !== "[]")
+        {
+            $skills = json_decode($request->skills);
+            if (is_array($skills) and count($skills))
+            {
+                $user->skills()->detach();
+
+                foreach ($skills as $skillData)
+                {
+                    $skill = Skills::findOrCreateByName($skillData->skill);
+
+                    $user->skills()->attach($skill->id, [
+                        "mastery" => $skillData->mastery,
+                        "description" => $skillData->description,
+                    ]);
+                }
             }
         }
 

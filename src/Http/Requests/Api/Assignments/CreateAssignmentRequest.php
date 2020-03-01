@@ -30,6 +30,7 @@ class CreateAssignmentRequest extends FormRequest
             "organization_location_id" => "nullable",
             "department" => "required",
             "title" => "required",
+            "description" => "nullable",
             "current" => "required",
             "start_date" => "required",
             "end_date" => "nullable",

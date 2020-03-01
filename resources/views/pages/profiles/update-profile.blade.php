@@ -14,11 +14,12 @@
             <!-- Feedback -->
             @include("tessify-core::partials.feedback")
 
-            <form action="{{ route('profile.update.post') }}" method="post">
+            <form action="{{ route('profile.update.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <update-profile-form
                     :user="{{ $user->toJson() }}"
+                    :skills="{{ $skills->toJson() }}"
                     :assignment-types="{{ $assignmentTypes->toJson() }}"
                     :organizations="{{ $organizations->toJson() }}"
                     :organization-locations="{{ $organizationLocations->toJson() }}"

@@ -4,6 +4,8 @@ namespace Tessify\Core\Http\Controllers\Profiles;
 
 use Auth;
 use Users;
+use Skills;
+use Assignments;
 use AssignmentTypes;
 use Organizations;
 use OrganizationLocations;
@@ -25,6 +27,7 @@ class ProfileController extends Controller
 
         return view("tessify-core::pages.profiles.profile", [
             "user" => $user,
+            "assignments" => Assignments::findAllPreloadedForUser($user),
         ]);
     }
 
@@ -32,6 +35,7 @@ class ProfileController extends Controller
     {
         return view("tessify-core::pages.profiles.update-profile", [
             "user" => Users::current(),
+            "skills" => Skills::getAll(),
             "assignmentTypes" => AssignmentTypes::getAll(),
             "organizations" => Organizations::getAll(),
             "departments" => OrganizationDepartments::getAll(),
@@ -43,6 +47,7 @@ class ProfileController extends Controller
                 "email" => old("email"),
                 "phone" => old("phone"),
                 "current_assignment_id" => old("current_assignment_id"),
+                "skills" => old("skills"),
             ]),
         ]);
     }

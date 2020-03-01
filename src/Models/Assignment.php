@@ -14,6 +14,7 @@ class Assignment extends Model
         "organization_id",
         "organization_department_id",
         "title",
+        "description",
         "order",
         "current",
         "start_date",

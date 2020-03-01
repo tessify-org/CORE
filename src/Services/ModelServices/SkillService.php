@@ -3,7 +3,8 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use DB;
-
+use Auth;
+use App\Models\User;
 use Tessify\Core\Models\Skill;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -61,8 +62,27 @@ class SkillService implements ModelServiceContract
                 $skill = $this->find($pivot->skill_id);
                 if ($skill)
                 {
+                    $skill->pivot = $pivot;
                     $out[] = $skill;
                 }
+            }
+        }
+
+        return $out;
+    }
+
+    public function getAllForUser(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = [];
+
+        foreach ($this->getSkillUserPivots() as $pivot)
+        {
+            $skill = $this->find($pivot->skill_id);
+            if ($skill) {
+                $skill->pivot = $pivot;
+                $out[] = $skill;
             }
         }
 
