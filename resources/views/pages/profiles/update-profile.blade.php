@@ -34,6 +34,7 @@
                     phone-text="@lang('tessify-core::profiles.update_profile_phone')"
                     avatar-text="@lang('tessify-core::profiles.update_profile_avatar')"
                     assignments-text="@lang('tessify-core::profiles.update_profile_assignments')"
+                    interests-text="@lang('tessify-core::profiles.update_profile_interests')"
                     back-href="{{ route('profile') }}"
                     back-text="@lang('tessify-core::profiles.update_profile_go_back')"
                     save-text="@lang('tessify-core::profiles.update_profile_save_changes')"

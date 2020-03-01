@@ -44,6 +44,7 @@ class ProfileController extends Controller
                 "first_name" => old("first_name"),
                 "last_name" => old("last_name"),
                 "headline" => old("headline"),
+                "interests" => old("interests"),
                 "email" => old("email"),
                 "phone" => old("phone"),
                 "current_assignment_id" => old("current_assignment_id"),

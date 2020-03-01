@@ -54,6 +54,7 @@ return [
     "update_profile_last_name" => "Last name",
     "update_profile_headline" => "Headline",
     "update_profile_assignments" => "Assignments",
+    "update_profile_interests" => "Interests",
     "update_profile_email" => "Email",
     "update_profile_phone" => "Phone number",
     "update_profile_avatar" => "Profile picture",

@@ -50,6 +50,7 @@ return [
     "update_profile_last_name" => "Achternaam",
     "update_profile_headline" => "Kopregel",
     "update_profile_assignments" => "Aanstellingen",
+    "update_profile_interests" => "Interesses",
     "update_profile_email" => "E-mailadres",
     "update_profile_phone" => "Telefoon nummer",
     "update_profile_avatar" => "Profielfoto",

@@ -18,6 +18,7 @@ class UpdateProfileRequest extends FormRequest
             "first_name" => "required",
             "last_name" => "required",
             "headline" => "nullable",
+            "interests" => "nullable",
             "email" => "required|email",
             "phone" => "nullable",
             "current_assignment_id" => "nullable|exists:assignments,id",

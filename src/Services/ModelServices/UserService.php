@@ -174,6 +174,7 @@ class UserService implements ModelServiceContract
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->headline = $request->headline;
+        $user->interests = $request->interests;
         $user->email = $request->email;
         $user->phone = $request->phone;
         if ($request->hasFile("avatar")) $user->avatar_url = Uploader::upload($request->file("avatar"), "images/users/avatars");

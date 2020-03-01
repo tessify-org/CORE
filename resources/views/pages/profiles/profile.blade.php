@@ -95,6 +95,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Interests -->
+                            @if ($user->interests !== null and $user->interests !== "")
+                                <h3 class="content-card__title">Interesses</h3>
+                                <div class="content-card mb elevation-1">
+                                    <div class="content-card__content">
+                                        {!! nl2br($user->interests) !!}
+                                    </div>
+                                </div>
+                            @endif
                             
                             <!-- Assignments -->
                             <h3 class="content-card__title">Aanstellingen</h3>
