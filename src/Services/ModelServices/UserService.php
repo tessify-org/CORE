@@ -217,4 +217,32 @@ class UserService implements ModelServiceContract
 
         return $user;
     }
+
+    public function getFollowers(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = [];
+
+        foreach ($user->followers()->get() as $u)
+        {
+            $out[] = $this->preload($u);
+        }
+
+        return collect($out);
+    }
+
+    public function getFollowing(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = [];
+
+        foreach ($user->followings(User::class)->get() as $u)
+        {
+            $out[] = $this->preload($u);
+        }
+
+        return collect($out);
+    }
 }

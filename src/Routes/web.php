@@ -45,7 +45,11 @@ Route::group(["middleware" => "auth"], function() {
 
     // Profiel
     Route::get("profiel/{slug?}", "Profiles\ProfileController@getProfile")->name("profile");
+    Route::get("profiel/{slug}/follow", "Profiles\ProfileController@getFollow")->name("profile.follow");
+    Route::get("profiel/{slug}/unfollow", "Profiles\ProfileController@getUnfollow")->name("profile.unfollow");
 
+
+    // Settings
     Route::get("instellingen", "Settings\SettingsController@getSettings")->name("settings");
 
     // Projects

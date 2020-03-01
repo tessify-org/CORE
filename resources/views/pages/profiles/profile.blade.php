@@ -11,26 +11,72 @@
         <div id="profile-header" style="background-image: url({{ asset($user->header_bg_url) }})">
             <!-- Content -->
             <div id="profile-header__content">
+                
+                <!-- Actions -->
+                <div id="profile-header__actions">
+                    <!-- Follow / Unfollow -->
+                    @if (Auth::user()->id != $user->id)
+                        @if (Auth::user()->isFollowing($user))
+                            <v-btn color="primary" href="{{ route('profile.unfollow', $user->slug) }}">
+                                @lang("tessify-core::followers.unfollow")
+                            </v-btn>
+                        @else
+                            <v-btn color="primary" href="{{ route('profile.follow', $user->slug) }}">
+                                @lang("tessify-core::followers.follow")
+                            </v-btn>
+                        @endif
+                    @endif
+                    <!-- Update profile -->
+                    @if (Auth::user()->id == $user->id)
+                        <v-btn color="primary" href="{{ route('profile.update') }}">
+                            @lang("tessify-core::profiles.profile_update_button")
+                        </v-btn>
+                    @endif
+                </div>
+                
                 <!-- Avatar -->
                 <div id="profile-header__avatar" style="background-image: url({{ asset($user->avatar_url) }})"></div>
+                
                 <!-- Title -->
                 <h1 id="profile-header__title">{{ $user->formattedName }}</h1>
+                
                 <!-- Job title -->
                 @if ($user->currentAssignment)
                     <h2 id="profile-header__subtitle">
                         {{ $user->currentAssignmentJobTitle }}
                     </h2>
                 @endif
+                
                 <!-- Headline -->
                 @if ($user->headline != "")
                     <h3 id="profile-header__headline">"{{ $user->headline }}"</h3>
                 @endif
-                <!-- Actions -->
-                <div id="profile-header__actions">
-                    <v-btn color="primary" href="{{ route('profile.update') }}">
-                        @lang("tessify-core::profiles.profile_update_button")
-                    </v-btn>
+                
+                <!-- Following -->
+                <div id="profile-header__following">
+                
+                    <!-- Followers -->
+                    <div class="following-entry">
+                        <followers-bar 
+                            :followers="{{ $followers->toJson() }}"
+                            label-text="@lang('tessify-core::followers.followers_label')"
+                            no-followers-text="@lang('tessify-core::followers.followers_empty')"
+                            dialog-title-text="@lang('tessify-core::followers.followers_dialog_title')">
+                        </followers-bar>
+                    </div>
+                    
+                    <!-- Following -->
+                    <div class="following-entry">
+                        <followers-bar 
+                            :followers="{{ $following->toJson() }}"
+                            label-text="@lang('tessify-core::followers.following_label')"
+                            no-followers-text="@lang('tessify-core::followers.following_empty')"
+                            dialog-title-text="@lang('tessify-core::followers.following_dialog_title')">
+                        </following-bar>
+                    </div>
+                
                 </div>
+
             </div>    
             <!-- Overlay -->
             <div id="profile-header__overlay"></div>

@@ -25,7 +25,8 @@
         "webpatser/laravel-uuid": "^3.0",
         "laracasts/flash": "^3.0",
         "cviebrock/eloquent-sluggable": "^6.0",
-        "davejamesmiller/laravel-breadcrumbs": "5.x"
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "overtrue/laravel-follow": "^1.1"
     },
     "require-dev": {},
     "extra": {

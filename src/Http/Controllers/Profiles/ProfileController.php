@@ -27,6 +27,8 @@ class ProfileController extends Controller
 
         return view("tessify-core::pages.profiles.profile", [
             "user" => $user,
+            "followers" => Users::getFollowers($user),
+            "following" => Users::getFollowing($user),
             "assignments" => Assignments::findAllPreloadedForUser($user),
         ]);
     }
@@ -59,5 +61,35 @@ class ProfileController extends Controller
 
         flash(__('tessify-core::general.saved_changes'))->success();
         return redirect()->route("profile");
+    }
+
+    public function getFollow($slug)
+    {
+        $user = Users::findBySlug($slug);
+        if (!$user)
+        {
+            flash(__('tessify-core::profiles.user_not_found'))->error();
+            return redirect()->route("memberlist");
+        }
+
+        Auth::user()->follow($user);
+
+        flash(__("tessify-core::followers.follow_success", ["user" => $user->formattedName]))->success();
+        return redirect()->route("profile", $user->slug);
+    }
+
+    public function getUnfollow($slug)
+    {
+        $user = Users::findBySlug($slug);
+        if (!$user)
+        {
+            flash(__('tessify-core::profiles.user_not_found'))->error();
+            return redirect()->route("memberlist");
+        }
+
+        Auth::user()->unfollow($user);
+
+        flash(__("tessify-core::followers.unfollow_success", ["user" => $user->formattedName]))->success();
+        return redirect()->route("profile", $user->slug);
     }
 }
