@@ -84,32 +84,56 @@
                                         @lang("tessify-core::layouts.members_link")
                                     </a>
                                 </li>
-                                <!-- My profile -->
-                                <li class="topnav-link__wrapper">
-                                    <a class="topnav-link" href="{{ route('profile') }}">
-                                        @lang("tessify-core::layouts.profile_link")
+                                <!-- User -->
+                                <li class="topnav-link__wrapper with-dropdown">
+                                    <a class="topnav-link" href="#">
+                                        {{ $user->formattedName }}
+                                        <img id="avatar" src="{{ asset($user->avatar_url) }}">
                                     </a>
+                                    <ul class="dropdown">
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('profile') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-id-badge"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.profile_link")</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('profile.update') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-user-edit"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.edit_profile_link")</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('settings') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-cog"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.settings_link")</span>
+                                            </a>
+                                        </li>
+                                        @can("access-admin-panel")
+                                            <li class="dropdown-link__wrapper">
+                                                <a class="dropdown-link" href="{{ route('admin.dashboard') }}">
+                                                    <span class="dropdown-link__icon"><i class="fas fa-crown"></i></span>
+                                                    <span class="dropdown-link__text">@lang("tessify-core::layouts.admin_link")</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('auth.logout') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-sign-out-alt"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.logout_link")</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                @can("access-admin-panel")
-                                    <li class="topnav-link__wrapper">
-                                        <a class="topnav-link" href="{{ route('admin.dashboard') }}">
-                                            @lang("tessify-core::layouts.admin_link")
-                                        </a>
-                                    </li>
-                                @endcan
-                                <!-- Logout -->
-                                <li class="topnav-link__wrapper">
-                                    <a class="topnav-link" href="{{ route('auth.logout') }}">
-                                        @lang("tessify-core::layouts.logout_link")
-                                    </a>
-                                </li>
+                                <!-- 
+                                @if (Auth::check())
+                                    <div id="topnav-avatar">
+                                        <img id="avatar" src="{{ is_null($user->avatar_url) ? Avatar::create($user->combinedName)->toBase64() : $user->avatar_url }}" />
+                                    </div>
+                                @endif
+                                -->
                             @endif
                         </ul>
-                        @if (Auth::check())
-                            <div id="topnav-avatar">
-                                <img id="avatar" src="{{ is_null($user->avatar_url) ? Avatar::create($user->combinedName)->toBase64() : $user->avatar_url }}" />
-                            </div>
-                        @endif
                         <div id="mobile-nav-button">
                             <hamburger-button></hamburger-button>
                         </div>

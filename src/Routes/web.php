@@ -46,6 +46,8 @@ Route::group(["middleware" => "auth"], function() {
     // Profiel
     Route::get("profiel/{slug?}", "Profiles\ProfileController@getProfile")->name("profile");
 
+    Route::get("instellingen", "Settings\SettingsController@getSettings")->name("settings");
+
     // Projects
     Route::group(["prefix" => "projecten"], function() {
 
