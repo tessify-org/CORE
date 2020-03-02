@@ -68,11 +68,14 @@ class MessageService implements ModelServiceContract
 
         $out = 0;
 
-        foreach ($this->getAll() as $message)
+        if ($user)
         {
-            if ($message->receiver_id == $user->id and !$message->read)
+            foreach ($this->getAll() as $message)
             {
-                $out += 1;
+                if ($message->receiver_id == $user->id and !$message->read)
+                {
+                    $out += 1;
+                }
             }
         }
 
@@ -84,7 +87,7 @@ class MessageService implements ModelServiceContract
         if (is_null($user)) $user = Auth::user();
 
         $out = [];
-
+        
         foreach ($this->getAllPreloaded() as $message)
         {
             if ($message->receiver_id == $user->id)

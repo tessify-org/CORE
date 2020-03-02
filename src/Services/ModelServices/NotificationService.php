@@ -32,11 +32,14 @@ class NotificationService implements ModelServiceContract
         
         $out = 0;
 
-        foreach ($this->getAll() as $notification)
+        if ($user)
         {
-            if ($notification->user_id == $user->id and !$notification->read)
+            foreach ($this->getAll() as $notification)
             {
-                $out += 1;
+                if ($notification->user_id == $user->id and !$notification->read)
+                {
+                    $out += 1;
+                }
             }
         }
 
