@@ -158,22 +158,24 @@
                     </nav>
 
                     <!-- Topnav buttons -->
-                    <div id="topnav-buttons">
-                        <!-- Unread notifications -->
-                        <div class="topnav-button">
-                            <topnav-unread-notifications 
-                                count="{{ $numUnreadNotifications }}"
-                                href="{{ route('notifications') }}">
-                            </topnav-unread-notifications>
+                    @if (Auth::check())
+                        <div id="topnav-buttons">
+                            <!-- Unread notifications -->
+                            <div class="topnav-button">
+                                <topnav-unread-notifications 
+                                    count="{{ $numUnreadNotifications }}"
+                                    href="{{ route('notifications') }}">
+                                </topnav-unread-notifications>
+                            </div>
+                            <!-- Unread messages -->
+                            <div class="topnav-button">
+                                <topnav-unread-messages 
+                                    count="{{ $numUnreadMessages }}"
+                                    href="{{ route('messages') }}">
+                                </topnav-unread-messages>
+                            </div>
                         </div>
-                        <!-- Unread messages -->
-                        <div class="topnav-button">
-                            <topnav-unread-messages 
-                                count="{{ $numUnreadMessages }}"
-                                href="{{ route('messages') }}">
-                            </topnav-unread-messages>
-                        </div>
-                    </div>
+                    @endif
                     
                 </div>
             </div>
