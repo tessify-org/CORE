@@ -12,9 +12,12 @@
 
 return [
 
+    //
+    // Overview
+    //
+
     "overview_title" => "Work Packages",
     "overview_subtitle" => "What would you like to do?",
-
     "overview_description" => "Description",
     "overview_skills" => "Required skills",
     "overview_complexity" => "Complexity",
@@ -32,9 +35,34 @@ return [
     "overview_sidebar_seniorities_empty" => "No seniorities found",
     "overview_sidebar_timespan" => "Estimated workload",
 
+    //
+    // View
+    //
+
     "view_title" => "Task",
     "view_assign_to_self" => "Sign me up!",
     "view_abandon" => "Abandon this task",
+    "view_subscribe" => "Subscribe",
+    "view_subscribed" => "You have subscribed to this task",
+    "view_unsubscribe" => "Unsubscribe",
+    "view_unsubscribed" => "You have unsubscribed from this task",
+    "view_description" => "Description",
+    "view_skills" => "Required skills",
+    "view_status" => "Status",
+    "view_category" => "Category",
+    "view_seniority" => "Seniority",
+    "view_complexity" => "Complexity",
+    "view_estimated_hours" => "Estimated hours",
+    "view_realized_hours" => "Realized hours",
+    "view_number_positions" => "Number of positions",
+    "view_assigned_users" => "Assigned users",
+    "view_no_assigned_users" => "No assigned users yet",
+    "view_created_at" => "Created at",
+    "view_updated_at" => "Last update",
+
+    //
+    // Actions
+    //
 
     "assign_to_self_success" => "Succesfully assigned yourself this task!",
 

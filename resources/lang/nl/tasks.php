@@ -12,9 +12,12 @@
 
 return [
 
+    //
+    // Overview
+    //
+
     "overview_title" => "Werkpakketten",
     "overview_subtitle" => "Wat zou je willen doen?",
-
     "overview_description" => "Beschrijving",
     "overview_skills" => "Vereiste skills",
     "overview_complexity" => "Complexiteit",
@@ -32,9 +35,33 @@ return [
     "overview_sidebar_seniorities_empty" => "Geen senioriteiten gevonden",
     "overview_sidebar_timespan" => "Geschatte tijdsbestek",
 
+    //
+    // View
+    //
+
     "view_title" => "Werkpakket",
     "view_assign_to_self" => "Schrijf mij in!",
     "view_abandon" => "Uitschrijven",
+    "view_subscribe" => "Subscribe",
+    "view_subscribed" => "You have subscribed to this task",
+    "view_unsubscribe" => "Unsubscribe",
+    "view_unsubscribed" => "You have unsubscribed from this task",
+    "view_description" => "Omschrijving",
+    "view_skills" => "Vereiste skills",
+    "view_status" => "Status",
+    "view_category" => "Categorie",
+    "view_seniority" => "Senioriteit",
+    "view_complexity" => "Complexiteit",
+    "view_estimated_hours" => "Geschatte doorlooptijd",
+    "view_number_positions" => "Aantal posities",
+    "view_assigned_users" => "Aangestelde gebruikers",
+    "view_no_assigned_users" => "Geen gebruikers aangesteld",
+    "view_created_at" => "Aangemaakt op",
+    "view_updated_at" => "Laatse update",
+
+    //
+    // Actions
+    //
 
     "assign_to_self_success" => "Je hebt de taak aan jezelf toegekend",
 

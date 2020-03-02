@@ -4,10 +4,11 @@ namespace Tessify\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 class Task extends Model
 {
-    use Sluggable;
+    use Sluggable, CanBeSubscribed;
 
     protected $table = "tasks";
     protected $guarded = ["id", "created_at", "updated_at"];

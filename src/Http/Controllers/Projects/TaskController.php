@@ -2,6 +2,7 @@
 
 namespace Tessify\Core\Http\Controllers\Projects;
 
+use Auth;
 use Tasks;
 use Projects;
 use TaskStatuses;
@@ -253,6 +254,50 @@ class TaskController extends Controller
         Tasks::unassignUser($task);
 
         flash(__("tessify-core::tasks.abandon_success"))->success();
+        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+    }
+
+    public function getSubscribe($slug, $taskSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        Auth::user()->subscribe($task);
+
+        flash(__("tessify-core::tasks.view_subscribed"))->success();
+        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+    }
+
+    public function getUnsubscribe($slug, $taskSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        Auth::user()->unsubscribe($task);
+
+        flash(__("tessify-core::tasks.view_unsubscribed"))->success();
         return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
     }
 }

@@ -83,7 +83,7 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/verwijderen", "Projects\ProjectController@postDelete")->name("projects.delete.post");
         Route::get("{slug}/subscribe", "Projects\ProjectController@getSubscribe")->name("projects.subscribe");
         Route::get("{slug}/unsubscribe", "Projects\ProjectController@getUnsubscribe")->name("projects.unsubscribe");
-        
+
         // View team
         Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
         // Apply for team role(s)
@@ -134,7 +134,9 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
         Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
         Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
-
+        Route::get("{slug}/taken/{taskSlug}/subscribe", "Projects\TaskController@getSubscribe")->name("projects.tasks.subscribe");
+        Route::get("{slug}/taken/{taskSlug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("projects.tasks.unsubscribe");
+        
     });
 
     // Task overview
