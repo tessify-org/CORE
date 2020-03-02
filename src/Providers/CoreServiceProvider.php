@@ -196,7 +196,7 @@ class CoreServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton("notifications", function() {
-            return new Notifications;
+            return new NotificationService;
         });
 
         $this->app->singleton("messages", function() {
@@ -239,6 +239,8 @@ class CoreServiceProvider extends ServiceProvider
             $view->with("user", Auth::user());
             $view->with("locales", config("tessify-core.locales"));
             $view->with("activeLocale", app()->getLocale());
+            $view->with("numUnreadNotifications", app("notifications")->numUnread());
+            $view->with("numUnreadMessages", app("messages")->numUnread());
         });
 
         View::composer("tessify-core::layouts.admin", function($view) {

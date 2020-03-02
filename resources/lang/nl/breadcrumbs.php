@@ -54,6 +54,11 @@ return [
     "dashboard" => "Dashboard",
     "tasks" => "Werkpakketen",
     "task_abandon" => "Jezelf uitschrijven",
+    "notifications" => "Notificaties",
+    "messages" => "Berichten",
+    "messages_outbox" => "Outbox",
+    "messages_send" => "Verstuur bericht",
+    "messages_read" => "Bericht lezen",
     "admin_dashboard" => "Administratie dashboard",
 
 ];

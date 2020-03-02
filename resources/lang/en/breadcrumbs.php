@@ -54,6 +54,11 @@ return [
     "dashboard" => "Dashboard",
     "tasks" => "Tasks",
     "task_abandon" => "Abandon task",
+    "notifications" => "Notifications",
+    "messages" => "Messages",
+    "messages_outbox" => "Outbox",
+    "messages_send" => "Send message",
+    "messages_read" => "Read message",
     "admin_dashboard" => "Admin dashboard",
 
 ];

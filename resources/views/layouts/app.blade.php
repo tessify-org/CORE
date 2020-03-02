@@ -110,6 +110,18 @@
                                             </a>
                                         </li>
                                         <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('messages') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-envelope"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.messages_link")</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('notifications') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-flag"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.notifications_link")</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('settings') }}">
                                                 <span class="dropdown-link__icon"><i class="fas fa-cog"></i></span>
                                                 <span class="dropdown-link__text">@lang("tessify-core::layouts.settings_link")</span>
@@ -144,6 +156,24 @@
                             <hamburger-button></hamburger-button>
                         </div>
                     </nav>
+
+                    <!-- Topnav buttons -->
+                    <div id="topnav-buttons">
+                        <!-- Unread notifications -->
+                        <div class="topnav-button">
+                            <topnav-unread-notifications 
+                                count="{{ $numUnreadNotifications }}"
+                                href="{{ route('notifications') }}">
+                            </topnav-unread-notifications>
+                        </div>
+                        <!-- Unread messages -->
+                        <div class="topnav-button">
+                            <topnav-unread-messages 
+                                count="{{ $numUnreadMessages }}"
+                                href="{{ route('messages') }}">
+                            </topnav-unread-messages>
+                        </div>
+                    </div>
                     
                 </div>
             </div>

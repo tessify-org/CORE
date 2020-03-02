@@ -36,6 +36,21 @@ Route::group(["middleware" => "auth"], function() {
     // Logout
     Route::get("uitloggen", "Auth\LogoutController@getLogout")->name("auth.logout");
 
+    // Notifications
+    Route::group(["prefix" => "notificaties"], function() {
+        Route::get("/", "System\NotificationController@getOverview")->name("notifications");
+        Route::get("clear", "System\NotificationController@getClear")->name("notifications.clear");
+    });
+
+    // Messages
+    Route::group(["prefix" => "berichten"], function() {
+        Route::get("/", "System\MessageController@getInbox")->name("messages");
+        Route::get("outbox", "System\MessageController@getOutbox")->name("messages.outbox");
+        Route::get("opstellen/{uuid?}", "System\MessageController@getSend")->name("messages.send");
+        Route::post("opstellen/{uuid?}", "System\MessageController@postSend")->name("messages.send.post");
+        Route::get("lezen/{uuid}", "System\MessageController@getRead")->name("messages.read");
+    });
+
     // Memberlist
     Route::get("ledenlijst", "Profiles\MemberlistController@getMemberList")->name("memberlist");
 
@@ -129,21 +144,6 @@ Route::group(["middleware" => "auth"], function() {
     // Task overview
     Route::get("werk-paketten", "Projects\TaskDashboardController@getOverview")->name("tasks");
     
-    // Notifications
-    Route::group(["prefix" => "notificaties"], function() {
-        Route::get("/", "NotificationsController@getOverview")->name("notifications");
-        Route::get("clear", "NotificationsController@getClear")->name("notifications.clear");
-    });
-
-    // Messages
-    Route::group(["prefix" => "berichten"], function() {
-        Route::get("/", "MessageController@getInbox")->name("messages");
-        Route::get("verstuurd", "MessageController@getSent")->name("messages.sent");
-        Route::get("versturen", "MessageController@getSend")->name("messages.send");
-        Route::post("versturen", "MessageController@postSend")->name("messages.send.post");
-        Route::get("{uuid}", "MessageController@getMessage")->name("messages.read");
-    });
-
 });
 
 // Admin panel

@@ -9,7 +9,9 @@ class NotificationController extends Controller
 {
     public function getOverview()
     {
-        return view("pages.system.notifications.overview", [
+        Notifications::markAllAsRead();
+        
+        return view("tessify-core::pages.system.notifications.overview", [
             "notifications" => Notifications::get(),
         ]);
     }
@@ -17,8 +19,8 @@ class NotificationController extends Controller
     public function getClear()
     {
         Notifications::clear();
-
-        flash(__("tessify-core::notifications.clear_success"))->success();
+        
+        flash(__("tessify-core::pages.system.notifications.cleared"))->success();
         return redirect()->route("notifications");
     }
 }

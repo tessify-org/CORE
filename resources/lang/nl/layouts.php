@@ -21,6 +21,8 @@ return [
     "members_link" => "Leden",
     "profile_link" => "Mijn Profiel",
     "edit_profile_link" => "Profiel aanpassen",
+    "messages_link" => "Berichten",
+    "notifications_link" => "Notificaties",
     "settings_link" => "Instellingen",
     "admin_link" => "Administratie",
     "logout_link" => "Uitloggen",

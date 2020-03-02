@@ -58,6 +58,8 @@
                 "OrganizationTypes": "Tessify\\Core\\Facades\\OrganizationTypesFacade",
                 "OrganizationDepartments": "Tessify\\Core\\Facades\\OrganizationDepartmentsFacade",
                 "OrganizationLocations": "Tessify\\Core\\Facades\\OrganizationLocationsFacade",
+                "Notifications": "Tessify\\Core\\Facades\\NotificationsFacade",
+                "Messages": "Tessify\\Core\\Facades\\MessagesFacade",
                 "Dates": "Tessify\\Core\\Facades\\DatesFacade",
                 "Uploader": "Tessify\\Core\\Facades\\UploaderFacade"
             }

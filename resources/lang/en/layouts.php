@@ -21,6 +21,8 @@ return [
     "members_link" => "Memberlist",
     "profile_link" => "My Profile",
     "edit_profile_link" => "Update profile",
+    "messages_link" => "Members",
+    "notifications_link" => "Notifications",
     "settings_link" => "Settings",
     "admin_link" => "Admin Panel",
     "logout_link" => "Logout",
