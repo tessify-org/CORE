@@ -71,8 +71,8 @@ Route::group(["middleware" => "auth"], function() {
 
     // Projects
     Route::group(["prefix" => "projecten"], function() {
-
-        // Projects CRUD
+        
+        // Manage projects
         Route::get("/", "Projects\ProjectController@getOverview")->name("projects");
         Route::get("project-toevoegen", "Projects\ProjectController@getCreate")->name("projects.create");
         Route::post("project-toevoegen", "Projects\ProjectController@postCreate")->name("projects.create.post");
@@ -81,26 +81,23 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/aanpassen", "Projects\ProjectController@postEdit")->name("projects.edit.post");
         Route::get("{slug}/verwijderen", "Projects\ProjectController@getDelete")->name("projects.delete");
         Route::post("{slug}/verwijderen", "Projects\ProjectController@postDelete")->name("projects.delete.post");
+        Route::get("{slug}/subscribe", "Projects\ProjectController@getSubscribe")->name("projects.subscribe");
+        Route::get("{slug}/unsubscribe", "Projects\ProjectController@getUnsubscribe")->name("projects.unsubscribe");
         
         // View team
         Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
-        
         // Apply for team role(s)
         Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
         Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@postCreate")->name("projects.team.apply.post");
-        
         // Leave team
         Route::get("{slug}/team/verlaten", "Projects\ProjectTeamController@getLeaveTeam")->name("projects.team.leave");
         Route::post("{slug}/team/verlaten", "Projects\ProjectTeamController@postLeaveTeam")->name("projects.team.leave.post");
-        
         // Invite member to team
         Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
         Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
-
         // Remove member from team
         Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
         Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
-        
         // Change roles
         Route::get("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@getChangeMemberRoles")->name("projects.team.change-roles");
         Route::post("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@postChangeMemberRoles")->name("projects.team.change-roles.post");
@@ -134,7 +131,6 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@postEdit")->name("projects.tasks.edit.post");
         Route::get("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@getDelete")->name("projects.tasks.delete");
         Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
-
         Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
         Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
         Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");

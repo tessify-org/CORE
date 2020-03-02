@@ -12,6 +12,20 @@
             <div id="project-header__overlay"></div>
             <div id="project-header__content" class="content-section">
 
+                <div id="project-header__actions">
+                    @if (!Auth::user()->hasSubscribed($project))
+                        <v-btn color="primary" href="{{ route('projects.subscribe', $project->slug) }}">
+                            <i class="fas fa-check-circle"></i>
+                            @lang("tessify-core::projects.view_subscribe")
+                        </v-btn>
+                    @else
+                        <v-btn color="red" dark href="{{ route('projects.unsubscribe', $project->slug) }}">
+                            <i class="fas fa-times-circle"></i>
+                            @lang("tessify-core::projects.view_unsubscribe")
+                        </v-btn>
+                    @endif
+                </div>
+
                 <div id="project-header__text">
                     <h1 id="project-header__title">{{ $project->title }}</h1>
                     <h2 id="project-header__slogan">{{ $project->slogan }}</h2>

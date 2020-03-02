@@ -59,7 +59,11 @@ return [
     "view_created_at" => "Created on",
     "view_updated_at" => "Last updated on",
     "view_actions" => "Actions",
-
+    "view_subscribe" => "Subscribe",
+    "view_subscribed" => "You have subscribed to this project",
+    "view_unsubscribe" => "Unsubscribe",
+    "view_unsubscribed" => "You have unsubscribed from this project",
+    
     //
     // Create project
     //

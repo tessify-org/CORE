@@ -59,7 +59,11 @@ return [
     "view_created_at" => "Toegevoegd op",
     "view_updated_at" => "Laatst geupdate op",
     "view_actions" => "Acties",
-
+    "view_subscribe" => "Subscribe",
+    "view_subscribed" => "Je hebt je subscribed voor dit project",
+    "view_unsubscribe" => "Unsubscribe",
+    "view_unsubscribed" => "Je hebt je unsubscribed van dit project",
+    
     //
     // Create project
     //

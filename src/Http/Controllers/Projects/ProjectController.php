@@ -149,4 +149,34 @@ class ProjectController extends Controller
         flash(__("tessify-core::projects.project_deleted"))->success();
         return redirect()->route("projects");
     }
+
+    public function getSubscribe($slug)
+    {
+        $project = Projects::findBySlug($slug);
+        if (!$project)
+        {   
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        Auth::user()->subscribe($project);
+
+        flash(__("tessify-core::projects.view_subscribed"))->success();
+        return redirect()->route("projects.view", $slug);
+    }
+
+    public function getUnsubscribe($slug)
+    {
+        $project = Projects::findBySlug($slug);
+        if (!$project)
+        {   
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        Auth::user()->unsubscribe($project);
+
+        flash(__("tessify-core::projects.view_subscribed"))->success();
+        return redirect()->route("projects.view", $slug);
+    }
 }
