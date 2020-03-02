@@ -15,9 +15,7 @@ class MessageController extends Controller
 
     public function getOutbox()
     {
-        return view("tessify-core::pages.system.messages.outbox", [
-            
-        ]);
+        return view("tessify-core::pages.system.messages.outbox", []);
     }
 
     public function getSend()
@@ -32,6 +30,6 @@ class MessageController extends Controller
 
     public function getRead($uuid)
     {
-
+        
     }
 }
