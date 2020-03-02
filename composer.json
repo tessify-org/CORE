@@ -35,7 +35,6 @@
                 "Tessify\\Core\\Providers\\CoreServiceProvider"
             ],
             "aliases": {
-                "Core": "Tessify\\Core\\Facades\\CoreFacade",
                 "Users": "Tessify\\Core\\Facades\\UsersFacade",
                 "Skills": "Tessify\\Core\\Facades\\SkillsFacade",
                 "Projects": "Tessify\\Core\\Facades\\ProjectsFacade",
@@ -61,7 +60,8 @@
                 "Notifications": "Tessify\\Core\\Facades\\NotificationsFacade",
                 "Messages": "Tessify\\Core\\Facades\\MessagesFacade",
                 "Dates": "Tessify\\Core\\Facades\\DatesFacade",
-                "Uploader": "Tessify\\Core\\Facades\\UploaderFacade"
+                "Uploader": "Tessify\\Core\\Facades\\UploaderFacade",
+                "Reputation": "Tessify\\Core\\Facades\\ReputationFacade"
             }
         },
         "branch-alias": {

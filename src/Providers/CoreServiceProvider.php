@@ -4,9 +4,9 @@ namespace Tessify\Core\Providers;
 
 use Auth;
 
-use Tessify\Core\Services\CoreService;
 use Tessify\Core\Services\Utilities\DateService;
 use Tessify\Core\Services\Utilities\UploadService;
+use Tessify\Core\Services\Utilities\ReputationService;
 use Tessify\Core\Services\ModelServices\UserService;
 use Tessify\Core\Services\ModelServices\TaskService;
 use Tessify\Core\Services\ModelServices\SkillService;
@@ -95,14 +95,6 @@ class CoreServiceProvider extends ServiceProvider
 
     private function registerServices()
     {
-        //
-        // Register the Core Service
-        //
-
-        $this->app->singleton("core", function() {
-            return new CoreService;
-        });
-
         //
         // Register Model Services
         //
@@ -213,6 +205,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("uploader", function() {
             return new UploadService;
+        });
+
+        $this->app->singleton("reputation", function() {
+            return new ReputationService;
         });
     }
 

@@ -4,10 +4,10 @@ namespace Tessify\Core\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class CoreFacade extends Facade
+class ReputationFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return "core";
+        return "reputation";
     }
 }
