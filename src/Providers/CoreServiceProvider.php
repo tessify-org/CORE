@@ -29,6 +29,8 @@ use Tessify\Core\Services\ModelServices\OrganizationService;
 use Tessify\Core\Services\ModelServices\OrganizationTypeService;
 use Tessify\Core\Services\ModelServices\OrganizationLocationService;
 use Tessify\Core\Services\ModelServices\OrganizationDepartmentService;
+use Tessify\Core\Services\ModelServices\NotificationService;
+use Tessify\Core\Services\ModelServices\MessageService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -191,6 +193,14 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("organization-locations", function() {
             return new OrganizationLocationService;
+        });
+
+        $this->app->singleton("notifications", function() {
+            return new Notifications;
+        });
+
+        $this->app->singleton("messages", function() {
+            return new MessageService;
         });
 
         //

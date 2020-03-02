@@ -129,6 +129,21 @@ Route::group(["middleware" => "auth"], function() {
     // Task overview
     Route::get("werk-paketten", "Projects\TaskDashboardController@getOverview")->name("tasks");
     
+    // Notifications
+    Route::group(["prefix" => "notificaties"], function() {
+        Route::get("/", "NotificationsController@getOverview")->name("notifications");
+        Route::get("clear", "NotificationsController@getClear")->name("notifications.clear");
+    });
+
+    // Messages
+    Route::group(["prefix" => "berichten"], function() {
+        Route::get("/", "MessageController@getInbox")->name("messages");
+        Route::get("verstuurd", "MessageController@getSent")->name("messages.sent");
+        Route::get("versturen", "MessageController@getSend")->name("messages.send");
+        Route::post("versturen", "MessageController@postSend")->name("messages.send.post");
+        Route::get("{uuid}", "MessageController@getMessage")->name("messages.read");
+    });
+
 });
 
 // Admin panel
