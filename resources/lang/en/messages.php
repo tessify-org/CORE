@@ -43,10 +43,13 @@ return [
     //
 
     "send_title" => "Send message",
+    "send_user" => "Recipient",
     "send_reply_to" => "In reply to",
     "send_subject" => "Subject",
     "send_message" => "Message",
     "send_submit" => "Send message",
+    "send_back" => "Back to inbox",
+    "message_sent" => "Succesfully sent message to :name!",
 
     //
     // Read message

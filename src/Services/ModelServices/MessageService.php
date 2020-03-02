@@ -122,7 +122,7 @@ class MessageService implements ModelServiceContract
 
         return Message::create([
             "sender_id" => $user->id,
-            "receiver_id" => $request->receiver_id,
+            "receiver_id" => $request->user_id,
             "reply_to_id" => is_null($replyTo) ? 0 : $replyTo->id,
             "subject" => $request->subject,
             "message" => $request->message,

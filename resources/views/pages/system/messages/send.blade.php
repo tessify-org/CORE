@@ -21,7 +21,24 @@
                 </div>
                 <div id="messages-content__wrapper">
                     <div id="messages-content" class="elevation-1">
-                        Form
+                        
+                        <form action="{{ route('messages.send.post') }}" method="post">
+                            @csrf
+
+                            <send-message-form
+                                :users="{{ $users->toJson() }}"
+                                :errors="{{ $errors->toJson() }}"
+                                :old-input="{{ $oldInput->toJson() }}"
+                                user-text="@lang('tessify-core::messages.send_user')"
+                                subject-text="@lang('tessify-core::messages.send_subject')"
+                                message-text="@lang('tessify-core::messages.send_message')"
+                                back-href="{{ route('messages') }}"
+                                back-text="@lang('tessify-core::messages.send_back')"
+                                submit-text="@lang('tessify-core::messages.send_submit')">
+                            </send-message-form>
+
+                        </form>
+
                     </div>
                 </div>
             </div>

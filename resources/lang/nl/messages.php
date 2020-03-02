@@ -43,10 +43,13 @@ return [
     //
 
     "send_title" => "Bericht versturen",
+    "send_user" => "Ontvanger",
     "send_reply_to" => "In reactie op",
     "send_subject" => "Onderwerp",
     "send_message" => "Bericht",
     "send_submit" => "Verstuur bericht",
+    "send_back" => "Terug naar inbox",
+    "message_sent" => "Bericht is naar :name verstuurd!",
 
     //
     // Read message

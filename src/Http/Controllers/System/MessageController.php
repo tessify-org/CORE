@@ -3,6 +3,7 @@
 namespace Tessify\Core\Http\Controllers\System;
 
 use Auth;
+use Users;
 use Messages;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Messages\SendMessageRequest;
@@ -34,7 +35,9 @@ class MessageController extends Controller
 
         return view("tessify-core::pages.system.messages.send", [
             "replyTo" => $replyTo,
+            "users" => Users::getAllPreloaded(),
             "oldInput" => collect([
+                "user_id" => old("user_id"),
                 "subject" => old("subject"),
                 "message" => old("message"),
             ])
@@ -50,9 +53,9 @@ class MessageController extends Controller
             if ($message) $replyTo = $message;
         }
 
-        $message = Messages::sendMessageFromRequest($request, $replyTo);
+        $message = Messages::sendFromRequest($request, $replyTo);
 
-        flash(__("tessify-core::messages.message_sent"))->success();
+        flash(__("tessify-core::messages.message_sent", ["name" => $message->receiver->formattedName]))->success();
         return redirect()->route("messages");
     }
     
