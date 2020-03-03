@@ -115,6 +115,23 @@ class TaskService implements ModelServiceContract
         return $out;
     }
 
+    public function getAllForUser(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $task)
+        {
+            if ($this->assignedToUser($task, $user) and $task->status->name != "completed")
+            {
+                $out[] = $task;
+            }
+        }
+
+        return collect($out);
+    }
+
     public function findBySlug($slug)
     {
         foreach ($this->getAll() as $task)
@@ -179,9 +196,12 @@ class TaskService implements ModelServiceContract
     {
         if (is_null($user)) $user = Auth::user();
 
-        foreach ($task->users as $assignedUser)
+        foreach ($user->tasks as $userTask)
         {
-            if ($assignedUser->id == $user->id) return true;
+            if ($task->id == $userTask->id)
+            {
+                return true;
+            }            
         }
 
         return false;
@@ -199,5 +219,22 @@ class TaskService implements ModelServiceContract
         if (is_null($user)) $user = Auth::user();
 
         $task->users()->detach($user->id);
+    }
+
+    public function numCompletedForUser(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = 0;
+
+        foreach ($this->getAll() as $task)
+        {
+            if ($this->assignedToUser($task, $user) and $task->status->name == "completed")
+            {
+                $out += 1;
+            }
+        }
+
+        return $out;
     }
 }

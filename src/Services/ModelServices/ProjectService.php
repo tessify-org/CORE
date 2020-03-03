@@ -73,6 +73,9 @@ class ProjectService implements ModelServiceContract
         $instance->formatted_created_at = $instance->created_at->format("d-m-Y H:m:s");
         $instance->formatted_updated_at = $instance->updated_at->format("d-m-Y H:m:s");
 
+        // View page's href
+        $instance->view_href = route("projects.view", $instance->slug);
+
         // Return the upgraded project
         return $instance;
     }
@@ -370,5 +373,22 @@ class ProjectService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function getAllForUser(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $project)
+        {
+            if ($project->author_id == $user->id)
+            {
+                $out[] = $project;
+            }
+        }
+
+        return collect($out);
     }
 }
