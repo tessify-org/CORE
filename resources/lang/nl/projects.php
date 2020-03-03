@@ -259,6 +259,8 @@ return [
     "tasks_form_no_seniorities" => "Geen senioriteiten gevonden",
     "tasks_form_select_status" => "Status",
     "tasks_form_no_statuses" => "Geen statussen gevonden",
+    "tasks_form_required_skills" => "Vereiste vaardigheden",
+    "tasks_form_urgency" => "Urgentie",
 
     "tasks_delete_title" => "Taak verwijderen",
     "tasks_delete_text" => "Weet je zeker dat je deze taak (:title) wilt verwijderen?",

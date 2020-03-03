@@ -37,6 +37,8 @@
                     no-categories-text="@lang('tessify-core::projects.tasks_form_no_categories')"
                     select-seniority-text="@lang('tessify-core::projects.tasks_form_select_seniority')"
                     no-seniorities-text="@lang('tessify-core::projects.tasks_form_no_seniorities')"
+                    required-skills-text="@lang('tessify-core::projects.tasks_form_required_skills')"
+                    urgency-text="@lang('tessify-core::projects.tasks_form_urgency')"
                     back-href="{{ route('projects.tasks', $project->slug) }}"
                     back-text="@lang('tessify-core::projects.tasks_edit_back')"
                     submit-text="@lang('tessify-core::general.save_changes')">

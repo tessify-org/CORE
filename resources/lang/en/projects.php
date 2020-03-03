@@ -63,7 +63,7 @@ return [
     "view_subscribed" => "You have subscribed to this project",
     "view_unsubscribe" => "Unsubscribe",
     "view_unsubscribed" => "You have unsubscribed from this project",
-    
+
     //
     // Create project
     //
@@ -259,6 +259,8 @@ return [
     "tasks_form_no_seniorities" => "No seniorities found",
     "tasks_form_select_status" => "Status",
     "tasks_form_no_statuses" => "No statuses found",
+    "tasks_form_required_skills" => "Required skills",
+    "tasks_form_urgency" => "Urgentie",
 
     "tasks_delete_title" => "Delete task",
     "tasks_delete_text" => "Are you sure you want to delete this (:title) task?",
