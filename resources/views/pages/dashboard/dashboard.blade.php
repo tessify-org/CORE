@@ -8,9 +8,11 @@
     <div class="content-section__wrapper">
         <div class="content-section">
 
+            <!-- Title & subtitle -->
             <h1 class="page-title centered">@lang("tessify-core::dashboard.title")</h1>
             <h2 class="page-subtitle centered">@lang("tessify-core::dashboard.welcome", ["name" => $user->formattedName])</h2>
 
+            <!-- Dashboard -->
             <div id="dashboard">
 
                 <!-- Statistics -->
@@ -68,7 +70,7 @@
                                 no-records-text="@lang('tessify-core::dashboard.tasks_empty')">
                             </dashboard-my-tasks>
                         </div>
-
+                        
                         <!-- My projects -->
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.projects_title")</h3>
                         <div class="content-card mb elevation-1">
@@ -77,7 +79,6 @@
                                 no-records-text="@lang('tessify-core::dashboard.projects_empty')">
                             </dashboard-my-projects>
                         </div>
-                        
 
                     </div>
                 </div>
