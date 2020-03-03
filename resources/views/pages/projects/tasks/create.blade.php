@@ -17,6 +17,7 @@
                 @csrf
                 
                 <task-form
+                    :skills="{{ $skills->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :categories="{{ $categories->toJson() }}"

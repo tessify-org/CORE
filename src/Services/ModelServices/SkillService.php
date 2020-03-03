@@ -5,6 +5,7 @@ namespace Tessify\Core\Services\ModelServices;
 use DB;
 use Auth;
 use App\Models\User;
+use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Skill;
 use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -19,6 +20,7 @@ class SkillService implements ModelServiceContract
     private $preloadedRecords;
 
     private $skillUser;
+    private $skillTask;
     private $skillTeamRole;
 
     public function __construct()
@@ -39,6 +41,16 @@ class SkillService implements ModelServiceContract
         }
 
         return $this->skillUser;
+    }
+
+    public function getSkillTaskPivots()
+    {
+        if (is_null($this->skillTask))
+        {
+            $this->skillTask = DB::table("skill_task")->get();
+        }
+
+        return $this->skillTask;
     }
 
     public function getSkillTeamRolePivots()
@@ -62,8 +74,10 @@ class SkillService implements ModelServiceContract
                 $skill = $this->find($pivot->skill_id);
                 if ($skill)
                 {
-                    $skill->pivot = $pivot;
-                    $out[] = $skill;
+                    $roleSkill = clone $skill;
+                    $roleSkill->pivot = $pivot;
+
+                    $out[] = $roleSkill;
                 }
             }
         }
@@ -79,10 +93,38 @@ class SkillService implements ModelServiceContract
 
         foreach ($this->getSkillUserPivots() as $pivot)
         {
-            $skill = $this->find($pivot->skill_id);
-            if ($skill) {
-                $skill->pivot = $pivot;
-                $out[] = $skill;
+            if ($pivot->user_id == $user->id)
+            {
+                $skill = $this->find($pivot->skill_id);
+                if ($skill)
+                {
+                    $userSkill = clone $skill;
+                    $userSkill->pivot = $pivot;
+                    
+                    $out[] = $userSkill;
+                }
+            }
+        }
+
+        return $out;
+    }
+    
+    public function getAllForTask(Task $task)
+    {
+        $out = [];
+
+        foreach ($this->getSkillTaskPivots() as $pivot)
+        {
+            if ($pivot->task_id == $task->id)
+            {
+                $skill = $this->find($pivot->skill_id);
+                if ($skill)
+                {
+                    $taskSkill = clone $skill;
+                    $taskSkill->pivot = $pivot;
+                    
+                    $out[] = $taskSkill;
+                }
             }
         }
 

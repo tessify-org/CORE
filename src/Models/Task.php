@@ -24,6 +24,7 @@ class Task extends Model
         "estimated_hours",
         "realized_hours",
         "num_positions",
+        "urgency",
     ];
 
     //

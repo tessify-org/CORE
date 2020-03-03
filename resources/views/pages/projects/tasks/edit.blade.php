@@ -18,6 +18,7 @@
                 
                 <task-form
                     :task="{{ $task->toJson() }}"
+                    :skills="{{ $skills->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :statuses="{{ $statuses->toJson() }}"

@@ -40,7 +40,7 @@ class TaskService implements ModelServiceContract
         $instance->status = TaskStatuses::findForTask($instance);
         $instance->category = TaskCategories::findForTask($instance);
         $instance->seniority = TaskSeniorities::findForTask($instance);
-        $instance->skills = $this->getRequiredSkills($instance);
+        $instance->skills = Skills::getAllForTask($instance);
         $instance->users = $this->getAssignedUsers($instance);
 
         // Add HREF to the view task page for this task
@@ -79,21 +79,6 @@ class TaskService implements ModelServiceContract
             if ($userPivot->task_id == $task->id)
             {
                 $out = Users::findPreloaded($userPivot->user_id);
-            }
-        }
-
-        return $out;
-    }
-
-    public function getRequiredSkills(Task $task)
-    {
-        $out = [];
-
-        foreach ($this->getSkillPivots() as $skillPivot)
-        {
-            if ($skillPivot->task_id == $task->id)
-            {
-                $out[] = Skills::find($skillPivot->skill_id);
             }
         }
 
@@ -162,7 +147,8 @@ class TaskService implements ModelServiceContract
     {
         $open = TaskStatuses::findByName("open");
 
-        return Task::create([
+        $task = Task::create([
+            "author_id" => Auth::user()->id,
             "project_id" => $project->id,
             "task_status_id" => $open->id,
             "task_category_id" => $request->task_category_id,
@@ -171,7 +157,27 @@ class TaskService implements ModelServiceContract
             "description" => $request->description,
             "complexity" => $request->complexity,
             "estimated_hours" => $request->estimated_hours,
+            "urgency" => $request->urgency
         ]);
+    
+        if ($request->required_skills !== "[]")
+        {
+            $skills = json_decode($request->required_skills);
+            if (is_array($skills) and count($skills))
+            {
+                $task->skills()->detach();
+                foreach ($skills as $skillData)
+                {
+                    $skill = Skills::findOrCreateByName($skillData->skill);
+                    $task->skills()->attach($skill->id, [
+                        "required_mastery" => $skillData->required_mastery,
+                        "description" => $skillData->description,
+                    ]);
+                }
+            }
+        }
+
+        return $task;
     }
 
     public function updateFromRequest(Task $task, UpdateTaskRequest $request)
@@ -183,8 +189,30 @@ class TaskService implements ModelServiceContract
         $task->description = $request->description;
         $task->complexity = $request->complexity;
         $task->estimated_hours = $request->estimated_hours;
-        $task->realized_hours = $request->realized_hours;
+        $task->realized_hours = is_null($request->realized_hours) ? 0 : $request->realized_hours;
+        $task->urgency = $request->urgency;
         $task->save();
+
+        $task->skills()->detach();
+        
+        if ($request->required_skills !== "[]")
+        {
+            $skills = json_decode($request->required_skills);
+            if (is_array($skills) and count($skills))
+            {
+                $task->skills()->detach();
+                foreach ($skills as $skillData)
+                {
+                    $skill = Skills::findOrCreateByName($skillData->skill);
+                    $task->skills()->attach($skill->id, [
+                        "required_mastery" => $skillData->required_mastery,
+                        "description" => $skillData->description,
+                    ]);
+                }
+            }
+        }
+
+        return $task;
     }
 
     public function hasAvailableSlot(Task $task)

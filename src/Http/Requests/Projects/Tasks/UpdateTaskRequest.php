@@ -32,6 +32,8 @@ class UpdateTaskRequest extends FormRequest
             "description" => "required",
             "complexity" => "required|integer",
             "estimated_hours" => "required|integer",
+            "urgency" => "required|integer",
+            "required_skills" => "nullable",
         ];
     }
 }

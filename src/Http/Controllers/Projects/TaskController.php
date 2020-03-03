@@ -4,6 +4,7 @@ namespace Tessify\Core\Http\Controllers\Projects;
 
 use Auth;
 use Tasks;
+use Skills;
 use Projects;
 use TaskStatuses;
 use TaskCategories;
@@ -64,6 +65,7 @@ class TaskController extends Controller
 
         return view("tessify-core::pages.projects.tasks.create", [
             "project" => $project,
+            "skills" => Skills::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
             "oldInput" => collect([
@@ -73,7 +75,9 @@ class TaskController extends Controller
                 "description" => old("description"),
                 "complexity" => old("complexity"),
                 "estimated_hours" => old("estimated_hours"),
-            ])
+                "required_skills" => old("required_skills"),
+                "urgency" => old("urgency"),
+            ]),
         ]);
     }
 
@@ -107,20 +111,25 @@ class TaskController extends Controller
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("projects.tasks", $project->slug);
         }
-
+        
         return view("tessify-core::pages.projects.tasks.edit", [
-            "project" => $project,
             "task" => $task,
+            "project" => $project,
+            "skills" => Skills::getAll(),
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
             "oldInput" => collect([
+                "task_status_id" => old("task_status_id"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category_id" => old("task_category_id"),
                 "title" => old("title"),
                 "description" => old("description"),
                 "complexity" => old("complexity"),
                 "estimated_hours" => old("estimated_hours"),
+                "realized_hours" => old("realized_hours"),
+                "required_skills" => old("required_skills"),
+                "urgency" => old("urgency"),
             ])
         ]);
     }
