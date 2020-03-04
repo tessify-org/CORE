@@ -36,19 +36,6 @@
                         </locale-switcher>
                     </div>
 
-                    <!-- Search -->
-                    <!-- <div id="topnav-search__wrapper">
-                        <form action="{{ route('search.post') }}" method="post">
-                            {{ csrf_field() }}
-                            <div id="topnav-search">
-                                <input type="text" id="topnav-search__input" name="query" placeholder="Zoeken..">
-                                <button type="submit" id="topnav-search__submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div> -->
-
                     <!-- Navigation -->
                     <nav id="topnav-links__wrapper">
                         <ul id="topnav-links">
@@ -95,6 +82,9 @@
                                     <a class="topnav-link" href="#">
                                         {{ $user->formattedName }}
                                         <img id="avatar" src="{{ asset($user->avatar_url) }}">
+                                        <span class="dropdown-caret">
+                                            <i class="fas fa-caret-down"></i>
+                                        </span>
                                     </a>
                                     <ul class="dropdown">
                                         <li class="dropdown-link__wrapper">

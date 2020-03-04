@@ -34,18 +34,7 @@
                                     Terug naar de voorkant
                                 </a>
                             </li>
-                            <!-- Logout -->
-                            <li class="topnav-link__wrapper">
-                                <a class="topnav-link" href="{{ route('auth.logout') }}">
-                                    Uitloggen
-                                </a>
-                            </li>
                         </ul>
-                        @if (Auth::check())
-                            <div id="topnav-avatar">
-                                <img id="avatar" src="{{ is_null($user->avatar_url) ? Avatar::create($user->combinedName)->toBase64() : $user->avatar_url }}" />
-                            </div>
-                        @endif
                         <div id="mobile-nav-button">
                             <hamburger-button></hamburger-button>
                         </div>
