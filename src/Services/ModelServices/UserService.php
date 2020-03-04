@@ -14,6 +14,7 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Projects\Auth\SendAccountRecoveryEmail;
+use Tessify\Core\Http\Requests\Auth\RegisterRequest;
 use Tessify\Core\Http\Requests\Auth\ResetPasswordRequest;
 use Tessify\Core\Http\Requests\Profiles\UpdateProfileRequest;
 
@@ -123,6 +124,16 @@ class UserService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function createFromRegisterRequest(RegisterRequest $request)
+    {
+        return User::create([
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "password" => $request->password,
+        ]);
     }
 
     public function saveAvatar($id, $url)

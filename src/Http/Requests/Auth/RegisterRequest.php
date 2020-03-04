@@ -26,7 +26,6 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            "annotation" => "required",
             "first_name" => "required",
             "last_name" => "required",
             "email" => "required|email|unique:users,email",

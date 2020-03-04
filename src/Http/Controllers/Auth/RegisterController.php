@@ -3,7 +3,7 @@
 namespace Tessify\Core\Http\Controllers\Auth;
 
 use Auth;
-use App\Models\User;
+use Users;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Auth\RegisterRequest;
 
@@ -23,13 +23,7 @@ class RegisterController extends Controller
 
     public function postRegister(RegisterRequest $request)
     {
-        $user = User::create([
-            "annotation" => $request->annotation,
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "email" => $request->email,
-            "password" => $request->password,
-        ]);
+        $user = Users::createFromRegisterRequest($request);
         
         Auth::login($user);
         
