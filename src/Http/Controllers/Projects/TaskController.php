@@ -9,11 +9,15 @@ use Projects;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
+use TaskProgressReports;
+use TaskProgressReportReviews;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Projects\Tasks\UpdateTaskRequest;
 use Tessify\Core\Http\Requests\Projects\Tasks\DeleteTaskRequest;
 use Tessify\Core\Http\Requests\Projects\Tasks\AbandonTaskRequest;
+use Tessify\Core\Http\Requests\Projects\Tasks\ReportProgressRequest;
+use Tessify\Core\Http\Requests\Projects\Tasks\ReviewProgressReportRequest;
 
 class TaskController extends Controller
 {
@@ -41,7 +45,7 @@ class TaskController extends Controller
             return redirect()->route("projects");
         }
 
-        $task = Tasks::findBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($taskSlug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
@@ -307,6 +311,178 @@ class TaskController extends Controller
         Auth::user()->unsubscribe($task);
 
         flash(__("tessify-core::tasks.view_unsubscribed"))->success();
+        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+    }
+
+    public function getReportProgress($slug, $taskSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        return view("tessify-core::pages.projects.tasks.report-progress", [
+            "task" => $task,
+            "project" => $project,
+            "oldInput" => collect([
+                "message" => old("message"),
+                "completed" => old("completed"),
+            ])
+        ]);
+    }
+
+    public function postReportProgress(ReportProgressRequest $request, $slug, $taskSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        $report = TaskProgressReports::createFromRequest($task, $request);
+
+        flash(__("tessify-core::tasks.report_progress_success"))->success();
+        return redirect()->route("projects.tasks.progress-report", [
+            "slug" => $project->slug, 
+            "taskSlug" => $task->slug, 
+            "uuid" => $report->uuid
+        ]);
+    }
+
+    public function getProgressReport($slug, $taskSlug, $uuid)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        $report = TaskProgressReports::findPreloadedByUuid($uuid);
+        if (!$report)
+        {
+            flash(__("tessify-core::projects.progress_report_not_found"))->error();
+            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+        }
+
+        if ($task->is_assigned)
+        {
+            TaskProgressReports::markReviewsAsRead($report);
+        }
+
+        return view("tessify-core::pages.projects.tasks.progress-report", [
+            "task" => $task,
+            "report" => $report,
+            "project" => $project,
+        ]);
+    }
+
+    public function getReviewProgressReport($slug, $taskSlug, $uuid)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        $report = TaskProgressReports::findByUuid($uuid);
+        if (!$report)
+        {
+            flash(__("tessify-core::projects.progress_report_not_found"))->error();
+            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+        }
+
+        return view("tessify-core::pages.projects.tasks.review-progress-report", [
+            "task" => $task,
+            "report" => $report,
+            "project" => $project,
+            "oldInput" => collect([
+                "message" => old("message"),
+                "completed" => old("completed"),
+            ])
+        ]);
+    }
+
+    public function postReviewProgressReport(ReviewProgressReportRequest $request, $slug, $taskSlug, $uuid)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findPreloadedBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+
+        $report = TaskProgressReports::findByUuid($uuid);
+        if (!$report)
+        {
+            flash(__("tessify-core::projects.progress_report_not_found"))->error();
+            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+        }
+
+        $review = TaskProgressReportReviews::createFromRequest($report, $request);
+
+        flash(__("tessify-core::tasks.reviewed_progress_report"))->success();
+        return redirect()->route("projects.tasks.progress-report", ["slug" => $slug, "taskSlug" => $taskSlug, "uuid" => $report->uuid]);
+    }
+
+    public function getComplete($slug, $taskSlug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        $task = Tasks::findBySlug($taskSlug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("projects.tasks", $project->slug);
+        }
+        
+        Tasks::markAsCompleted($task);
+
+        flash(__("tessify-core::tasks.completed"))->success();
         return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
     }
 }

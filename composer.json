@@ -61,7 +61,10 @@
                 "Messages": "Tessify\\Core\\Facades\\MessagesFacade",
                 "Dates": "Tessify\\Core\\Facades\\DatesFacade",
                 "Uploader": "Tessify\\Core\\Facades\\UploaderFacade",
-                "Reputation": "Tessify\\Core\\Facades\\ReputationFacade"
+                "Reputation": "Tessify\\Core\\Facades\\ReputationFacade",
+                "TaskProgressReports": "Tessify\\Core\\Facades\\TaskProgressReportsFacade",
+                "TaskProgressReportReviews": "Tessify\\Core\\Facades\\TaskProgressReportReviewsFacade",
+                "TaskProgressReportAttachments": "Tessify\\Core\\Facades\\TaskProgressReportAttachmentsFacade"
             }
         },
         "branch-alias": {

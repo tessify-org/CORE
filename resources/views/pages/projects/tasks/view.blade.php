@@ -6,9 +6,13 @@
 
 @section("content")
     <div id="task">
+
+        <!-- Header -->
         <div id="task-header" style="background-image: url({{ asset($project->header_image_url) }})">
             <div id="task-header__overlay"></div>
             <div id="task-header__content">
+
+                <!-- Actions -->
                 <div id="task-header__actions">
                     @if (!Auth::user()->hasSubscribed($task))
                         <v-btn color="primary" href="{{ route('projects.tasks.subscribe', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
@@ -22,12 +26,116 @@
                         </v-btn>
                     @endif
                 </div>
+
+                <!-- Text -->
                 <div id="task-header__text">
+                    <!-- Header title -->
                     <h1 id="task-header__title">@lang("tessify-core::tasks.view_title")</h1>
+                    <!-- Header subtitle -->
                     <h2 id="task-header__subtitle">{{ $project->title }}</h2>
                 </div>
+
             </div>
         </div>
+
+        <!-- CTA section -->
+        <div id="task-cta__wrapper">
+            <div id="task-cta" class="elevation-1">
+                <!-- Completed -->
+                @if ($task->status->name == "completed")
+
+                    <div id="task-cta__title">Completed</div>
+                    <div id="task-cta__text">Deze taak is voltooid!</div>
+
+                @else
+                    <!-- Owner -->
+                    @if ($task->is_owner)
+
+                        <!-- Open positions -->
+                        @if ($task->is_open)
+                            <div id="task-cta__title">Now we wait</div>
+                            <div id="task-cta__text">Waiting for people to fill the available positions</div>
+                        <!-- Positions filled -->
+                        @else
+                            <!-- Outstanding reports -->
+                            @if ($task->has_outstanding_reports)
+                                <div id="task-cta__title">Outstanding reports</div>
+                                <div id="task-cta__button">
+                                    <v-btn color="primary" href="{{ route('projects.tasks.progress-report', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
+                                        View progress report
+                                    </v-btn>
+                                </div>
+                            <!-- Waiting for progress report -->
+                            @else
+                                <div id="task-cta__title">Now we wait</div>
+                                <div id="task-cta__text">Waiting for assigned users to complete the task</div>
+                            @endif
+                        @endif
+
+                    <!-- Assigned user -->
+                    @elseif ($task->is_assigned)
+
+                        <!-- Has outstanding report(s) -->
+                        @if ($task->has_outstanding_reports)
+                            <!-- Has unread review -->
+                            @if ($task->has_unread_reviews)
+                                <div id="task-cta__title">Report was reviewed!</div>
+                                <div id="task-cta__button">
+                                    <v-btn color="primary" href="{{ route('projects.tasks.progress-report', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
+                                        Bekijk progress report
+                                    </v-btn>
+                                </div>
+                            <!-- Awaiting review -->
+                            @else
+                                <div id="task-cta__title">Report awaiting review</div>
+                                <div id="task-cta__button">
+                                    <v-btn color="primary" href="{{ route('projects.tasks.progress-report', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
+                                        Bekijk progress report
+                                    </v-btn>
+                                </div>
+                            @endif
+                        <!-- No outstanding reports -->
+                        @else
+                            <div id="task-cta__title">How are you doing? Anything to report?</div>
+                            <div id="task-cta__button">
+                                <v-btn color="primary" href="{{ route('projects.tasks.report-progress', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}" depressed>
+                                    Report progress
+                                </v-btn>
+                            </div>
+                        @endif
+
+                        <!-- Leave task -->
+                        <div id="task-cta__link">
+                            <a href="{{ route('projects.tasks.abandon', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                                @lang("tessify-core::tasks.view_abandon")
+                            </a>
+                        </div>
+
+                    <!-- Guest user -->
+                    @else
+
+                        <!-- Open positions -->
+                        @if ($task->is_open)
+                            <div id="task-cta__title">{{ $task->num_open_positions }} open posities voor dit werkpakket!</div>
+                            <div id="task-cta__button">
+                                <v-btn color="primary" href="{{ route('projects.tasks.assign-to-me', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}" depressed>
+                                    Schrijf je in
+                                </v-btn>
+                            </div>
+                        <!-- Closed positions -->
+                        @else
+                            <div id="task-cta__title">Alle posities zijn vervuld</div>
+                            <div id="task-cta__button">
+                                X & Y werken zijn hiermee aan de slag
+                            </div>
+                        @endif
+                        
+                    @endif
+                @endif
+            </div>
+        </div>
+
+        <!-- Content -->
         <div id="task-content" class="content-section__wrapper">
             <div class="content-section">
                 
@@ -40,12 +148,14 @@
                         
                         <div class="content-box elevation-1">
 
+                            <!-- Description -->
                             <div id="task-description">
                                 <div id="task-description__label">@lang("tessify-core::tasks.view_description")</div>
                                 <div id="task-description__text">{{ $project->description }}</div>
                             </div>
 
-                            @if ($task->skills->count())
+                            <!-- Required skills -->
+                            @if (count($task->skills))
                                 <div id="task-skills">
                                     <div id="task-skills__label">@lang("tessify-core::tasks.view_skills")</div>
                                     <div id="task-skills__list">
@@ -64,6 +174,13 @@
                     </div>
                     <div id="task-columns__right">
                         
+                        <!-- Author -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">Author</h3>
+                            <user-pill dark :user="{{ $task->author->toJson() }}"></user-pill>
+                        </div>
+
+                        <!-- Details -->
                         <div class="details elevation-1 mb-0">
                             <div class="detail">
                                 <div class="key">@lang("tessify-core::tasks.view_status")</div>
@@ -94,20 +211,6 @@
                             <div class="detail">
                                 <div class="key">@lang("tessify-core::tasks.view_number_positions")</div>
                                 <div class="val">{{ $task->num_positions }}</div>
-                            </div>
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::tasks.view_assigned_users")</div>
-                                <div class="val">
-                                    @if ($task->users->count())
-                                        <ul>
-                                            @foreach ($task->users as $user)
-                                                <li>{{ $user->formattedName }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @else
-                                        @lang("tessify-core::tasks.view_no_assigned_users")
-                                    @endif
-                                </div>
                             </div>
                             <div class="detail">
                                 <div class="key">@lang("tessify-core::tasks.view_created_at")</div>

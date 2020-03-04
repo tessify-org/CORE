@@ -31,6 +31,9 @@ use Tessify\Core\Services\ModelServices\OrganizationLocationService;
 use Tessify\Core\Services\ModelServices\OrganizationDepartmentService;
 use Tessify\Core\Services\ModelServices\NotificationService;
 use Tessify\Core\Services\ModelServices\MessageService;
+use Tessify\Core\Services\ModelServices\TaskProgressReportService;
+use Tessify\Core\Services\ModelServices\TaskProgressReportReviewService;
+use Tessify\Core\Services\ModelServices\TaskProgressReportAttachmentService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -193,6 +196,18 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("messages", function() {
             return new MessageService;
+        });
+
+        $this->app->singleton("task-progress-reports", function() {
+            return new TaskProgressReportService;
+        });
+
+        $this->app->singleton("task-progress-report-reviews", function() {
+            return new TaskProgressReportReviewService;
+        });
+
+        $this->app->singleton("task-progress-report-attachments", function() {
+            return new TaskProgressReportAttachmentService;
         });
 
         //

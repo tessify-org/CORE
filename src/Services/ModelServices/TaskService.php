@@ -10,6 +10,8 @@ use Projects;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
+use TaskProgressReports;
+use TaskProgressReportReviews;
 use App\Models\User;
 use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
@@ -36,17 +38,31 @@ class TaskService implements ModelServiceContract
     
     public function preload($instance)
     {
+        // Add HREF to the view task page for this task
+        $project = Projects::find($instance->project_id);
+        $instance->view_href = route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $instance->slug]);
+
+        // Add flags to the instance
+        $instance->is_owner = $this->userOwnsTask($instance);
+        $instance->is_project_owner = $this->userOwnsTaskProject($instance);
+        $instance->is_open = $this->hasAvailableSlot($instance);
+        $instance->is_assigned = $this->assignedToUser($instance);
+        $instance->num_open_positions = $this->numAvailableSlots($instance);
+        $instance->completed = $this->hasBeenCompleted($instance);
+
         // Preload relationships
+        $instance->author = Users::findPreloaded($instance->author_id);
         $instance->status = TaskStatuses::findForTask($instance);
         $instance->category = TaskCategories::findForTask($instance);
         $instance->seniority = TaskSeniorities::findForTask($instance);
         $instance->skills = Skills::getAllForTask($instance);
         $instance->users = $this->getAssignedUsers($instance);
-
-        // Add HREF to the view task page for this task
-        $project = Projects::find($instance->project_id);
-        $instance->view_href = route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $instance->slug]);
-
+        $instance->reports = TaskProgressReports::getAllForTask($instance);
+        $instance->outstanding_reports = TaskProgressReports::getAllOutstandingForTask($instance);
+        $instance->has_outstanding_reports = count($instance->outstanding_reports) > 0;
+        $instance->has_unread_reviews = $this->hasUnreadReviews($instance->outstanding_reports);
+        
+        // Return instance
         return $instance;
     }
 
@@ -78,11 +94,11 @@ class TaskService implements ModelServiceContract
         {
             if ($userPivot->task_id == $task->id)
             {
-                $out = Users::findPreloaded($userPivot->user_id);
+                $out[] = Users::findPreloaded($userPivot->user_id);
             }
         }
 
-        return $out;
+        return collect($out);
     }
 
     public function getAllForProject(Project $project)
@@ -220,6 +236,16 @@ class TaskService implements ModelServiceContract
         return $task->num_positions > $task->users->count();
     }
 
+    public function numAvailableSlots(Task $task)
+    {
+        return $task->num_positions - $task->users->count();
+    }
+
+    public function hasBeenCompleted(Task $task)
+    {
+        return $task->status and $task->status->name == "completed";
+    }
+
     public function assignedToUser(Task $task, User $user = null)
     {
         if (is_null($user)) $user = Auth::user();
@@ -264,5 +290,46 @@ class TaskService implements ModelServiceContract
         }
 
         return $out;
+    }
+
+    public function userOwnsTask(Task $task, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        return $task->author_id == $user->id or $task->project->author_id == $user->id;
+    }
+
+    public function userOwnsTaskProject(Task $task, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        return $task->project->author_id == $user->id;
+    }
+
+    public function hasUnreadReviews(array $outstandingReports)
+    {
+        foreach ($outstandingReports as $report)
+        {
+            if (count($report->reviews))
+            {
+                foreach ($report->reviews as $review)
+                {
+                    if (!$review->read_by_assigned_user)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function markAsCompleted(Task $task)
+    {
+        $completedStatus = TaskStatuses::findByName("completed");
+
+        $task->task_status_id = $completedStatus->id;
+        $task->save();
     }
 }

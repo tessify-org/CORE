@@ -32,6 +32,8 @@ return [
     'team_member_not_found' => 'Team lid kon niet worden gevonden',
 
     'task_not_found' => 'Taak kon niet worden gevonden',
+
+    'progress_report_not_found' => 'Progressie rapport kon niet worden gevonden',
     
     //
     // Overview

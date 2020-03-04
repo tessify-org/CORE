@@ -33,6 +33,8 @@ return [
 
     'task_not_found' => 'Task could not be found',
 
+    'progress_report_not_found' => 'Progression report could not be found',
+
     //
     // Overview
     //

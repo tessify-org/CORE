@@ -72,4 +72,29 @@ return [
     "abandon_confirm" => "Yes, abandon task",
     "abandon_success" => "Succesfully abandoned this task!",
 
+    "report_progress_title" => "Report progression",
+    "report_progress_back" => "Go back",
+    "report_progress_submit" => "Send report",
+    "report_progress_message" => "Message",
+    "report_progress_message_placeholder" => "Describe the work you've done and upload any required files.",
+    "report_progress_attachment" => "Attachment",
+    "report_progress_completed" => "Work is completed",
+    "report_progress_success" => "Succesfully reported your progress",
+
+    "progress_report_title" => "Progression report",
+    "progress_report_message" => "Message",
+    "progress_report_attachments" => "Attachments",
+    "progress_report_no_attachments" => "No attachments were uploaded",
+    "progress_report_completed" => "Flagged as completed",
+    "progress_report_completed_text" => ":user indicated that work has now been completed",
+    
+    "completed" => "Task has been completed!",
+
+    "review_progress_report_title" => "Review progress report",
+    "review_progress_report_message" => "Message",
+    "review_progress_report_back" => "Go back",
+    "review_progress_report_submit" => "Place review",
+    "reviewed_progress_report" => "Review has been placed!",
+    
+
 ];

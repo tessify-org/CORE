@@ -136,7 +136,17 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
         Route::get("{slug}/taken/{taskSlug}/subscribe", "Projects\TaskController@getSubscribe")->name("projects.tasks.subscribe");
         Route::get("{slug}/taken/{taskSlug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("projects.tasks.unsubscribe");
+
+        Route::get("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@getReportProgress")->name("projects.tasks.report-progress");
+        Route::post("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@postReportProgress")->name("projects.tasks.report-progress.post");
+
+        Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("projects.tasks.progress-report");
         
+        Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("projects.tasks.progress-report.review");
+        Route::post("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("projects.tasks.progress-report.review.post");
+
+        Route::get("{slug}/taken/{taskSlug}/complete", "Projects\TaskController@getComplete")->name("projects.tasks.complete");
+
     });
 
     // Task overview

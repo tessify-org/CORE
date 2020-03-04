@@ -91,4 +91,9 @@ class Task extends Model
     {
         return $this->morphMany(Comment::class, "commentable");
     }
+
+    public function progressReports()
+    {
+        return $this->hasMany(TaskProgressReport::class);
+    }
 }
