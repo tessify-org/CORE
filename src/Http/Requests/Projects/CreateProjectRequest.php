@@ -37,6 +37,7 @@ class CreateProjectRequest extends FormRequest
             "resources" => "nullable",
             "team_roles" => "nullable",
             "has_tasks" => "required",
+            "has_deadline" => "required",
         ];
     }
 }

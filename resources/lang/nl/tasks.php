@@ -18,6 +18,7 @@ return [
 
     "overview_title" => "Werkpakketten",
     "overview_subtitle" => "Wat zou je willen doen?",
+    "overview_create_cta" => "Zelf werkpakket toevoegen!",
     "overview_description" => "Beschrijving",
     "overview_skills" => "Vereiste skills",
     "overview_complexity" => "Complexiteit",
@@ -27,11 +28,11 @@ return [
     "overview_sidebar_search" => "Zoeken",
     "overview_sidebar_statuses" => "Status",
     "overview_sidebar_statuses_empty" => "Geen statussen gevonden",
-    "overview_sidebar_categories" => "Categorieen",
+    "overview_sidebar_categories" => "Categorie",
     "overview_sidebar_categories_empty" => "Geen categorieen gevonden",
-    "overview_sidebar_skills" => "Skills",
+    "overview_sidebar_skills" => "Skill",
     "overview_sidebar_skills_empty" => "Geen skills gevonden",
-    "overview_sidebar_seniorities" => "Senioriteiten",
+    "overview_sidebar_seniorities" => "Senioriteit",
     "overview_sidebar_seniorities_empty" => "Geen senioriteiten gevonden",
     "overview_sidebar_timespan" => "Geschatte tijdsbestek",
 

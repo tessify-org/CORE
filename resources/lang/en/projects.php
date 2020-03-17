@@ -40,6 +40,17 @@ return [
     //
 
     "overview_title" => "Projects",
+    "overview_create_cta" => "Start a project yourself!",
+    "overview_description" => "Description",
+    "overview_view" => "View project",
+    "overview_no_projects" => "No projects",
+
+    "overview_sidebar_search" => "Search",
+    "overview_sidebar_statuses" => "Status",
+    "overview_sidebar_statuses_empty" => "No statuses found",
+    "overview_sidebar_categories" => "Category",
+    "overview_sidebar_categories_empty" => "No categories found",
+
     "overview_table_title" => "Title",
     "overview_table_status" => "Status",
     "overview_empty" => "Be the first to add a project to this platform!",

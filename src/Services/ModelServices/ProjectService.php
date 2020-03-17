@@ -107,10 +107,11 @@ class ProjectService implements ModelServiceContract
     }
 
     public function createFromRequest(CreateProjectRequest $request)
-    {
+    {        
         // Parse dates to Carbon objects
-        $starts_at = Dates::parse($request->starts_at, "/");
-        $ends_at = Dates::parse($request->ends_at, "/");
+        $starts_at = Dates::parse($request->starts_at, "/")->format("Y-m-d");
+        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "/")->format("Y-m-d") : null;
+        dd($request->all(), $starts_at, $ends_at);
 
         // Compose all of the data we know will be part of the new project
         $data = [
@@ -124,6 +125,7 @@ class ProjectService implements ModelServiceContract
             "starts_at" => $starts_at->format("Y-m-d"),
             "ends_at" => $ends_at->format("Y-m-d"),
             "has_tasks" => $request->has_tasks == "true" ? true : false,
+            "has_deadline" => $request->has_deadline == "true" ? true : false,
         ];
 
         // Process optional header image

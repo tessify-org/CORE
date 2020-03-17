@@ -21,4 +21,8 @@ class TaskDashboardController extends Controller
             "seniorities" => TaskSeniorities::getAll(),
         ]);
     }
+
+    public function getCreate() {}
+
+    public function postCreate() {}
 }

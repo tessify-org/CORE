@@ -74,8 +74,8 @@ Route::group(["middleware" => "auth"], function() {
         
         // Manage projects
         Route::get("/", "Projects\ProjectController@getOverview")->name("projects");
-        Route::get("project-toevoegen", "Projects\ProjectController@getCreate")->name("projects.create");
-        Route::post("project-toevoegen", "Projects\ProjectController@postCreate")->name("projects.create.post");
+        Route::get("toevoegen", "Projects\ProjectController@getCreate")->name("projects.create");
+        Route::post("toevoegen", "Projects\ProjectController@postCreate")->name("projects.create.post");
         Route::get("{slug}", "Projects\ProjectController@getView")->name("projects.view");
         Route::get("{slug}/aanpassen", "Projects\ProjectController@getEdit")->name("projects.edit");
         Route::post("{slug}/aanpassen", "Projects\ProjectController@postEdit")->name("projects.edit.post");
@@ -116,7 +116,7 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/team/aanmeldingen/{uuid}", "Projects\ProjectTeamMemberApplicationController@getView")->name("projects.team.applications.view");
         Route::get("{slug}/team/aanmeldingen/{uuid}/aanpassen", "Projects\ProjectTeamMemberApplicationController@getEdit")->name("projects.team.applications.edit");
         Route::post("{slug}/team/aanmeldingen/{uuid}/aanpassen", "Projects\ProjectTeamMemberApplicationController@postEdit")->name("projects.team.applications.edit.post");
-        Route::get("{slug}/team/aanmeldingen/{uuid}/verwijderen", "Projects\ProjectTeamMemberApplicationControllerProjectTeamMemberApplicationController@getDelete")->name("projects.team.applications.delete");
+        Route::get("{slug}/team/aanmeldingen/{uuid}/verwijderen", "Projects\ProjectTeamMemberApplicationController@getDelete")->name("projects.team.applications.delete");
         Route::post("{slug}/team/aanmeldingen/{uuid}/verwijderen", "Projects\ProjectTeamMemberApplicationController@postDelete")->name("projects.team.applications.delete.post");
         Route::get("{slug}/team/aanmeldingen/{uuid}/accepteren", "Projects\ProjectTeamMemberApplicationController@getAccept")->name("projects.team.applications.accept");
         Route::get("{slug}/team/aanmeldingen/{uuid}/afwijzen", "Projects\ProjectTeamMemberApplicationController@getReject")->name("projects.team.applications.reject");
@@ -150,7 +150,12 @@ Route::group(["middleware" => "auth"], function() {
     });
 
     // Task overview
-    Route::get("werk-paketten", "Projects\TaskDashboardController@getOverview")->name("tasks");
+    Route::group(["prefix" => "werk-pakketten"], function() {
+        Route::get("/", "Projects\TaskDashboardController@getOverview")->name("tasks");
+        Route::get("toevoegen", "Projects\TaskDashboardController@getCreate")->name("tasks.create");
+        Route::post("toevoegen", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
+    });
+    // Route::post("werk-pakketten", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
     
 });
 

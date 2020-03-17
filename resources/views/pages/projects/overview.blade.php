@@ -5,47 +5,70 @@
 @stop
 
 @section("content")
-    <div class="content-section__wrapper">
-        <div class="content-section">
-
-            <h1 class="page-title centered">
-                @lang("tessify-core::projects.overview_title")
-            </h1>
-        
-            @include("tessify-core::partials.feedback")
-
-            @if ($projects->count() > 0)
-                <div id="projects" class="elevation-1">
-                    <div id="projects-header">
-                        <div class="projects-header__column">
-                            @lang("tessify-core::projects.overview_table_title")
-                        </div>
-                        <div class="projects-header__column">
-                            @lang("tessify-core::projects.overview_table_status")
-                        </div>
-                    </div>
-                    @foreach ($projects as $project)
-                        <a class="project" href="{{ route('projects.view', $project->slug) }}">
-                            <span class="project-title">{{ $project->title }}</span>
-                            <span class="project-status">{{ $project->status->label }}</span>
-                        </a>
-                    @endforeach
+    <div id="project-overview">
+        <!-- Header -->
+        <div id="project-overview__header">
+            <div id="project-overview__header-overlay"></div>
+            <div id="project-overview__header-illustration__wrapper">
+                <div id="project-overview__header-illustration__inner">
+                    <div id="project-overview__header-illustration" style="background-image: url({{ asset('storage/images/undraw/organizing_projects.svg') }})"></div>
                 </div>
-            @else
-                <div id="no-projects" class="elevation-1">
-                    @lang("tessify-core::projects.overview_empty")
-                </div>
-            @endif
-
-            <div class="page-controls mt">
-                <div class="page-controls__right">
-                    <v-btn color="success" href="{{ route('projects.create') }}">
-                        <i class="fas fa-plus"></i>
-                        @lang("tessify-core::projects.overview_create_button")
+            </div>
+            <div id="project-overview__header-content" class="content-section">
+                <div id="project-overview__header-text">
+                    <h1 class="page-title centered">@lang("tessify-core::projects.overview_title")</h1>
+                    <v-btn color="primary" outlined href="{{ route('projects.create') }}">
+                        @lang("tessify-core::projects.overview_create_cta")
                     </v-btn>
                 </div>
             </div>
+        </div>
+        <!-- Content -->
+        <div id="project-overview__content" class="content-section__wrapper">
+            <div class="content-section pt50">
+                
+                <!-- Feedback -->
+                @include("tessify-core::partials.feedback")
 
+                <!-- Dashboard -->
+                <div id="project-dashboard">
+                    <div id="project-dashboard__sidebar">
+
+                        <!-- Search bar -->
+                        <project-dashboard-sidebar-search-bar
+                            title="@lang('tessify-core::projects.overview_sidebar_search')">
+                        </project-dashboard-sidebar-search-bar>
+
+                        <!-- Status -->
+                        <project-dashboard-sidebar-statuses
+                            title="@lang('tessify-core::projects.overview_sidebar_statuses')"
+                            no-records-text="@lang('tessify-core::projects.overview_sidebar_statuses_empty')"
+                            :statuses="{{ $statuses->toJson() }}">
+                        </project-dashboard-sidebar-statuses>
+                        
+                        <!-- Categories -->
+                        <project-dashboard-sidebar-categories
+                            title="@lang('tessify-core::projects.overview_sidebar_categories')"
+                            no-records-text="@lang('tessify-core::projects.overview_sidebar_categories_empty')"
+                            :categories="{{ $categories->toJson() }}">
+                        </project-dashboard-sidebar-categories>
+
+                    </div>
+                    <div id="project-dashboard__content">
+
+                        <!-- Project overview -->
+                        <project-dashboard-overview
+                            :projects="{{ $projects->toJson() }}"
+                            description-text="@lang('tessify-core::projects.overview_description')"
+                            view-text="@lang('tessify-core::projects.overview_view')"
+                            no-projects-text="@lang('tessify-core::projects.overview_no_projects')">
+                        </project-dashboard-overview>
+
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
+
 @stop

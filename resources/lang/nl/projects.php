@@ -40,6 +40,17 @@ return [
     //
 
     "overview_title" => "Projecten",
+    "overview_create_cta" => "Zelf project starten!",
+    "overview_description" => "Beschrijving",
+    "overview_view" => "Bekijk project",
+    "overview_no_projects" => "Geen projecten gevonden",
+
+    "overview_sidebar_search" => "Zoeken",
+    "overview_sidebar_statuses" => "Status",
+    "overview_sidebar_statuses_empty" => "Geen statusen",
+    "overview_sidebar_categories" => "Categorie",
+    "overview_sidebar_categories_empty" => "Geen categorieen",
+
     "overview_table_title" => "Titel",
     "overview_table_status" => "Status",
     "overview_empty" => "Wees de eerste die een project toevoegd aan het platform!",

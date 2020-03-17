@@ -23,6 +23,8 @@ class ProjectController extends Controller
     {
         return view("tessify-core::pages.projects.overview", [
             "projects" => Projects::getAllPreloaded(),
+            "statuses" => ProjectStatuses::getAll(),
+            "categories" => ProjectCategories::getAll(),
         ]);
     }
 
