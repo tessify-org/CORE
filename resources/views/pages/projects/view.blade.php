@@ -118,10 +118,12 @@
                                     <div class="key">@lang("tessify-core::projects.view_start_date")</div>
                                     <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>
                                 </div>
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_end_date")</div>
-                                    <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
-                                </div>
+                                @if ($project->has_deadline and !is_null($project->ends_at))
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_end_date")</div>
+                                        <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
+                                    </div>
+                                @endif
                                 <div class="detail">
                                     <div class="key">@lang("tessify-core::projects.view_created_at")</div>
                                     <div class="val">{{ $project->created_at->format("d-m-Y") }}</div>

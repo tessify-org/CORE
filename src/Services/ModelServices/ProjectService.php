@@ -111,7 +111,6 @@ class ProjectService implements ModelServiceContract
         // Parse dates to Carbon objects
         $starts_at = Dates::parse($request->starts_at, "/")->format("Y-m-d");
         $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "/")->format("Y-m-d") : null;
-        dd($request->all(), $starts_at, $ends_at);
 
         // Compose all of the data we know will be part of the new project
         $data = [
@@ -122,8 +121,8 @@ class ProjectService implements ModelServiceContract
             "title" => $request->title,
             "slogan" => $request->slogan,
             "description" => $request->description,
-            "starts_at" => $starts_at->format("Y-m-d"),
-            "ends_at" => $ends_at->format("Y-m-d"),
+            "starts_at" => $starts_at,
+            "ends_at" => $ends_at,
             "has_tasks" => $request->has_tasks == "true" ? true : false,
             "has_deadline" => $request->has_deadline == "true" ? true : false,
         ];
@@ -144,11 +143,11 @@ class ProjectService implements ModelServiceContract
         $this->processTeamRoles($project, $request->team_roles);
 
         // If this project has tasks
-        if ($project->has_tasks)
-        {
-            // Create default task columns
-            $this->createDefaultTaskColumnsForProject($project);
-        }
+        // if ($project->has_tasks)
+        // {
+        //     // Create default task columns
+        //     $this->createDefaultTaskColumnsForProject($project);
+        // }
 
         // Return the created project
         return $project;

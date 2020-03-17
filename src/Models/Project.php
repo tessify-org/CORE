@@ -23,6 +23,8 @@ class Project extends Model
         "header_image_url",
         "starts_at",
         "ends_at",
+        "has_tasks",
+        "has_deadline",
     ];
     protected $dates = [
         "starts_at", 
@@ -30,6 +32,7 @@ class Project extends Model
     ];
     protected $casts = [
         "has_tasks" => "boolean",
+        "has_deadline" => "boolean",
     ];
 
     //
