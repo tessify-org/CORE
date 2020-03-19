@@ -7,7 +7,7 @@ use Tessify\Core\Models\TaskProgressReport;
 use Tessify\Core\Models\TaskProgressReportReview;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Projects\Tasks\ReviewProgressReportRequest;
+use Tessify\Core\Http\Requests\Tasks\ReviewProgressReportRequest;
 
 class TaskProgressReportReviewService implements ModelServiceContract
 {

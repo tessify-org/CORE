@@ -74,30 +74,45 @@ Route::group(["middleware" => "auth"], function() {
         
         // Manage projects
         Route::get("/", "Projects\ProjectController@getOverview")->name("projects");
+        
+        // Create
         Route::get("toevoegen", "Projects\ProjectController@getCreate")->name("projects.create");
         Route::post("toevoegen", "Projects\ProjectController@postCreate")->name("projects.create.post");
+
+        // View
         Route::get("{slug}", "Projects\ProjectController@getView")->name("projects.view");
+
+        // Edit
         Route::get("{slug}/aanpassen", "Projects\ProjectController@getEdit")->name("projects.edit");
         Route::post("{slug}/aanpassen", "Projects\ProjectController@postEdit")->name("projects.edit.post");
+
+        // Delete
         Route::get("{slug}/verwijderen", "Projects\ProjectController@getDelete")->name("projects.delete");
         Route::post("{slug}/verwijderen", "Projects\ProjectController@postDelete")->name("projects.delete.post");
+
+        // Subscribe & unsubscribe
         Route::get("{slug}/subscribe", "Projects\ProjectController@getSubscribe")->name("projects.subscribe");
         Route::get("{slug}/unsubscribe", "Projects\ProjectController@getUnsubscribe")->name("projects.unsubscribe");
 
         // View team
         Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
+
         // Apply for team role(s)
         Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
         Route::post("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@postCreate")->name("projects.team.apply.post");
+
         // Leave team
         Route::get("{slug}/team/verlaten", "Projects\ProjectTeamController@getLeaveTeam")->name("projects.team.leave");
         Route::post("{slug}/team/verlaten", "Projects\ProjectTeamController@postLeaveTeam")->name("projects.team.leave.post");
+        
         // Invite member to team
         Route::get("{slug}/team/uitnodigen", "Projects\ProjectTeamController@getInviteUser")->name("projects.team.invite-member");
         Route::post("{slug}/team/uitnodigen", "Projects\ProjectTeamController@postInviteUser")->name("projects.team.invite-member.post");
+        
         // Remove member from team
         Route::get("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@getRemoveMember")->name("projects.team.remove-member");
         Route::post("{slug}/team/{userSlug}/verwijderen", "Projects\ProjectTeamController@postRemoveMember")->name("projects.team.remove-member.post");
+        
         // Change roles
         Route::get("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@getChangeMemberRoles")->name("projects.team.change-roles");
         Route::post("{slug}/team/{userSlug}/rol-veranderen", "Projects\ProjectTeamController@postChangeMemberRoles")->name("projects.team.change-roles.post");
@@ -123,38 +138,81 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/team/aanmeldingen/{uuid}/heropenen", "Projects\ProjectTeamMemberApplicationController@getReopen")->name("projects.team.applications.reopen");
 
         // Manage tasks
-        Route::get("{slug}/taken", "Projects\TaskController@getOverview")->name("projects.tasks");
-        Route::get("{slug}/taken/toevoegen", "Projects\TaskController@getCreate")->name("projects.tasks.create");
-        Route::post("{slug}/taken/toevoegen", "Projects\TaskController@postCreate")->name("projects.tasks.create.post");
-        Route::get("{slug}/taken/{taskSlug}", "Projects\TaskController@getView")->name("projects.tasks.view");
-        Route::get("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@getEdit")->name("projects.tasks.edit");
-        Route::post("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@postEdit")->name("projects.tasks.edit.post");
-        Route::get("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@getDelete")->name("projects.tasks.delete");
-        Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
-        Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
-        Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
-        Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
-        Route::get("{slug}/taken/{taskSlug}/subscribe", "Projects\TaskController@getSubscribe")->name("projects.tasks.subscribe");
-        Route::get("{slug}/taken/{taskSlug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("projects.tasks.unsubscribe");
-
-        Route::get("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@getReportProgress")->name("projects.tasks.report-progress");
-        Route::post("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@postReportProgress")->name("projects.tasks.report-progress.post");
-
-        Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("projects.tasks.progress-report");
+        Route::get("{slug}/werkpakketten", "Projects\ProjectTaskController@getOverview")->name("projects.tasks");
         
-        Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("projects.tasks.progress-report.review");
-        Route::post("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("projects.tasks.progress-report.review.post");
-
-        Route::get("{slug}/taken/{taskSlug}/complete", "Projects\TaskController@getComplete")->name("projects.tasks.complete");
-
+        // Route::get("{slug}/taken", "Projects\TaskController@getOverview")->name("projects.tasks");
+        // Route::get("{slug}/taken/toevoegen", "Projects\TaskController@getCreate")->name("projects.tasks.create");
+        // Route::post("{slug}/taken/toevoegen", "Projects\TaskController@postCreate")->name("projects.tasks.create.post");
+        // Route::get("{slug}/taken/{taskSlug}", "Projects\TaskController@getView")->name("projects.tasks.view");
+        // Route::get("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@getEdit")->name("projects.tasks.edit");
+        // Route::post("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@postEdit")->name("projects.tasks.edit.post");
+        // Route::get("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@getDelete")->name("projects.tasks.delete");
+        // Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
+        // Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
+        // Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
+        // Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
+        // Route::get("{slug}/taken/{taskSlug}/subscribe", "Projects\TaskController@getSubscribe")->name("projects.tasks.subscribe");
+        // Route::get("{slug}/taken/{taskSlug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("projects.tasks.unsubscribe");
+        // Route::get("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@getReportProgress")->name("projects.tasks.report-progress");
+        // Route::post("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@postReportProgress")->name("projects.tasks.report-progress.post");
+        // Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("projects.tasks.progress-report");
+        // Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("projects.tasks.progress-report.review");
+        // Route::post("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("projects.tasks.progress-report.review.post");
+        // Route::get("{slug}/taken/{taskSlug}/complete", "Projects\TaskController@getComplete")->name("projects.tasks.complete");
+        
     });
 
     // Task overview
     Route::group(["prefix" => "werk-pakketten"], function() {
-        Route::get("/", "Projects\TaskDashboardController@getOverview")->name("tasks");
-        Route::get("toevoegen", "Projects\TaskDashboardController@getCreate")->name("tasks.create");
-        Route::post("toevoegen", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
+        
+        // Route::get("/", "Projects\TaskDashboardController@getOverview")->name("tasks");
+        // Route::get("toevoegen", "Projects\TaskDashboardController@getCreate")->name("tasks.create");
+        // Route::post("toevoegen", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
+
+        // Task dashboard / overview
+        Route::get("/", "Projects\TaskController@getOverview")->name("tasks");
+
+        // Create
+        Route::get("toevoegen/{slug?}", "Projects\TaskController@getCreate")->name("tasks.create");
+        Route::post("toevoegen/{slug?}", "Projects\TaskController@postCreate")->name("tasks.create.post");
+
+        // View
+        Route::get("{slug}", "Projects\TaskController@getView")->name("tasks.view");
+
+        // Update
+        Route::get("{slug}/aanpassen", "Projects\TaskController@getEdit")->name("tasks.edit");
+        Route::post("{slug}/aanpassen", "Projects\TaskController@postEdit")->name("tasks.edit.post");
+
+        // Delete
+        Route::get("{slug}/verwijderen", "Projects\TaskController@getDelete")->name("tasks.delete");
+        Route::post("{slug}/verwijderen", "Projects\TaskController@postDelete")->name("tasks.delete.post");
+        // Assign to me
+        Route::get("{slug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("tasks.assign-to-me");
+
+        // Abandon
+        Route::get("{slug}/uitschrijven", "Projects\TaskController@getAbandon")->name("tasks.abandon");
+        Route::post("{slug}/uitschrijven", "Projects\TaskController@postAbandon")->name("tasks.abandon.post");
+
+        // Subscribe & unsubscribe
+        Route::get("{slug}/subscribe", "Projects\TaskController@getSubscribe")->name("tasks.subscribe");
+        Route::get("{slug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("tasks.unsubscribe");
+
+        // Report progress
+        Route::get("{slug}/report-progress", "Projects\TaskController@getReportProgress")->name("tasks.report-progress");
+        Route::post("{slug}/report-progress", "Projects\TaskController@postReportProgress")->name("tasks.report-progress.post");
+
+        // Progress report
+        Route::get("{slug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("tasks.progress-report");
+
+        // Review progress report
+        Route::get("{slug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("tasks.progress-report.review");
+        Route::post("{slug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("tasks.progress-report.review.post");
+
+        // Complete
+        Route::get("{slug}/complete", "Projects\TaskController@getComplete")->name("tasks.complete");
+        
     });
+
     // Route::post("werk-pakketten", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
     
 });

@@ -388,6 +388,20 @@ class ProjectService implements ModelServiceContract
             {
                 $out[] = $project;
             }
+            else
+            {
+                $isTeamMember = false;
+                foreach ($project->teamMembers as $teamMember)
+                {
+                    if ($teamMember->user_id == $user->id)
+                    {
+                        $isTeamMember = true;
+                        break;
+                    }
+                }
+
+                if ($isTeamMember) $out[] = $project;
+            }
         }
 
         return collect($out);

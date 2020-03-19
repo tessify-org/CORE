@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks.progress-report", $project, $task, $report) !!}
+    {!! Breadcrumbs::render("tasks.progress-report", $task, $report) !!}
 @stop
 
 @section("content")
@@ -22,7 +22,9 @@
                         
                         <!-- Message -->
                         <div class="progress-report__field">
-                            <div class="progress-report__field-label">@lang("tessify-core::tasks.progress_report_message")</div>
+                            <div class="progress-report__field-label">
+                                @lang("tessify-core::tasks.progress_report_message")
+                            </div>
                             <div class="progress-report__field-text">
                                 {!! nl2br($report->message) !!}
                             </div>
@@ -30,7 +32,9 @@
 
                         <!-- Attachments -->
                         <div class="progress-report__field">
-                            <div class="progress-report__field-label">@lang("tessify-core::tasks.progress_report_attachments")</div>
+                            <div class="progress-report__field-label">
+                                @lang("tessify-core::tasks.progress_report_attachments")
+                            </div>
                             @if (count($report->attachments))
                                 <div class="progress-report__field-attachments">
                                     <?php $i = 1; ?>
@@ -51,7 +55,9 @@
                         <!-- Status complete -->
                         @if ($report->completed)
                             <div class="progress-report__field">
-                                <div class="progress-report__field-label">@lang("tessify-core::tasks.progress_report_completed")</div>
+                                <div class="progress-report__field-label">
+                                    @lang("tessify-core::tasks.progress_report_completed")
+                                </div>
                                 <div class="progress-report__field-text">
                                     @lang("tessify-core::tasks.progress_report_completed_text", ["user" => $report->user->first_name])
                                 </div>
@@ -91,23 +97,26 @@
                     <div id="progress-report__actions">
                         
                         <!-- Go back to task -->
-                        <v-btn href="{{ route('projects.tasks.view', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                        <v-btn href="{{ route('tasks.view', ['slug' => $task->slug]) }}">
                             <i class="fas fa-arrow-left"></i>
                             Go back to task
                         </v-btn>
 
                         <!-- Task/Project owner actions -->
                         @if (($task->is_owner or $task->is_project_owner) and !$report->has_been_reviewed)
+
                             <!-- Review report -->
-                            <v-btn color="primary" href="{{ route('projects.tasks.progress-report.review', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $report->uuid]) }}">
+                            <v-btn color="primary" href="{{ route('tasks.progress-report.review', ['slug' => $task->slug, 'uuid' => $report->uuid]) }}">
                                 <i class="fas fa-comments"></i>
                                 Review progress report
                             </v-btn>
+                        
                             <!-- Complete task -->
-                            <v-btn color="success" href="{{ route('projects.tasks.complete', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}">
+                            <v-btn color="success" href="{{ route('tasks.complete', ['slug' => $task->slug]) }}">
                                 <i class="fas fa-check"></i>
                                 Complete task
                             </v-btn>
+                        
                         @endif
 
                     </div>

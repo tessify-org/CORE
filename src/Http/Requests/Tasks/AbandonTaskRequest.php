@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Http\Requests\Projects\Tasks;
+namespace Tessify\Core\Http\Requests\Tasks;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;

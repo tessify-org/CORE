@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks.report-progress", $project, $task) !!}
+    {!! Breadcrumbs::render("tasks.report-progress", $task) !!}
 @stop
 
 @section("content")
@@ -18,13 +18,13 @@
                     @include("tessify-core::partials.feedback")
 
                     <!-- Form -->
-                    <form action="{{ route('projects.tasks.report-progress.post', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('tasks.report-progress.post', ['slug' => $task->slug]) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <report-task-progress-form
                             :errors="{{ $errors->toJson() }}"
                             :old-input="{{ $oldInput->toJson() }}"
-                            back-href="{{ route('projects.tasks.view', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}"
+                            back-href="{{ route('tasks.view', ['slug' => $task->slug]) }}"
                             back-text="@lang('tessify-core::tasks.report_progress_back')"
                             submit-text="@lang('tessify-core::tasks.report_progress_submit')"
                             message-text="@lang('tessify-core::tasks.report_progress_message')"

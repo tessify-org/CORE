@@ -258,6 +258,7 @@ return [
     "tasks_edit_back" => "Cancel",
     "tasks_updated" => "Task has been updated!",
 
+    "tasks_form_project" => "Project",
     "tasks_form_status" => "Status",
     "tasks_form_category" => "Category",
     "tasks_form_seniority" => "Seniority",

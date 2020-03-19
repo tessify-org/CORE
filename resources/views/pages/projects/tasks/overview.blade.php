@@ -35,7 +35,7 @@
 
                 <task-overview
                     :tasks="{{ json_encode($tasks) }}"
-                    create-task-href="{{ route('projects.tasks.create', $project->slug) }}"
+                    create-task-href="{{ route('tasks.create', $project->slug) }}"
                     title-open-text="@lang('tessify-core::projects.tasks_overview_open')"
                     title-in-progress-text="@lang('tessify-core::projects.tasks_overview_in_progress')"
                     title-completed-text="@lang('tessify-core::projects.tasks_overview_completed')"

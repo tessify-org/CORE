@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks.edit", $project, $task) !!}
+    {!! Breadcrumbs::render("tasks.edit", $task) !!}
 @stop
 
 @section("content")
@@ -13,17 +13,19 @@
                 @lang("tessify-core::projects.tasks_edit_title")
             </h1>
 
-            <form action="{{ route('projects.tasks.edit.post', ['slug' => $project->slug, 'taskSlug' => $task->slug]) }}" method="post">
+            <form action="{{ route('tasks.edit.post', ['slug' => $task->slug]) }}" method="post">
                 @csrf
                 
                 <task-form
                     :task="{{ $task->toJson() }}"
                     :skills="{{ $skills->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
+                    :projects="{{ $projects->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :statuses="{{ $statuses->toJson() }}"
                     :categories="{{ $categories->toJson() }}"
                     :seniorities="{{ $seniorities->toJson() }}"
+                    project-text="@lang('tessify-core::projects.tasks_form_project')"
                     title-text="@lang('tessify-core::projects.tasks_form_title')"
                     status-text="@lang('tessify-core::projects.tasks_form_status')"
                     category-text="@lang('tessify-core::projects.tasks_form_category')"
@@ -39,7 +41,7 @@
                     no-seniorities-text="@lang('tessify-core::projects.tasks_form_no_seniorities')"
                     required-skills-text="@lang('tessify-core::projects.tasks_form_required_skills')"
                     urgency-text="@lang('tessify-core::projects.tasks_form_urgency')"
-                    back-href="{{ route('projects.tasks', $project->slug) }}"
+                    back-href="{{ route('tasks.view', $task->slug) }}"
                     back-text="@lang('tessify-core::projects.tasks_edit_back')"
                     submit-text="@lang('tessify-core::general.save_changes')">
                 </task-form>

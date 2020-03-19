@@ -17,8 +17,8 @@ use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Projects\Tasks\CreateTaskRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\UpdateTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;
 
 class TaskService implements ModelServiceContract
 {
@@ -40,7 +40,7 @@ class TaskService implements ModelServiceContract
     {
         // Add HREF to the view task page for this task
         $project = Projects::find($instance->project_id);
-        $instance->view_href = route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $instance->slug]);
+        $instance->view_href = route("tasks.view", ["slug" => $instance->slug]);
 
         // Add flags to the instance
         $instance->is_owner = $this->userOwnsTask($instance);
@@ -159,13 +159,13 @@ class TaskService implements ModelServiceContract
         return false;
     }
 
-    public function createFromRequest(Project $project, CreateTaskRequest $request)
+    public function createFromRequest(CreateTaskRequest $request)
     {
         $open = TaskStatuses::findByName("open");
 
         $task = Task::create([
+            "project_id" => $request->project_id,
             "author_id" => Auth::user()->id,
-            "project_id" => $project->id,
             "task_status_id" => $open->id,
             "task_category_id" => $request->task_category_id,
             "task_seniority_id" => $request->task_seniority_id,
@@ -198,6 +198,7 @@ class TaskService implements ModelServiceContract
 
     public function updateFromRequest(Task $task, UpdateTaskRequest $request)
     {
+        $task->project_id = $request->project_id;
         $task->task_status_id = $request->task_status_id;
         $task->task_category_id = $request->task_category_id;
         $task->task_seniority_id = $request->task_seniority_id;

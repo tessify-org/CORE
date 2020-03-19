@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks.report-progress", $project, $task, $report) !!}
+    {!! Breadcrumbs::render("tasks.report-progress", $task, $report) !!}
 @stop
 
 @section("content")
@@ -18,7 +18,7 @@
                     @include("tessify-core::partials.feedback")
 
                     <!-- Form -->
-                    <form action="{{ route('projects.tasks.progress-report.review.post', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $report->uuid]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('tasks.progress-report.review.post', ['slug' => $task->slug, 'uuid' => $report->uuid]) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <review-progress-report-form
@@ -26,7 +26,7 @@
                             :errors="{{ $errors->toJson() }}"
                             :old-input="{{ $oldInput->toJson() }}"
                             message-text="@lang('tessify-core::tasks.review_progress_report_message')"
-                            back-href="{{ route('projects.tasks.progress-report', ['slug' => $project->slug, 'taskSlug' => $task->slug, 'uuid' => $report->uuid]) }}"
+                            back-href="{{ route('tasks.progress-report', ['slug' => $task->slug, 'uuid' => $report->uuid]) }}"
                             back-text="@lang('tessify-core::tasks.review_progress_report_back')"
                             submit-text="@lang('tessify-core::tasks.review_progress_report_submit')">
                         </review-progress-report-form>

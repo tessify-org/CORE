@@ -12,67 +12,61 @@ use TaskSeniorities;
 use TaskProgressReports;
 use TaskProgressReportReviews;
 use App\Http\Controllers\Controller;
-use Tessify\Core\Http\Requests\Projects\Tasks\CreateTaskRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\UpdateTaskRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\DeleteTaskRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\AbandonTaskRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\ReportProgressRequest;
-use Tessify\Core\Http\Requests\Projects\Tasks\ReviewProgressReportRequest;
+use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\DeleteTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\AbandonTaskRequest;
+use Tessify\Core\Http\Requests\Tasks\ReportProgressRequest;
+use Tessify\Core\Http\Requests\Tasks\ReviewProgressReportRequest;
 
 class TaskController extends Controller
 {
-    public function getOverview($slug)
+    public function getOverview()
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        return view("tessify-core::pages.projects.tasks.overview", [
-            "project" => $project,
-            "tasks" => Tasks::getAllForProject($project),
+        return view("tessify-core::pages.tasks.overview", [
+            "tasks" => Tasks::getAllPreloaded(),
+            "skills" => Skills::getAll(),
+            "statuses" => TaskStatuses::getAll(),
+            "categories" => TaskCategories::getAll(),
+            "seniorities" => TaskSeniorities::getAll(),
         ]);
     }
 
-    public function getView($slug, $taskSlug)
+    public function getView($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
         
-        return view("tessify-core::pages.projects.tasks.view", [
-            "project" => $project,
+        return view("tessify-core::pages.tasks.view", [
             "task" => $task,
         ]);
     }
     
-    public function getCreate($slug)
+    public function getCreate($slug = null)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
+        $project = null;
+        if (!is_null($slug))
         {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
+            $project = Projects::findPreloadedBySlug($slug);
+            if (!$project)
+            {
+                flash(__("tessify-core::projects.project_not_found"))->error();
+                return redirect()->route("projects");
+            }
         }
 
-        return view("tessify-core::pages.projects.tasks.create", [
+        return view("tessify-core::pages.tasks.create", [
             "project" => $project,
+            "projects" => Projects::getAllForUser(),
             "skills" => Skills::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
             "oldInput" => collect([
+                "project_id" => old("project_id"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category_id" => old("task_category_id"),
                 "title" => old("title"),
@@ -85,45 +79,32 @@ class TaskController extends Controller
         ]);
     }
 
-    public function postCreate(CreateTaskRequest $request, $slug)
+    public function postCreate(CreateTaskRequest $request)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::createFromRequest($project, $request);
+        $task = Tasks::createFromRequest($request);
 
         flash(__("tessify-core::projects.tasks_created"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getEdit($slug, $taskSlug)
+    public function getEdit($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("projects.tasks", $project->slug);
         }
         
-        return view("tessify-core::pages.projects.tasks.edit", [
+        return view("tessify-core::pages.tasks.edit", [
             "task" => $task,
-            "project" => $project,
+            "projects" => Projects::getAllForUser(),
             "skills" => Skills::getAll(),
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
             "oldInput" => collect([
+                "project_id" => old("project_id"),
                 "task_status_id" => old("task_status_id"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category_id" => old("task_category_id"),
@@ -138,201 +119,141 @@ class TaskController extends Controller
         ]);
     }
 
-    public function postEdit(UpdateTaskRequest $request, $slug, $taskSlug)
+    public function postEdit(UpdateTaskRequest $request, $slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findBySlug($taskSlug);
+        $task = Tasks::findBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         Tasks::updateFromRequest($task, $request);
 
         flash(__("tessify-core::projects.tasks_updated"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getDelete($slug, $taskSlug)
+    public function getDelete($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
-        return view("tessify-core::pages.projects.tasks.delete", [
-            "project" => $project,
+        return view("tessify-core::pages.tasks.delete", [
             "task" => $task,
         ]);
     }
 
-    public function postDelete(DeleteTaskRequest $request, $slug, $taskSlug)
+    public function postDelete(DeleteTaskRequest $request, $slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
+
+        $project = $task->project;
 
         $task->delete();
 
         flash(__("tessify-core::projects.tasks_deleted"))->error();
-        return redirect()->route("projects.tasks", $project->slug);
+        if ($project) {
+            return redirect()->route("projects.tasks", $project->slug);
+        } else {
+            return redirect()->route("tasks");
+        }
     }
 
-    public function getAssignToSelf($slug, $taskSlug)
+    public function getAssignToSelf($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         Tasks::assignToUser($task);
 
         flash(__("tessify-core::tasks.assign_to_self_success"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getAbandon($slug, $taskSlug)
+    public function getAbandon($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
-        return view("tessify-core::pages.projects.tasks.unassign-from-self", [
-            "project" => $project,
+        return view("tessify-core::pages.tasks.unassign-from-self", [
             "task" => $task,
         ]);
     }
 
-    public function postAbandon(AbandonTaskRequest $request, $slug, $taskSlug)
+    public function postAbandon(AbandonTaskRequest $request, $slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         Tasks::unassignUser($task);
 
         flash(__("tessify-core::tasks.abandon_success"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getSubscribe($slug, $taskSlug)
+    public function getSubscribe($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         Auth::user()->subscribe($task);
 
         flash(__("tessify-core::tasks.view_subscribed"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getUnsubscribe($slug, $taskSlug)
+    public function getUnsubscribe($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         Auth::user()->unsubscribe($task);
 
         flash(__("tessify-core::tasks.view_unsubscribed"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getReportProgress($slug, $taskSlug)
+    public function getReportProgress($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
-        return view("tessify-core::pages.projects.tasks.report-progress", [
+        return view("tessify-core::pages.tasks.report-progress", [
             "task" => $task,
-            "project" => $project,
             "oldInput" => collect([
                 "message" => old("message"),
                 "completed" => old("completed"),
@@ -340,53 +261,35 @@ class TaskController extends Controller
         ]);
     }
 
-    public function postReportProgress(ReportProgressRequest $request, $slug, $taskSlug)
+    public function postReportProgress(ReportProgressRequest $request, $slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         $report = TaskProgressReports::createFromRequest($task, $request);
 
         flash(__("tessify-core::tasks.report_progress_success"))->success();
-        return redirect()->route("projects.tasks.progress-report", [
-            "slug" => $project->slug, 
-            "taskSlug" => $task->slug, 
-            "uuid" => $report->uuid
-        ]);
+        return redirect()->route("tasks.progress-report", ["slug" => $task->slug, "uuid" => $report->uuid]);
     }
 
-    public function getProgressReport($slug, $taskSlug, $uuid)
+    public function getProgressReport($slug, $uuid)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         $report = TaskProgressReports::findPreloadedByUuid($uuid);
         if (!$report)
         {
             flash(__("tessify-core::projects.progress_report_not_found"))->error();
-            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+            return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
         if ($task->is_assigned)
@@ -394,40 +297,31 @@ class TaskController extends Controller
             TaskProgressReports::markReviewsAsRead($report);
         }
 
-        return view("tessify-core::pages.projects.tasks.progress-report", [
+        return view("tessify-core::pages.tasks.progress-report", [
             "task" => $task,
             "report" => $report,
-            "project" => $project,
         ]);
     }
 
-    public function getReviewProgressReport($slug, $taskSlug, $uuid)
+    public function getReviewProgressReport($slug, $uuid)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         $report = TaskProgressReports::findByUuid($uuid);
         if (!$report)
         {
             flash(__("tessify-core::projects.progress_report_not_found"))->error();
-            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+            return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
-        return view("tessify-core::pages.projects.tasks.review-progress-report", [
+        return view("tessify-core::pages.tasks.review-progress-report", [
             "task" => $task,
             "report" => $report,
-            "project" => $project,
             "oldInput" => collect([
                 "message" => old("message"),
                 "completed" => old("completed"),
@@ -435,54 +329,40 @@ class TaskController extends Controller
         ]);
     }
 
-    public function postReviewProgressReport(ReviewProgressReportRequest $request, $slug, $taskSlug, $uuid)
+    public function postReviewProgressReport(ReviewProgressReportRequest $request, $slug, $uuid)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findPreloadedBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
 
         $report = TaskProgressReports::findByUuid($uuid);
         if (!$report)
         {
             flash(__("tessify-core::projects.progress_report_not_found"))->error();
-            return redirect()->route("projects.tasks.view", ["slug" => $slug, "taskSlug" => $taskSlug]);
+            return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
         $review = TaskProgressReportReviews::createFromRequest($report, $request);
 
         flash(__("tessify-core::tasks.reviewed_progress_report"))->success();
-        return redirect()->route("projects.tasks.progress-report", ["slug" => $slug, "taskSlug" => $taskSlug, "uuid" => $report->uuid]);
+        return redirect()->route("tasks.progress-report", ["slug" => $slug, "uuid" => $report->uuid]);
     }
 
-    public function getComplete($slug, $taskSlug)
+    public function getComplete($slug)
     {
-        $project = Projects::findPreloadedBySlug($slug);
-        if (!$project)
-        {
-            flash(__("tessify-core::projects.project_not_found"))->error();
-            return redirect()->route("projects");
-        }
-
-        $task = Tasks::findBySlug($taskSlug);
+        $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
-            return redirect()->route("projects.tasks", $project->slug);
+            return redirect()->route("tasks");
         }
         
         Tasks::markAsCompleted($task);
 
         flash(__("tessify-core::tasks.completed"))->success();
-        return redirect()->route("projects.tasks.view", ["slug" => $project->slug, "taskSlug" => $task->slug]);
+        return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 }

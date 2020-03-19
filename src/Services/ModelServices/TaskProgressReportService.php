@@ -11,7 +11,7 @@ use Tessify\Core\Models\TaskProgressReport;
 use Tessify\Core\Models\TaskProgressReportAttachment;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
-use Tessify\Core\Http\Requests\Projects\Tasks\ReportProgressRequest;
+use Tessify\Core\Http\Requests\Tasks\ReportProgressRequest;
 
 class TaskProgressReportService implements ModelServiceContract
 {

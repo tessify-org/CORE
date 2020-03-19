@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Http\Requests\Projects\Tasks;
+namespace Tessify\Core\Http\Requests\Tasks;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,6 +25,7 @@ class CreateTaskRequest extends FormRequest
     public function rules()
     {
         return [
+            "project_id" => "nullable|exists:projects,id",
             "task_category_id" => "required|exists:task_categories,id",
             "task_seniority_id" => "required|exists:task_seniorities,id",
             "title" => "required",

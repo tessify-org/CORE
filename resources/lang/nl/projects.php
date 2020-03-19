@@ -235,8 +235,8 @@ return [
     // Tasks overview
     //
 
-    "tasks_overview_title" => "Taken",
-    "tasks_overview_create" => "Taak toevoegen",
+    "tasks_overview_title" => "Werkpakketten",
+    "tasks_overview_create" => "Werkpakket toevoegen",
     "tasks_overview_open" => "Openstaande taken",
     "tasks_overview_open_empty" => "Er zijn momenteel geen openstaande taken",
     "tasks_overview_in_progress" => "Taken in behandeling",
@@ -247,17 +247,18 @@ return [
     "tasks_overview_category" => "Categorie",
     "tasks_overview_complexity" => "Complexiteit",
 
-    "tasks_view_title" => "Taak",
+    "tasks_view_title" => "Werkpakket",
 
-    "tasks_create_title" => "Taak toevoegen",
-    "tasks_create_back" => "Terug naar taken",
-    "tasks_create_submit" => "Taak opslaan!",
-    "tasks_created" => "Taak is toegevoegd!",
+    "tasks_create_title" => "Werkpakket toevoegen",
+    "tasks_create_back" => "Terug naar werkpakketten",
+    "tasks_create_submit" => "Werkpakket opslaan!",
+    "tasks_created" => "Werkpakket is toegevoegd!",
 
-    "tasks_edit_title" => "Taak aanpassen",
+    "tasks_edit_title" => "Werkpakket aanpassen",
     "tasks_edit_back" => "Annuleren",
-    "tasks_updated" => "Taak aangepast!",
+    "tasks_updated" => "Werkpakket aangepast!",
     
+    "tasks_form_project" => "Project",
     "tasks_form_status" => "Status",
     "tasks_form_category" => "Categorie",
     "tasks_form_seniority" => "Senioriteit",
