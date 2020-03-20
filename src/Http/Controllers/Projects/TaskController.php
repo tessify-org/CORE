@@ -6,6 +6,7 @@ use Auth;
 use Tasks;
 use Skills;
 use Projects;
+use Reputation;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
@@ -82,6 +83,8 @@ class TaskController extends Controller
     public function postCreate(CreateTaskRequest $request)
     {
         $task = Tasks::createFromRequest($request);
+
+        Reputation::givePoints(1000, "created_task", $task);
 
         flash(__("tessify-core::projects.tasks_created"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
@@ -178,6 +181,8 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        Reputation::givePoints(100, "assigned_to_task", $task);
+
         Tasks::assignToUser($task);
 
         flash(__("tessify-core::tasks.assign_to_self_success"))->success();
@@ -192,7 +197,6 @@ class TaskController extends Controller
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-
         return view("tessify-core::pages.tasks.unassign-from-self", [
             "task" => $task,
         ]);
@@ -208,6 +212,8 @@ class TaskController extends Controller
         }
 
         Tasks::unassignUser($task);
+
+        Reputation::takePoints(100, "unassigned_from_task", $task);
 
         flash(__("tessify-core::tasks.abandon_success"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
@@ -271,6 +277,8 @@ class TaskController extends Controller
         }
 
         $report = TaskProgressReports::createFromRequest($task, $request);
+
+        Reputation::givePoints(100, "reported_progress_on_task", $task);
 
         flash(__("tessify-core::tasks.report_progress_success"))->success();
         return redirect()->route("tasks.progress-report", ["slug" => $task->slug, "uuid" => $report->uuid]);
@@ -361,6 +369,8 @@ class TaskController extends Controller
         }
         
         Tasks::markAsCompleted($task);
+
+        Reputation::givePoints(1000, "completed_task", $task);
 
         flash(__("tessify-core::tasks.completed"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);

@@ -7,6 +7,7 @@ use Users;
 use Skills;
 use Comments;
 use Projects;
+use Reputation;
 use WorkMethods;
 use ProjectStatuses;
 use ProjectResources;
@@ -72,6 +73,8 @@ class ProjectController extends Controller
     public function postCreate(CreateProjectRequest $request)
     {
         $project = Projects::createFromRequest($request);
+
+        Reputation::givePoints(1000, "created_project", $project);
 
         flash(__("tessify-core::projects.project_created"))->success();
         return redirect()->route("projects.view", $project->slug);

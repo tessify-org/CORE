@@ -34,6 +34,7 @@ use Tessify\Core\Services\ModelServices\MessageService;
 use Tessify\Core\Services\ModelServices\TaskProgressReportService;
 use Tessify\Core\Services\ModelServices\TaskProgressReportReviewService;
 use Tessify\Core\Services\ModelServices\TaskProgressReportAttachmentService;
+use Tessify\Core\Services\ModelServices\ReputationTransactionService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -208,6 +209,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("task-progress-report-attachments", function() {
             return new TaskProgressReportAttachmentService;
+        });
+
+        $this->app->singleton("reputation-transactions", function() {
+            return new ReputationTransactionService;
         });
 
         //

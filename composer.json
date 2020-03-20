@@ -62,6 +62,7 @@
                 "Dates": "Tessify\\Core\\Facades\\DatesFacade",
                 "Uploader": "Tessify\\Core\\Facades\\UploaderFacade",
                 "Reputation": "Tessify\\Core\\Facades\\ReputationFacade",
+                "ReputationTransactions": "Tessify\\Core\\Facades\\ReputationTransactionsFacade",
                 "TaskProgressReports": "Tessify\\Core\\Facades\\TaskProgressReportsFacade",
                 "TaskProgressReportReviews": "Tessify\\Core\\Facades\\TaskProgressReportReviewsFacade",
                 "TaskProgressReportAttachments": "Tessify\\Core\\Facades\\TaskProgressReportAttachmentsFacade"

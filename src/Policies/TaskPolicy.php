@@ -35,7 +35,7 @@ class TaskPolicy
     {
         $project = Projects::find($task->project_id);
 
-        return $project->author_id == $user->id or $task->author_id == $user->id;
+        return ( $project and $project->author_id == $user->id ) or $task->author_id == $user->id;
     }
 
     /**
@@ -49,7 +49,7 @@ class TaskPolicy
     {
         $project = Projects::find($task->project_id);
         
-        return $project->author_id == $user->id or $task->author_id == $user->id;
+        return ( $project and $project->author_id == $user->id ) or $task->author_id == $user->id;
     }
 
     /**

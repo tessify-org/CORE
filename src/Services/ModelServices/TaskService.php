@@ -133,6 +133,19 @@ class TaskService implements ModelServiceContract
         return collect($out);
     }
 
+    public function getAllOngoingForUser(User $user = null)
+    {
+        $tasks = $this->getAllForUser($user)
+            ->map(function($task) {
+                return $task->status->name !== "completed" ? $task : false;
+            })
+            ->reject(function($task) {
+                return $task === false;
+            });
+
+        return $tasks;
+    }
+
     public function findBySlug($slug)
     {
         foreach ($this->getAll() as $task)
@@ -304,7 +317,7 @@ class TaskService implements ModelServiceContract
     {
         if (is_null($user)) $user = Auth::user();
 
-        return $task->project->author_id == $user->id;
+        return $task->project and $task->project->author_id == $user->id;
     }
 
     public function hasUnreadReviews(array $outstandingReports)

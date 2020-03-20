@@ -406,4 +406,17 @@ class ProjectService implements ModelServiceContract
 
         return collect($out);
     }
+
+    public function getAllOngoingForUser(User $user = null)
+    {
+        $projects = $this->getAllForUser($user)
+            ->map(function($project) {
+                return $project->status->name !== "closed" ? $project : false;
+            })
+            ->reject(function($project) {
+                return $project === false;
+            });
+
+        return $projects;
+    }
 }

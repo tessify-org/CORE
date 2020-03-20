@@ -185,10 +185,25 @@
 
                             <!-- Reputation -->
                             <h3 class="content-card__title">Reputatie</h3>
-                            <div class="content-card elevation-1">
+                            <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
                                     {{ number_format($user->reputation_points, 0, ".", ",") }} reputatie punten
                                 </div>
+                            </div>
+                            <reputation-history-button 
+                                :transactions="{{ $transactions->toJson() }}">
+                            </reputation-history-button>
+
+                            <!-- Current projects -->
+                            <h3 class="content-card__title">Huidige projecten</h3>
+                            <div class="content-card mb elevation-1">
+                                <profile-project-list :projects="{{ $projects->toJson() }}"></profile-project-list>
+                            </div>
+
+                            <!-- Current tasks -->
+                            <h3 class="content-card__title">Huidige werkpakketten</h3>
+                            <div class="content-card elevation-1">
+                                <profile-task-list :tasks="{{ $tasks->toJson() }}"></profile-task-list>
                             </div>
 
                         </div>

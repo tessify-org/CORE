@@ -8,7 +8,7 @@
     <div id="task">
 
         <!-- Header -->
-        <div id="task-header" style="background-image: url({{ asset($task->project->header_image_url) }})">
+        <div id="task-header" style="background-image: url({{ $task->project ? asset($task->project->header_image_url) : '' }})">
             <div id="task-header__overlay"></div>
             <div id="task-header__content">
 
@@ -32,7 +32,9 @@
                     <!-- Header title -->
                     <h1 id="task-header__title">@lang("tessify-core::tasks.view_title")</h1>
                     <!-- Header subtitle -->
-                    <h2 id="task-header__subtitle">{{ $task->project->title }}</h2>
+                    @if ($task->project)
+                        <h2 id="task-header__subtitle">{{ $task->project->title }}</h2>
+                    @endif
                 </div>
 
             </div>
@@ -151,7 +153,7 @@
                             <!-- Description -->
                             <div id="task-description">
                                 <div id="task-description__label">@lang("tessify-core::tasks.view_description")</div>
-                                <div id="task-description__text">{{ $task->project->description }}</div>
+                                <div id="task-description__text">{{ $task->description }}</div>
                             </div>
 
                             <!-- Required skills -->

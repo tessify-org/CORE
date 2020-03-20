@@ -4,7 +4,10 @@ namespace Tessify\Core\Http\Controllers\Profiles;
 
 use Auth;
 use Users;
+use Tasks;
 use Skills;
+use Projects;
+use Reputation;
 use Assignments;
 use AssignmentTypes;
 use Organizations;
@@ -30,6 +33,9 @@ class ProfileController extends Controller
             "followers" => Users::getFollowers($user),
             "following" => Users::getFollowing($user),
             "assignments" => Assignments::findAllPreloadedForUser($user),
+            "projects" => Projects::getAllOngoingForUser($user),
+            "tasks" => Tasks::getAllOngoingForUser($user),
+            "reputationTransactions" => Reputation::getTransactionsForUser($user),
         ]);
     }
 
