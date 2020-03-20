@@ -61,6 +61,7 @@ return [
     "messages_outbox" => "Outbox",
     "messages_send" => "Verstuur bericht",
     "messages_read" => "Bericht lezen",
+    "bug_report_submitted" => "Bug report is verzonden",
     "admin_dashboard" => "Administratie dashboard",
 
 ];

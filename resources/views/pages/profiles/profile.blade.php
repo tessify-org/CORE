@@ -97,7 +97,9 @@
                         <div id="profile-content__left">
 
                             <!-- Account details -->
-                            <h3 class="content-card__title">Persoonsgegevens</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_personal_info")
+                            </h3>
                             <div class="content-card mb elevation-1">
                                 <div class="details mb-0">
                                     <div class="detail">
@@ -144,7 +146,9 @@
 
                             <!-- Interests -->
                             @if ($user->interests !== null and $user->interests !== "")
-                                <h3 class="content-card__title">Interesses</h3>
+                                <h3 class="content-card__title">
+                                    @lang("tessify-core::profiles.profile_interests")
+                                </h3>
                                 <div class="content-card mb elevation-1">
                                     <div class="content-card__content">
                                         {!! nl2br($user->interests) !!}
@@ -153,13 +157,30 @@
                             @endif
                             
                             <!-- Assignments -->
-                            <h3 class="content-card__title">Aanstellingen</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_assignments")
+                            </h3>
                             <div class="content-card mb elevation-1">
-                                <profile-assignment-list :assignments="{{ json_encode($assignments) }}"></profile-assignment-list>
+                                <profile-assignment-list 
+                                    :assignments="{{ json_encode($assignments) }}"
+                                    current-assignment-text="@lang('tessify-core::profiles.profile_assignments_current_assignment')"
+                                    previous-assignments-text="@lang('tessify-core::profiles.profile_assignments_previous_assignments')"
+                                    no-assignments-text="@lang('tessify-core::profiles.profile_assignments_no_assignments')"
+                                    assignment-text="@lang('tessify-core::profiles.profile_assignments_assignment')"
+                                    ministry-text="@lang('tessify-core::profiles.profile_assignments_ministry')"
+                                    organization-text="@lang('tessify-core::profiles.profile_assignments_organization')"
+                                    department-text="@lang('tessify-core::profiles.profile_assignments_department')"
+                                    employment-type-text="@lang('tessify-core::profiles.profile_assignments_employment_type')"
+                                    function-text="@lang('tessify-core::profiles.profile_assignments_function')"
+                                    duration-text="@lang('tessify-core::profiles.profile_assignments_duration')"
+                                    description-text="@lang('tessify-core::profiles.profile_assignments_description')">
+                                </profile-assignment-list>
                             </div>
 
                             <!-- Reviews -->
-                            <h3 class="content-card__title">Recensies</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_reviews")
+                            </h3>
                             <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
                                     Coming soon..
@@ -167,7 +188,9 @@
                             </div>
 
                             <!-- Reacties -->
-                            <h3 class="content-card__title">Reacties</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_reactions")
+                            </h3>
                             <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
                                     Coming soon..
@@ -178,9 +201,14 @@
                         <div id="profile-content__right">
 
                             <!-- Skills -->
-                            <h3 class="content-card__title">Vaardigheden</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_skills")
+                            </h3>
                             <div class="content-card mb elevation-1">
-                                <profile-skill-list :skills="{{ $user->skills->toJson() }}"></profile-skill-list>
+                                <profile-skill-list 
+                                    :skills="{{ $user->skills->toJson() }}"
+                                    no-skills-text="@lang('tessify-core::profiles.profile_skill_no_skills')">
+                                </profile-skill-list>
                             </div>
 
                             <!-- Reputation -->
@@ -200,15 +228,23 @@
                             </div>
 
                             <!-- Current projects -->
-                            <h3 class="content-card__title">Huidige projecten</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_current_projects")
+                            </h3>
                             <div class="content-card mb elevation-1">
-                                <profile-project-list :projects="{{ $projects->toJson() }}"></profile-project-list>
+                                <profile-project-list 
+                                    :projects="{{ $projects->toJson() }}">
+                                </profile-project-list>
                             </div>
 
                             <!-- Current tasks -->
-                            <h3 class="content-card__title">Huidige werkpakketten</h3>
+                            <h3 class="content-card__title">
+                                @lang("tessify-core::profiles.profile_current_tasks")
+                            </h3>
                             <div class="content-card elevation-1">
-                                <profile-task-list :tasks="{{ $tasks->toJson() }}"></profile-task-list>
+                                <profile-task-list 
+                                    :tasks="{{ $tasks->toJson() }}">
+                                </profile-task-list>
                             </div>
 
                         </div>

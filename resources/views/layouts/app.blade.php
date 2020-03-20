@@ -323,6 +323,24 @@
                 </div>
             </footer>
 
+            <!-- Bug report -->
+            <div id="bug-report-button__wrapper">
+                <bug-report-button
+                    url="{{ url()->current() }}"
+                    dialog-title-text="@lang('tessify-core::bugreports.dialog_title')"
+                    cancel-text="@lang('tessify-core::bugreports.dialog_cancel')"
+                    submit-text="@lang('tessify-core::bugreports.dialog_submit')"
+                    form-action="{{ route('submit-bug-report.post') }}"
+                    csrf-token="{{ csrf_token() }}"
+                    url-label-text="@lang('tessify-core::bugreports.dialog_form_url_label')"
+                    severity-label-text="@lang('tessify-core::bugreports.dialog_form_severity_label')"
+                    low-severity-text="@lang('tessify-core::bugreports.severity_low')"
+                    medium-severity-text="@lang('tessify-core::bugreports.severity_medium')"
+                    high-severity-text="@lang('tessify-core::bugreports.severity_high')"
+                    report-label-text="@lang('tessify-core::bugreports.dialog_form_report_label')">
+                </bug-report-button>
+            </div>
+
         </v-app>
 
         {{-- Laravel Mix - JS File --}}

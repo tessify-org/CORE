@@ -8,6 +8,7 @@
 
 // Layout element related endpoints
 Route::post("switch-locales", "Translation\LocaleController@postSwitchLocale")->name("switch-locale.post");
+Route::post("submit-bug-report", "System\BugReportController@postSubmitReport")->name("submit-bug-report.post");
 
 // Guest only endpoints
 Route::group(["middleware" => "guest"], function() {

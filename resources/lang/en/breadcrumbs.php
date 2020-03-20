@@ -62,6 +62,7 @@ return [
     "messages_outbox" => "Outbox",
     "messages_send" => "Send message",
     "messages_read" => "Read message",
+    "bug_report_submitted" => "Bug report has been submitted",
     "admin_dashboard" => "Admin dashboard",
 
 ];

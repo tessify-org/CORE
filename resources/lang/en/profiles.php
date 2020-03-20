@@ -44,11 +44,34 @@ return [
     "profile_updated_at" => "Last changed on",
     "profile_update_button" => "Update your profile",
 
+    "profile_personal_info" => "Personal information",
+    "profile_interests" => "Interests",
+    "profile_assignments" => "Assignments",
+    "profile_reviews" => "Reviews",
+    "profile_reactions" => "Reactions",
+    "profile_skills" => "Skills",
+    "profile_current_projects" => "Current projects",
+    "profile_current_tasks" => "Current tasks",
+
     "profile_reputation_history_title" => "Reputation",
     "profile_reputation_history_button" => "View reputation history",
     "profile_reputation_history_dialog_title" => "Reputation history",
     "profile_reputation_history_dialog_no_transactions" => "No transactions found",
     
+    "profile_assignments_current_assignment" => "Current assignment",
+    "profile_assignments_previous_assignments" => "Previous assignments",
+    "profile_assignments_no_assignments" => "No assignments added yet",
+    "profile_assignments_assignment" => "Assignment",
+    "profile_assignments_ministry" => "Ministry",
+    "profile_assignments_organization" => "Organization",
+    "profile_assignments_department" => "Department",
+    "profile_assignments_employment_type" => "Type of employment",
+    "profile_assignments_function" => "Function",
+    "profile_assignments_duration" => "Duration",
+    "profile_assignments_description" => "Description",
+    
+    "profile_skills_no_skills" => "No skills have been added yet",
+
     //
     // Update profile
     //

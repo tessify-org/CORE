@@ -45,6 +45,29 @@ return [
     "profile_reputation_history_dialog_title" => "Reputatie geschiedenis",
     "profile_reputation_history_dialog_no_transactions" => "Geen transacties gevonden",
     
+    "profile_personal_info" => "Persoonsgegevens",
+    "profile_interests" => "Interesses",
+    "profile_assignments" => "Aanstellingen",
+    "profile_reviews" => "Recensies",
+    "profile_reactions" => "Reacties",
+    "profile_skills" => "Vaardigheden",
+    "profile_current_projects" => "Huidige projecten",
+    "profile_current_tasks" => "Huidige werkpakketten",
+
+    "profile_assignments_current_assignment" => "Huidige aanstelling",
+    "profile_assignments_previous_assignments" => "Vorige aanstellingen",
+    "profile_assignments_no_assignments" => "Nog geen aanstellingen toegevoegd",
+    "profile_assignments_assignment" => "Aanstelling",
+    "profile_assignments_ministry" => "Ministerie",
+    "profile_assignments_organization" => "Organisatie",
+    "profile_assignments_department" => "Departement",
+    "profile_assignments_employment_type" => "Type dienstverband",
+    "profile_assignments_function" => "Functie",
+    "profile_assignments_duration" => "Looptijd",
+    "profile_assignments_description" => "Omschrijving",
+    
+    "profile_skills_no_skills" => "Nog geen skills toegevoegd",
+
     //
     // Update profile
     //
