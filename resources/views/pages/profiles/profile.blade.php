@@ -184,15 +184,20 @@
                             </div>
 
                             <!-- Reputation -->
-                            <h3 class="content-card__title">Reputatie</h3>
+                            <h3 class="content-card__title">@lang("tessify-core::profiles.profile_reputation_history_title")</h3>
                             <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
-                                    {{ number_format($user->reputation_points, 0, ".", ",") }} reputatie punten
+                                    <div>
+                                        {{ number_format($user->reputation_points, 0, ".", ",") }} reputatie punten
+                                    </div>
+                                    <reputation-history-button 
+                                        :transactions="{{ $transactions->toJson() }}"
+                                        button-text="@lang('tessify-core::profiles.profile_reputation_history_button')"
+                                        dialog-title-text="@lang('tessify-core::profiles.profile_reputation_history_dialog_title')"
+                                        no-transactions-text="@lang('tessify-core::profile.profile_reputation_history_dialog_no_transactions')">
+                                    </reputation-history-button>
                                 </div>
                             </div>
-                            <reputation-history-button 
-                                :transactions="{{ $transactions->toJson() }}">
-                            </reputation-history-button>
 
                             <!-- Current projects -->
                             <h3 class="content-card__title">Huidige projecten</h3>

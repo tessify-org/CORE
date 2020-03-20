@@ -87,6 +87,20 @@ class ReputationService
 
     public function getTransactionsForUser($user = null)
     {
-        return ReputationTransactions::getAllForUser($user);
+        $transactions = ReputationTransactions::getAllForUser($user);
+
+        $out = [];
+
+        foreach ($transactions as $transaction)
+        {
+            $out[] = [
+                "id" => $transaction->id,
+                "type" => $transaction->type,
+                "points" => $transaction->amount,
+                "text" => __("tessify-core::reputation.".$transaction->name),
+            ];
+        }
+
+        return collect($out);
     }
 }

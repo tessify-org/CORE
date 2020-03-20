@@ -39,7 +39,12 @@ return [
     "profile_created_at" => "Geregistreerd op",
     "profile_updated_at" => "Laatst gewijzigd op",
     "profile_update_button" => "Update je profiel",
-
+    
+    "profile_reputation_history_title" => "Reputatie",
+    "profile_reputation_history_button" => "Bekijk reputatie geschiedenis",
+    "profile_reputation_history_dialog_title" => "Reputatie geschiedenis",
+    "profile_reputation_history_dialog_no_transactions" => "Geen transacties gevonden",
+    
     //
     // Update profile
     //

@@ -27,7 +27,7 @@ class ProfileController extends Controller
             flash(__('tessify-core::profiles.user_not_found'))->error();
             return redirect()->route("memberlist");
         }
-
+        
         return view("tessify-core::pages.profiles.profile", [
             "user" => $user,
             "followers" => Users::getFollowers($user),
@@ -35,7 +35,7 @@ class ProfileController extends Controller
             "assignments" => Assignments::findAllPreloadedForUser($user),
             "projects" => Projects::getAllOngoingForUser($user),
             "tasks" => Tasks::getAllOngoingForUser($user),
-            "reputationTransactions" => Reputation::getTransactionsForUser($user),
+            "transactions" => Reputation::getTransactionsForUser($user),
         ]);
     }
 

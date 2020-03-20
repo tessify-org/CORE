@@ -44,6 +44,11 @@ return [
     "profile_updated_at" => "Last changed on",
     "profile_update_button" => "Update your profile",
 
+    "profile_reputation_history_title" => "Reputation",
+    "profile_reputation_history_button" => "View reputation history",
+    "profile_reputation_history_dialog_title" => "Reputation history",
+    "profile_reputation_history_dialog_no_transactions" => "No transactions found",
+    
     //
     // Update profile
     //

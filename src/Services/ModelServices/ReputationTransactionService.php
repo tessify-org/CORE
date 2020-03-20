@@ -3,6 +3,7 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
+use App\Models\User;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Models\ReputationTransaction;
 use Tessify\Core\Contracts\ModelServiceContract;
