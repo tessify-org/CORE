@@ -271,4 +271,10 @@ Route::group(["prefix" => "api"], function() {
 
 });
 
+// Tests
+Route::get("test-flash-notification", function() {
+    flash("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus ullamcorper diam nec vulputate.")->success();
+    return redirect()->route("home");
+});
+
 // TODO: Move these to the api.php file and add proper token-based authentication instead of session hijacking like this

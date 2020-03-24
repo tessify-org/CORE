@@ -30,9 +30,10 @@
                     <!-- Locale switcher -->
                     <div id="topnav-locale__wrapper">
                         <locale-switcher 
-                            :locales="{{ json_encode($locales) }}"
                             active-locale="{{ $activeLocale }}"
-                            endpoint="{{ route('api.locale.set-active.post') }}">
+                            :locales="{{ json_encode($locales) }}"
+                            endpoint="{{ route('api.locale.set-active.post') }}"
+                            :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
                         </locale-switcher>
                     </div>
 
@@ -153,15 +154,17 @@
                             <!-- Unread notifications -->
                             <div class="topnav-button">
                                 <topnav-unread-notifications 
+                                    href="{{ route('notifications') }}"
                                     count="{{ $numUnreadNotifications }}"
-                                    href="{{ route('notifications') }}">
+                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
                                 </topnav-unread-notifications>
                             </div>
                             <!-- Unread messages -->
                             <div class="topnav-button">
                                 <topnav-unread-messages 
                                     count="{{ $numUnreadMessages }}"
-                                    href="{{ route('messages') }}">
+                                    href="{{ route('messages') }}"
+                                    :light="{{ Request::is('/') ? json_encode(true) : json_encode(false) }}">
                                 </topnav-unread-messages>
                             </div>
                         </div>
