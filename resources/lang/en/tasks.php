@@ -28,9 +28,9 @@ return [
     "overview_sidebar_search" => "Search",
     "overview_sidebar_statuses" => "Status",
     "overview_sidebar_statuses_empty" => "No statuses found",
-    "overview_sidebar_categories" => "Category",
+    "overview_sidebar_categories" => "Categories",
     "overview_sidebar_categories_empty" => "No categories found",
-    "overview_sidebar_skills" => "Skill",
+    "overview_sidebar_skills" => "Skills",
     "overview_sidebar_skills_empty" => "No skills found",
     "overview_sidebar_seniorities" => "Seniority",
     "overview_sidebar_seniorities_empty" => "No seniorities found",
@@ -62,6 +62,73 @@ return [
     "view_updated_at" => "Last update",
 
     //
+    // Create
+    //
+
+    "create_title" => "Create a task",
+    "create_form_status" => "Status",
+    "create_form_project" => "Project",
+    "create_form_category" => "Category",
+    "create_form_seniority" => "Required seniority",
+    "create_form_title" => "Title",
+    "create_form_description" => "Description",
+    "create_form_complexity" => "Complexiteit",
+    "create_form_estimated_hours" => "Estimated number of required hours",
+    "create_form_realized_hours" => "Realized number of hours",
+    "create_form_select_categories_text" => "Select a fitting category",
+    "create_form_no_categories" => "No categories found",
+    "create_form_select_seniority" => "Select the required seniority",
+    "create_form_no_seniorities" => "No seniorities found",
+    "create_form_select_status" => "Status",
+    "create_form_no_statuses" => "No statuses found",
+    "create_form_required_skills" => "Required skills",
+    "create_form_required_skills_no_records" => "No skills found",
+    "create_form_required_skills_add_button" => "Add required skill",
+    "create_form_required_skills_view_title" => "Required skill",
+    "create_form_required_skills_view_skill" => "Skill",
+    "create_form_required_skills_view_required_mastery" => "Required mastery",
+    "create_form_required_skills_view_description" => "Description",
+    "create_form_required_skills_view_edit" => "Edit",
+    "create_form_required_skills_view_delete" => "Delete",
+    "create_form_required_skills_add_title" => "Add required skill",
+    "create_form_required_skills_form_skill" => "Skill",
+    "create_form_required_skills_form_required_mastery" => "Required mastery of the skill",
+    "create_form_required_skills_form_description" => "Describe your expectatations",
+    "create_form_required_skills_add_cancel" => "Cancel",
+    "create_form_required_skills_add_submit" => "Save",
+    "create_form_required_skills_edit_title" => "Edit required skill",
+    "create_form_required_skills_edit_cancel" => "Cancel",
+    "create_form_required_skills_edit_submit" => "Save changes",
+    "create_form_required_skills_delete_title" => "Delete required skill",
+    "create_form_required_skills_delete_text" => "Are you sure you want to delete this required skill?",
+    "create_form_required_skills_delete_cancel" => "No, cancel",
+    "create_form_required_skills_delete_submit" => "Yes, delete",
+    // "create_form_required_skills_" => "",
+    "create_form_no_skills" => "No skills found",
+    "create_form_urgency" => "Urgency",
+    "create_back" => "Back to task overview",
+    "create_submit" => "Save task",
+    "created" => "Task has been created!",
+
+    //
+    // Edit
+    //
+
+    "edit_title" => "Update task",
+    "edit_back" => "Cancel",
+    "edited" => "Task has been updated!",
+
+    //
+    // Delete
+    //
+
+    "delete_title" => "Delete task",
+    "delete_text" => "Are you sure you want to delete this (:title) task?",
+    "delete_back" => "No, <span class='extra-text'>go back</span>",
+    "delete_submit" => "Yes, <span class='extra-text'>delete task</span>",
+    "deleted" => "Task has been deleted!",
+
+    //
     // Actions
     //
 
@@ -73,6 +140,12 @@ return [
     "abandon_confirm" => "Yes, abandon task",
     "abandon_success" => "Succesfully abandoned this task!",
 
+    "completed" => "Task has been completed!",
+
+    //
+    // Report progress
+    //
+
     "report_progress_title" => "Report progression",
     "report_progress_back" => "Go back",
     "report_progress_submit" => "Send report",
@@ -82,6 +155,10 @@ return [
     "report_progress_completed" => "Work is completed",
     "report_progress_success" => "Succesfully reported your progress",
 
+    //
+    // Progress report
+    //
+
     "progress_report_title" => "Progression report",
     "progress_report_message" => "Message",
     "progress_report_attachments" => "Attachments",
@@ -89,7 +166,9 @@ return [
     "progress_report_completed" => "Flagged as completed",
     "progress_report_completed_text" => ":user indicated that work has now been completed",
     
-    "completed" => "Task has been completed!",
+    //
+    // Review progress report
+    //
 
     "review_progress_report_title" => "Review progress report",
     "review_progress_report_message" => "Message",
@@ -97,5 +176,4 @@ return [
     "review_progress_report_submit" => "Place review",
     "reviewed_progress_report" => "Review has been placed!",
     
-
 ];

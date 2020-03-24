@@ -155,8 +155,8 @@ class ProjectService implements ModelServiceContract
     
     public function updateFromRequest(Project $project, UpdateProjectRequest $request)
     {
-        $starts_at = Dates::parse($request->starts_at, "/");
-        $ends_at = Dates::parse($request->ends_at, "/");
+        $starts_at = Dates::parse($request->starts_at, "/")->format("Y-m-d");
+        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "/")->format("Y-m-d") : null;
 
         $project->project_status_id = $request->project_status_id;
         $project->project_category_id = $request->project_category_id;
@@ -164,8 +164,8 @@ class ProjectService implements ModelServiceContract
         $project->title = $request->title;
         $project->slogan = $request->slogan;
         $project->description = $request->description;
-        $project->starts_at = $starts_at->format("Y-m-d");
-        $project->ends_at = $ends_at->format("Y-m-d");
+        $project->starts_at = $starts_at;
+        $project->ends_at = $ends_at;
 
         if ($request->hasFile("header_image"))
         {

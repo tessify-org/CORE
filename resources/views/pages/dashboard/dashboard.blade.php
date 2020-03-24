@@ -10,7 +10,7 @@
 
             <!-- Title & subtitle -->
             <h1 class="page-title centered">@lang("tessify-core::dashboard.title")</h1>
-            <h2 class="page-subtitle centered">@lang("tessify-core::dashboard.welcome", ["name" => $user->formattedName])</h2>
+            <h2 class="page-subtitle centered">{{ $greeting }}</h2>
 
             <!-- Dashboard -->
             <div id="dashboard">

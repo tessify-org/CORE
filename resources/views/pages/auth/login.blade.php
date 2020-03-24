@@ -32,7 +32,7 @@
 
                         <div id="no-account">
                             <a href="{{ route('auth.register') }}">
-                                @lang('auth.login_register_text')
+                                @lang('tessify-core::auth.login_register_text')
                             </a>
                         </div>
 

@@ -45,7 +45,7 @@ class TaskService implements ModelServiceContract
         // Add flags to the instance
         $instance->is_owner = $this->userOwnsTask($instance);
         $instance->is_project_owner = $this->userOwnsTaskProject($instance);
-        $instance->is_open = $this->hasAvailableSlot($instance);
+        $instance->is_open = $this->hasAvailableSlots($instance);
         $instance->is_assigned = $this->assignedToUser($instance);
         $instance->num_open_positions = $this->numAvailableSlots($instance);
         $instance->completed = $this->hasBeenCompleted($instance);
@@ -245,7 +245,7 @@ class TaskService implements ModelServiceContract
         return $task;
     }
 
-    public function hasAvailableSlot(Task $task)
+    public function hasAvailableSlots(Task $task)
     {
         return $task->num_positions > $task->users->count();
     }
@@ -253,6 +253,11 @@ class TaskService implements ModelServiceContract
     public function numAvailableSlots(Task $task)
     {
         return $task->num_positions - $task->users->count();
+    }
+
+    public function hasNoAssignedUsers(Task $task)
+    {
+        return $task->users->count() == 0;
     }
 
     public function hasBeenCompleted(Task $task)
@@ -280,6 +285,15 @@ class TaskService implements ModelServiceContract
         if (is_null($user)) $user = Auth::user();
 
         $task->users()->attach($user->id);
+
+        $task = Task::find($task->id);
+
+        if (!$this->hasAvailableSlots($task) and $this->hasStatus($task, "open"))
+        {
+            $this->updateStatus($task, "in_progress");
+        }
+
+        return $task;
     }
 
     public function unassignUser(Task $task, User $user = null)
@@ -287,6 +301,16 @@ class TaskService implements ModelServiceContract
         if (is_null($user)) $user = Auth::user();
 
         $task->users()->detach($user->id);
+
+        $task = Task::find($task->id);
+
+        // dd($this->hasNoAssignedUsers($task), $task->users->count(), $this->hasStatus($task, "in_progress"));
+        if ($this->hasNoAssignedUsers($task) and $this->hasStatus($task, "in_progress"))
+        {
+            $this->updateStatus($task, "open");
+        }
+
+        return $task;
     }
 
     public function numCompletedForUser(User $user = null)
@@ -345,5 +369,21 @@ class TaskService implements ModelServiceContract
 
         $task->task_status_id = $completedStatus->id;
         $task->save();
+    }
+
+    public function hasStatus(Task $task, $name)
+    {
+        return $task->status->name == $name;
+    }
+
+    public function updateStatus(Task $task, $name)
+    {
+        $status = TaskStatuses::findByName($name);
+        if ($status)
+        {
+            $task = $this->find($task->id);
+            $task->task_status_id = $status->id;
+            $task->save();
+        }
     }
 }

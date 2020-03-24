@@ -27,7 +27,7 @@ return [
     "memberlist" => "Ledenlijst",
     "settings" => "Instellingen",
     "profile" => "Profiel van :name",
-    "profile_update" => "Update profiel",
+    "profile_update" => "Profiel aanpassen",
     "dashboard" => "Dashboard",
     "projects" => "Projecten",
     "projects_view" => "Bekijk project",

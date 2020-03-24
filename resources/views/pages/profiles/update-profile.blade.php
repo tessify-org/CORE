@@ -9,7 +9,7 @@
         <div class="content-section">
 
             <!-- Page title -->
-            <h1 class="page-title centered">Update Profiel</h1>
+            <h1 class="page-title centered">@lang("tessify-core::profiles.update_profile_title")</h1>
 
             <!-- Feedback -->
             @include("tessify-core::partials.feedback")

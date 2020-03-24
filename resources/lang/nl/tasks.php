@@ -28,11 +28,11 @@ return [
     "overview_sidebar_search" => "Zoeken",
     "overview_sidebar_statuses" => "Status",
     "overview_sidebar_statuses_empty" => "Geen statussen gevonden",
-    "overview_sidebar_categories" => "Categorie",
-    "overview_sidebar_categories_empty" => "Geen categorieen gevonden",
-    "overview_sidebar_skills" => "Skill",
-    "overview_sidebar_skills_empty" => "Geen skills gevonden",
-    "overview_sidebar_seniorities" => "Senioriteit",
+    "overview_sidebar_categories" => "Categorieën",
+    "overview_sidebar_categories_empty" => "Geen categorieën gevonden",
+    "overview_sidebar_skills" => "Vaardigheden",
+    "overview_sidebar_skills_empty" => "Geen vaardigheden gevonden",
+    "overview_sidebar_seniorities" => "Vereiste senioriteit",
     "overview_sidebar_seniorities_empty" => "Geen senioriteiten gevonden",
     "overview_sidebar_timespan" => "Geschatte tijdsbestek",
 
@@ -61,6 +61,73 @@ return [
     "view_updated_at" => "Laatse update",
 
     //
+    // Create
+    //
+
+    "create_title" => "Werkpakket toevoegen",
+    "create_form_status" => "Status",
+    "create_form_project" => "Project",
+    "create_form_category" => "Categorie",
+    "create_form_seniority" => "Vereiste senioriteit",
+    "create_form_title" => "Titel",
+    "create_form_description" => "Beschrijving",
+    "create_form_complexity" => "Complexiteit",
+    "create_form_estimated_hours" => "Geschatte aantal vereiste uren",
+    "create_form_realized_hours" => "Gerealiseerd aantal uren",
+    "create_form_select_category" => "Selecteer een passende categorie",
+    "create_form_no_categories" => "Geen categorieën gevonden",
+    "create_form_select_seniority" => "Selecteer de vereiste senioriteit",
+    "create_form_no_seniorities" => "Geen senioriteiten gevonden",
+    "create_form_select_status" => "Status",
+    "create_form_no_statuses" => "Geen statussen gevonden",
+    "create_form_required_skills" => "Vereiste vaardigheden",
+    "create_form_required_skills_no_records" => "Geen vaardigheden gevonden",
+    "create_form_required_skills_add_button" => "Vereiste vaardigheid toevoegen",
+    "create_form_required_skills_view_title" => "Vereiste vaardigheid",
+    "create_form_required_skills_view_skill" => "Vaardigheden",
+    "create_form_required_skills_view_required_mastery" => "Vereiste beheersing",
+    "create_form_required_skills_view_description" => "Beschrijving",
+    "create_form_required_skills_view_edit" => "Aanpassen",
+    "create_form_required_skills_view_delete" => "Verwijderen",
+    "create_form_required_skills_add_title" => "Vereiste vaardigheid toevoegen",
+    "create_form_required_skills_form_skill" => "Vaardigheid",
+    "create_form_required_skills_form_required_mastery" => "Vereiste beheersing van de vaardigheid",
+    "create_form_required_skills_form_description" => "Omschrijf de verwachtingen",
+    "create_form_required_skills_add_cancel" => "Annuleren",
+    "create_form_required_skills_add_submit" => "Opslaan",
+    "create_form_required_skills_edit_title" => "Vereiste vaardigheid aanpassen",
+    "create_form_required_skills_edit_cancel" => "Annuleren",
+    "create_form_required_skills_edit_submit" => "Wijzigingen opslaan",
+    "create_form_required_skills_delete_title" => "Vereiste vaardigheid verwijderen",
+    "create_form_required_skills_delete_text" => "Weet je zeker dat je deze vereiste vaardigheid wilt verwijderen?",
+    "create_form_required_skills_delete_cancel" => "Nee, annuleren",
+    "create_form_required_skills_delete_submit" => "Ja, verwijderen",
+    // "create_form_required_skills_" => "",
+    "create_form_no_skills" => "Geen vaardigheden gevonden",
+    "create_form_urgency" => "Urgentie",
+    "create_back" => "Terug naar werkpakketten",
+    "create_submit" => "Werkpakket opslaan!",
+    "created" => "Werkpakket is toegevoegd!",
+
+    //
+    // Edit
+    //
+
+    "edit_title" => "Werkpakket aanpassen",
+    "edit_back" => "Annuleren",
+    "edited" => "Werkpakket aangepast!",
+
+    //
+    // Delete
+    //
+
+    "delete_title" => "Taak verwijderen",
+    "delete_text" => "Weet je zeker dat je deze taak (:title) wilt verwijderen?",
+    "delete_back" => "Nee, <span class='extra-text'>ga terug</span>",
+    "delete_submit" => "Ja, <span class='extra-text'>verwijder werkpakket</span>",
+    "deleted" => "Taak is verwijderd!",
+
+    //
     // Actions
     //
 
@@ -72,6 +139,12 @@ return [
     "abandon_confirm" => "Ja, schrijf mij uit",
     "abandon_success" => "Je hebt jezelf met success uitgeschreven",
 
+    "completed" => "Werkpakket is voltooid!",
+
+    //
+    // Report progress
+    //
+
     "report_progress_title" => "Progressie rapporteren",
     "report_progress_back" => "Terug",
     "report_progress_submit" => "Verstuur rapport",
@@ -81,6 +154,10 @@ return [
     "report_progress_completed" => "Werk is af",
     "report_progress_success" => "Je hebt je progressie met success gerapporteerd!",
 
+    // 
+    // Progress report
+    // 
+
     "progress_report_title" => "Progressie rapport",
     "progress_report_message" => "Bericht",
     "progress_report_attachments" => "Bijlagen",
@@ -88,7 +165,9 @@ return [
     "progress_report_completed" => "Status voltooid",
     "progress_report_completed_text" => ":user geeft aan dat het werk nu is voltooid",
 
-    "completed" => "Werkpakket is voltooid!",
+    //
+    // Review progress report
+    //
 
     "review_progress_report_title" => "Progressie rapport reviewen",
     "review_progress_report_message" => "Bericht",

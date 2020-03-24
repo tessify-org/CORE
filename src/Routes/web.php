@@ -270,4 +270,5 @@ Route::group(["prefix" => "api"], function() {
     });
 
 });
+
 // TODO: Move these to the api.php file and add proper token-based authentication instead of session hijacking like this

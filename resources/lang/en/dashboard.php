@@ -29,4 +29,9 @@ return [
     "projects_title" => "My projects",
     "projects_empty" => "You don't have any ongoing projects",
 
+    "greeting_morning" => "Good morning :name!",
+    "greeting_afternoon" => "Good afternoon :name!",
+    "greeting_evening" => "Good evening :name!",
+    "greeting_night" => "Good night :name!",
+    
 ];

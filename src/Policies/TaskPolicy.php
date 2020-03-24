@@ -61,7 +61,7 @@ class TaskPolicy
      */
     public function assignToSelf(User $user, Task $task)
     {
-        return Tasks::hasAvailableSlot($task) and !Tasks::assignedToUser($task, $user);
+        return Tasks::hasAvailableSlots($task) and !Tasks::assignedToUser($task, $user);
     }
 
     /**

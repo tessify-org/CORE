@@ -81,7 +81,7 @@
             <!-- Overlay -->
             <div id="profile-header__overlay"></div>
         </div>
-
+        
         <!-- Content wrapper -->
         <div class="content-section__wrapper">
             <div class="content-section pt50">

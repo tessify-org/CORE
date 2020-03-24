@@ -45,14 +45,11 @@
             <div id="task-cta" class="elevation-1">
                 <!-- Completed -->
                 @if ($task->status->name == "completed")
-
                     <div id="task-cta__title">Completed</div>
                     <div id="task-cta__text">Deze taak is voltooid!</div>
-
                 @else
                     <!-- Assigned user -->
                     @if ($task->is_assigned)
-
                         <!-- Has outstanding report(s) -->
                         @if ($task->has_outstanding_reports)
                             <!-- Has unread review -->
@@ -81,17 +78,14 @@
                                 </v-btn>
                             </div>
                         @endif
-
                         <!-- Leave task -->
                         <div id="task-cta__link">
                             <a href="{{ route('tasks.abandon', ['slug' => $task->slug]) }}">
                                 @lang("tessify-core::tasks.view_abandon")
                             </a>
                         </div>
-
                     <!-- Owner -->
                     @elseif ($task->is_owner)
-
                         <!-- Open positions -->
                         @if ($task->is_open)
                             <div id="task-cta__title">Now we wait</div>
@@ -112,10 +106,8 @@
                                 <div id="task-cta__text">Waiting for assigned users to complete the task</div>
                             @endif
                         @endif
-
                     <!-- Guest user -->
                     @else
-
                         <!-- Open positions -->
                         @if ($task->is_open)
                             <div id="task-cta__title">{{ $task->num_open_positions }} open posities voor dit werkpakket!</div>
@@ -131,7 +123,6 @@
                                 X & Y werken zijn hiermee aan de slag
                             </div>
                         @endif
-                        
                     @endif
                 @endif
             </div>
@@ -149,13 +140,11 @@
                     <div id="task-columns__left">
                         
                         <div class="content-box elevation-1">
-
                             <!-- Description -->
                             <div id="task-description">
                                 <div id="task-description__label">@lang("tessify-core::tasks.view_description")</div>
                                 <div id="task-description__text">{{ $task->description }}</div>
                             </div>
-
                             <!-- Required skills -->
                             @if (count($task->skills))
                                 <div id="task-skills">
@@ -170,7 +159,6 @@
                                     </div>
                                 </div>
                             @endif
-
                         </div>
 
                     </div>

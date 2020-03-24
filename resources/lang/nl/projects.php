@@ -247,37 +247,4 @@ return [
     "tasks_overview_category" => "Categorie",
     "tasks_overview_complexity" => "Complexiteit",
 
-    "tasks_view_title" => "Werkpakket",
-
-    "tasks_create_title" => "Werkpakket toevoegen",
-    "tasks_create_back" => "Terug naar werkpakketten",
-    "tasks_create_submit" => "Werkpakket opslaan!",
-    "tasks_created" => "Werkpakket is toegevoegd!",
-
-    "tasks_edit_title" => "Werkpakket aanpassen",
-    "tasks_edit_back" => "Annuleren",
-    "tasks_updated" => "Werkpakket aangepast!",
-    
-    "tasks_form_project" => "Project",
-    "tasks_form_status" => "Status",
-    "tasks_form_category" => "Categorie",
-    "tasks_form_seniority" => "Senioriteit",
-    "tasks_form_title" => "Titel",
-    "tasks_form_description" => "Beschrijving",
-    "tasks_form_complexity" => "Complexiteit",
-    "tasks_form_estimated_hours" => "Geschatte aantal uren",
-    "tasks_form_realized_hours" => "Gerealiseerd aantal uren",
-    "tasks_form_select_category" => "Selecteer een passende categorie",
-    "tasks_form_no_categories" => "Geen categorieen gevonden",
-    "tasks_form_select_seniority" => "Selecteer de vereiste senioriteit",
-    "tasks_form_no_seniorities" => "Geen senioriteiten gevonden",
-    "tasks_form_select_status" => "Status",
-    "tasks_form_no_statuses" => "Geen statussen gevonden",
-    "tasks_form_required_skills" => "Vereiste vaardigheden",
-    "tasks_form_urgency" => "Urgentie",
-
-    "tasks_delete_title" => "Taak verwijderen",
-    "tasks_delete_text" => "Weet je zeker dat je deze taak (:title) wilt verwijderen?",
-    "tasks_deleted" => "Taak is verwijderd!",
-
 ];

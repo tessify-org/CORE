@@ -47,7 +47,7 @@ Breadcrumbs::for("memberlist", function($t) {
 
 // Profile
 Breadcrumbs::for("profile", function($t, $user) {
-    $t->parent("memberlist");
+    $t->parent("home");
     $t->push(__('tessify-core::breadcrumbs.profile', ['name' => $user->formattedName]), route('profile', $user->slug));
 });
 Breadcrumbs::for("profile.update", function($t, $user) {

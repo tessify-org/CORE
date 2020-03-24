@@ -12,8 +12,9 @@ use WorkMethods;
 use ProjectStatuses;
 use ProjectResources;
 use ProjectCategories;
-
 use App\Http\Controllers\Controller;
+use Tessify\Core\Events\Projects\ProjectCreated;
+use Tessify\Core\Events\Projects\ProjectCompleted;
 use Tessify\Core\Http\Requests\Projects\CreateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\UpdateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\DeleteProjectRequest;
@@ -74,7 +75,7 @@ class ProjectController extends Controller
     {
         $project = Projects::createFromRequest($request);
 
-        Reputation::givePoints(1000, "created_project", $project);
+        event(new ProjectCreated($project));
 
         flash(__("tessify-core::projects.project_created"))->success();
         return redirect()->route("projects.view", $project->slug);

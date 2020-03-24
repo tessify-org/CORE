@@ -227,7 +227,7 @@ return [
     // Delete role
     // 
 
-    "delete_role_title" => "",
+    "delete_role_title" => "Delete role",
     "delete_role_text" => "Are you sure you want to delete this role (:name)?\nAll data will be deleted and any associated user will be removed from the team.",
     "delete_role_succeeded" => "Role has been removed",
 
@@ -246,38 +246,5 @@ return [
     "tasks_overview_title" => "Title",
     "tasks_overview_category" => "Category",
     "tasks_overview_complexity" => "Complexity",
-    
-    "tasks_view_title" => "Task",
-
-    "tasks_create_title" => "Create task",
-    "tasks_create_back" => "Back to tasks",
-    "tasks_create_submit" => "Save task",
-    "tasks_created" => "Task has been created!",
-
-    "tasks_edit_title" => "Update task",
-    "tasks_edit_back" => "Cancel",
-    "tasks_updated" => "Task has been updated!",
-
-    "tasks_form_project" => "Project",
-    "tasks_form_status" => "Status",
-    "tasks_form_category" => "Category",
-    "tasks_form_seniority" => "Seniority",
-    "tasks_form_title" => "Title",
-    "tasks_form_description" => "Description",
-    "tasks_form_complexity" => "Complexity",
-    "tasks_form_estimated_hours" => "Estimated hours",
-    "tasks_form_realized_hours" => "Realized hours",
-    "tasks_form_select_category" => "Select an appropriate category",
-    "tasks_form_no_categories" => "No categories found",
-    "tasks_form_select_seniority" => "Select the required seniority",
-    "tasks_form_no_seniorities" => "No seniorities found",
-    "tasks_form_select_status" => "Status",
-    "tasks_form_no_statuses" => "No statuses found",
-    "tasks_form_required_skills" => "Required skills",
-    "tasks_form_urgency" => "Urgentie",
-
-    "tasks_delete_title" => "Delete task",
-    "tasks_delete_text" => "Are you sure you want to delete this (:title) task?",
-    "tasks_deleted" => "Task has been deleted!",
 
 ];
