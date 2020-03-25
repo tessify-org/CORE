@@ -36,6 +36,7 @@ use Tessify\Core\Services\ModelServices\TaskProgressReportReviewService;
 use Tessify\Core\Services\ModelServices\TaskProgressReportAttachmentService;
 use Tessify\Core\Services\ModelServices\ReputationTransactionService;
 use Tessify\Core\Services\ModelServices\BugReportService;
+use Tessify\Core\Services\ModelServices\CompletedTaskService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -218,6 +219,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("bug-reports", function() {
             return new BugReportService;
+        });
+
+        $this->app->singleton("completed-tasks", function() {
+            return new CompletedTaskService;
         });
 
         //

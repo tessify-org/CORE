@@ -96,4 +96,9 @@ class Task extends Model
     {
         return $this->hasMany(TaskProgressReport::class);
     }
+
+    public function completedTasks()
+    {
+        return $this->hasMany(\Tessify\Core\Models\CompletedTask::class);
+    }
 }

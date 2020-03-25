@@ -374,7 +374,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
         
-        Tasks::markAsCompleted($task);
+        Tasks::complete($task);
 
         event(new TaskCompleted($task));
 

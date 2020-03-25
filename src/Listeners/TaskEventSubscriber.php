@@ -9,26 +9,37 @@ class TaskEventSubscriber
 {
     public function handleTaskCreated($event)
     {
+        // Award the logged in user the "task created" reputation reward
         Reputation::givePoints(1000, "created_task", $event->task);
     }
 
     public function handleTaskCompleted($event)
     {
-        Reputation::givePoints(1000, "completed_task", $event->task);
+        // Award all assigned users the "task completed" reputation reward
+        foreach ($event->task->users as $user)
+        {
+            Reputation::givePoints(1000, "completed_task", $event->task, $user);
+        }
+
+        // Detach all users from the completed task (as records are now being kept by the CompletedTask entries in the db)
+        Tasks::unassignAllUsers($event->task);
     }
     
     public function handleTaskProgressReported($event)
     {
+        // Award the logged in user the "reported progress on task" reputation reward
         Reputation::givePoints(100, "reported_progress_on_task", $event->task);
     }
 
     public function handleTaskAssigned($event)
     {
+        // Award the logged in user the "task assigned to you" reputation reward
         Reputation::givePoints(100, "assigned_to_task", $event->task);
     }
 
     public function handleTaskUnassigned($event)
     {
+        // Take points from the user because they bailed out
         Reputation::takePoints(100, "unassigned_from_task", $event->task);
     }
 

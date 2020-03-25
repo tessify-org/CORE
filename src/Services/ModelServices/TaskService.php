@@ -7,6 +7,7 @@ use Auth;
 use Users;
 use Skills;
 use Projects;
+use CompletedTasks;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
@@ -363,12 +364,33 @@ class TaskService implements ModelServiceContract
         return false;
     }
 
-    public function markAsCompleted(Task $task)
+    public function complete(Task $task)
     {
+        // Update the task's status to completed
         $completedStatus = TaskStatuses::findByName("completed");
+        if ($completedStatus)
+        {
+            $task->task_status_id = $completedStatus->id;
+            $task->save();
+        }
 
-        $task->task_status_id = $completedStatus->id;
-        $task->save();
+        // Created 'CompletedTask' records for all of the assigned users
+        foreach ($task->users as $user)
+        {
+            CompletedTasks::create($task, $user);
+        }
+
+        // Detaching the users is performed in the TaskEventSubscriber in a listener
+        // That way we know which users completed the task so rewards can be rewarded
+        // before detaching all users from the completed task
+        
+        // Return the task
+        return $task;
+    }
+
+    public function unassignAllUsers(Task $task)
+    {
+        $task->users()->detach();
     }
 
     public function hasStatus(Task $task, $name)

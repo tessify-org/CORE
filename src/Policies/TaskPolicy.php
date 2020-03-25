@@ -61,7 +61,7 @@ class TaskPolicy
      */
     public function assignToSelf(User $user, Task $task)
     {
-        return Tasks::hasAvailableSlots($task) and !Tasks::assignedToUser($task, $user);
+        return $task->status->name !== "completed" and Tasks::hasAvailableSlots($task) and !Tasks::assignedToUser($task, $user);
     }
 
     /**
@@ -73,6 +73,6 @@ class TaskPolicy
      */
     public function abandon(User $user, Task $task)
     {
-        return Tasks::assignedToUser($task, $user);
+        return $task->status->name !== "completed" and Tasks::assignedToUser($task, $user);
     }
 }
