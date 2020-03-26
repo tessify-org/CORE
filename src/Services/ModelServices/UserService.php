@@ -17,6 +17,10 @@ use Tessify\Core\Jobs\Auth\SendAccountRecoveryEmail;
 use Tessify\Core\Http\Requests\Auth\RegisterRequest;
 use Tessify\Core\Http\Requests\Auth\ResetPasswordRequest;
 use Tessify\Core\Http\Requests\Profiles\UpdateProfileRequest;
+use Tessify\Core\Http\Requests\Admin\Users\CreateUserRequest;
+use Tessify\Core\Http\Requests\Admin\Users\UpdateUserRequest;
+use Tessify\Core\Http\Requests\Admin\Users\DeleteUserRequest;
+use Tessify\Core\Http\Requests\Admin\Users\BanUserRequest;
 
 class UserService implements ModelServiceContract
 {
@@ -49,7 +53,10 @@ class UserService implements ModelServiceContract
         
         // Manually load the dynamic attributes
         $instance->formatted_name = $instance->formattedName;
-        $instance->combined_name = $instance->combined_name;
+        $instance->formatted_has_been_checked = $instance->has_been_checked 
+            ? __("tessify-core::general.yes")
+            : __("tessify-core::general.no");
+        // $instance->formatted_
 
         // TODO: load relationships.. not necessary yet
         $instance->skills = Skills::getAllForUser($instance);
@@ -255,5 +262,91 @@ class UserService implements ModelServiceContract
         }
 
         return collect($out);
+    }
+    
+    public function banPermanently(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $user->permabanned = true;
+        $user->save();
+
+        return $user;
+    }
+
+    public function banTemporarily($numDays = 1, User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $user->banned_until = now()->addDays($numDays)->format("Y-m-d H:i:s");
+        $user->save();
+
+        return $user;
+    }
+
+    public function unban(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        $user->permabanned = false;
+        $user->banned_until = null;
+        $user->save();
+
+        return $user;
+    }
+
+    public function flagAsChecked(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+        
+        if (!$user->has_been_checked)
+        {
+            $user->has_been_checked = true;
+            $user->save();
+        }
+
+        return $user;
+    }
+
+    public function flagAsUnchecked(User $user = null)
+    {
+        if (is_null($user)) $user = Auth::user();
+        
+        if ($user->has_been_checked)
+        {
+            $user->has_been_checked = false;
+            $user->save();
+        }
+
+        return $user;
+    }
+
+    public function createFromAdminRequest(CreateUserRequest $request)
+    {
+        return User::create([
+            "is_admin" => $request->is_admin == "true" ? true : false,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "password" => bcrypt($request->password),
+            "headline" => $request->headline,
+            "interests" => $request->interests,
+        ]);
+    }
+
+    public function updateFromAdminRequest(User $user, UpdateUserRequest $request)
+    {
+        $user->is_admin = $request->is_admin == "true" ? true : false;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->headline = $request->headline;
+        $user->interests = $request->interests;
+        
+        if ($request->has("password") and $request->password != "") $user->password = bcrypt($request->password);
+
+        $user->save();
+
+        return $user;
     }
 }

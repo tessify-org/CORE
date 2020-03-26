@@ -67,5 +67,6 @@ return [
     "admin_users_create" => "Nieuwe gebruiker toevoegen",
     "admin_users_edit" => "Gebruiker aanpassen",
     "admin_users_delete" => "Gebruiker verwijderen",
+    "admin_users_ban" => "Gebruiker verbannen",
 
 ];

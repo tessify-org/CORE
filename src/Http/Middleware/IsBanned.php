@@ -15,21 +15,21 @@ class IsBanned
             // Grab the logged in user
             $user = Auth::user();
 
-            // If the user has been banned
-            if ($user->banned_until)
+            // If the user has been perma banned
+            if ($user->permabanned)
             {
-                // If user is banned permanently
-                if ($user->banned_until == -1)
-                {
-                    // Logout the user
-                    Auth::logout();
+                // Logout the user
+                Auth::logout();
 
-                    // Redirect + flash message
-                    flash(__('tessify-core::auth.middleware_banned_permanently'))->error();
-                    return redirect()->route("auth.login");
-                }
+                // Redirect + flash message
+                flash(__('tessify-core::auth.middleware_banned_permanently'))->error();
+                return redirect()->route("auth.login");
+            }
+            // If the user has been temp banned
+            else if ($user->banned_until)
+            {
                 // If user is not banned permanently and the ban has not expired
-                else if (now()->lessThan($user->banned_until))
+                if (now()->lessThan($user->banned_until))
                 {
                     // Logout the user
                     Auth::logout();

@@ -68,5 +68,6 @@ return [
     "admin_users_create" => "Create a new user",
     "admin_users_edit" => "Update user",
     "admin_users_delete" => "Delete user",
+    "admin_users_ban" => "Ban user",
 
 ];

@@ -229,14 +229,16 @@ Route::group(["prefix" => "admin", "middleware" => ["can:access-admin-panel"]], 
         Route::get("/", "Admin\UserController@getOverview")->name("admin.users");
         Route::get("create", "Admin\UserController@getCreate")->name("admin.users.create");
         Route::post("create", "Admin\UserController@postCreate")->name("admin.users.create.post");
-        Route::get("{id}/view", "Admin\UserController@getView")->name("admin.users.view");
+        Route::get("{id}", "Admin\UserController@getView")->name("admin.users.view");
         Route::get("{id}/edit", "Admin\UserController@getEdit")->name("admin.users.edit");
         Route::post("{id}/edit", "Admin\UserController@postEdit")->name("admin.users.edit.post");
         Route::get("{id}/delete", "Admin\UserController@getDelete")->name("admin.users.delete");
         Route::post("{id}/delete", "Admin\UserController@postDelete")->name("admin.users.delete.post");
         Route::get("{id}/ban", "Admin\UserController@getBan")->name("admin.users.ban");
+        Route::post("{id}/ban", "Admin\UserController@postBan")->name("admin.users.ban.post");
         Route::get("{id}/unban", "Admin\UserController@getUnban")->name("admin.users.unban");
         Route::get("{id}/flag-as-checked", "Admin\UserController@getFlagAsChecked")->name("admin.users.flag-as-checked");
+        Route::get("{id}/unflag-as-checked", "Admin\UserController@getFlagAsUnchecked")->name("admin.users.unflag-as-checked");
     });
 
 });

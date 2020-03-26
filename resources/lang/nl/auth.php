@@ -18,9 +18,9 @@ return [
     
     'middleware_login_required' => 'Je moet ingelogd zijn om die pagina te mogen bekijken.',
     'middleware_guest_required' => 'Die pagina kun je alleen zien als je niet bent ingelogd.',
-    'middleware_banned_permanently' => 'Je bent permanent gebanned van het platform.',
-    'middleware_banned_temporarily' => 'Je bent nog :days :day gebanned van het platform.',
-    'middleware_ban_lifted' => 'Je ban is opgeheven, probeer een ban te voorkomen in de toekomst aub.',
+    'middleware_banned_permanently' => 'Je bent permanent verbannen van het platform.',
+    'middleware_banned_temporarily' => 'Je hebt nog :days :day geen toegang tot het platform.',
+    'middleware_ban_lifted' => 'Je verbanning is opgeheven, probeer nog een verbanning te voorkomen in de toekomst aub.',
     'middleware_banned_temporarily_day' => 'dag',
     'middleware_banned_temporarily_days' => 'dagen',
     

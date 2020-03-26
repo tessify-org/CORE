@@ -25,11 +25,14 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "first_name" => "",
+            "is_admin" => "required",
+            "first_name" => "required",
             "last_name" => "required",
             "email" => "required|unique:users,email",
             "password" => "required|confirmed",
             "password_confirmation" => "required",
+            "headline" => "nullable",
+            "interests" => "nullable",
         ];
     }
 }

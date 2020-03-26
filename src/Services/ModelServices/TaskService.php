@@ -379,7 +379,7 @@ class TaskService implements ModelServiceContract
         {
             CompletedTasks::create($task, $user);
         }
-
+        
         // Detaching the users is performed in the TaskEventSubscriber in a listener
         // That way we know which users completed the task so rewards can be rewarded
         // before detaching all users from the completed task
