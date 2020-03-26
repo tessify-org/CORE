@@ -45,7 +45,7 @@ return [
     "footer_employee_do_more_link" => "Meer doen als vrijwilliger",
     "footer_newsletter_title" => "Nieuwsbrief",
     "footer_newsletter_text" => "Meld je aan voor de maandelijkse digitale nieuwsbrief.",
-    "footer_copyright" => "&copy; Copyrighted by yours truly. This is the way. 2020 - &infin;",
+    "footer_copyright" => "&copy; Copyrighted by SSC-ICT. 2020 - &infin;",
     "footer_cookies_link" => "Cookies en Privacy",
     "footer_disclaimer_link" => "Voorwaarden",
 

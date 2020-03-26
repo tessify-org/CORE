@@ -45,7 +45,7 @@ return [
     "footer_employee_do_more_link" => "Do more as an employee",
     "footer_newsletter_title" => "Newsletter",
     "footer_newsletter_text" => "Sign up for the digital newsletter we release monthly.",
-    "footer_copyright" => "&copy; Copyrighted by yours truly. This is the way. 2020 - &infin;",
+    "footer_copyright" => "&copy; Copyrighted by SSC-ICT. 2020 - &infin;",
     "footer_cookies_link" => "Cookies and Privacy",
     "footer_disclaimer_link" => "Disclaimer",
 
