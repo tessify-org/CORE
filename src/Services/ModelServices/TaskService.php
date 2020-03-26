@@ -335,7 +335,7 @@ class TaskService implements ModelServiceContract
     {
         if (is_null($user)) $user = Auth::user();
 
-        return $task->author_id == $user->id or $task->project->author_id == $user->id;
+        return $task->author_id == $user->id or ($task->project and $task->project->author_id == $user->id);
     }
 
     public function userOwnsTaskProject(Task $task, User $user = null)

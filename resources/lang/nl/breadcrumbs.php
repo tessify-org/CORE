@@ -63,5 +63,9 @@ return [
     "messages_read" => "Bericht lezen",
     "bug_report_submitted" => "Bug report is verzonden",
     "admin_dashboard" => "Administratie dashboard",
+    "admin_users" => "Beheer gebruikers",
+    "admin_users_create" => "Nieuwe gebruiker toevoegen",
+    "admin_users_edit" => "Gebruiker aanpassen",
+    "admin_users_delete" => "Gebruiker verwijderen",
 
 ];

@@ -155,13 +155,16 @@ Breadcrumbs::for("admin.dashboard", function($t) {
 
 // Manage users
 Breadcrumbs::for("admin.users", function($t) {
-
+    $t->parent("admin.dashboard");
+    $t->push(__("tessify-core::breadcrumbs.admin_users"), route("admin.users"));
 });
-Breadcrumbs::for("admin.users.view", function($t) {
-
+Breadcrumbs::for("admin.users.view", function($t, $user) {
+    $t->parent("admin.users");
+    $t->push(__("tessify-core::breadcrumbs.admin_users_view"), route("admin.users.view", $user->id));
 });
 Breadcrumbs::for("admin.users.create", function($t) {
-    
+    $t->parent("admin.users");
+    $t->push(__("tessify-core::breadcrumbs.admin_users_create"), route("admin.users.create"));
 });
 Breadcrumbs::for("admin.users.edit", function($t, $user) {
     $t->parent("admin.users.view", $user);

@@ -64,9 +64,9 @@ return [
     "messages_read" => "Read message",
     "bug_report_submitted" => "Bug report has been submitted",
     "admin_dashboard" => "Admin dashboard",
-    "admin_users" => "",
-    "admin_users_create" => "",
-    "admin_users_edit" => "",
-    "admin_users_delete" => "",
+    "admin_users" => "Manage users",
+    "admin_users_create" => "Create a new user",
+    "admin_users_edit" => "Update user",
+    "admin_users_delete" => "Delete user",
 
 ];
