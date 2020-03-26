@@ -97,7 +97,7 @@ return [
     "delete_text" => "Weet je zeker dat je dit project (:title) wilt verwijderen?\nAlle data zal onomkeerbaar uit de database worden verwijderd.",
     "delete_cancel" => "Nee, <span class='extra-text'>terug</span>",
     "delete_confirm" => "Ja, <span class='extra-text'>verwijderen</span>",
-
+    
     //
     // View team
     //

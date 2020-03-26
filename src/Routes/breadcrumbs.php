@@ -152,3 +152,22 @@ Breadcrumbs::for("projects.tasks", function($t, $project) {
 Breadcrumbs::for("admin.dashboard", function($t) {
     $t->push(__('tessify-core::breadcrumbs.admin_dashboard'), route("admin.dashboard"));
 });
+
+// Manage users
+Breadcrumbs::for("admin.users", function($t) {
+
+});
+Breadcrumbs::for("admin.users.view", function($t) {
+
+});
+Breadcrumbs::for("admin.users.create", function($t) {
+    
+});
+Breadcrumbs::for("admin.users.edit", function($t, $user) {
+    $t->parent("admin.users.view", $user);
+    $t->push(__("tessify-core::breadcrumbs.admin_users_edit", route("admin.users.edit", $user->id)));
+});
+Breadcrumbs::for("admin.users.delete", function($t, $user) {
+    $t->parent("admin.users.view", $user);
+    $t->push(__("tessify-core::breadcrumbs.admin_users_delete"), route("admin.users.delete", $user->id));
+});

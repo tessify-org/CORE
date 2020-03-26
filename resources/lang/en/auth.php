@@ -18,7 +18,12 @@ return [
 
     'middleware_login_required' => 'You must be logged in to view that page.',
     'middleware_guest_required' => 'You can only view that page if you\'re not logged in.',
-
+    'middleware_banned_permanently' => 'You have been permanently banned from the platform.',
+    'middleware_banned_temporarily' => 'You have been banned for :days :day from the platform.',
+    'middleware_ban_lifted' => 'Your ban has been lifted. Please try to prevent one in the future.',
+    'middleware_banned_temporarily_day' => 'day',
+    'middleware_banned_temporarily_days' => 'days',
+    
     //
     // Login page
     //

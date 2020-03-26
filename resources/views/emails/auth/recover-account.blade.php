@@ -1,11 +1,11 @@
 @component('mail::message')
-# @lang('auth.recover_account_email_title')
+# {{ $titleText }}
 
 {!! $text !!}
 
 @component('mail::button', ['url' => route('auth.reset-password', ['email' => $user->email, 'code' => $user->recovery_code])])
-    @lang('auth.recover_account_email_button')
+    {{ $buttonText }}
 @endcomponent
 
-{!! $closing_text !!} 
+{!! $closingText !!} 
 @endcomponent

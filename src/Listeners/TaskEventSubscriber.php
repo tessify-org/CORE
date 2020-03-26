@@ -18,7 +18,9 @@ class TaskEventSubscriber
         // Award all assigned users the "task completed" reputation reward
         foreach ($event->task->users as $user)
         {
-            Reputation::givePoints(1000, "completed_task", $event->task, $user);
+            $points = Reputation::determinePoints($event->task->urgency);
+
+            Reputation::givePoints($points, "completed_task", $event->task, $user);
         }
 
         // Detach all users from the completed task (as records are now being kept by the CompletedTask entries in the db)

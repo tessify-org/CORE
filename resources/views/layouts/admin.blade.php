@@ -28,6 +28,18 @@
                     <!-- Navigation -->
                     <nav id="topnav-links__wrapper">
                         <ul id="topnav-links">
+                            <!-- Dashboard -->
+                            <li class="topnav-link__wrapper">
+                                <a class="topnav-link" href="{{ route('admin.dashboard') }}">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <!-- Manage users -->
+                            <li class="topnav-link__wrapper">
+                                <a class="topnav-link" href="{{ route('admin.users') }}">
+                                    Manage users
+                                </a>
+                            </li>
                             <!-- Back to frontend -->
                             <li class="topnav-link__wrapper">
                                 <a class="topnav-link" href="{{ route('home') }}">
@@ -48,9 +60,11 @@
                     <a class="sidemenu-link" href="{{ route('admin.dashboard') }}">
                         <span class="sidemenu-link__text">Dashboard</div>
                     </a>
+                    <!-- <a class="sidemenu-link" href="{{ route('admin.users') }}">
+                        <span class="sidemenu-link__text">Manage users</span>
+                    </a> -->
                     <a class="sidemenu-link" href="{{ route('home') }}">
                         <span class="sidemenu-link__text">Naar de frontend</div>
-                    </a>
                     </a>
                     <a class="sidemenu-link" href="{{ route('auth.logout') }}">
                         <span class="sidemenu-link__text">Uitloggen</div>

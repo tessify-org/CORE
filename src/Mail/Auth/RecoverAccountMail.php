@@ -33,8 +33,10 @@ class RecoverAccountMail extends Mailable
         return $this->subject(__('tessify-core::auth.recover_account_email_subject'))
                     ->markdown('tessify-core::emails.auth.recover-account', [
                         'user' => $this->user,
+                        'titleText' => __('tessify-core::auth.recover_account_email_title'),
+                        'buttonText' => __('tessify-core::auth.recover_account_email_button'),
+                        'closingText' => nl2br(__('tessify-core::general.email_closing_text')),
                         'text' => str_replace('\n', '<br>', (__('tessify-core::auth.recover_account_email_text', ['name' => 'henk']))),
-                        'closing_text' => nl2br(__('tessify-core::general.email_closing_text')),
                     ]);
     }
 }
