@@ -51,6 +51,7 @@ return [
     "profile_reviews" => "Recensies",
     "profile_reactions" => "Reacties",
     "profile_skills" => "Vaardigheden",
+    "profile_no_skills" => "Geen vaardigheden toegevoegd nog",
     "profile_current_projects" => "Huidige projecten",
     "profile_current_tasks" => "Huidige werkpakketten",
 
@@ -84,5 +85,6 @@ return [
     "update_profile_avatar" => "Profielfoto",
     "update_profile_go_back" => "Ga terug",
     "update_profile_save_changes" => "Wijzigingen opslaan",
+    
     
 ];

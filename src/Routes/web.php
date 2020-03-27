@@ -77,8 +77,8 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("/", "Projects\ProjectController@getOverview")->name("projects");
         
         // Create
-        Route::get("toevoegen", "Projects\ProjectController@getCreate")->name("projects.create");
-        Route::post("toevoegen", "Projects\ProjectController@postCreate")->name("projects.create.post");
+        Route::get("starten", "Projects\ProjectController@getCreate")->name("projects.create");
+        Route::post("starten", "Projects\ProjectController@postCreate")->name("projects.create.post");
 
         // View
         Route::get("{slug}", "Projects\ProjectController@getView")->name("projects.view");
@@ -164,7 +164,7 @@ Route::group(["middleware" => "auth"], function() {
     });
 
     // Task overview
-    Route::group(["prefix" => "werk-pakketten"], function() {
+    Route::group(["prefix" => "werkpakketten"], function() {
         
         // Route::get("/", "Projects\TaskDashboardController@getOverview")->name("tasks");
         // Route::get("toevoegen", "Projects\TaskDashboardController@getCreate")->name("tasks.create");

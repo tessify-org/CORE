@@ -50,6 +50,7 @@ return [
     "profile_reviews" => "Reviews",
     "profile_reactions" => "Reactions",
     "profile_skills" => "Skills",
+    "profile_no_skills" => "No skills have been added yet",
     "profile_current_projects" => "Current projects",
     "profile_current_tasks" => "Current tasks",
 

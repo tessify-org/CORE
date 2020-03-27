@@ -48,4 +48,20 @@ class ProjectCategoryService implements ModelServiceContract
 
         return $category;
     }
+
+    public function findOrCreateByLabel($label)
+    {
+        foreach ($this->getAll() as $category)
+        {
+            if ($category->label == $label)
+            {
+                return $category;
+            }
+        }
+
+        return ProjectCategory::create([
+            "name" => str_replace(" ", "_", strtolower($label)),
+            "label" => $label,
+        ]);
+    }
 }

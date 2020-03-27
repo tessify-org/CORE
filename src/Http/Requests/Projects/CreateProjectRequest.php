@@ -26,7 +26,7 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             "project_status_id" => "required|exists:project_statuses,id",
-            "project_category_id" => "required|exists:project_categories,id",
+            "project_category" => "required",
             "work_method_id" => "required|exists:work_methods,id",
             "title" => "required",
             "slogan" => "nullable",

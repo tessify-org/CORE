@@ -49,7 +49,7 @@ return [
     "send_message" => "Bericht",
     "send_submit" => "Verstuur bericht",
     "send_back" => "Terug naar inbox",
-    "message_sent" => "Bericht is naar :name verstuurd!",
+    "message_sent" => "Bericht naar :name is verstuurd!",
 
     //
     // Read message

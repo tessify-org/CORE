@@ -109,14 +109,17 @@ class ProjectService implements ModelServiceContract
     public function createFromRequest(CreateProjectRequest $request)
     {        
         // Parse dates to Carbon objects
-        $starts_at = Dates::parse($request->starts_at, "/")->format("Y-m-d");
-        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "/")->format("Y-m-d") : null;
+        $starts_at = Dates::parse($request->starts_at, "-")->format("Y-m-d");
+        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
+
+        // Find or create the project's category by it's label
+        $category = ProjectCategories::findOrCreateByLabel($request->project_category);
 
         // Compose all of the data we know will be part of the new project
         $data = [
             "author_id" => Auth::user()->id,
             "project_status_id" => $request->project_status_id,
-            "project_category_id" => $request->project_category_id,
+            "project_category_id" => $category->id,
             "work_method_id" => $request->work_method_id,
             "title" => $request->title,
             "slogan" => $request->slogan,
@@ -155,11 +158,14 @@ class ProjectService implements ModelServiceContract
     
     public function updateFromRequest(Project $project, UpdateProjectRequest $request)
     {
-        $starts_at = Dates::parse($request->starts_at, "/")->format("Y-m-d");
-        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "/")->format("Y-m-d") : null;
+        $starts_at = Dates::parse($request->starts_at, "-")->format("Y-m-d");
+        $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
+
+        // Find or create the project's category by it's label
+        $category = ProjectCategories::findOrCreateByLabel($request->project_category);
 
         $project->project_status_id = $request->project_status_id;
-        $project->project_category_id = $request->project_category_id;
+        $project->project_category_id = $category->id;
         $project->work_method_id = $request->work_method_id;
         $project->title = $request->title;
         $project->slogan = $request->slogan;

@@ -210,7 +210,7 @@
                             <div class="content-card mb elevation-1">
                                 <profile-skill-list 
                                     :skills="{{ $user->skills->toJson() }}"
-                                    no-skills-text="@lang('tessify-core::profiles.profile_skill_no_skills')">
+                                    no-skills-text="@lang('tessify-core::profiles.profile_no_skills')">
                                 </profile-skill-list>
                             </div>
 
@@ -225,7 +225,7 @@
                                         :transactions="{{ $transactions->toJson() }}"
                                         button-text="@lang('tessify-core::profiles.profile_reputation_history_button')"
                                         dialog-title-text="@lang('tessify-core::profiles.profile_reputation_history_dialog_title')"
-                                        no-transactions-text="@lang('tessify-core::profile.profile_reputation_history_dialog_no_transactions')">
+                                        no-transactions-text="@lang('tessify-core::profiles.profile_reputation_history_dialog_no_transactions')">
                                     </reputation-history-button>
                                 </div>
                             </div>
