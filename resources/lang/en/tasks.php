@@ -60,6 +60,35 @@ return [
     "view_no_assigned_users" => "No assigned users yet",
     "view_created_at" => "Created at",
     "view_updated_at" => "Last update",
+    
+    "view_cta_completed_title" => "Task has been completed!",
+    "view_cta_completed_text" => "Thank you to everyone who contributed!",
+
+    "view_cta_reviewed_title" => "Review available!",
+    "view_cta_reviewed_text" => "Your progress report has been reviewed.",
+    "view_cta_reviewed_button" => "View progress report review",
+
+    "view_cta_awaiting_review_title" => "Progress report has been posted!",
+    "view_cta_awaiting_review_text" => "We're now awaiting your review.",
+    "view_cta_awaiting_review_button" => "View progress report",
+
+    "view_cta_awaiting_progress_title" => "Reporting progress",
+    "view_cta_awaiting_progress_text" => "Have you made progress?",
+    "view_cta_awaiting_progress_button" => "Report your progress",
+
+    "view_cta_open_title" => "Task is open!",
+    "view_cta_open_text_singular" => "Are you interested in this task? There's 1 position still open.",
+    "view_cta_open_text_multiple" => "Are you interested in this task? There are :positions open positions",
+    "view_cta_open_button" => "Sign me up!",
+
+    "view_cta_awaiting_reports_title" => "Waiting on progression!",
+    "view_cta_awaiting_reports_text" => "People are working on it!",
+
+    "view_cta_positions_filled_title" => "Task is in progress",
+    "view_cta_positions_filled_text" => "All positions have been filled and people are working on this task.",
+    "view_cta_positions_filled_assignees" => "Assigned users",
+
+    "view_cta_" => "",
 
     //
     // Create
@@ -162,9 +191,14 @@ return [
     "progress_report_title" => "Progression report",
     "progress_report_message" => "Message",
     "progress_report_attachments" => "Attachments",
+    "progress_report_attachment" => "Attachment",
     "progress_report_no_attachments" => "No attachments were uploaded",
     "progress_report_completed" => "Flagged as completed",
     "progress_report_completed_text" => ":user indicated that work has now been completed",
+    "progress_report_review" => "Review",
+    "progress_report_back" => "Back to task",
+    "progress_report_place_review" => "Review progress report",
+    "progress_report_complete" => "Complete task",
     
     //
     // Review progress report

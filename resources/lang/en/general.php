@@ -17,6 +17,7 @@ return [
     //
 
     "as" => "as",
+    "by" => "By",
 
     "yes" => "Yes",
     "no" => "No",

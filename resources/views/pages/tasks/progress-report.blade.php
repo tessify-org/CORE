@@ -40,7 +40,7 @@
                                     <?php $i = 1; ?>
                                     @foreach ($report->attachments as $attachment)
                                         <a target="_blank" href="{{ asset($attachment->file_url) }}">
-                                            Bijlage #{{ $i }}
+                                            @lang("tessify-core::tasks.progress_report_attachment") #{{ $i }}
                                         </a>
                                         <?php $i++; ?>
                                     @endforeach
@@ -73,14 +73,14 @@
                     @if (count($report->reviews))
                         @foreach ($report->reviews as $review)
                             <div class="progress-report__review elevation-1">
-                                <div class="review-title">Review</div>
+                                <div class="review-title">@lang("tessify-core::tasks.progress_report_review")</div>
                                 <div class="review-text">
                                     {!! nl2br($review->message) !!}
                                 </div>
                                 <div class="review-footer">
                                     <div class="review-footer__left">
                                         <div class="review-author">
-                                            Door {{ $review->user->formatted_name }}
+                                            {{ ucfirst(__("tessify-core::general.by")) }} {{ $review->user->formatted_name }}
                                         </div>
                                     </div>
                                     <div class="review-footer__right">
@@ -99,7 +99,7 @@
                         <!-- Go back to task -->
                         <v-btn href="{{ route('tasks.view', ['slug' => $task->slug]) }}">
                             <i class="fas fa-arrow-left"></i>
-                            Go back to task
+                            @lang("tessify-core::tasks.progress_report_back")
                         </v-btn>
 
                         <!-- Task/Project owner actions -->
@@ -108,13 +108,13 @@
                             <!-- Review report -->
                             <v-btn color="primary" href="{{ route('tasks.progress-report.review', ['slug' => $task->slug, 'uuid' => $report->uuid]) }}">
                                 <i class="fas fa-comments"></i>
-                                Review progress report
+                                @lang("tessify-core::tasks.progress_report_place_review")
                             </v-btn>
                         
                             <!-- Complete task -->
                             <v-btn color="success" href="{{ route('tasks.complete', ['slug' => $task->slug]) }}">
                                 <i class="fas fa-check"></i>
-                                Complete task
+                                @lang("tessify-core::tasks.progress_report_complete")
                             </v-btn>
                         
                         @endif

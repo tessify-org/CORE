@@ -60,6 +60,33 @@ return [
     "view_created_at" => "Aangemaakt op",
     "view_updated_at" => "Laatse update",
 
+    "view_cta_completed_title" => "Werkpakket is voltooid!",
+    "view_cta_completed_text" => "We willen iedereen die hier aan heeft bijgedragen bedanken!",
+    
+    "view_cta_reviewed_title" => "Voortgangsrapportage beschikbaar!",
+    "view_cta_reviewed_text" => "Jouw voortgangsrapportage is beoordeeld.",
+    "view_cta_reviewed_button" => "Bekijk beoordeling",
+
+    "view_cta_awaiting_review_title" => "Voortgangsrapportage geplaatst",
+    "view_cta_awaiting_review_text" => "Nu wachten we op een beoordeling.",
+    "view_cta_awaiting_review_button" => "Bekijk progressie rapport",
+    
+    "view_cta_awaiting_progress_title" => "Progressie rapporteren",
+    "view_cta_awaiting_progress_text" => "Heb je progressie gemaakt?",
+    "view_cta_awaiting_progress_button" => "Rapporteer je progressie",
+    
+    "view_cta_open_title" => "Werkpakket is open!",
+    "view_cta_open_text_singular" => "Heb je interesse in dit werkpakket? Er is nog 1 open positie!",
+    "view_cta_open_text_multiple" => "Heb je interesse in dit werkpakket? Er zijn nog :positions open posities!",
+    "view_cta_open_button" => "Schrijf mij in!",
+
+    "view_cta_awaiting_reports_title" => "Wachten op progressie",
+    "view_cta_awaiting_reports_text" => "Mensen zijn ermee bezig!",
+
+    "view_cta_positions_filled_title" => "Werkpakket is vol",
+    "view_cta_positions_filled_text" => "Alle posities zijn inmiddels vervuld en er wordt aan dit werkpakket gewerkt.",
+    "view_cta_positions_filled_assignees" => "Toegewezen gebruikers",
+
     //
     // Create
     //
@@ -158,12 +185,17 @@ return [
     // Progress report
     // 
 
-    "progress_report_title" => "Progressie rapport",
+    "progress_report_title" => "Voortgangsrapport",
     "progress_report_message" => "Bericht",
     "progress_report_attachments" => "Bijlagen",
+    "progress_report_attachment" => "Bijlage",
     "progress_report_no_attachments" => "Geen bijlagen toegevoegd",
     "progress_report_completed" => "Status voltooid",
     "progress_report_completed_text" => ":user geeft aan dat het werk nu is voltooid",
+    "progress_report_review" => "Review",
+    "progress_report_back" => "Terug naar werkpakket",
+    "progress_report_place_review" => "Review voortgangsrappport",
+    "progress_report_complete" => "Werkpakket voltooien",
 
     //
     // Review progress report

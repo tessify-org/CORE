@@ -187,6 +187,7 @@ Route::group(["middleware" => "auth"], function() {
         // Delete
         Route::get("{slug}/verwijderen", "Projects\TaskController@getDelete")->name("tasks.delete");
         Route::post("{slug}/verwijderen", "Projects\TaskController@postDelete")->name("tasks.delete.post");
+
         // Assign to me
         Route::get("{slug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("tasks.assign-to-me");
 
@@ -195,22 +196,22 @@ Route::group(["middleware" => "auth"], function() {
         Route::post("{slug}/uitschrijven", "Projects\TaskController@postAbandon")->name("tasks.abandon.post");
 
         // Subscribe & unsubscribe
-        Route::get("{slug}/subscribe", "Projects\TaskController@getSubscribe")->name("tasks.subscribe");
-        Route::get("{slug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("tasks.unsubscribe");
+        Route::get("{slug}/volgen", "Projects\TaskController@getSubscribe")->name("tasks.subscribe");
+        Route::get("{slug}/niet-meer-volgen", "Projects\TaskController@getUnsubscribe")->name("tasks.unsubscribe");
 
         // Report progress
-        Route::get("{slug}/report-progress", "Projects\TaskController@getReportProgress")->name("tasks.report-progress");
-        Route::post("{slug}/report-progress", "Projects\TaskController@postReportProgress")->name("tasks.report-progress.post");
+        Route::get("{slug}/voortgang-rapporteren", "Projects\TaskController@getReportProgress")->name("tasks.report-progress");
+        Route::post("{slug}/voortgang-rapporteren", "Projects\TaskController@postReportProgress")->name("tasks.report-progress.post");
 
         // Progress report
-        Route::get("{slug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("tasks.progress-report");
+        Route::get("{slug}/voortgangsrapport/{uuid}", "Projects\TaskController@getProgressReport")->name("tasks.progress-report");
 
         // Review progress report
-        Route::get("{slug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("tasks.progress-report.review");
-        Route::post("{slug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("tasks.progress-report.review.post");
+        Route::get("{slug}/voortgangsrapport/{uuid}/reviewen", "Projects\TaskController@getReviewProgressReport")->name("tasks.progress-report.review");
+        Route::post("{slug}/voortgangsrapport/{uuid}/reviewen", "Projects\TaskController@postReviewProgressReport")->name("tasks.progress-report.review.post");
 
         // Complete
-        Route::get("{slug}/complete", "Projects\TaskController@getComplete")->name("tasks.complete");
+        Route::get("{slug}/voltooien", "Projects\TaskController@getComplete")->name("tasks.complete");
         
     });
 

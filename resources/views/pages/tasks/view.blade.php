@@ -43,87 +43,160 @@
         <!-- CTA section -->
         <div id="task-cta__wrapper">
             <div id="task-cta" class="elevation-1">
-                <!-- Completed -->
                 @if ($task->status->name == "completed")
-                    <div id="task-cta__title">Completed</div>
-                    <div id="task-cta__text">Deze taak is voltooid!</div>
+
+                    <!-- Completed -->
+                    <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_completed_title")</div>
+                    <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_completed_text")</div>
+                    <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/completed.svg') }})"></div>
+                    
                 @else
+
                     <!-- Assigned user -->
                     @if ($task->is_assigned)
+
                         <!-- Has outstanding report(s) -->
                         @if ($task->has_outstanding_reports)
-                            <!-- Has unread review -->
+
                             @if ($task->has_unread_reviews)
-                                <div id="task-cta__title">Report was reviewed!</div>
+
+                                <!-- Has unread review -->
+                                <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_reviewed_title")</div>
+                                <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_reviewed_text")</div>
                                 <div id="task-cta__button">
                                     <v-btn color="primary" href="{{ route('tasks.progress-report', ['slug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
-                                        Bekijk progress report
+                                        @lang("tessify-core::tasks.view_cta_reviewed_button")
                                     </v-btn>
                                 </div>
-                            <!-- Awaiting review -->
+                                <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/certifications.svg') }})"></div>
+
                             @else
-                                <div id="task-cta__title">Report awaiting review</div>
+
+                                <!-- Awaiting review -->
+                                <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_awaiting_review_title")</div>
+                                <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_awaiting_review_text")</div>
                                 <div id="task-cta__button">
                                     <v-btn color="primary" href="{{ route('tasks.progress-report', ['slug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
                                         Bekijk progress report
                                     </v-btn>
                                 </div>
+                                <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/season_change.svg') }}); right: -60px; bottom: -67px;"></div>
+
                             @endif
-                        <!-- No outstanding reports -->
+
                         @else
-                            <div id="task-cta__title">How are you doing? Anything to report?</div>
+
+                            <!-- No outstanding reports -->
+                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_awaiting_progress_title")</div>
+                            <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_awaiting_progress_text")</div>
                             <div id="task-cta__button">
                                 <v-btn color="primary" href="{{ route('tasks.report-progress', ['slug' => $task->slug]) }}" depressed>
-                                    Report progress
+                                    @lang("tessify-core::tasks.view_cta_awaiting_progress_button")
                                 </v-btn>
                             </div>
+                            <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/confirmation.svg') }}); right: -25px;"></div>
+
                         @endif
+
                         <!-- Leave task -->
                         <div id="task-cta__link">
                             <a href="{{ route('tasks.abandon', ['slug' => $task->slug]) }}">
                                 @lang("tessify-core::tasks.view_abandon")
                             </a>
                         </div>
+
                     <!-- Owner -->
                     @elseif ($task->is_owner)
-                        <!-- Open positions -->
+
+                        <!-- Positions are open -->
                         @if ($task->is_open)
-                            <div id="task-cta__title">Now we wait</div>
-                            <div id="task-cta__text">Waiting for people to fill the available positions</div>
-                        <!-- Positions filled -->
-                        @else
-                            <!-- Outstanding reports -->
-                            @if ($task->has_outstanding_reports)
-                                <div id="task-cta__title">Outstanding reports</div>
+
+                            <!-- Open positions -->
+                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_open_title")</div>
+                            <div id="task-cta__text">
+                                @if ($task->num_open_positions == 1)
+                                    @lang("tessify-core::tasks.view_cta_open_text_singular")
+                                @else
+                                    @lang("tessify-core::tasks.view_cta_open_text_multiple", ["positions" => $task->num_open_positions])
+                                @endif
+                            </div>
+                            @can("assign-to-self", $task)
                                 <div id="task-cta__button">
-                                    <v-btn color="primary" href="{{ route('tasks.progress-report', ['slug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
-                                        View progress report
+                                    <v-btn color="primary" href="{{ route('tasks.assign-to-me', $task->slug) }}">
+                                        @lang("tessify-core::tasks.view_cta_open_button")
                                     </v-btn>
                                 </div>
-                            <!-- Waiting for progress report -->
+                            @endcan
+                            <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/in_love.svg') }})"></div>
+
+                        <!-- Position have been filled -->
+                        @else
+
+                            <!-- Has outstanding reports -->
+                            @if ($task->has_outstanding_reports)
+
+                                <!-- Outstanding reports -->
+                                <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_outstanding_reports_title")</div>
+                                <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_outstanding_reports_text")
+                                <div id="task-cta__button">
+                                    <v-btn color="primary" href="{{ route('tasks.progress-report', ['slug' => $task->slug, 'uuid' => $task->outstanding_reports[0]->uuid]) }}" depressed>
+                                        @lang("tessify-core::tasks.view_cta_outstanding_reports_button")
+                                    </v-btn>
+                                </div>
+                                <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/like_dislike.svg') }})"></div>
+
+                            <!-- Has no outstanding reports -->
                             @else
-                                <div id="task-cta__title">Now we wait</div>
-                                <div id="task-cta__text">Waiting for assigned users to complete the task</div>
+
+                                <!-- Waiting for progress report -->
+                                <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_awaiting_reports_title")</div>
+                                <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_awaiting_reports_text")</div>
+                                <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/season_change.svg') }}); right: -60px; bottom: -67px;"></div>
+
                             @endif
+
                         @endif
+
                     <!-- Guest user -->
                     @else
-                        <!-- Open positions -->
+
+                        <!-- Task has open positions -->
                         @if ($task->is_open)
-                            <div id="task-cta__title">{{ $task->num_open_positions }} open posities voor dit werkpakket!</div>
-                            <div id="task-cta__button">
-                                <v-btn color="primary" href="{{ route('tasks.assign-to-me', ['slug' => $task->slug]) }}" depressed>
-                                    Schrijf je in
-                                </v-btn>
+
+                            <!-- Number of open positions -->
+                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_open_title")</div>
+                            <div id="task-cta__text">
+                                @if ($task->num_open_positions == 1)
+                                    @lang("tessify-core::tasks.view_cta_open_text_singular")
+                                @else
+                                    @lang("tessify-core::tasks.view_cta_open_text_multiple", ["positions" => $task->num_open_positions])
+                                @endif
                             </div>
-                        <!-- Closed positions -->
+                            @can("assign-to-self", $task)
+                                <div id="task-cta__button">
+                                    <v-btn color="primary" href="{{ route('tasks.assign-to-me', $task->slug) }}">
+                                        @lang("tessify-core::tasks.view_cta_open_button")
+                                    </v-btn>
+                                </div>
+                            @endcan
+                            <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/in_love.svg') }})"></div>
+                        
+                        <!-- Task has no open positions anymore -->
                         @else
-                            <div id="task-cta__title">Alle posities zijn vervuld</div>
-                            <div id="task-cta__button">
-                                X & Y werken zijn hiermee aan de slag
+
+                            <!-- Closed positions -->
+                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_positions_filled_title")</div>
+                            <div id="task-cta__text">@lang("tessify-core::tasks.view_cta_positions_filled_text")</div>
+                            <div id="task-cta__assignees-label">@lang("tessify-core::tasks.view_cta_positions_filled_assignees")</div>
+                            <div id="task-cta__assignees">
+                                
                             </div>
+                            <div id="task-cta__image" style="background-image:  url({{ asset('storage/images/undraw/group_selfie.svg') }})"></div>
+
                         @endif
+
                     @endif
+
                 @endif
             </div>
         </div>
