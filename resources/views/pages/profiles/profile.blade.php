@@ -99,7 +99,7 @@
                     <div id="profile-content">
                         <div id="profile-content__left">
 
-                            <!-- Account details -->
+                            <!-- Personal information -->
                             <h3 class="content-card__title">
                                 @lang("tessify-core::profiles.profile_personal_info")
                             </h3>
@@ -112,18 +112,27 @@
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_email")</div>
                                         <div class="val">
-                                            <span style="margin-right: 10px">{{ $user->email }}</span>
-                                            @if (is_null($user->email_activated_at))
-                                                <span class="red-text">
-                                                    @lang("tessify-core::profiles.profile_email_not_activated")
-                                                </span>
-                                            @else
-                                                <span class="green-text">
-                                                    @lang("tessify-core::profiles.profile_email_activated_on", ["date" => $user->email_activated_at->format("d-m-Y")])
-                                                </span>
-                                            @endif
+                                            <span class="italic">
+                                                @lang("tessify-core::general.hidden")
+                                            </span>
                                         </div>
                                     </div>
+                                    @if (auth()->user()->is_admin)
+                                        <div class="detail">
+                                            <div class="key">@lang("tessify-core::profiles.profile_email_activated")</div>
+                                            <div class="val">
+                                                @if (is_null($user->email_activated_at))
+                                                    <span class="red-text">
+                                                        @lang("tessify-core::profiles.profile_email_not_activated")
+                                                    </span>
+                                                @else
+                                                    <span class="green-text">
+                                                        @lang("tessify-core::profiles.profile_email_activated_on", ["date" => $user->email_activated_at->format("d-m-Y")])
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_phone_nr")</div>
                                         <div class="val">

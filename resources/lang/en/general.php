@@ -44,6 +44,8 @@ return [
     "delete_cancel" => "No, <span class='extra-text'>go back</span>",
     "delete_confirm" => "Yes, <span class='extra-text'>delete</span>",
 
+    "hidden" => "Hidden",
+
     //
     // Emails
     //

@@ -79,8 +79,8 @@ class AssignmentService implements ModelServiceContract
         $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
 
         // Parse the dates
-        $start_date = Dates::parse($request->start_date, "/")->format("Y-m-d");
-        $end_date = $request->end_date == "null" ? null : Dates::parse($request->end_date, "/")->format("Y-m-d");
+        $start_date = Dates::parse($request->start_date, "-")->format("Y-m-d");
+        $end_date = $request->end_date == "null" ? null : Dates::parse($request->end_date, "-")->format("Y-m-d");
         
         // Create and return the assignment
         return $this->preload(Assignment::create([

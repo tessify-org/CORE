@@ -43,6 +43,8 @@ return [
     
     "delete_cancel" => "Nee, <span class='extra-text'>ga terug</span>",
     "delete_confirm" => "Ja, <span class='extra-text'>verwijderen</span>",
+
+    "hidden" => "Onzichtbaar",
     
     //
     // Emails
