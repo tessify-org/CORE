@@ -14,7 +14,7 @@ class AssignmentController extends Controller
     public function postCreateAssignment(CreateAssignmentRequest $request)
     {
         $assignment = Assignments::createFromApiRequest($request);
-
+        
         return response()->json([
             "status" => "success", 
             "assignment" => $assignment

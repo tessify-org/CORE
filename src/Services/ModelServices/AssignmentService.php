@@ -36,6 +36,7 @@ class AssignmentService implements ModelServiceContract
         $instance->type = AssignmentTypes::find($instance->assignment_type_id);
         $instance->organization = Organizations::findPreloaded($instance->organization_id);
         $instance->department = OrganizationDepartments::find($instance->organization_department_id);
+        $instance->location = OrganizationLocations::find($instance->organization_location_id);
 
         return $instance;
     }
@@ -67,10 +68,7 @@ class AssignmentService implements ModelServiceContract
 
         // Determine if this is the current assignment of the user
         $current = $request->current == "true" ? true : false;
-        if ($current && $user->assignments->count())
-        {
-            $this->deactiveAllForUser($user);
-        }
+        if ($current and $user->assignments->count()) $this->deactiveAllForUser($user);
 
         // Retrieve or create the organization
         $organization = Organizations::findOrCreateByName($request->organization);
@@ -85,10 +83,10 @@ class AssignmentService implements ModelServiceContract
         // Create and return the assignment
         return $this->preload(Assignment::create([
             "user_id" => $user->id,
-            "assignment_type_id" => $request->assignment_type_id,
+            "assignment_type_id" => intval($request->assignment_type_id),
             "organization_id" => $organization->id,
             "organization_department_id" => $department->id,
-            "organization_location_id" => $request->organization_location_id,
+            "organization_location_id" => intval($request->organization_location_id),
             "title" => $request->title,
             "description" => $request->description,
             "order" => $order,
@@ -100,7 +98,41 @@ class AssignmentService implements ModelServiceContract
 
     public function updateFromApiRequest(ApiUpdateRequest $request)
     {
+        // Grab current user
+        $user = Auth::user();
 
+        // Grab the assignment we're updating
+        $assignment = $this->find($request->assignment_id);
+
+        // Determine if this assignment is now the current assignment
+        // If so, deactive the current flag on all other assignments of this user
+        $current = $request->current == "true" ? true : false;
+        if ($current and $user->assignments->count() > 1) $this->deactiveAllForUser($user);
+        
+        // Parse the dates
+        $start_date = Dates::parse($request->start_date, "-")->format("Y-m-d");
+        $end_date = $request->end_date == "null" ? null : Dates::parse($request->end_date, "-")->format("Y-m-d");
+
+        // Retrieve or create the organization
+        $organization = Organizations::findOrCreateByName($request->organization);
+
+        // Retrieve or create the organization's department
+        $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+
+        // Update assignment
+        $assignment->assignment_type_id = intval($request->assignment_type_id);
+        $assignment->organization_id = $organization->id;
+        $assignment->organization_department_id = $department->id;
+        $assignment->organization_location_id = $request->organization_location_id == "null" ? null : intval($request->organization_location_id);
+        $assignment->title = $request->title;
+        $assignment->description = $request->description;
+        $assignment->current = $current;
+        $assignment->start_date = $start_date;
+        $assignment->end_date = $end_date;
+        $assignment->save();
+
+        // Return updated & preloaded assignment
+        return $this->preload($assignment);
     }
 
     public function deactiveAllForUser(User $user = null)
