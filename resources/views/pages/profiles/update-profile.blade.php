@@ -75,7 +75,29 @@
                     assignments-delete-dialog-title-text="@lang('tessify-core::profiles.update_profile_assignments_delete_dialog_title')"
                     assignments-delete-dialog-text="@lang('tessify-core::profiles.update_profile_assignments_delete_dialog_text')"
                     assignments-delete-dialog-cancel-text="@lang('tessify-core::profiles.update_profile_assignments_delete_dialog_cancel')"
-                    assignments-delete-dialog-submit-text="@lang('tessify-core::profiles.update_profile_assignments_delete_dialog_submit')">
+                    assignments-delete-dialog-submit-text="@lang('tessify-core::profiles.update_profile_assignments_delete_dialog_submit')"
+                    skills-label-text="@lang('tessify-core::profiles.update_profile_skills_label')"
+                    skills-no-records-text="@lang('tessify-core::profiles.update_profile_skills_no_records')"
+                    skills-add-button-text="@lang('tessify-core::profiles.update_profile_skills_add_button')"
+                    skills-form-skill-text="@lang('tessify-core::profiles.update_profile_skills_form_skill')"
+                    skills-form-mastery-text="@lang('tessify-core::profiles.update_profile_skills_form_mastery')"
+                    skills-form-description-text="@lang('tessify-core::profiles.update_profile_skills_form_description')"
+                    skills-view-dialog-title-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_title')"
+                    skills-view-dialog-skill-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_skill')"
+                    skills-view-dialog-mastery-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_mastery')"
+                    skills-view-dialog-description-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_description')"
+                    skills-view-dialog-edit-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_edit')"
+                    skills-view-dialog-delete-text="@lang('tessify-core::profiles.update_profile_skills_view_dialog_delete')"
+                    skills-create-dialog-title-text="@lang('tessify-core::profiles.update_profile_skills_create_dialog_title')"
+                    skills-create-dialog-cancel-text="@lang('tessify-core::profiles.update_profile_skills_create_dialog_cancel')"
+                    skills-create-dialog-submit-text="@lang('tessify-core::profiles.update_profile_skills_create_dialog_submit')"
+                    skills-update-dialog-title-text="@lang('tessify-core::profiles.update_profile_skills_update_dialog_title')"
+                    skills-update-dialog-cancel-text="@lang('tessify-core::profiles.update_profile_skills_update_dialog_cancel')"
+                    skills-update-dialog-submit-text="@lang('tessify-core::profiles.update_profile_skills_update_dialog_submit')"
+                    skills-delete-dialog-title-text="@lang('tessify-core::profiles.update_profile_skills_delete_dialog_title')"
+                    skills-delete-dialog-text="@lang('tessify-core::profiles.update_profile_skills_delete_dialog_text')"
+                    skills-delete-dialog-cancel-text="@lang('tessify-core::profiles.update_profile_skills_delete_dialog_cancel')"
+                    skills-delete-dialog-submit-text="@lang('tessify-core::profiles.update_profile_skills_delete_dialog_submit')">
                 </update-profile-form>
 
             </form>
