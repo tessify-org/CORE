@@ -44,6 +44,15 @@ return [
     "profile_updated_at" => "Last changed on",
     "profile_update_button" => "Update your profile",
 
+    "profile_email_request_button" => "Request accesss",
+    "profile_email_request_sent" => "Request sent",
+    "profile_email_request_sent_message" => "A request has been sent to :name",
+    "profile_email_request_message_subject" => "Request to access your email",
+    "profile_email_request_message_text" => ":name has sent you a request to access your email.\nWhat would you like to do with this?",
+    "profile_email_request_not_found" => "Request could not be found",
+    "profile_email_request_accepted" => "Request has been accepted",
+    "profile_email_request_rejected" => "Request has been rejected",
+
     "profile_personal_info" => "Personal information",
     "profile_interests" => "Interests",
     "profile_assignments" => "Assignments",
@@ -85,6 +94,7 @@ return [
     "update_profile_assignments" => "Assignments",
     "update_profile_interests" => "Interests",
     "update_profile_email" => "Email",
+    "update_profile_publicly_display_email" => "Publicly display email",
     "update_profile_phone" => "Phone number",
     "update_profile_avatar" => "Profile picture",
     "update_profile_go_back" => "Go back",

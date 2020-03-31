@@ -40,6 +40,7 @@ return [
     //
 
     "overview_title" => "Projects",
+    "overview_subtitle" => "Currently :num_projects projects registered!",
     "overview_create_cta" => "Start a project yourself!",
     "overview_description" => "Description",
     "overview_view" => "View project",
@@ -47,8 +48,10 @@ return [
 
     "overview_sidebar_search" => "Search",
     "overview_sidebar_statuses" => "Status",
+    "overview_sidebar_statuses_hint" => "Indicates the state the task is currently in",
     "overview_sidebar_statuses_empty" => "No statuses found",
     "overview_sidebar_categories" => "Category",
+    "overview_sidebar_categories_hint" => "Indicates what kind of task you can expect",
     "overview_sidebar_categories_empty" => "No categories found",
 
     "overview_table_title" => "Title",
@@ -82,12 +85,37 @@ return [
     //
 
     "create_title" => "Start project",
+    "create_back" => "Back to overview",
+    "create_submit" => "Start project",
 
     //
     // Update project
     //
 
     "update_title" => "Update project",
+    "update_back" => "Go back to project",
+    "update_submit" => "Save changes",
+
+    //
+    // Create & update project form
+    //
+
+    "form_title" => "Title",
+    "form_title_hint" => "Name your project",
+    "form_slogan" => "Slogan",
+    "form_slogan_hint" => "Describe your project in one sentence, make it catchy.",
+    "form_description" => "Description",
+    "form_description_hint" => "What does the project exactly involve? Try to be as precise but short as possible.",
+    "form_header_image" => "Header image",
+    "form_roles" => "Team roles",
+    "form_resources" => "Resources",
+    "form_category" => "Category",
+    "form_work_method" => "Work method",
+    "form_status" => "Status",
+    "form_has_tasks" => "Has tasks",
+    "form_has_deadline" => "Has deadline",
+    "form_start_date" => "Start date",
+    "form_deadline" => "Deadline",
 
     //
     // Delete project

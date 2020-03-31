@@ -17,6 +17,7 @@
             <div id="project-overview__header-content" class="content-section">
                 <div id="project-overview__header-text">
                     <h1 class="page-title centered">@lang("tessify-core::projects.overview_title")</h1>
+                    <h2 class="page-subtitle centered">@lang("tessify-core::projects.overview_subtitle", ["num_projects" => $projects->count()])</h2>
                     <v-btn color="primary" outlined href="{{ route('projects.create') }}">
                         @lang("tessify-core::projects.overview_create_cta")
                     </v-btn>
@@ -41,16 +42,18 @@
 
                         <!-- Status -->
                         <project-dashboard-sidebar-statuses
+                            :statuses="{{ $statuses->toJson() }}"
                             title="@lang('tessify-core::projects.overview_sidebar_statuses')"
-                            no-records-text="@lang('tessify-core::projects.overview_sidebar_statuses_empty')"
-                            :statuses="{{ $statuses->toJson() }}">
+                            hint="@lang('tessify-core::projects.overview_sidebar_statuses_hint')"
+                            no-records-text="@lang('tessify-core::projects.overview_sidebar_statuses_empty')">
                         </project-dashboard-sidebar-statuses>
                         
                         <!-- Categories -->
                         <project-dashboard-sidebar-categories
+                            :categories="{{ $categories->toJson() }}"
                             title="@lang('tessify-core::projects.overview_sidebar_categories')"
-                            no-records-text="@lang('tessify-core::projects.overview_sidebar_categories_empty')"
-                            :categories="{{ $categories->toJson() }}">
+                            hint="@lang('tessify-core::projects.overview_sidebar_categories_hint')"
+                            no-records-text="@lang('tessify-core::projects.overview_sidebar_categories_empty')">
                         </project-dashboard-sidebar-categories>
 
                     </div>

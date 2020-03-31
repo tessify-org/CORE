@@ -37,40 +37,46 @@
 
                         <!-- Search bar -->
                         <task-dashboard-sidebar-search-bar
-                            title="@lang('tessify-core::tasks.overview_sidebar_search')">
+                            title="@lang('tessify-core::tasks.overview_sidebar_search')"
+                            hint="@lang('tessify-core::tasks.overview_sidebar_search_hint')">
                         </task-dashboard-sidebar-search-bar>
 
                         <!-- Status -->
                         <task-dashboard-sidebar-statuses
+                            :statuses="{{ $statuses->toJson() }}"
                             title="@lang('tessify-core::tasks.overview_sidebar_statuses')"
-                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_statuses_empty')"
-                            :statuses="{{ $statuses->toJson() }}">
+                            hint="@lang('tessify-core::tasks.overview_sidebar_search_hint')"
+                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_statuses_empty')">
                         </task-dashboard-sidebar-statuses>
 
                         <!-- Categories -->
                         <task-dashboard-sidebar-categories
+                            :categories="{{ $categories->toJson() }}"
                             title="@lang('tessify-core::tasks.overview_sidebar_categories')"
-                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_categories_empty')"
-                            :categories="{{ $categories->toJson() }}">
+                            hint="@lang('tessify-core::tasks.overview_sidebar_categories_hint')"
+                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_categories_empty')">
                         </task-dashboard-sidebar-categories>
 
                         <!-- Skills -->
                         <task-dashboard-sidebar-skills
+                            :skills="{{ $skills->toJson() }}"
                             title="@lang('tessify-core::tasks.overview_sidebar_skills')"
-                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_skills_empty')"
-                            :skills="{{ $skills->toJson() }}">
+                            hint="@lang('tessify-core::tasks.overview_sidebar_skills_hint')"
+                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_skills_empty')">
                         </task-dashboard-sidebar-skills>
 
                         <!-- Seniorities -->
                         <task-dashboard-sidebar-seniorities
+                            :seniorities="{{ $seniorities->toJson() }}"
                             title="@lang('tessify-core::tasks.overview_sidebar_seniorities')"
-                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_seniorities_empty')"
-                            :seniorities="{{ $seniorities->toJson() }}">
+                            hint="@lang('tessify-core::tasks.overview_sidebar_seniorities_hint')"
+                            no-records-text="@lang('tessify-core::tasks.overview_sidebar_seniorities_empty')">
                         </task-dashboard-sidebar-seniorities>
 
                         <!-- Duration -->
                         <task-dashboard-sidebar-duration
-                            title="@lang('tessify-core::tasks.overview_sidebar_timespan')">
+                            title="@lang('tessify-core::tasks.overview_sidebar_timespan')"
+                            hint="@lang('tessify-core::tasks.overview_sidebar_timespan_hint')">
                         </task-dashboard-sidebar-duration>
 
                     </div>

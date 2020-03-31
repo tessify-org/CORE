@@ -64,4 +64,13 @@ return [
     "read_back_inbox" => "Terug naar inbox",
     "read_back_outbox" => "Terug naar outbox",
 
+    //
+    // Requests
+    //
+
+    "request_action_accept" => "Accepteren",
+    "request_action_deny" => "Afwijzen",
+    "request_accepted" => "Je hebt dit verzoek geaccepteerd.",
+    "request_rejeceted" => "Je hebt dit verzoek afgewezen.",
+
 ];

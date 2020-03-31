@@ -40,6 +40,7 @@ return [
     //
 
     "overview_title" => "Projecten",
+    "overview_subtitle" => "Er zijn al :num_projects projecten geregistreerd!",
     "overview_create_cta" => "Zelf project starten!",
     "overview_description" => "Beschrijving",
     "overview_view" => "Bekijk project",
@@ -47,9 +48,11 @@ return [
 
     "overview_sidebar_search" => "Zoeken",
     "overview_sidebar_statuses" => "Status",
+    "overview_sidebar_statuses_hint" => "Geeft de huidige staat van het project aan",
     "overview_sidebar_statuses_empty" => "Geen statusen",
     "overview_sidebar_categories" => "Categorie",
-    "overview_sidebar_categories_empty" => "Geen categorieen",
+    "overview_sidebar_categories_hint" => "Geeft aan wat voor type project je kunt verwachten",
+    "overview_sidebar_categories_empty" => "Geen categorieën",
 
     "overview_table_title" => "Titel",
     "overview_table_status" => "Status",
@@ -82,12 +85,37 @@ return [
     //
 
     "create_title" => "Project starten",
+    "create_back" => "Terug naar overzicht",
+    "create_submit" => "",
 
     //
     // Update project
     //
 
     "update_title" => "Project wijzigen",
+    "update_back" => "",
+    "update_submit" => "",
+
+    //
+    // Create & update project form
+    //
+
+    "form_title" => "Titel",
+    "form_title_hint" => "Geef je project een naam!",
+    "form_slogan" => "Kopregel",
+    "form_slogan_hint" => "Omschrijf het project in 1 zin",
+    "form_description" => "Projectomschrijving",
+    "form_description_hint" => "Wat ga je precies maken en waarom? Hou het kort en bonding en leg uit welk probleem je oplost.",
+    "form_header_image" => "Header plaatje",
+    "form_roles" => "Team rollen",
+    "form_resources" => "Hulpmiddelen",
+    "form_category" => "Categorie",
+    "form_work_method" => "Werkmethode",
+    "form_status" => "Status",
+    "form_has_tasks" => "Heeft taken",
+    "form_has_deadline" => "Heeft een deadline",
+    "form_start_date" => "Start datum",
+    "form_deadline" => "Deadline",
 
     //
     // Delete project

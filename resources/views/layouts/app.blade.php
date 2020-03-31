@@ -325,7 +325,7 @@
                     </div>
                 </div>
             </footer>
-
+            
             <!-- Bug report -->
             <div id="bug-report-button__wrapper">
                 <bug-report-button

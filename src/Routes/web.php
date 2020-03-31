@@ -63,6 +63,9 @@ Route::group(["middleware" => "auth"], function() {
     Route::get("profiel/{slug?}", "Profiles\ProfileController@getProfile")->name("profile");
     Route::get("profiel/{slug}/follow", "Profiles\ProfileController@getFollow")->name("profile.follow");
     Route::get("profiel/{slug}/unfollow", "Profiles\ProfileController@getUnfollow")->name("profile.unfollow");
+    Route::get("profiel/{slug}/request-access-to-email", "Profiles\ProfileController@getRequestAccessToEmail")->name("profile.request-access-email");
+    Route::get("profiel/access-email-request/{messageUuid}/{requestUuid}/accept", "Profiles\ProfileController@getAcceptAccessEmailRequest")->name("profile.request-access-email.accept");
+    Route::get("profiel/access-email-request/{messageUuid}/{requestUuid}/reject", "Profiles\ProfileController@getRejectAccessEmailRequest")->name("profile.request-access-email.reject");
 
     // Dashboard
     Route::get("dashboard", "Dashboard\DashboardController@getDashboard")->name("dashboard");
@@ -141,26 +144,6 @@ Route::group(["middleware" => "auth"], function() {
         // Manage tasks
         Route::get("{slug}/werkpakketten", "Projects\ProjectTaskController@getOverview")->name("projects.tasks");
         
-        // Route::get("{slug}/taken", "Projects\TaskController@getOverview")->name("projects.tasks");
-        // Route::get("{slug}/taken/toevoegen", "Projects\TaskController@getCreate")->name("projects.tasks.create");
-        // Route::post("{slug}/taken/toevoegen", "Projects\TaskController@postCreate")->name("projects.tasks.create.post");
-        // Route::get("{slug}/taken/{taskSlug}", "Projects\TaskController@getView")->name("projects.tasks.view");
-        // Route::get("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@getEdit")->name("projects.tasks.edit");
-        // Route::post("{slug}/taken/{taskSlug}/aanpassen", "Projects\TaskController@postEdit")->name("projects.tasks.edit.post");
-        // Route::get("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@getDelete")->name("projects.tasks.delete");
-        // Route::post("{slug}/taken/{taskSlug}/verwijderen", "Projects\TaskController@postDelete")->name("projects.tasks.delete.post");
-        // Route::get("{slug}/taken/{taskSlug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("projects.tasks.assign-to-me");
-        // Route::get("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@getAbandon")->name("projects.tasks.abandon");
-        // Route::post("{slug}/taken/{taskSlug}/uitschrijven", "Projects\TaskController@postAbandon")->name("projects.tasks.abandon.post");
-        // Route::get("{slug}/taken/{taskSlug}/subscribe", "Projects\TaskController@getSubscribe")->name("projects.tasks.subscribe");
-        // Route::get("{slug}/taken/{taskSlug}/unsubcribe", "Projects\TaskController@getUnsubscribe")->name("projects.tasks.unsubscribe");
-        // Route::get("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@getReportProgress")->name("projects.tasks.report-progress");
-        // Route::post("{slug}/taken/{taskSlug}/report-progress", "Projects\TaskController@postReportProgress")->name("projects.tasks.report-progress.post");
-        // Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}", "Projects\TaskController@getProgressReport")->name("projects.tasks.progress-report");
-        // Route::get("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@getReviewProgressReport")->name("projects.tasks.progress-report.review");
-        // Route::post("{slug}/taken/{taskSlug}/progress-report/{uuid}/review", "Projects\TaskController@postReviewProgressReport")->name("projects.tasks.progress-report.review.post");
-        // Route::get("{slug}/taken/{taskSlug}/complete", "Projects\TaskController@getComplete")->name("projects.tasks.complete");
-        
     });
 
     // Task overview
@@ -215,8 +198,6 @@ Route::group(["middleware" => "auth"], function() {
         
     });
 
-    // Route::post("werk-pakketten", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
-    
 });
 
 // Admin panel

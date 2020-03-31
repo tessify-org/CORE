@@ -40,10 +40,14 @@ return [
     "profile_updated_at" => "Laatst gewijzigd op",
     "profile_update_button" => "Profiel aanpassen",
     
-    "profile_reputation_history_title" => "Reputatie",
-    "profile_reputation_history_button" => "Bekijk reputatie geschiedenis",
-    "profile_reputation_history_dialog_title" => "Reputatie geschiedenis",
-    "profile_reputation_history_dialog_no_transactions" => "Geen transacties gevonden",
+    "profile_email_request_button" => "Vraag om toestemming",
+    "profile_email_request_sent" => "Verzoek gestuurd",
+    "profile_email_request_sent_message" => "Er is een verzoek verstuurd naar :name",
+    "profile_email_request_message_subject" => "Verzoek toegang tot e-mailadres",
+    "profile_email_request_message_text" => ":name heeft je een verzoek gestuurd om toegang te krijgen tot je e-mailadres.\nWat wil je hiermee doen?",
+    "profile_email_request_not_found" => "Verzoek kon niet worden gevonden",
+    "profile_email_request_accepted" => "Verzoek is geaccepteerd",
+    "profile_email_request_rejected" => "Verzoek is afgewezen",
     
     "profile_personal_info" => "Persoonsgegevens",
     "profile_interests" => "Interesses",
@@ -55,6 +59,11 @@ return [
     "profile_current_projects" => "Huidige projecten",
     "profile_current_tasks" => "Huidige werkpakketten",
 
+    "profile_reputation_history_title" => "Reputatie",
+    "profile_reputation_history_button" => "Bekijk reputatie geschiedenis",
+    "profile_reputation_history_dialog_title" => "Reputatie geschiedenis",
+    "profile_reputation_history_dialog_no_transactions" => "Geen transacties gevonden",
+    
     "profile_assignments_current_assignment" => "Huidige aanstelling",
     "profile_assignments_previous_assignments" => "Vorige aanstellingen",
     "profile_assignments_no_assignments" => "Nog geen aanstellingen toegevoegd",
@@ -81,6 +90,7 @@ return [
     "update_profile_assignments" => "Aanstellingen",
     "update_profile_interests" => "Interesses",
     "update_profile_email" => "E-mailadres",
+    "update_profile_publicly_display_email" => "E-mailadres publiekelijk weergeven",
     "update_profile_phone" => "Telefoon nummer",
     "update_profile_avatar" => "Profielfoto",
     "update_profile_go_back" => "Ga terug",

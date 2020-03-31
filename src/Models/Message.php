@@ -11,6 +11,7 @@ class Message extends Model
     protected $guarded = ["id", "created_id", "updated_id"];
     protected $fillable = [
         "uuid",
+        "type",
         "sender_id",
         "receiver_id",
         "reply_to_id",
@@ -18,6 +19,7 @@ class Message extends Model
         "message",
         "read",
         "read_on",
+        "data",
     ];
     protected $casts = [
         "read" => "boolean",
@@ -56,5 +58,19 @@ class Message extends Model
     public function replyTo()
     {
         return $this->belongsTo(\Tessify\Core\Models\Message::class, "reply_to_id", "id");
+    }
+
+    //
+    // Mutators
+    //
+
+    public function setDataAttribute($value)
+    {
+        $this->attributes["data"] = serialize($value);
+    }
+
+    public function getDataAttribute($value)
+    {
+        return unserialize($value);
     }
 }

@@ -194,24 +194,11 @@ class UserService implements ModelServiceContract
         $user->headline = $request->headline;
         $user->interests = $request->interests;
         $user->email = $request->email;
+        $user->publicly_display_email = $request->publicly_display_email == "true" ? true : false;
         $user->phone = $request->phone;
         if ($request->hasFile("avatar")) $user->avatar_url = Uploader::upload($request->file("avatar"), "images/users/avatars");
         if ($request->hasFile("header_bg")) $user->header_bg_url = Uploader::upload($request->file("header_bg"), "images/users/headers");
         $user->save();
-
-        // Process assignments
-        if ($request->current_assignment_id !== "0")
-        {
-            $assignment = Assignments::find($request->current_assignment_id);
-
-            if (!$assignment->current)
-            {
-                Assignments::deactiveAllForUser($user);
-
-                $assignment->current = true;
-                $assignment->save();
-            }
-        }
 
         // Process skills
         if ($request->skills !== "[]")
@@ -232,7 +219,8 @@ class UserService implements ModelServiceContract
                 }
             }
         }
-
+        
+        // Return the updated user
         return $user;
     }
 

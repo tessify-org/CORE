@@ -20,6 +20,7 @@ class UpdateProfileRequest extends FormRequest
             "headline" => "nullable",
             "interests" => "nullable",
             "email" => "required|email|unique:users,email,".Auth::user()->id,
+            "publicly_display_email" => "required",
             "phone" => "nullable",
             "current_assignment_id" => "nullable|exists:assignments,id",
             "skills" => "nullable",

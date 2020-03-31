@@ -37,6 +37,7 @@ use Tessify\Core\Services\ModelServices\TaskProgressReportAttachmentService;
 use Tessify\Core\Services\ModelServices\ReputationTransactionService;
 use Tessify\Core\Services\ModelServices\BugReportService;
 use Tessify\Core\Services\ModelServices\CompletedTaskService;
+use Tessify\Core\Services\ModelServices\ViewEmailRequestService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -223,6 +224,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("completed-tasks", function() {
             return new CompletedTaskService;
+        });
+
+        $this->app->singleton("view-email-requests", function() {
+            return new ViewEmailRequestService;
         });
 
         //

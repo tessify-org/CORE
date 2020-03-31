@@ -17,12 +17,12 @@
             @else
                 <h2 class="page-subtitle centered">@lang("tessify-core::messages.read_title_received")</h2>
             @endif
-        
-            <!-- Feedback -->
-            @include("tessify-core::partials.feedback")
-            
+
             <!-- Message -->
             <div id="message-wrapper">
+
+                <!-- Feedback -->
+                @include("tessify-core::partials.feedback")
                 
                 <div id="message" class="elevation-1">
 
@@ -53,28 +53,59 @@
                                 {!! nl2br($message->message) !!}
                             </div>
                         </div>
+                        <!-- Request access to email -->
+                        @if ($message->type == "request_access_to_email")
+                            @if ($message->data["request_processed"])
+                                @if ($message->data["request_accepted"])
+                                    <div id="request-result" class="accepted">
+                                        <div id="request-result__text">
+                                            @lang("tessify-core::messages.request_accepted")
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="request-result" class="rejected">
+                                        <div id="request-result__text">
+                                            @lang("tessify-core::messages.request_rejected")
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
+                                <div id="request-actions">
+                                    <div id="request-actions__left">
+                                        <v-btn block large dark color="red" href="{{ route('profile.request-access-email.reject', ['messageUuid' => $message->uuid, 'requestUuid' => $message->data['uuid']]) }}">
+                                            @lang("tessify-core::messages.request_action_deny")
+                                        </v-btn>
+                                    </div>
+                                    <div id="request-actions__right">
+                                        <v-btn block large dark color="green" href="{{ route('profile.request-access-email.accept', ['messageUuid' => $message->uuid, 'requestUuid' => $message->data['uuid']]) }}">
+                                            @lang("tessify-core::messages.request_action_accept")
+                                        </v-btn>
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
                     </div>
 
                     <!-- Received on -->
                     <div id="message-received-on">{{ $message->created_at->format("d-m-Y H:i:s") }}</div>
 
-                </div>
-                    
-                <!-- Actions -->
-                <div class="form-controls">
-                    <div class="form-controls__left">
-                        @if ($state == "sender")
-                            <v-btn outlined href="{{ route('messages.outbox') }}">
-                                <i class="fas fa-arrow-left"></i>
-                                @lang('tessify-core::messages.read_back_outbox')
-                            </v-btn>
-                        @else
-                            <v-btn outlined href="{{ route('messages') }}">
-                                <i class="fas fa-arrow-left"></i>
-                                @lang('tessify-core::messages.read_back_inbox')
-                            </v-btn>
-                        @endif
+                    <!-- Actions -->
+                    <div class="form-controls">
+                        <div class="form-controls__left">
+                            @if ($state == "sender")
+                                <v-btn outlined href="{{ route('messages.outbox') }}">
+                                    <i class="fas fa-arrow-left"></i>
+                                    @lang('tessify-core::messages.read_back_outbox')
+                                </v-btn>
+                            @else
+                                <v-btn outlined href="{{ route('messages') }}">
+                                    <i class="fas fa-arrow-left"></i>
+                                    @lang('tessify-core::messages.read_back_inbox')
+                                </v-btn>
+                            @endif
+                        </div>
                     </div>
+
                 </div>
 
             </div>

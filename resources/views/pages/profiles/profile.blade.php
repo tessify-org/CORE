@@ -105,18 +105,37 @@
                             </h3>
                             <div class="content-card mb elevation-1">
                                 <div class="details mb-0">
+                                    <!-- Name -->
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_name")</div>
                                         <div class="val">{{ $user->formattedName }}</div>
                                     </div>
+                                    <!-- Email -->
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_email")</div>
                                         <div class="val">
-                                            <span class="italic">
-                                                @lang("tessify-core::general.hidden")
-                                            </span>
+                                            @if ($can_view_email)
+                                                {{ $user->email }}
+                                            @else
+                                                <div id="email-field">
+                                                    <div id="email-field__left">
+                                                        <span class="italic">
+                                                            @lang("tessify-core::general.hidden")
+                                                        </span>
+                                                    </div>
+                                                    <div id="email-field__right">
+                                                        <request-email-access-button
+                                                            :has-sent-request="{{ json_encode($has_sent_view_email_request) }}"
+                                                            button-href="{{ route('profile.request-access-email', $user->slug) }}"
+                                                            button-text="@lang('tessify-core::profiles.profile_email_request_button')"
+                                                            sent-text="@lang('tessify-core::profiles.profile_email_request_sent')">
+                                                        </request-email-access-button>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
+                                    <!-- Email activated -->
                                     @if (auth()->user()->is_admin)
                                         <div class="detail">
                                             <div class="key">@lang("tessify-core::profiles.profile_email_activated")</div>
@@ -133,6 +152,7 @@
                                             </div>
                                         </div>
                                     @endif
+                                    <!-- Phone number -->
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_phone_nr")</div>
                                         <div class="val">
@@ -145,10 +165,12 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <!-- Created at -->
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_created_at")</div>
                                         <div class="val">{{ $user->created_at->format("d-m-Y") }}</div>
                                     </div>
+                                    <!-- Updated at -->
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_updated_at")</div>
                                         <div class="val">{{ $user->updated_at->format("d-m-Y") }}</div>

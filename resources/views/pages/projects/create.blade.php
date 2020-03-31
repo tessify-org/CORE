@@ -27,7 +27,25 @@
                     back-href="{{ route('projects') }}"
                     create-resource-api-endpoint="{{ route('api.projects.resources.create.post') }}"
                     update-resource-api-endpoint="{{ route('api.projects.resources.update.post') }}"
-                    delete-resource-api-endpoint="{{ route('api.projects.resources.delete.post') }}">
+                    delete-resource-api-endpoint="{{ route('api.projects.resources.delete.post') }}"
+                    title-text="@lang('tessify-core::projects.form_title')"
+                    title-hint-text="@lang('tessify-core::projects.form_title_hint')"
+                    slogan-text="@lang('tessify-core::projects.form_slogan')"
+                    slogan-hint-text="@lang('tessify-core::projects.form_slogan_hint')"
+                    description-text="@lang('tessify-core::projects.form_description')"
+                    description-hint-text="@lang('tessify-core::projects.form_description_hint')"
+                    header-image-text="@lang('tessify-core::projects.form_header_image')"
+                    roles-text="@lang('tessify-core::projects.form_roles')"
+                    resources-text="@lang('tessify-core::projects.form_resources')"
+                    category-text="@lang('tessify-core::projects.form_category')"
+                    work-method-text="@lang('tessify-core::projects.form_work_method')"
+                    status-text="@lang('tessify-core::projects.form_status')"
+                    has-tasks-text="@lang('tessify-core::projects.form_has_tasks')"
+                    has-deadline-text="@lang('tessify-core::projects.form_has_deadline')"
+                    start-date-text="@lang('tessify-core::projects.form_start_date')"
+                    deadline-text="@lang('tessify-core::projects.form_deadline')"
+                    back-text="@lang('tessify-core::projects.create_back')"
+                    submit-text="@lang('tessify-core::projects.create_submit')">
                 </project-form>
 
             </form>

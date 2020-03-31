@@ -64,4 +64,13 @@ return [
     "read_back_inbox" => "Back to inbox",
     "read_back_outbox" => "Back to outbox",
 
+    //
+    // Requests
+    //
+
+    "request_action_accept" => "Accept",
+    "request_action_deny" => "Reject",
+    "request_accepted" => "You have accepted this request.",
+    "request_rejeceted" => "You have rejected this request.",
+
 ];

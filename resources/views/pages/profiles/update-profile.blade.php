@@ -31,6 +31,7 @@
                     last-name-text="@lang('tessify-core::profiles.update_profile_last_name')"
                     headline-text="@lang('tessify-core::profiles.update_profile_headline')"
                     email-text="@lang('tessify-core::profiles.update_profile_email')"
+                    publicly-display-email-text="@lang('tessify-core::profiles.update_profile_publicly_display_email')"
                     phone-text="@lang('tessify-core::profiles.update_profile_phone')"
                     avatar-text="@lang('tessify-core::profiles.update_profile_avatar')"
                     assignments-text="@lang('tessify-core::profiles.update_profile_assignments')"

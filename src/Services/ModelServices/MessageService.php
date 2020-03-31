@@ -6,6 +6,7 @@ use Auth;
 use Users;
 use App\Models\User;
 use Tessify\Core\Models\Message;
+use Tessify\Core\Models\ViewEmailRequest;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Messages\SendMessageRequest;
@@ -135,5 +136,23 @@ class MessageService implements ModelServiceContract
         $message->save();
 
         return $message;
+    }
+
+    public function sendViewEmailRequestMessage(User $targetUser, User $user = null, ViewEmailRequest $request)
+    {
+        if (is_null($user)) $user = Auth::user();
+
+        return Message::create([
+            "type" => "request_access_to_email",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::profiles.profile_email_request_message_subject"),
+            "message" => __("tessify-core::profiles.profile_email_request_message_text", ["name" => $user->formattedName]),
+            "data" => [
+                "uuid" => $request->uuid,
+                "request_processed" => false,
+                "request_accepted" => null,
+            ]
+        ]);
     }
 }

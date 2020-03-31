@@ -27,14 +27,19 @@ return [
     
     "overview_sidebar_search" => "Search",
     "overview_sidebar_statuses" => "Status",
+    "overview_sidebar_statuses_hint" => "Indicates the state the task is currently in",
     "overview_sidebar_statuses_empty" => "No statuses found",
     "overview_sidebar_categories" => "Categories",
+    "overview_sidebar_categories_hint" => "Indicates the type of task you can expect",
     "overview_sidebar_categories_empty" => "No categories found",
     "overview_sidebar_skills" => "Skills",
+    "overview_sidebar_skills_hint" => "Filter on the required skills",
     "overview_sidebar_skills_empty" => "No skills found",
     "overview_sidebar_seniorities" => "Seniority",
+    "overview_sidebar_seniorities_hint" => "",
     "overview_sidebar_seniorities_empty" => "No seniorities found",
     "overview_sidebar_timespan" => "Estimated workload",
+    "overview_sidebar_timespan_hint" => "",
 
     //
     // View
