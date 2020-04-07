@@ -264,8 +264,6 @@ class CoreServiceProvider extends ServiceProvider
 
     private function composeViews()
     {
-        // dd(app()->getLocale());
-
         View::composer("tessify-core::layouts.app", function($view) {
             $view->with("user", Auth::user());
             $view->with("locales", config("tessify-core.locales"));

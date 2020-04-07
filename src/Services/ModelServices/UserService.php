@@ -5,6 +5,7 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Uuid;
 use Skills;
+use Avatar;
 use Projects;
 use Uploader;
 use Assignments;
@@ -135,19 +136,28 @@ class UserService implements ModelServiceContract
 
     public function createFromRegisterRequest(RegisterRequest $request)
     {
-        return User::create([
+        $user = User::create([
             "first_name" => $request->first_name,
             "last_name" => $request->last_name,
             "email" => $request->email,
             "password" => $request->password,
         ]);
+
+        $user = $this->generateAvatar($user);
+
+        return $user;
     }
 
-    public function saveAvatar($id, $url)
+    public function generateAvatar(User $user)
     {
-        $user = User::find($id);
-        $user->avatar_url = $url;
+        $filename = Uploader::generateFileName("jpg");
+        $filepath = "storage/images/avatars/".$filename;
+        
+        $avatar = Avatar::create($user->formattedName)->save(public_path($filepath), 100);
+        
+        $user->avatar_url = $filepath;
         $user->save();
+
         return $user;
     }
 
