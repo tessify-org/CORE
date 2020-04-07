@@ -93,7 +93,9 @@ return [
     "view_cta_positions_filled_text" => "All positions have been filled and people are working on this task.",
     "view_cta_positions_filled_assignees" => "Assigned users",
 
-    "view_cta_" => "",
+    "view_cta_awaiting_positions_filled_title" => "Waiting",
+    "view_cta_awaiting_positions_filled_text_multiple" => "Now we wait until people fill up this task's positions and get to work.",
+    "view_cta_awaiting_positions_filled_text_singular" => "Now we wait until someone fills up this tasks' position and gets to work.",
 
     //
     // Create

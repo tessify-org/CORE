@@ -108,26 +108,19 @@
                     <!-- Owner -->
                     @elseif ($task->is_owner)
 
-                        <!-- Positions are open -->
+                        <!-- Positions left to be filled -->
                         @if ($task->is_open)
 
-                            <!-- Open positions -->
-                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_open_title")</div>
+                            <!-- Waiting for positions to be filled -->
+                            <div id="task-cta__title">@lang("tessify-core::tasks.view_cta_awaiting_positions_filled_title")</div>
                             <div id="task-cta__text">
                                 @if ($task->num_open_positions == 1)
-                                    @lang("tessify-core::tasks.view_cta_open_text_singular")
+                                    @lang("tessify-core::tasks.view_cta_awaiting_positions_filled_text_singular")
                                 @else
-                                    @lang("tessify-core::tasks.view_cta_open_text_multiple", ["positions" => $task->num_open_positions])
+                                    @lang("tessify-core::tasks.view_cta_awaiting_positions_filled_text_multiple")
                                 @endif
                             </div>
-                            @can("assign-to-self", $task)
-                                <div id="task-cta__button">
-                                    <v-btn color="primary" href="{{ route('tasks.assign-to-me', $task->slug) }}">
-                                        @lang("tessify-core::tasks.view_cta_open_button")
-                                    </v-btn>
-                                </div>
-                            @endcan
-                            <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/in_love.svg') }})"></div>
+                            <div id="task-cta__image" style="background-image: url({{ asset('storage/images/undraw/a_moment_to_relax.svg') }}); right: 8px; bottom: -17px;"></div>
 
                         <!-- Position have been filled -->
                         @else

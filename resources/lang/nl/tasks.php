@@ -92,6 +92,10 @@ return [
     "view_cta_positions_filled_text" => "Alle posities zijn inmiddels vervuld en er wordt aan dit werkpakket gewerkt.",
     "view_cta_positions_filled_assignees" => "Toegewezen gebruikers",
 
+    "view_cta_awaiting_positions_filled_title" => "Wachten",
+    "view_cta_awaiting_positions_filled_text_multiple" => "Nu is het wachten tot alle posities zijn vervuld en mensen aan de slag gaan.",
+    "view_cta_awaiting_positions_filled_text_singular" => "Nu is het wachten tot de positie is vervuld en iemand aan de slag gaat.",
+
     //
     // Create
     //
