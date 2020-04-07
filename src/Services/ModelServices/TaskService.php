@@ -173,6 +173,11 @@ class TaskService implements ModelServiceContract
         return false;
     }
 
+    public function countAll()
+    {
+        return $this->getAll()->count();
+    }
+
     public function createFromRequest(CreateTaskRequest $request)
     {
         $open = TaskStatuses::findByName("open");

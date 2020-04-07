@@ -29,6 +29,7 @@ return [
     "profile" => "Profiel van :name",
     "profile_update" => "Profiel aanpassen",
     "dashboard" => "Dashboard",
+    "get-started" => "Get started",
     "projects" => "Projecten",
     "projects_view" => "Bekijk project",
     "projects_create" => "Project starten",

@@ -28,6 +28,7 @@ return [
     "settings" => "Settings",
     "profile" => "Profile of :name",
     "profile_update" => "Update profile",
+    "get-started" => "Get started",
     "projects" => "Projects",
     "projects_view" => "View project",
     "projects_create" => "Start project",

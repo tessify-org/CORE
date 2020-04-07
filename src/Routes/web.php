@@ -72,10 +72,13 @@ Route::group(["middleware" => "auth"], function() {
     
     // Settings
     Route::get("instellingen", "Settings\SettingsController@getSettings")->name("settings");
+    
+    // Get started
+    Route::get("get-started", "Projects\ProjectController@getGetStarted")->name("get-started");
 
     // Projects
     Route::group(["prefix" => "projecten"], function() {
-        
+                
         // Manage projects
         Route::get("/", "Projects\ProjectController@getOverview")->name("projects");
         

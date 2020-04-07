@@ -72,4 +72,9 @@ trait ModelServiceGetters
 
         return false;
     }
+    
+    public function countAll()
+    {
+        return $this->getAll()->count();
+    }
 }

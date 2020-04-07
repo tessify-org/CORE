@@ -21,6 +21,11 @@ use Tessify\Core\Http\Requests\Projects\DeleteProjectRequest;
 
 class ProjectController extends Controller
 {
+    public function getGetStarted()
+    {
+        return view("tessify-core::pages.projects.get-started", []);
+    }
+
     public function getOverview()
     {
         return view("tessify-core::pages.projects.overview", [
