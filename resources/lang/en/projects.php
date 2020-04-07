@@ -275,4 +275,24 @@ return [
     "tasks_overview_category" => "Category",
     "tasks_overview_complexity" => "Complexity",
 
+    //
+    // Resources form field (create/update project)
+    //
+
+    "resources_field_no_resources" => "No resources have been added yet.",
+    "resources_field_add_button" => "Add resource",
+    "resources_field_form_title" => "Title",
+    "resources_field_form_description" => "Description",
+    "resources_field_form_file" => "File",
+    "resources_field_create_dialog_title" => "Add resource",
+    "resources_field_create_dialog_cancel" => "Cancel",
+    "resources_field_create_dialog_submit" => "Save resource",
+    "resources_field_update_dialog_title" => "Update resource",
+    "resources_field_update_dialog_cancel" => "Cancel",
+    "resources_field_update_dialog_submit" => "Save changes",
+    "resources_field_delete_dialog_title" => "Delete resource",
+    "resources_field_delete_dialog_text" => "Are you sure you want to delete this resource?",
+    "resources_field_delete_dialog_cancel" => "No, cancel",
+    "resources_field_delete_dialog_submit" => "Yes, delete resource",
+
 ];

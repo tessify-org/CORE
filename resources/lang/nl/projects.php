@@ -86,15 +86,15 @@ return [
 
     "create_title" => "Project starten",
     "create_back" => "Terug naar overzicht",
-    "create_submit" => "",
+    "create_submit" => "Start project",
 
     //
     // Update project
     //
 
     "update_title" => "Project wijzigen",
-    "update_back" => "",
-    "update_submit" => "",
+    "update_back" => "Terug naar project",
+    "update_submit" => "Wijzigingen opslaan",
 
     //
     // Create & update project form
@@ -274,5 +274,25 @@ return [
     "tasks_overview_title" => "Titel",
     "tasks_overview_category" => "Categorie",
     "tasks_overview_complexity" => "Complexiteit",
+
+    //
+    // Resources form field (create/update project)
+    //
+
+    "resources_field_no_resources" => "Er zijn nog geen hulpmiddelen toegevoegd.",
+    "resources_field_add_button" => "Hulpmiddel toevoegen",
+    "resources_field_form_title" => "Titel",
+    "resources_field_form_description" => "Omschrijving",
+    "resources_field_form_file" => "Bestand",
+    "resources_field_create_dialog_title" => "Hulpmiddel toevoegen",
+    "resources_field_create_dialog_cancel" => "Annuleren",
+    "resources_field_create_dialog_submit" => "Hulpmiddel opslaan",
+    "resources_field_update_dialog_title" => "Hulpmiddel aanpassen",
+    "resources_field_update_dialog_cancel" => "Annuleren",
+    "resources_field_update_dialog_submit" => "Wijzigingen opslaan",
+    "resources_field_delete_dialog_title" => "Hulpmiddel verwijderen",
+    "resources_field_delete_dialog_text" => "Weet je zeker dat je dit hulpmiddel wilt verwijderen?",
+    "resources_field_delete_dialog_cancel" => "Nee, annuleren",
+    "resources_field_delete_dialog_submit" => "Ja, verwijder hulpmiddel",
 
 ];

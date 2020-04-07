@@ -27,7 +27,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             "project_status_id" => "required|exists:project_statuses,id",
             "project_category" => "required",
-            "work_method_id" => "required|exists:work_methods,id",
+            "work_method_id" => "nullable|exists:work_methods,id",
             "title" => "required",
             "slogan" => "nullable",
             "description" => "required",

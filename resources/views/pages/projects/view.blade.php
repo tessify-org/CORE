@@ -110,10 +110,12 @@
                                     <div class="key">@lang("tessify-core::projects.view_category")</div>
                                     <div class="val">{{ $project->category->label }}</div>
                                 </div>
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_work_method")</div>
-                                    <div class="val">{{ $project->workMethod->label }}</div>
-                                </div>
+                                @if ($project->workMethod)
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_work_method")</div>
+                                        <div class="val">{{ $project->workMethod->label }}</div>
+                                    </div>
+                                @endif
                                 <div class="detail">
                                     <div class="key">@lang("tessify-core::projects.view_start_date")</div>
                                     <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>

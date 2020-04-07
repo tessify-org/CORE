@@ -45,7 +45,21 @@
                     start-date-text="@lang('tessify-core::projects.form_start_date')"
                     deadline-text="@lang('tessify-core::projects.form_deadline')"
                     back-text="@lang('tessify-core::projects.create_back')"
-                    submit-text="@lang('tessify-core::projects.create_submit')">
+                    submit-text="@lang('tessify-core::projects.create_submit')"
+                    resources-no-records-text="@lang('tessify-core::projects.resources_field_no_resources')"
+                    resources-add-button-text="@lang('tessify-core::projects.resources_field_add_button')"
+                    resources-form-title-text="@lang('tessify-core::projects.resources_field_form_title')"
+                    resources-form-description-text="@lang('tessify-core::projects.resources_field_form_description')"
+                    resources-form-file-text="@lang('tessify-core::projects.resources_field_form_file')"
+                    resources-create-dialog-title-text="@lang('tessify-core::projects.resources_field_create_dialog_title')"
+                    resources-create-dialog-cancel-text="@lang('tessify-core::projects.resources_field_create_dialog_cancel')"
+                    resources-create-dialog-submit-text="@lang('tessify-core::projects.resources_field_create_dialog_submit')"
+                    resources-update-dialog-title-text="@lang('tessify-core::projects.resources_field_update_dialog_title')"
+                    resources-update-dialog-cancel-text="@lang('tessify-core::projects.resources_field_update_dialog_cancel')"
+                    resources-update-dialog-submit-text="@lang('tessify-core::projects.resources_field_update_dialog_submit')"
+                    resources-delete-dialog-title-text="@lang('tessify-core::projects.resources_field_delete_dialog_title')"
+                    resources-delete-dialog-cancel-text="@lang('tessify-core::projects.resources_field_delete_dialog_cancel')"
+                    resources-delete-dialog-submit-text="@lang('tessify-core::projects.resources_field_delete_dialog_submit')">
                 </project-form>
 
             </form>

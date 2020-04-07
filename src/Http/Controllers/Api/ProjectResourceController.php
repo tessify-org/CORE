@@ -4,9 +4,9 @@ namespace Tessify\Core\Http\Controllers\Api;
 
 use ProjectResources;
 use App\Http\Controllers\Controller;
-use Tessify\Core\Http\Requests\Api\Jobs\Resources\CreateProjectResourceRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\Resources\UpdateProjectResourceRequest;
-use Tessify\Core\Http\Requests\Api\Jobs\Resources\DeleteProjectResourceRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\CreateProjectResourceRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\UpdateProjectResourceRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\DeleteProjectResourceRequest;
 
 class ProjectResourceController extends Controller
 {
