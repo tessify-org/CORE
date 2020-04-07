@@ -29,6 +29,14 @@ class LoginController extends Controller
         $user = User::where("email", $request->email)->first();
         
         flash(__("tessify-core::auth.login_welcome_back", ['name' => $user->formattedName]))->success();
+
+        if (session()->has("redirect_after_login"))
+        {
+            $intended = session("redirect_after_login");
+            session()->forget("redirect_after_login");
+            return redirect($intended);
+        }
+
         return redirect()->route("home");
     }
 }
