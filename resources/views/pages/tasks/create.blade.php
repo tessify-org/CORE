@@ -13,6 +13,9 @@
                 @lang("tessify-core::tasks.create_title")
             </h1>
 
+            <!-- Feedback -->
+            @include("tessify-core::partials.feedback")
+
             <!-- Open form -->
             <form action="{{ route('tasks.create.post') }}" method="post">
                 @csrf

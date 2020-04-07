@@ -38,4 +38,19 @@ class TaskCategoryService implements ModelServiceContract
 
         return false;
     }
+
+    public function findOrCreateByName($name)
+    {
+        foreach ($this->getAll() as $category)
+        {
+            if ($category->name === $name)
+            {
+                return $category;
+            }
+        }
+
+        return TaskCategory::create([
+            "name" => $name,
+        ]);
+    }
 }

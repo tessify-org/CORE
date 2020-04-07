@@ -39,7 +39,7 @@ return [
     "overview_sidebar_seniorities_hint" => "",
     "overview_sidebar_seniorities_empty" => "No seniorities found",
     "overview_sidebar_timespan" => "Estimated workload",
-    "overview_sidebar_timespan_hint" => "",
+    "overview_sidebar_timespan_hint" => "How long will this task take to complete?",
 
     //
     // View
@@ -61,6 +61,7 @@ return [
     "view_estimated_hours" => "Estimated hours",
     "view_realized_hours" => "Realized hours",
     "view_number_positions" => "Number of positions",
+    "view_author" => "Author",
     "view_assigned_users" => "Assigned users",
     "view_no_assigned_users" => "No assigned users yet",
     "view_created_at" => "Created at",

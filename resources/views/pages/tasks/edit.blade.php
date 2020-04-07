@@ -9,10 +9,15 @@
     <div id="apply-for-project" class="content-section__wrapper">
         <div class="content-section">
 
+            <!-- Title -->
             <h1 id="delete-dialog__title" class="page-title centered">
                 @lang("tessify-core::tasks.edit_title")
             </h1>
 
+            <!-- Feedback -->
+            @include("tessify-core::partials.feedback")
+            
+            <!-- Form -->
             <form action="{{ route('tasks.edit.post', ['slug' => $task->slug]) }}" method="post">
                 @csrf
                 

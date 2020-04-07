@@ -13,7 +13,9 @@ use TaskCategories;
 use TaskSeniorities;
 use TaskProgressReports;
 use TaskProgressReportReviews;
+
 use App\Models\User;
+
 use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -182,11 +184,13 @@ class TaskService implements ModelServiceContract
     {
         $open = TaskStatuses::findByName("open");
 
+        $category = TaskCategories::findOrCreateByName($request->task_category);
+
         $task = Task::create([
             "project_id" => $request->project_id,
             "author_id" => Auth::user()->id,
             "task_status_id" => $open->id,
-            "task_category_id" => $request->task_category_id,
+            "task_category_id" => $category->id,
             "task_seniority_id" => $request->task_seniority_id,
             "title" => $request->title,
             "description" => $request->description,
@@ -217,9 +221,11 @@ class TaskService implements ModelServiceContract
 
     public function updateFromRequest(Task $task, UpdateTaskRequest $request)
     {
+        $category = TaskCategories::findOrCreateByName($request->task_category);
+
+        $task->task_category_id = $category->id;
         $task->project_id = $request->project_id;
         $task->task_status_id = $request->task_status_id;
-        $task->task_category_id = $request->task_category_id;
         $task->task_seniority_id = $request->task_seniority_id;
         $task->title = $request->title;
         $task->description = $request->description;

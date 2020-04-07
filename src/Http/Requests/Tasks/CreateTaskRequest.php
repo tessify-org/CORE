@@ -26,7 +26,7 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             "project_id" => "nullable",
-            "task_category_id" => "required|exists:task_categories,id",
+            "task_category" => "required",
             "task_seniority_id" => "required|exists:task_seniorities,id",
             "title" => "required",
             "description" => "required",

@@ -74,7 +74,7 @@ class TaskController extends Controller
             "oldInput" => collect([
                 "project_id" => old("project_id"),
                 "task_seniority_id" => old("task_seniority_id"),
-                "task_category_id" => old("task_category_id"),
+                "task_category" => old("task_category"),
                 "title" => old("title"),
                 "description" => old("description"),
                 "complexity" => old("complexity"),
@@ -115,7 +115,7 @@ class TaskController extends Controller
                 "project_id" => old("project_id"),
                 "task_status_id" => old("task_status_id"),
                 "task_seniority_id" => old("task_seniority_id"),
-                "task_category_id" => old("task_category_id"),
+                "task_category" => old("task_category"),
                 "title" => old("title"),
                 "description" => old("description"),
                 "complexity" => old("complexity"),
@@ -138,7 +138,7 @@ class TaskController extends Controller
 
         Tasks::updateFromRequest($task, $request);
 
-        flash(__("tessify-core::projects.tasks_updated"))->success();
+        flash(__("tessify-core::tasks.edited"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
