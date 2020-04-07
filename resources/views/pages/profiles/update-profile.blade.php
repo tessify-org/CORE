@@ -42,6 +42,8 @@
                     create-assignment-api-endpoint="{{ route('api.assignments.create.post') }}"
                     update-assignment-api-endpoint="{{ route('api.assignments.update.post') }}"
                     delete-assignment-api-endpoint="{{ route('api.assignments.delete.post') }}"
+                    upload-avatar-api-endpoint="{{ route('api.profile.upload-avatar.post') }}"
+                    upload-header-image-api-endpoint="{{ route('api.profile.upload-header-image.post') }}"
                     assignments-label-text="@lang('tessify-core::profiles.update_profile_assignments_label')"
                     assignments-no-records-text="@lang('tessify-core::profiles.update_profile_assignments_no_records')"
                     assignments-add-button-text="@lang('tessify-core::profiles.update_profile_assignments_add_button')"

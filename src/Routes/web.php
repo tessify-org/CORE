@@ -268,6 +268,12 @@ Route::group(["prefix" => "api"], function() {
         Route::post("delete", "Api\AssignmentController@postDeleteAssignment")->name("api.assignments.delete.post");
     });
 
+    // Profile
+    Route::group(["prefix" => "profile"], function() {
+        Route::post("upload-avatar", "Api\ProfileController@postUploadAvatar")->name("api.profile.upload-avatar.post");
+        Route::post("upload-header-image", "Api\ProfileController@postUploadHeaderImage")->name("api.profile.upload-header-image.post");
+    });
+
 });
 
 // Tests
