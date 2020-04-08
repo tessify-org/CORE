@@ -62,13 +62,15 @@
                         </div>
 
                         <!-- Resources -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_resources")</h3>
-                            <project-resource-list
-                                :resources="{{ $resources->toJson() }}"
-                                empty-text="@lang('tessify-core::projects.view_no_resources')">
-                            </project-resource-list>
-                        </div>
+                        @if ($resources->count())
+                            <div class="content-box elevation-1">
+                                <h3 class="content-subtitle">@lang("tessify-core::projects.view_resources")</h3>
+                                <project-resource-list
+                                    :resources="{{ $resources->toJson() }}"
+                                    empty-text="@lang('tessify-core::projects.view_no_resources')">
+                                </project-resource-list>
+                            </div>
+                        @endif
                         
                         <!-- Comments -->
                         <div class="content-box elevation-1">
