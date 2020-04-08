@@ -222,13 +222,27 @@
                             </div>
 
                             <!-- Reacties -->
-                            <h3 class="content-card__title">
+                            <!-- <h3 class="content-card__title">
                                 @lang("tessify-core::profiles.profile_reactions")
                             </h3>
                             <div class="content-card mb elevation-1">
                                 <div class="content-card__content">
                                     Coming soon..
                                 </div>
+                            </div> -->
+                            
+                            <!-- Comments -->
+                            <div class="content-box elevation-1">
+                                <comments
+                                    :user="{{ $user->toJson() }}"
+                                    :comments="{{ $comments->toJson() }}"
+                                    per-page="3"
+                                    target-type="user"
+                                    target-id="{{ $user->id }}"
+                                    create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
+                                    update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
+                                    delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}">
+                                </comments>
                             </div>
 
                         </div>

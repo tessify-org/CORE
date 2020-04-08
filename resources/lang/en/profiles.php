@@ -25,6 +25,10 @@ return [
     "memberlist_title" => "Ledenlijst",
     "memberlist_name" => "Name",
     "memberlist_reputation" => "Reputation",
+    "memberlist_points" => "points",
+    "memberlist_search" => "Search",
+    "memberlist_ministry" => "Ministry",
+    "memberlist_organization" => "Organization",
     "memberlist_no_users" => "We konden geen gebruikers vinden!",
 
     // 

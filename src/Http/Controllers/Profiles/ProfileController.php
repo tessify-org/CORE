@@ -6,6 +6,7 @@ use Auth;
 use Users;
 use Tasks;
 use Skills;
+use Comments;
 use Projects;
 use Messages;
 use Reputation;
@@ -47,6 +48,7 @@ class ProfileController extends Controller
             "projects" => Projects::getAllOngoingForUser($user),
             "tasks" => Tasks::getAllOngoingForUser($user),
             "transactions" => Reputation::getTransactionsForUser($user),
+            "comments" => Comments::getAllPreloadedForUser($user),
         ]);
     }
 

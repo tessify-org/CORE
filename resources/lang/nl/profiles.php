@@ -18,10 +18,14 @@ return [
     // Memberlist
     //
 
-    "memberlist_title" => "Memberlist",
+    "memberlist_title" => "Ledenlijst",
     "memberlist_name" => "Naam",
     "memberlist_reputation" => "Reputatie",
-    "memberlist_no_users" => "No users could be retrieved!",
+    "memberlist_points" => "punten",
+    "memberlist_search" => "Zoeken",
+    "memberlist_ministry" => "Ministerie",
+    "memberlist_organization" => "Organisatie",
+    "memberlist_no_users" => "Geen gebruikers gevonden",
 
     // 
     // Profile
