@@ -37,7 +37,7 @@ class MessageController extends Controller
             "replyTo" => $replyTo,
             "users" => Users::getAllPreloaded(),
             "oldInput" => collect([
-                "user_id" => old("user_id"),
+                "user" => old("user"),
                 "subject" => old("subject"),
                 "message" => old("message"),
             ])

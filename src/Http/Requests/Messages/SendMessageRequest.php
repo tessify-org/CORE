@@ -4,6 +4,7 @@ namespace Tessify\Core\Http\Requests\Messages;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Tessify\Core\Rules\ValidFormattedUserName;
 
 class SendMessageRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class SendMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            "user_id" => "required|exists:users,id",
+            "user" => ["required", new ValidFormattedUserName],
             "subject" => "nullable",
             "message" => "required",
         ];

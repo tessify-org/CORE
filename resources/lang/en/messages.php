@@ -50,6 +50,7 @@ return [
     "send_submit" => "Send message",
     "send_back" => "Back to inbox",
     "message_sent" => "Succesfully sent message to :name!",
+    "invalid_user" => "The given user could not be found",
 
     //
     // Read message

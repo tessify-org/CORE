@@ -17,12 +17,12 @@
                     <!-- Follow / Unfollow -->
                     @if (Auth::user()->id != $user->id)
                         @if (Auth::user()->isFollowing($user))
-                            <v-btn color="primary" href="{{ route('profile.unfollow', $user->slug) }}">
+                            <v-btn depressed href="{{ route('profile.unfollow', $user->slug) }}">
                                 <i class="fas fa-eye-slash"></i>
                                 @lang("tessify-core::followers.unfollow")
                             </v-btn>
                         @else
-                            <v-btn color="primary" href="{{ route('profile.follow', $user->slug) }}">
+                            <v-btn depressed href="{{ route('profile.follow', $user->slug) }}">
                                 <i class="fas fa-eye"></i>
                                 @lang("tessify-core::followers.follow")
                             </v-btn>
@@ -30,7 +30,7 @@
                     @endif
                     <!-- Update profile -->
                     @if (Auth::user()->id == $user->id)
-                        <v-btn color="primary" href="{{ route('profile.update') }}">
+                        <v-btn depressed color="primary" href="{{ route('profile.update') }}">
                             <i class="fas fa-user-edit"></i>
                             @lang("tessify-core::profiles.profile_update_button")
                         </v-btn>

@@ -50,6 +50,7 @@ return [
     "send_submit" => "Verstuur bericht",
     "send_back" => "Terug naar inbox",
     "message_sent" => "Bericht naar :name is verstuurd!",
+    "invalid_user" => "De opgegeven gebruiker kon niet worden gevonden",
 
     //
     // Read message

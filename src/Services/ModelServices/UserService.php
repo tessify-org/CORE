@@ -347,4 +347,30 @@ class UserService implements ModelServiceContract
 
         return $user;
     }
+
+    public function userWithFormattedNameExists($formattedName)
+    {
+        foreach ($this->getAll() as $user)
+        {
+            if ($user->formattedName == $formattedName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function findUserByFormattedName($formattedName)
+    {
+        foreach ($this->getAll() as $user)
+        {
+            if ($user->formattedName == $formattedName)
+            {
+                return $user;
+            }
+        }
+
+        return false;
+    }
 }

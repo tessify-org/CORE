@@ -97,7 +97,10 @@ class MessageService implements ModelServiceContract
             }
         }
 
-        return collect($out);
+        $out = collect($out);
+        $out = $out->sortByDesc('id')->values();
+
+        return $out;
     }
 
     public function sentMessages(User $user = null)
@@ -114,16 +117,21 @@ class MessageService implements ModelServiceContract
             }
         }
 
-        return collect($out);
+        $out = collect($out);
+        $out = $out->sortByDesc('id')->values();
+
+        return $out;
     }
 
     public function sendFromRequest(SendMessageRequest $request, Message $replyTo = null)
     {
         $user = Auth::user();
 
+        $receiver = Users::findUserByFormattedName($request->user);
+
         return Message::create([
             "sender_id" => $user->id,
-            "receiver_id" => $request->user_id,
+            "receiver_id" => $receiver->id,
             "reply_to_id" => is_null($replyTo) ? 0 : $replyTo->id,
             "subject" => $request->subject,
             "message" => $request->message,
