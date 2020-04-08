@@ -277,6 +277,11 @@ Route::group(["prefix" => "api"], function() {
         Route::post("upload-header-image", "Api\ProfileController@postUploadHeaderImage")->name("api.profile.upload-header-image.post");
     });
 
+    // Newsletter
+    Route::group(["prefix" => "newsletter"], function() {
+        Route::post("signup", "Api\NewsletterController@postSignup")->name("api.newsletter.signup.post");
+    });
+
 });
 
 // Tests

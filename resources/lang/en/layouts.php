@@ -49,4 +49,8 @@ return [
     "footer_cookies_link" => "Cookies and Privacy",
     "footer_disclaimer_link" => "Disclaimer",
 
+    // Newsletter signup
+    "newsletter_signup_submit" => "Signup",
+    "newsletter_signed_up" => "Thanks for signing up!",
+
 ];

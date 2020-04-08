@@ -38,6 +38,7 @@ use Tessify\Core\Services\ModelServices\ReputationTransactionService;
 use Tessify\Core\Services\ModelServices\BugReportService;
 use Tessify\Core\Services\ModelServices\CompletedTaskService;
 use Tessify\Core\Services\ModelServices\ViewEmailRequestService;
+use Tessify\Core\Services\ModelServices\NewsletterService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -228,6 +229,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("view-email-requests", function() {
             return new ViewEmailRequestService;
+        });
+
+        $this->app->singleton("newsletters", function() {
+            return new NewsletterService;
         });
 
         //

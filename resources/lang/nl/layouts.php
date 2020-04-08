@@ -49,4 +49,8 @@ return [
     "footer_cookies_link" => "Cookies en Privacy",
     "footer_disclaimer_link" => "Voorwaarden",
 
+    // Newsletter signup
+    "newsletter_signup_submit" => "Inschrijven",
+    "newsletter_signed_up" => "Bedankt voor je inschrijving!",
+
 ];

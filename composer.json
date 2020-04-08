@@ -68,7 +68,8 @@
                 "TaskProgressReportAttachments": "Tessify\\Core\\Facades\\TaskProgressReportAttachmentsFacade",
                 "BugReports": "Tessify\\Core\\Facades\\BugReportsFacade",
                 "CompletedTasks": "Tessify\\Core\\Facades\\CompletedTasksFacade",
-                "ViewEmailRequests": "Tessify\\Core\\Facades\\ViewEmailRequestsFacade"
+                "ViewEmailRequests": "Tessify\\Core\\Facades\\ViewEmailRequestsFacade",
+                "Newsletters": "Tessify\\Core\\Facades\\NewslettersFacade"
             }
         },
         "branch-alias": {

@@ -307,6 +307,11 @@
                                 <div class="column-text">
                                     @lang("tessify-core::layouts.footer_newsletter_text")
                                 </div>
+                                <newsletter-signup-form
+                                    submit-text="@lang('tessify-core::layouts.newsletter_signup_submit')"
+                                    signed-up-text="@lang('tessify-core::layouts.newsletter_signed_up')"
+                                    api-endpoint="{{ route('api.newsletter.signup.post') }}">
+                                </newsletter-signup-form>
                             </div>
                         </div>
                     </div>
