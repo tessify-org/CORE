@@ -82,7 +82,18 @@
                                 target-id="{{ $project->id }}"
                                 create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
                                 update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
-                                delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}">
+                                delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}"
+                                title-text="@lang('tessify-core::comments.title')"
+                                no-comments-text="@lang('tessify-core::comments.no_comments')"
+                                create-title-text="@lang('tessify-core::comments.create_title')"
+                                create-submit-text="@lang('tessify-core::comments.create_submit')"
+                                update-title-text="@lang('tessify-core::comments.update_title')"
+                                update-cancel-text="@lang('tessify-core::comments.update_cancel')"
+                                update-submit-text="@lang('tessify-core::comments.update_submit')"
+                                delete-title-text="@lang('tessify-core::comments.delete_title')"
+                                delete-text="@lang('tessify-core::comments.delete_text')"
+                                delete-cancel-text="@lang('tessify-core::comments.delete_cancel')"
+                                delete-submit-text="@lang('tessify-core::comments.delete_submit')">
                             </comments>
                         </div>
 
