@@ -69,7 +69,8 @@
                 "BugReports": "Tessify\\Core\\Facades\\BugReportsFacade",
                 "CompletedTasks": "Tessify\\Core\\Facades\\CompletedTasksFacade",
                 "ViewEmailRequests": "Tessify\\Core\\Facades\\ViewEmailRequestsFacade",
-                "Newsletters": "Tessify\\Core\\Facades\\NewslettersFacade"
+                "Newsletters": "Tessify\\Core\\Facades\\NewslettersFacade",
+                "Search": "Tessify\\Core\\Facades\\SearchFacade"
             }
         },
         "branch-alias": {

@@ -4,8 +4,11 @@ namespace Tessify\Core\Providers;
 
 use Auth;
 
+use Tessify\Core\Commands\ReindexCommand;
+
 use Tessify\Core\Services\Utilities\DateService;
 use Tessify\Core\Services\Utilities\UploadService;
+use Tessify\Core\Services\Utilities\SearchService;
 use Tessify\Core\Services\Utilities\ReputationService;
 use Tessify\Core\Services\ModelServices\UserService;
 use Tessify\Core\Services\ModelServices\TaskService;
@@ -94,6 +97,14 @@ class CoreServiceProvider extends ServiceProvider
 
         // Stylesheet publishing
         $this->publishes([__DIR__."/../../resources/sass" => resource_path("sass")], "scss");
+
+        // Register CLI commands
+        if ($this->app->runningInConsole())
+        {
+            $this->commands([
+                ReindexCommand::class,
+            ]);
+        }
     }
 
     public function register()
@@ -249,6 +260,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("reputation", function() {
             return new ReputationService;
+        });
+
+        $this->app->singleton("search", function() {
+            return new SearchService;
         });
     }
 

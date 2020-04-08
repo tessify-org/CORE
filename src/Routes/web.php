@@ -201,6 +201,12 @@ Route::group(["middleware" => "auth"], function() {
         
     });
 
+    // Search
+    Route::group(["prefix" => "zoeken"], function() {
+        Route::get("/", "System\SearchController@getSearch")->name("search");
+        Route::post("/", "System\SearchController@postSearch")->name("search.post");
+    });
+
 });
 
 // Admin panel
@@ -280,6 +286,11 @@ Route::group(["prefix" => "api"], function() {
     // Newsletter
     Route::group(["prefix" => "newsletter"], function() {
         Route::post("signup", "Api\NewsletterController@postSignup")->name("api.newsletter.signup.post");
+    });
+
+    // Search
+    Route::group(["prefix" => "search"], function() {
+        Route::post("/", "Api\SearchController@postSearch")->name("api.search.post");
     });
 
 });
