@@ -42,6 +42,7 @@ use Tessify\Core\Services\ModelServices\BugReportService;
 use Tessify\Core\Services\ModelServices\CompletedTaskService;
 use Tessify\Core\Services\ModelServices\ViewEmailRequestService;
 use Tessify\Core\Services\ModelServices\NewsletterService;
+use Tessify\Core\Services\ModelServices\ProjectPhaseService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -140,6 +141,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("project-resources", function() {
             return new ProjectResourceService;
+        });
+
+        $this->app->singleton("project-phases", function() {
+            return new ProjectPhaseService;
         });
 
         $this->app->singleton("work-methods", function() {

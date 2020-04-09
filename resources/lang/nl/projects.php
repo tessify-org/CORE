@@ -74,11 +74,15 @@ return [
     "view_end_date" => "Eind datum",
     "view_created_at" => "Toegevoegd op",
     "view_updated_at" => "Laatst geupdate op",
+    "view_status" => "Status",
+    "view_ministry" => "Ministerie",
+    "view_project_code" => "Project code",
+    "view_budget" => "Budget",
     "view_actions" => "Acties",
-    "view_subscribe" => "Subscribe",
-    "view_subscribed" => "Je hebt je subscribed voor dit project",
-    "view_unsubscribe" => "Unsubscribe",
-    "view_unsubscribed" => "Je hebt je unsubscribed van dit project",
+    "view_subscribe" => "Volgen",
+    "view_subscribed" => "Je volgt nu dit project",
+    "view_unsubscribe" => "Stop met volgen",
+    "view_unsubscribed" => "Je bent gestopt met het volgen van dit project",
     
     //
     // Create project
@@ -116,6 +120,11 @@ return [
     "form_has_deadline" => "Heeft een deadline",
     "form_start_date" => "Start datum",
     "form_deadline" => "Deadline",
+    "form_budget" => "Budget",
+    "form_ministry" => "Ministerie",
+    "form_project_code" => "Project code",
+    "form_project_phase" => "Project fase",
+    "form_optional" => "Optioneel",
 
     //
     // Delete project

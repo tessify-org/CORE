@@ -11,6 +11,7 @@ use Uploader;
 use TeamRoles;
 use TeamMembers;
 use WorkMethods;
+use ProjectPhases;
 use ProjectStatuses;
 use ProjectResources;
 use ProjectCategories;
@@ -62,9 +63,13 @@ class ProjectService implements ModelServiceContract
         // Load the project's work method
         $instance->work_method = WorkMethods::findForProject($instance);
 
+        // Load project's phase
+        $instance->phase = ProjectPhases::findForProject($instance);
+
         // Load the project's team member applications
         $instance->team_member_applications = TeamMemberApplications::getAllForProject($instance);
 
+        // Load project's tasks
         $instance->tasks = Tasks::getAllForProject($instance);
 
         // Format the dates
@@ -115,11 +120,20 @@ class ProjectService implements ModelServiceContract
         // Find or create the project's category by it's label
         $category = ProjectCategories::findOrCreateByLabel($request->project_category);
 
+        // Find or create the project's phase
+        $phase_id = null;
+        if ($request->has("project_phase") && $request->project_phase !== "")
+        {
+            $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
+        }
+
         // Compose all of the data we know will be part of the new project
         $data = [
             "author_id" => Auth::user()->id,
             "project_status_id" => $request->project_status_id,
             "project_category_id" => $category->id,
+            "project_phase_id" => $phase_id,
+            "ministry_id" => $request->ministry_id,
             "work_method_id" => $request->work_method_id,
             "title" => $request->title,
             "slogan" => $request->slogan,
@@ -128,6 +142,8 @@ class ProjectService implements ModelServiceContract
             "ends_at" => $ends_at,
             "has_tasks" => $request->has_tasks == "true" ? true : false,
             "has_deadline" => $request->has_deadline == "true" ? true : false,
+            "project_code" => $request->project_code,
+            "budget" => $request->budget,
         ];
 
         // Process optional header image
@@ -158,29 +174,46 @@ class ProjectService implements ModelServiceContract
     
     public function updateFromRequest(Project $project, UpdateProjectRequest $request)
     {
+        // Parse dates
         $starts_at = Dates::parse($request->starts_at, "-")->format("Y-m-d");
         $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
 
         // Find or create the project's category by it's label
         $category = ProjectCategories::findOrCreateByLabel($request->project_category);
 
+        // Find or create the project's phase
+        $phase_id = null;
+        if ($request->has("project_phase") && $request->project_phase !== "")
+        {
+            $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
+        }
+
+        // Update project
         $project->project_status_id = $request->project_status_id;
         $project->project_category_id = $category->id;
+        $project->project_phase_id = $phase_id;
         $project->work_method_id = $request->work_method_id;
+        $project->ministry_id = $request->ministry_id;
         $project->title = $request->title;
         $project->slogan = $request->slogan;
         $project->description = $request->description;
         $project->starts_at = $starts_at;
         $project->ends_at = $ends_at;
+        $project->project_code = $request->project_code;
+        $project->budget = $request->budget;
 
+        // Upload header image
         if ($request->hasFile("header_image"))
         {
             $project->header_image_url = Uploader::upload($request->file("header_image"), "images/projects/header");
         }
 
+        // Save changes
         $project->save();
 
+        // Process project resources
         $this->processProjectResources($project, $request->resources);
+        
         // $this->processTeamRoles($project, $request->team_roles);
 
         return $project;

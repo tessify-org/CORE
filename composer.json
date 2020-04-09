@@ -41,6 +41,7 @@
                 "ProjectStatuses": "Tessify\\Core\\Facades\\ProjectStatusesFacade",
                 "ProjectCategories": "Tessify\\Core\\Facades\\ProjectCategoriesFacade",
                 "ProjectResources": "Tessify\\Core\\Facades\\ProjectResourcesFacade",
+                "ProjectPhases": "Tessify\\Core\\Facades\\ProjectPhasesFacade",
                 "WorkMethods": "Tessify\\Core\\Facades\\WorkMethodsFacade",
                 "Tasks": "Tessify\\Core\\Facades\\TasksFacade",
                 "TaskStatuses": "Tessify\\Core\\Facades\\TaskStatusesFacade",

@@ -19,10 +19,12 @@
 
                 <project-form
                     :project="{{ $project->toJson() }}"
+                    :project-phases="{{ $phases->toJson() }}"
                     :project-statuses="{{ $statuses->toJson() }}"
                     :project-categories="{{ $categories->toJson() }}"
                     :work-methods="{{ $workMethods->toJson() }}"
                     :skills="{{ $skills->toJson() }}"
+                    :ministries="{{ $ministries->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     create-resource-api-endpoint="{{ route('api.projects.resources.create.post') }}"
@@ -44,9 +46,27 @@
                     has-deadline-text="@lang('tessify-core::projects.form_has_deadline')"
                     start-date-text="@lang('tessify-core::projects.form_start_date')"
                     deadline-text="@lang('tessify-core::projects.form_deadline')"
+                    budget-text="@lang('tessify-core::projects.form_budget')"
+                    ministry-text="@lang('tessify-core::projects.form_ministry')"
+                    project-code-text="@lang('tessify-core::projects.form_project_code')"
+                    project-phase-text="@lang('tessify-core::projects.form_project_phase')"
                     back-text="@lang('tessify-core::projects.update_back')"
                     back-href="{{ route('projects') }}"
-                    submit-text="@lang('tessify-core::projects.update_submit')">
+                    submit-text="@lang('tessify-core::projects.update_submit')"
+                    resources-no-records-text="@lang('tessify-core::projects.resources_field_no_resources')"
+                    resources-add-button-text="@lang('tessify-core::projects.resources_field_add_button')"
+                    resources-form-title-text="@lang('tessify-core::projects.resources_field_form_title')"
+                    resources-form-description-text="@lang('tessify-core::projects.resources_field_form_description')"
+                    resources-form-file-text="@lang('tessify-core::projects.resources_field_form_file')"
+                    resources-create-dialog-title-text="@lang('tessify-core::projects.resources_field_create_dialog_title')"
+                    resources-create-dialog-cancel-text="@lang('tessify-core::projects.resources_field_create_dialog_cancel')"
+                    resources-create-dialog-submit-text="@lang('tessify-core::projects.resources_field_create_dialog_submit')"
+                    resources-update-dialog-title-text="@lang('tessify-core::projects.resources_field_update_dialog_title')"
+                    resources-update-dialog-cancel-text="@lang('tessify-core::projects.resources_field_update_dialog_cancel')"
+                    resources-update-dialog-submit-text="@lang('tessify-core::projects.resources_field_update_dialog_submit')"
+                    resources-delete-dialog-title-text="@lang('tessify-core::projects.resources_field_delete_dialog_title')"
+                    resources-delete-dialog-cancel-text="@lang('tessify-core::projects.resources_field_delete_dialog_cancel')"
+                    resources-delete-dialog-submit-text="@lang('tessify-core::projects.resources_field_delete_dialog_submit')">
                 </project-form>
 
             </form>

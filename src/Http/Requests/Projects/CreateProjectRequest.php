@@ -27,6 +27,8 @@ class CreateProjectRequest extends FormRequest
         return [
             "project_status_id" => "required|exists:project_statuses,id",
             "project_category" => "required",
+            "project_phase" => "nullable",
+            "ministry_id" => "nullable|exists:ministries,id",
             "work_method_id" => "nullable|exists:work_methods,id",
             "title" => "required",
             "slogan" => "nullable",
@@ -36,8 +38,9 @@ class CreateProjectRequest extends FormRequest
             "header_image" => "nullable|image",
             "resources" => "nullable",
             "team_roles" => "nullable",
-            "has_tasks" => "required",
             "has_deadline" => "required",
+            "project_code" => "nullable",
+            "budget" => "nullable",
         ];
     }
 }

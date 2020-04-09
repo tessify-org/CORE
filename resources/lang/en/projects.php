@@ -74,11 +74,15 @@ return [
     "view_end_date" => "End date",
     "view_created_at" => "Created on",
     "view_updated_at" => "Last updated on",
+    "view_status" => "Status",
+    "view_ministry" => "Ministry",
+    "view_project_code" => "Project code",
+    "view_budget" => "Budget",
     "view_actions" => "Actions",
-    "view_subscribe" => "Subscribe",
-    "view_subscribed" => "You have subscribed to this project",
-    "view_unsubscribe" => "Unsubscribe",
-    "view_unsubscribed" => "You have unsubscribed from this project",
+    "view_subscribe" => "Follow",
+    "view_subscribed" => "You are now following this project",
+    "view_unsubscribe" => "Unfollow",
+    "view_unsubscribed" => "You have stopped following this project",
 
     //
     // Create project
@@ -116,6 +120,11 @@ return [
     "form_has_deadline" => "Has deadline",
     "form_start_date" => "Start date",
     "form_deadline" => "Deadline",
+    "form_budget" => "Budget",
+    "form_ministry" => "Ministry",
+    "form_project_code" => "Project code",
+    "form_project_phase" => "Project phase",
+    "form_optional" => "Optional",
 
     //
     // Delete project

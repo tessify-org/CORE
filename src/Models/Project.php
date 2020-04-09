@@ -14,9 +14,11 @@ class Project extends Model
     protected $table = "projects";
     protected $guarded = ["id", "created_at", "updated_at"];
     protected $fillable = [
+        "author_id",
         "project_category_id",
         "project_status_id",
-        "author_id",
+        "project_phase_id",
+        "ministry_id",
         "work_method_id",
         "title",
         "slogan",
@@ -26,6 +28,8 @@ class Project extends Model
         "ends_at",
         "has_tasks",
         "has_deadline",
+        "budget",
+        "project_code",
     ];
     protected $dates = [
         "starts_at", 
@@ -54,6 +58,11 @@ class Project extends Model
         return $this->belongsTo(\App\Models\User::class, "author_id", "id");
     }
 
+    public function ministry()
+    {
+        return $this->belongsTo(Ministry::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(ProjectCategory::class, "project_category_id", "id");
@@ -62,6 +71,11 @@ class Project extends Model
     public function status()
     {
         return $this->belongsTo(ProjectStatus::class, "project_status_id", "id");
+    }
+
+    public function phase()
+    {
+        return $this->belongsTo(ProjectPhase::class);
     }
 
     public function workMethod()

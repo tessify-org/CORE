@@ -37,4 +37,9 @@ class Ministry extends Model
     {
         return $this->hasMany(Organization::class);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

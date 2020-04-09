@@ -14,12 +14,12 @@
 
                 <div id="project-header__actions">
                     @if (!Auth::user()->hasSubscribed($project))
-                        <v-btn color="primary" href="{{ route('projects.subscribe', $project->slug) }}">
+                        <v-btn href="{{ route('projects.subscribe', $project->slug) }}">
                             <i class="fas fa-check-circle"></i>
                             @lang("tessify-core::projects.view_subscribe")
                         </v-btn>
                     @else
-                        <v-btn color="red" dark href="{{ route('projects.unsubscribe', $project->slug) }}">
+                        <v-btn href="{{ route('projects.unsubscribe', $project->slug) }}">
                             <i class="fas fa-times-circle"></i>
                             @lang("tessify-core::projects.view_unsubscribe")
                         </v-btn>
@@ -102,6 +102,73 @@
                     <!-- Sidebar -->
                     <div id="project-info__sidebar">
 
+                        <!-- Details -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">
+                                @lang("tessify-core::projects.view_details")
+                            </h3>
+                            <div class="details no-padding compact mb-0">
+                                <!-- Status -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_status")</div>
+                                    <div class="val">{{ $project->status->label }}</div>
+                                </div>
+                                <!-- Ministry -->
+                                @if ($project->ministry)
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_ministry")</div>
+                                        <div class="val">{{ $project->ministry->abbreviation }}</div>
+                                    </div>
+                                @endif
+                                <!-- Category -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_category")</div>
+                                    <div class="val">{{ $project->category->label }}</div>
+                                </div>
+                                <!-- Work method -->
+                                @if ($project->workMethod)
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_work_method")</div>
+                                        <div class="val">{{ $project->workMethod->label }}</div>
+                                    </div>
+                                @endif
+                                <!-- Project code -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_project_code")</div>
+                                    <div class="val">{{ $project->project_code }}</div>
+                                </div>
+                                <!-- Budget -->
+                                @if (!is_null($project->budget) && $project->budget > 0)
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_budget")</div>
+                                        <div class="val">&euro;{{ number_format($project->budget, 2) }}</div>
+                                    </div>
+                                @endif
+                                <!-- Start date -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_start_date")</div>
+                                    <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>
+                                </div>
+                                <!-- Deadline -->
+                                @if ($project->has_deadline and !is_null($project->ends_at))
+                                    <div class="detail">
+                                        <div class="key">@lang("tessify-core::projects.view_end_date")</div>
+                                        <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
+                                    </div>
+                                @endif
+                                <!-- Created at -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_created_at")</div>
+                                    <div class="val">{{ $project->created_at->format("d-m-Y") }}</div>
+                                </div>
+                                <!-- Updated at -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::projects.view_updated_at")</div>
+                                    <div class="val">{{ $project->updated_at->format("d-m-Y") }}</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Status -->
                         <div class="content-box elevation-1">
                             <h3 class="content-subtitle">
@@ -111,43 +178,6 @@
                                 dark
                                 :user="{{ $author->toJson() }}">
                             </user-pill>
-                        </div>
-
-                        <!-- Details -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">
-                                @lang("tessify-core::projects.view_details")
-                            </h3>
-                            <div class="details compact bordered mb-0">
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_category")</div>
-                                    <div class="val">{{ $project->category->label }}</div>
-                                </div>
-                                @if ($project->workMethod)
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_work_method")</div>
-                                        <div class="val">{{ $project->workMethod->label }}</div>
-                                    </div>
-                                @endif
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_start_date")</div>
-                                    <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>
-                                </div>
-                                @if ($project->has_deadline and !is_null($project->ends_at))
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_end_date")</div>
-                                        <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
-                                    </div>
-                                @endif
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_created_at")</div>
-                                    <div class="val">{{ $project->created_at->format("d-m-Y") }}</div>
-                                </div>
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_updated_at")</div>
-                                    <div class="val">{{ $project->updated_at->format("d-m-Y") }}</div>
-                                </div>
-                            </div>
                         </div>
 
                         <!-- Actions -->

@@ -8,13 +8,14 @@
     <div class="content-section__wrapper">
         <div class="content-section">
 
-            @include("tessify-core::partials.feedback")
-
             <h1 class="page-title centered">
                 @lang('tessify-core::auth.login_title')
             </h1>
 
             <div id="login" class="elevation-1">
+
+                @include("tessify-core::partials.feedback")
+
                 <form action="{{ route('auth.login.post') }}" method="post">
                     @csrf
                     

@@ -18,10 +18,12 @@
                 @csrf
 
                 <project-form
+                    :project-phases="{{ $phases->toJson() }}"
                     :project-statuses="{{ $statuses->toJson() }}"
                     :project-categories="{{ $categories->toJson() }}"
                     :work-methods="{{ $workMethods->toJson() }}"
                     :skills="{{ $skills->toJson() }}"
+                    :ministries="{{ $ministries->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     back-href="{{ route('projects') }}"
@@ -44,6 +46,10 @@
                     has-deadline-text="@lang('tessify-core::projects.form_has_deadline')"
                     start-date-text="@lang('tessify-core::projects.form_start_date')"
                     deadline-text="@lang('tessify-core::projects.form_deadline')"
+                    budget-text="@lang('tessify-core::projects.form_budget')"
+                    ministry-text="@lang('tessify-core::projects.form_ministry')"
+                    project-code-text="@lang('tessify-core::projects.form_project_code')"
+                    project-phase-text="@lang('tessify-core::projects.form_project_phase')"
                     back-text="@lang('tessify-core::projects.create_back')"
                     submit-text="@lang('tessify-core::projects.create_submit')"
                     resources-no-records-text="@lang('tessify-core::projects.resources_field_no_resources')"

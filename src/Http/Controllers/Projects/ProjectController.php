@@ -8,7 +8,9 @@ use Skills;
 use Comments;
 use Projects;
 use Reputation;
+use Ministries;
 use WorkMethods;
+use ProjectPhases;
 use ProjectStatuses;
 use ProjectResources;
 use ProjectCategories;
@@ -56,6 +58,8 @@ class ProjectController extends Controller
     public function getCreate()
     {
         return view("tessify-core::pages.projects.create", [
+            "phases" => ProjectPhases::getAll(),
+            "ministries" => Ministries::getAll(),
             "statuses" => Projectstatuses::getAll(),
             "categories" => ProjectCategories::getAll(),
             "workMethods" => WorkMethods::getAll(),
@@ -63,7 +67,10 @@ class ProjectController extends Controller
             "oldInput" => collect([
                 "project_status_id" => old("project_status_id"),
                 "project_category_id" => old("project_category_id"),
+                "project_phase_id" => old("project_phase_id"),
+                "project_code" => old("project_code"),
                 "work_method_id" => old("work_method_id"),
+                "ministry_id" => old("ministry_id"),
                 "title" => old("title"),
                 "slogan" => old("slogan"),
                 "problem" => old("problem"),
@@ -72,6 +79,7 @@ class ProjectController extends Controller
                 "ends_at" => old("ends_at"),
                 "resources" => old("resources"),
                 "team_roles" => old("team_roles"),
+                "budget" => old("budget"),
             ])
         ]);
     }
@@ -97,6 +105,8 @@ class ProjectController extends Controller
 
         return view("tessify-core::pages.projects.edit", [
             "project" => $project,
+            "phases" => ProjectPhases::getAll(),
+            "ministries" => Ministries::getAll(),
             "statuses" => Projectstatuses::getAll(),
             "categories" => ProjectCategories::getAll(),
             "workMethods" => WorkMethods::getAll(),
@@ -104,7 +114,10 @@ class ProjectController extends Controller
             "oldInput" => collect([
                 "project_status_id" => old("project_status_id"),
                 "project_category_id" => old("project_category_id"),
+                "project_phase_id" => old("project_phase_id"),
+                "project_code" => old("project_code"),
                 "work_method_id" => old("work_method_id"),
+                "ministry_id" => old("ministry_id"),
                 "title" => old("title"),
                 "slogan" => old("slogan"),
                 "problem" => old("problem"),
@@ -113,6 +126,7 @@ class ProjectController extends Controller
                 "ends_at" => old("ends_at"),
                 "resources" => old("resources"),
                 "team_roles" => old("team_roles"),
+                "budget" => old("budget"),
             ])
         ]);
     }
