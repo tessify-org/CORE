@@ -109,7 +109,7 @@ return [
     "form_slogan" => "Kopregel",
     "form_slogan_hint" => "Omschrijf het project in 1 zin",
     "form_description" => "Projectomschrijving",
-    "form_description_hint" => "Wat ga je precies maken en waarom? Hou het kort en bonding en leg uit welk probleem je oplost.",
+    "form_description_hint" => "1. Project omschrijving inclusief doel\n2. Wat is het product dat je wil toetsen?\n3. Wat gaat je helpen?\n4. Wie is de doelgroep/ontvange?\n5. Hoe de verbeteringen te meten?",
     "form_header_image" => "Header plaatje",
     "form_roles" => "Team rollen",
     "form_resources" => "Hulpmiddelen",
