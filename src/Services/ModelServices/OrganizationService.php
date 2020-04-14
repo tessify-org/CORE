@@ -67,4 +67,17 @@ class OrganizationService implements ModelServiceContract
             "name" => $name
         ]);
     }
+
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->name == $slug)
+            {
+                return $organization;
+            }
+        }
+
+        return false;
+    }
 }

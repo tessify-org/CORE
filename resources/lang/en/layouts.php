@@ -26,6 +26,9 @@ return [
     "settings_link" => "Settings",
     "admin_link" => "Admin Panel",
     "logout_link" => "Logout",
+    "community_link" => "Community",
+    "ministries_link" => "Ministries",
+    "organizations_link" => "Organizations",
     
     // Footer
     "footer_first_column_title" => "HNNW",

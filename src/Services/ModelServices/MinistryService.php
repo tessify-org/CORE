@@ -30,4 +30,17 @@ class MinistryService implements ModelServiceContract
 
         return $instance;
     }
+
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->slug == $slug)
+            {
+                return $organization;
+            }
+        }
+
+        return false;
+    }
 }

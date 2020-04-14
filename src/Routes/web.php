@@ -53,7 +53,7 @@ Route::group(["middleware" => "auth"], function() {
     });
 
     // Memberlist
-    Route::get("ledenlijst", "Profiles\MemberlistController@getMemberList")->name("memberlist");
+    Route::get("leden", "Profiles\MemberlistController@getMemberList")->name("memberlist");
 
     // Update profiel
     Route::get("profiel/updaten", "Profiles\ProfileController@getUpdateProfile")->name("profile.update");
@@ -205,6 +205,32 @@ Route::group(["middleware" => "auth"], function() {
     Route::group(["prefix" => "zoeken"], function() {
         Route::get("/", "System\SearchController@getSearch")->name("search");
         Route::post("/", "System\SearchController@postSearch")->name("search.post");
+    });
+
+    // Community
+    Route::group(["prefix" => "community"], function() {
+        
+        // Overview
+        Route::get("/", "Community\CommunityController@getOverview")->name("community");
+
+        // Ministries
+        Route::group(["prefix" => "ministeries"], function() {
+            Route::get("/", "Community\MinistryController@getOverview")->name("ministries");
+            Route::get("{slug}", "Community\MinistryController@getView")->name("ministries.view");
+        });
+
+        // Organizations
+        Route::group(["prefix" => "organisaties"], function() {
+            Route::get("/", "Community\OrganizationController@getOverview")->name("organizations");
+            Route::get("{slug}", "Community\OrganizationController@getView")->name("organizations.view");
+        });
+
+        // Groups
+        // Forum
+        // Blogs
+        // Polls
+        // etc..
+
     });
 
 });

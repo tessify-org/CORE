@@ -144,6 +144,32 @@ Breadcrumbs::for("projects.tasks", function($t, $project) {
     $t->push(__('tessify-core::breadcrumbs.project-tasks'), route("projects.tasks", $project->slug));
 });
 
+// Community
+Breadcrumbs::for("community", function($t) {
+    $t->parent("home");
+    $t->push(__("tessify-core::breadcrumbs.community"), route("community"));
+});
+
+// Community > Ministries
+Breadcrumbs::for("ministries", function($t) {
+    $t->parent("community");
+    $t->push(__("tessify-core::breadcrumbs.ministries"), route("ministries"));
+});
+Breadcrumbs::for("ministries.view", function($t, $ministry) {
+    $t->parent("ministries");
+    $t->push($ministry->name, route("ministries.view", $ministry->slug));
+});
+
+// Community > Organizations
+Breadcrumbs::for("organizations", function($t) {
+    $t->parent("community");
+    $t->push(__("tessify-core::breadcrumbs.organizations"), route("organizations"));
+});
+Breadcrumbs::for("organizations.view", function($t, $organization) {
+    $t->parent("organizations");
+    $t->push($organization->name, route("organizations.view", $organization->slug));
+});
+
 //
 // Admin Panel Breadcrumbs
 //

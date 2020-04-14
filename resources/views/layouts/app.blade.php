@@ -78,11 +78,34 @@
                                         @lang("tessify-core::layouts.projects_link")
                                     </a>
                                 </li>
-                                <!-- Members -->
-                                <li class="topnav-link__wrapper">
-                                    <a class="topnav-link" href="{{ route('memberlist') }}">
-                                        @lang("tessify-core::layouts.members_link")
+                                <!-- Community -->
+                                <li class="topnav-link__wrapper with-dropdown">
+                                    <a class="topnav-link" href="{{ route('community') }}">
+                                        @lang("tessify-core::layouts.community_link")
+                                        <span class="dropdown-caret">
+                                            <i class="fas fa-caret-down"></i>
+                                        </span>
                                     </a>
+                                    <ul class="dropdown">
+                                        <!-- Members -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('memberlist') }}">
+                                                @lang("tessify-core::layouts.members_link")
+                                            </a>
+                                        </li>
+                                        <!-- Ministries -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('ministries') }}">
+                                                @lang("tessify-core::layouts.ministries_link")
+                                            </a>
+                                        </li>
+                                        <!-- Organizations -->
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('organizations') }}">
+                                                @lang("tessify-core::layouts.organizations_link")
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <!-- User -->
                                 <li class="topnav-link__wrapper with-dropdown">

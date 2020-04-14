@@ -26,6 +26,9 @@ return [
     "settings_link" => "Instellingen",
     "admin_link" => "Administratie",
     "logout_link" => "Uitloggen",
+    "community_link" => "Community",
+    "ministries_link" => "Ministeries",
+    "organizations_link" => "Organisaties",
     
     // Footer
     "footer_first_column_title" => "HNNW",
