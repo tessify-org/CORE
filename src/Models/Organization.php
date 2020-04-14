@@ -2,12 +2,13 @@
 
 namespace Tessify\Core\Models;
 
+use Tessify\Core\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Organization extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
 
     protected $table = "organizations";
     protected $guarded = ["id", "created_at", "updated_at"];

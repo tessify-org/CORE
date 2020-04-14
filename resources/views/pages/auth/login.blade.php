@@ -12,9 +12,9 @@
                 @lang('tessify-core::auth.login_title')
             </h1>
 
-            <div id="login" class="elevation-1">
+            @include("tessify-core::partials.feedback")
 
-                @include("tessify-core::partials.feedback")
+            <div id="login" class="elevation-1">
 
                 <form action="{{ route('auth.login.post') }}" method="post">
                     @csrf
@@ -36,7 +36,7 @@
                             @lang('tessify-core::auth.login_register_text')
                         </a>
                     </div>
-
+                    
                 </form>
             </div>
 

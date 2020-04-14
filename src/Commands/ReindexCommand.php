@@ -3,8 +3,14 @@
 namespace Tessify\Core\Commands;
 
 use Elasticsearch;
-use Illuminate\Console\Command;
+
+use App\Models\User;
+use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
+use Tessify\Core\Models\Ministry;
+use Tessify\Core\Models\Organization;
+
+use Illuminate\Console\Command;
 
 class ReindexCommand extends Command
 {
@@ -39,8 +45,25 @@ class ReindexCommand extends Command
      */
     public function handle()
     {
-        $this->info("Indexing all articles. This might take a while...");
+        // Intro
+        $this->info("Started indexing, this might take a while...");
 
+        // Index users
+        $this->info("Indexing all users.");
+        foreach (User::all() as $user)
+        {
+            Elasticsearch::index([
+                "index" => $user->getSearchIndex(),
+                "type" => $user->getSearchType(),
+                "id" => $user->getKey(),
+                "body" => $user->toSearchArray(),
+            ]);
+            $this->output->write('.');
+        }
+        $this->output->write("\n");
+
+        // Index projects
+        $this->info("Indexing all projects.");
         foreach (Project::all() as $project)
         {
             Elasticsearch::index([
@@ -49,10 +72,53 @@ class ReindexCommand extends Command
                 "id" => $project->getKey(),
                 "body" => $project->toSearchArray()
             ]);
-            
             $this->output->write('.');
         }
+        $this->output->write("\n");
 
-        $this->info("\nDone!");
+        // Index tasks
+        $this->info("Indexing all tasks.");
+        foreach (Task::all() as $task)
+        {
+            Elasticsearch::index([
+                "index" => $task->getSearchIndex(),
+                "type" => $task->getSearchType(),
+                "id" => $task->getKey(),
+                "body" => $task->toSearchArray(),
+            ]);
+            $this->output->write('.');
+        }
+        $this->output->write("\n");
+
+        // Index ministries
+        $this->info("Indexing all ministries");
+        foreach (Ministry::all() as $ministry)
+        {
+            Elasticsearch::index([
+                "index" => $ministry->getSearchIndex(),
+                "type" => $ministry->getSearchType(),
+                "id" => $ministry->getKey(),
+                "body" => $ministry->toSearchArray(),
+            ]);
+            $this->output->write('.');
+        }
+        $this->output->write("\n");
+
+        // Index organizations
+        $this->info("Indexing all organizations");
+        foreach (Organization::all() as $organization)
+        {
+            Elasticsearch::index([
+                "index" => $organization->getSearchIndex(),
+                "type" => $organization->getSearchType(),
+                "id" => $organization->getKey(),
+                "body" => $organization->toSearchArray(),
+            ]);
+            $this->output->write('.');
+        }
+        $this->output->write("\n");
+
+        // Finished!
+        $this->info("Done!");
     }
 }

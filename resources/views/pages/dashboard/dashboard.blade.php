@@ -20,6 +20,9 @@
                     <!-- Reputation points -->
                     <div class="dashboard-stat__wrapper">
                         <div class="dashboard-stat elevation-1">
+                            <div class="dashboard-stat__icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
                             <div class="dashboard-stat__count">{{ $user->reputation_points }}</div>
                             <div class="dashboard-stat__text">@lang("tessify-core::dashboard.stat_reputation")</div>
                         </div>
@@ -27,6 +30,9 @@
                     <!-- Tasks completed -->
                     <div class="dashboard-stat__wrapper">
                         <div class="dashboard-stat elevation-1">
+                            <div class="dashboard-stat__icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
                             <div class="dashboard-stat__count">{{ $numTasksCompleted }}</div>
                             <div class="dashboard-stat__text">@lang("tessify-core::dashboard.stat_tasks_completed")</div>
                         </div>
@@ -34,6 +40,9 @@
                     <!-- Projects completed -->
                     <div class="dashboard-stat__wrapper">
                         <div class="dashboard-stat elevation-1">
+                            <div class="dashboard-stat__icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
                             <div class="dashboard-stat__count">{{ $numProjectsCompleted }}</div>
                             <div class="dashboard-stat__text">@lang("tessify-core::dashboard.stat_projects_completed")</div>
                         </div>
@@ -41,6 +50,9 @@
                     <!-- Reviews placed -->
                     <div class="dashboard-stat__wrapper">
                         <div class="dashboard-stat elevation-1">
+                            <div class="dashboard-stat__icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
                             <div class="dashboard-stat__count">{{ $numReviewsPlaced }}</div>
                             <div class="dashboard-stat__text">@lang("tessify-core::dashboard.stat_reviews_posted")</div>
                         </div>

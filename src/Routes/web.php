@@ -301,4 +301,8 @@ Route::get("test-flash-notification", function() {
     return redirect()->route("home");
 });
 
+Route::group(["prefix" => "test"], function() {
+    Route::get("search/{query}", "System\TestController@getTestSearch")->name("test.search");
+});
+
 // TODO: Move these to the api.php file and add proper token-based authentication instead of session hijacking like this

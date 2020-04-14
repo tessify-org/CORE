@@ -24,9 +24,16 @@
             <!-- Search results -->
             <search-results
                 api-endpoint="{{ route('api.search.post') }}"
+                search-query="{{ $query }}"
                 search-placeholder-text="@lang('tessify-core::search.search_placeholder')"
                 no-results-text="@lang('tessify-core::search.no_results')"
-                enter-query-text="@lang('tessify-core::search.enter_query')">
+                enter-query-text="@lang('tessify-core::search.enter_query')"
+                user-type-text="@lang('tessify-core::search.user_type')"
+                task-type-text="@lang('tessify-core::search.task_type')"
+                project-type-text="@lang('tessify-core::search.project_type')"
+                ministry-type-text="@lang('tessify-core::search.ministry_type')"
+                organization-type-text="@lang('tessify-core::search.organization_type')"
+                results-text="@lang('tessify-core::search.results')">
             </search-results>
 
         </div>

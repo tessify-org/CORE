@@ -37,6 +37,12 @@
                         </locale-switcher>
                     </div>
 
+                    <div id="topnav-search__wrapper">
+                        <topnav-search-button
+                            href="{{ route('search') }}">
+                        </topnav-search-button>
+                    </div>
+
                     <!-- Navigation -->
                     <nav id="topnav-links__wrapper">
                         <ul id="topnav-links">

@@ -2,13 +2,14 @@
 
 namespace Tessify\Core\Models;
 
+use Tessify\Core\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 class Task extends Model
 {
-    use Sluggable, CanBeSubscribed;
+    use Sluggable, CanBeSubscribed, Searchable;
 
     protected $table = "tasks";
     protected $guarded = ["id", "created_at", "updated_at"];
