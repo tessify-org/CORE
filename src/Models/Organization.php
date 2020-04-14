@@ -5,10 +5,13 @@ namespace Tessify\Core\Models;
 use Tessify\Core\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Overtrue\LaravelSubscribe\Traits\Subscribable;
 
 class Organization extends Model
 {
-    use Sluggable, Searchable;
+    use Sluggable;
+    use Searchable;
+    use Subscribable;
 
     protected $table = "organizations";
     protected $guarded = ["id", "created_at", "updated_at"];

@@ -65,9 +65,50 @@
 
                         <!-- Feed -->
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.feed_title")</h3>
+                        <h4 class="content-card__description">@lang("tessify-core::dashboard.feed_description")</h4>
                         <div class="content-card mb elevation-1">
                             <div class="content-card__content">
                                 @lang("tessify-core::dashboard.feed_empty")
+                            </div>
+                        </div>
+
+                        <!-- Following -->
+                        <div id="dashboard-following">
+                            <div id="dashboard-following__title">@lang("tessify-core::dashboard.following_title")</div>
+                            <div id="dashboard-following__content">
+                                <!-- Users -->
+                                <div class="dashboard-following__column-wrapper">
+                                    <div class="dashboard-following__column">
+                                        <dashboard-following-button
+                                            icon='<i class="fas fa-user"></i>'
+                                            text="@lang('tessify-core::dashboard.following_users')"
+                                            :data='{{ $followings->toJson() }}'
+                                            dialog-title-text="@lang('tessify-core::dashboard.following_users_dialog_title')">
+                                        </dashboard-following-button>
+                                    </div>
+                                </div>
+                                <!-- Projects -->
+                                <div class="dashboard-following__column-wrapper">
+                                    <div class="dashboard-following__column">
+                                        <dashboard-following-button
+                                            icon='<i class="fas fa-rocket"></i>'
+                                            text="@lang('tessify-core::dashboard.following_projects')"
+                                            :data='{{ $subscribedProjects->toJson() }}'
+                                            dialog-title-text="@lang('tessify-core::dashboard.following_projects_dialog_title')">
+                                        </dashboard-following-button>
+                                    </div>
+                                </div>
+                                <!-- Tasks -->
+                                <div class="dashboard-following__column-wrapper">
+                                    <div class="dashboard-following__column">
+                                        <dashboard-following-button
+                                            icon='<i class="fas fa-list-ul"></i>'
+                                            text="@lang('tessify-core::dashboard.following_tasks')"
+                                            :data='{{ $subscribedTasks->toJson() }}'
+                                            dialog-title-text="@lang('tessify-core::dashboard.following_tasks_dialog_title')">
+                                        </dashboard-following-button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -76,6 +117,7 @@
 
                         <!-- Current tasks -->
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.tasks_title")</h3>
+                        <h4 class="content-card__description">@lang("tessify-core::dashboard.tasks_description")</h4>
                         <div class="content-card mb elevation-1">
                             <dashboard-my-tasks
                                 :tasks="{{ $myTasks->toJson() }}"
@@ -85,6 +127,7 @@
                         
                         <!-- My projects -->
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.projects_title")</h3>
+                        <h4 class="content-card__description">@lang("tessify-core::dashboard.projects_description")</h4>
                         <div class="content-card mb elevation-1">
                             <dashboard-my-projects
                                 :projects="{{ $myProjects->toJson() }}"

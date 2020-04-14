@@ -26,7 +26,8 @@
         "laracasts/flash": "^3.0",
         "cviebrock/eloquent-sluggable": "^6.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
-        "overtrue/laravel-follow": "^1.1"
+        "overtrue/laravel-follow": "^2.0",
+        "overtrue/laravel-subscribe": "^1.0"
     },
     "require-dev": {},
     "extra": {

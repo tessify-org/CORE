@@ -26,6 +26,13 @@ class DashboardController extends Controller
         } else {
             $greeting = __("tessify-core::dashboard.greeting_night", ["name" => $user->formattedName]);
         }
+        
+        // Subscriptions & following
+        $followings = $user->followings;
+        $subscribedMinistries = $user->subscriptions()->withType("Tessify\\Core\\Models\\Ministry")->get();
+        $subscribedOrganizations = $user->subscriptions()->withType("Tessify\\Core\\Models\\Organization")->get();
+        $subscribedProjects = $user->subscriptions()->withType("Tessify\\Core\\Models\\Project")->get();
+        $subscribedTasks = $user->subscriptions()->withType("Tessify\\Core\\Models\\Task")->get();
 
         // Render the view
         return view("tessify-core::pages.dashboard.dashboard", [
@@ -36,6 +43,71 @@ class DashboardController extends Controller
             "myProjects" => Projects::getAllForUser(),
             "myTasks" => Tasks::getAllForUser(),
             "greeting" => $greeting,
+            "followings" => $this->prepareSubscriptionData("users", $followings),
+            "subscribedTasks" => $this->prepareSubscriptionData("tasks", $subscribedTasks),
+            "subscribedProjects" => $this->prepareSubscriptionData("projects", $subscribedProjects),
+            "subscribedMinistries" => $this->prepareSubscriptionData("ministries", $subscribedMinistries),
+            "subscribedOrganizations" => $this->prepareSubscriptionData("organizations", $subscribedOrganizations),
         ]);
+    }
+
+    private function prepareSubscriptionData($type, $data)
+    {
+        $out = [];
+
+        switch ($type)
+        {
+            case "users":
+                foreach ($data as $entry)
+                {
+                    $out[] = [
+                        "view_href" => route("profile", $entry->slug),
+                        "text" => $entry->formatted_name,
+                    ];
+                }
+            break;
+            
+            case "ministries":
+                foreach ($data as $entry)
+                {
+                    $out[] = [
+                        "view_href" => "#",
+                        "text" => $entry->subscribable->name,
+                    ];
+                }
+            break;
+            
+            case "organizations":
+                foreach ($data as $entry)
+                {
+                    $out[] = [
+                        "view_href" => "#",
+                        "text" => $entry->subscribable->name,
+                    ];
+                }
+            break;
+            
+            case "projects":
+                foreach ($data as $entry)
+                {
+                    $out[] = [
+                        "view_href" => route("projects.view", $entry->subscribable->slug),
+                        "text" => $entry->subscribable->title,
+                    ];
+                }
+            break;
+
+            case "tasks":
+                foreach ($data as $entry)
+                {
+                    $out[] = [
+                        "view_href" => route("tasks.view", $entry->subscribable->slug),
+                        "text" => $entry->subscribable->title,
+                    ];
+                }
+            break;
+        }
+
+        return collect($out);
     }
 }
