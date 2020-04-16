@@ -13,8 +13,8 @@ class FeedActivity extends Model
         "actor_id",
         "target_type",
         "target_id",
+        "name",
         "data",
-        "string_key",
     ];
 
     //

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Events\User;
+namespace Tessify\Core\Events\Users;
 
 use App\Models\User;
 use Tessify\Core\Models\Task;
@@ -13,12 +13,12 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserUpdatedTask
+class UserCreatedTask
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
     public $task;
+    public $project;
 
     /**
      * Create a new event instance.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Events\User;
+namespace Tessify\Core\Events\Users;
 
 use App\Models\User;
 use Tessify\Core\Models\Project;

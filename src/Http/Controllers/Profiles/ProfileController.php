@@ -176,7 +176,7 @@ class ProfileController extends Controller
         flash(__("tessify-core::profiles.profile_email_request_accepted"))->success();
         return redirect()->back();
     }
-
+    
     public function getRejectAccessEmailRequest($messageUuid, $requestUuid)
     {
         // Grab the message containing the request

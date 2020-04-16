@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Events\User;
+namespace Tessify\Core\Events\Users;
 
 use App\Models\User;
 use Tessify\Core\Models\Project;
@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserUpdatedProject
+class UserFollowsProject
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

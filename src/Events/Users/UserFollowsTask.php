@@ -1,6 +1,6 @@
 <?php
 
-namespace Tessify\Core\Events\User;
+namespace Tessify\Core\Events\Users;
 
 use App\Models\User;
 use Tessify\Core\Models\Task;
@@ -13,22 +13,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserFollowsUser
+class UserFollowsTask
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
-    public $targetUser;
+    public $task;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user, User $targetUser)
+    public function __construct(User $user, Task $task)
     {
         $this->user = $user;
-        $this->targetUser = $targetUser;
+        $this->task = $task;
     }
 
     /**

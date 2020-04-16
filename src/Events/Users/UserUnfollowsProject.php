@@ -1,9 +1,9 @@
 <?php
 
-namespace Tessify\Core\Events\User;
+namespace Tessify\Core\Events\Users;
 
 use App\Models\User;
-use Tessify\Core\Models\Task;
+use Tessify\Core\Models\Project;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -13,11 +13,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreatedTask
+class UserUnfollowsProject
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $task;
+    public $user;
     public $project;
 
     /**
@@ -25,10 +25,10 @@ class UserCreatedTask
      *
      * @return void
      */
-    public function __construct(User $user, Task $task)
+    public function __construct(User $user, Project $project)
     {
         $this->user = $user;
-        $this->task = $task;
+        $this->project = $project;
     }
 
     /**
