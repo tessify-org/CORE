@@ -62,6 +62,7 @@ class FeedActivityService implements ModelServiceContract
                     $out[] = [
                         "data" => $activity,
                         "text" => $text,
+                        "formatted_date" => $activity->created_at->format("d-m-Y H:m:s"),
                     ];
                 }
             }

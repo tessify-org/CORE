@@ -63,6 +63,22 @@
                 <div id="dashboard-columns">
                     <div id="dashboard-columns__left">
 
+                        <!-- Quick links -->
+                        <h3 class="content-card__title">@lang("tessify-core::dashboard.ql_title")</h3>
+                        <h4 class="content-card__description">@lang("tessify-core::dashboard.ql_description")</h4>
+                        <div id="dashboard-quick-links">
+                            <div class="quick-link">
+                                <v-btn color="primary" block large href="{{ route('projects.create') }}">
+                                    @lang("tessify-core::dashboard.ql_create_project")
+                                </v-btn>
+                            </div>
+                            <div class="quick-link">
+                                <v-btn color="primary" block large href="{{ route('tasks.create') }}">
+                                    @lang("tessify-core::dashboard.ql_create_task")
+                                </v-btn>
+                            </div>
+                        </div>
+
                         <!-- Feed -->
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.feed_title")</h3>
                         <h4 class="content-card__description">@lang("tessify-core::dashboard.feed_description")</h4>

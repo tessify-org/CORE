@@ -24,6 +24,11 @@ return [
     "stat_projects_completed" => "Projecten voltooid",
     "stat_reviews_posted" => "Recensies geplaatst",
 
+    "ql_title" => "Snelle toegang",
+    "ql_description" => "Tot verschillende features",
+    "ql_create_project" => "Project toevoegen aan het platform",
+    "ql_create_task" => "Werkpakket toevoegen aan het platform",
+
     "feed_title" => "Mijn feed",
     "feed_description" => "De laatste updates van alles wat je volgt.",
     "feed_empty" => "Je feed is momenteel leeg",
