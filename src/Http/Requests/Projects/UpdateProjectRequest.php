@@ -41,6 +41,7 @@ class UpdateProjectRequest extends FormRequest
             "has_deadline" => "required",
             "project_code" => "nullable",
             "budget" => "nullable",
+            "tags" => "nullable",
         ];
     }
 }

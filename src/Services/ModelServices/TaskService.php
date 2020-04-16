@@ -200,24 +200,10 @@ class TaskService implements ModelServiceContract
             "estimated_hours" => $request->estimated_hours,
             "urgency" => $request->urgency
         ]);
-    
-        if ($request->required_skills !== "[]")
-        {
-            $skills = json_decode($request->required_skills);
-            if (is_array($skills) and count($skills))
-            {
-                $task->skills()->detach();
-                foreach ($skills as $skillData)
-                {
-                    $skill = Skills::findOrCreateByName($skillData->skill);
-                    $task->skills()->attach($skill->id, [
-                        "required_mastery" => $skillData->required_mastery,
-                        "description" => $skillData->description,
-                    ]);
-                }
-            }
-        }
-
+        
+        $this->processTaskSkills($task, $request->required_skills);
+        $this->processTaskTags($task, $request->tags);
+        
         return $task;
     }
 
@@ -236,27 +222,48 @@ class TaskService implements ModelServiceContract
         $task->realized_hours = is_null($request->realized_hours) ? 0 : $request->realized_hours;
         $task->urgency = $request->urgency;
         $task->save();
-
-        $task->skills()->detach();
         
-        if ($request->required_skills !== "[]")
+        $this->processTaskSkills($task, $request->required_skills);
+        $this->processTaskTags($task, $request->tags);
+        
+        return $task;
+    }
+    
+    private function processTaskSkills(Task $task, $encodedSkills)
+    {
+        $skills = json_decode($encodedSkills);
+        if (is_array($skills) and count($skills))
         {
-            $skills = json_decode($request->required_skills);
-            if (is_array($skills) and count($skills))
+            $task->skills()->detach();
+            foreach ($skills as $skillData)
             {
-                $task->skills()->detach();
-                foreach ($skills as $skillData)
-                {
-                    $skill = Skills::findOrCreateByName($skillData->skill);
-                    $task->skills()->attach($skill->id, [
-                        "required_mastery" => $skillData->required_mastery,
-                        "description" => $skillData->description,
-                    ]);
-                }
+                $skill = Skills::findOrCreateByName($skillData->skill);
+                $task->skills()->attach($skill->id, [
+                    "required_mastery" => $skillData->required_mastery,
+                    "description" => $skillData->description,
+                ]);
             }
         }
+    }
 
-        return $task;
+    private function processTaskTags(Task $task, $encodedTags)
+    {
+        $tagNames = json_decode($encodedTags);
+        if (is_array($tagNames) && count($tagNames))
+        {
+            $tag_ids = [];
+
+            foreach ($tagNames as $name)
+            {
+                $tag = Tags::findOrCreateByName($name);
+                if ($tag)
+                {
+                    $tag_ids[] = $tag->id;
+                }
+            }
+
+            $task->tags()->sync($tag_ids);
+        }
     }
 
     public function hasAvailableSlots(Task $task)

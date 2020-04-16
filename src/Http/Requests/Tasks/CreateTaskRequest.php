@@ -34,6 +34,7 @@ class CreateTaskRequest extends FormRequest
             "estimated_hours" => "required|integer",
             "urgency" => "required|integer",
             "required_skills" => "nullable",
+            "tags" => "nullable",
         ];
     }
 }
