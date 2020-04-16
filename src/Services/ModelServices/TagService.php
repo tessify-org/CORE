@@ -70,4 +70,17 @@ class TagService implements ModelServiceContract
 
         return $out;
     }
+
+    public function findOrCreateByName($name)
+    {
+        foreach ($this->getAll() as $tag)
+        {
+            if ($tag->name == $name)
+            {
+                return $tag;
+            }
+        }
+
+        return Tag::create(["name" => $name]);
+    }
 }

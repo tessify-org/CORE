@@ -29,6 +29,7 @@
                     :projects="{{ $projects->toJson() }}"
                     :categories="{{ $categories->toJson() }}"
                     :seniorities="{{ $seniorities->toJson() }}"
+                    :tags="{{ $tags->toJson() }}"
                     project-text="@lang('tessify-core::tasks.create_form_project')"
                     category-text="@lang('tessify-core::tasks.create_form_category')"
                     seniority-text="@lang('tessify-core::tasks.create_form_seniority')"

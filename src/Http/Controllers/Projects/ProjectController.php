@@ -3,6 +3,7 @@
 namespace Tessify\Core\Http\Controllers\Projects;
 
 use Auth;
+use Tags;
 use Users;
 use Skills;
 use Comments;
@@ -64,6 +65,7 @@ class ProjectController extends Controller
             "categories" => ProjectCategories::getAll(),
             "workMethods" => WorkMethods::getAll(),
             "skills" => Skills::getAll(),
+            "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_status_id" => old("project_status_id"),
                 "project_category_id" => old("project_category_id"),
@@ -75,12 +77,55 @@ class ProjectController extends Controller
                 "slogan" => old("slogan"),
                 "problem" => old("problem"),
                 "description" => old("description"),
+                "tags" => old("tags"),
                 "starts_at" => old("starts_at"),
                 "ends_at" => old("ends_at"),
                 "resources" => old("resources"),
                 "team_roles" => old("team_roles"),
                 "budget" => old("budget"),
-            ])
+            ]),
+            "strings" => collect([
+                "title" => __("tessify-core::projects.form_title"),
+                "title_hint" => __("tessify-core::projects.form_title_hint"),
+                "slogan" => __("tessify-core::projects.form_slogan"),
+                "slogan_hint" => __("tessify-core::projects.form_slogan_hint"),
+                "description" => __("tessify-core::projects.form_description"),
+                "description_hint" => __("tessify-core::projects.form_description_hint"),
+                "header_image" => __("tessify-core::projects.form_header_image"),
+                "roles" => __("tessify-core::projects.form_roles"),
+                "resources" => __("tessify-core::projects.form_resources"),
+                "category" => __("tessify-core::projects.form_category"),
+                "work_method" => __("tessify-core::projects.form_work_method"),
+                "status" => __("tessify-core::projects.form_status"),
+                "has_tasks" => __("tessify-core::projects.form_has_tasks"),
+                "has_deadline" => __("tessify-core::projects.form_has_deadline"),
+                "start_date" => __("tessify-core::projects.form_start_date"),
+                "deadline" => __("tessify-core::projects.form_deadline"),
+                "budget" => __("tessify-core::projects.form_budget"),
+                "ministry" => __("tessify-core::projects.form_ministry"),
+                "project_code" => __("tessify-core::projects.form_project_code"),
+                "project_phase" => __("tessify-core::projects.form_project_phase"),
+                "tags" => __("tessify-core::projects.form_tags"),
+                "back" => __("tessify-core::projects.update_back"),
+                "submit" => __("tessify-core::projects.update_submit"),
+                "resource_strings" => [
+                    "no_records" => __("tessify-core::projects.resources_field_no_resources"),
+                    "add_button" => __("tessify-core::projects.resources_field_add_button"),
+                    "form_title" => __("tessify-core::projects.resources_field_form_title"),
+                    "form_description" => __("tessify-core::projects.resources_field_form_description"),
+                    "form_file" => __("tessify-core::projects.resources_field_form_file"),
+                    "create_dialog_title" => __("tessify-core::projects.resources_field_create_dialog_title"),
+                    "create_dialog_cancel" => __("tessify-core::projects.resources_field_create_dialog_cancel"),
+                    "create_dialog_submit" => __("tessify-core::projects.resources_field_create_dialog_submit"),
+                    "update_dialog_title" => __("tessify-core::projects.resources_field_update_dialog_title"),
+                    "update_dialog_cancel" => __("tessify-core::projects.resources_field_update_dialog_cancel"),
+                    "update_dialog_submit" => __("tessify-core::projects.resources_field_update_dialog_submit"),
+                    "delete_dialog_title" => __("tessify-core::projects.resources_field_update_dialog_title"),
+                    "delete_dialog_text" => __("tessify-core::projects.resources_field_delete_dialog_text"),
+                    "delete_dialog_cancel" => __("tessify-core::projects.resources_field_delete_dialog_cancel"),
+                    "delete_dialog_submit" => __("tessify-core::projects.resources_field_delete_dialog_submit"),
+                ]
+            ]),
         ]);
     }
 
@@ -111,6 +156,7 @@ class ProjectController extends Controller
             "categories" => ProjectCategories::getAll(),
             "workMethods" => WorkMethods::getAll(),
             "skills" => Skills::getAll(),
+            "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_status_id" => old("project_status_id"),
                 "project_category_id" => old("project_category_id"),
@@ -122,12 +168,55 @@ class ProjectController extends Controller
                 "slogan" => old("slogan"),
                 "problem" => old("problem"),
                 "description" => old("description"),
+                "tags" => old("tags"),
                 "starts_at" => old("starts_at"),
                 "ends_at" => old("ends_at"),
                 "resources" => old("resources"),
                 "team_roles" => old("team_roles"),
                 "budget" => old("budget"),
-            ])
+            ]),
+            "strings" => collect([
+                "title" => __("tessify-core::projects.form_title"),
+                "title_hint" => __("tessify-core::projects.form_title_hint"),
+                "slogan" => __("tessify-core::projects.form_slogan"),
+                "slogan_hint" => __("tessify-core::projects.form_slogan_hint"),
+                "description" => __("tessify-core::projects.form_description"),
+                "description_hint" => __("tessify-core::projects.form_description_hint"),
+                "header_image" => __("tessify-core::projects.form_header_image"),
+                "roles" => __("tessify-core::projects.form_roles"),
+                "resources" => __("tessify-core::projects.form_resources"),
+                "category" => __("tessify-core::projects.form_category"),
+                "work_method" => __("tessify-core::projects.form_work_method"),
+                "status" => __("tessify-core::projects.form_status"),
+                "has_tasks" => __("tessify-core::projects.form_has_tasks"),
+                "has_deadline" => __("tessify-core::projects.form_has_deadline"),
+                "start_date" => __("tessify-core::projects.form_start_date"),
+                "deadline" => __("tessify-core::projects.form_deadline"),
+                "budget" => __("tessify-core::projects.form_budget"),
+                "ministry" => __("tessify-core::projects.form_ministry"),
+                "project_code" => __("tessify-core::projects.form_project_code"),
+                "project_phase" => __("tessify-core::projects.form_project_phase"),
+                "tags" => __("tessify-core::projects.form_tags"),
+                "back" => __("tessify-core::projects.update_back"),
+                "submit" => __("tessify-core::projects.update_submit"),
+                "resource_strings" => [
+                    "no_records" => __("tessify-core::projects.resources_field_no_resources"),
+                    "add_button" => __("tessify-core::projects.resources_field_add_button"),
+                    "form_title" => __("tessify-core::projects.resources_field_form_title"),
+                    "form_description" => __("tessify-core::projects.resources_field_form_description"),
+                    "form_file" => __("tessify-core::projects.resources_field_form_file"),
+                    "create_dialog_title" => __("tessify-core::projects.resources_field_create_dialog_title"),
+                    "create_dialog_cancel" => __("tessify-core::projects.resources_field_create_dialog_cancel"),
+                    "create_dialog_submit" => __("tessify-core::projects.resources_field_create_dialog_submit"),
+                    "update_dialog_title" => __("tessify-core::projects.resources_field_update_dialog_title"),
+                    "update_dialog_cancel" => __("tessify-core::projects.resources_field_update_dialog_cancel"),
+                    "update_dialog_submit" => __("tessify-core::projects.resources_field_update_dialog_submit"),
+                    "delete_dialog_title" => __("tessify-core::projects.resources_field_update_dialog_title"),
+                    "delete_dialog_text" => __("tessify-core::projects.resources_field_delete_dialog_text"),
+                    "delete_dialog_cancel" => __("tessify-core::projects.resources_field_delete_dialog_cancel"),
+                    "delete_dialog_submit" => __("tessify-core::projects.resources_field_delete_dialog_submit"),
+                ]
+            ]),
         ]);
     }
 

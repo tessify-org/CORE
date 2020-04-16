@@ -126,6 +126,7 @@ return [
     "form_ministry" => "Ministry",
     "form_project_code" => "Project code",
     "form_project_phase" => "Project phase",
+    "form_tags" => "Tags",
     "form_optional" => "Optional",
 
     //

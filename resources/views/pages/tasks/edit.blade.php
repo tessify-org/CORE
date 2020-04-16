@@ -30,6 +30,7 @@
                     :statuses="{{ $statuses->toJson() }}"
                     :categories="{{ $categories->toJson() }}"
                     :seniorities="{{ $seniorities->toJson() }}"
+                    :tags="{{ $tags->toJson() }}"
                     status-text="@lang('tessify-core::tasks.create_form_status')"
                     project-text="@lang('tessify-core::tasks.create_form_project')"
                     category-text="@lang('tessify-core::tasks.create_form_category')"

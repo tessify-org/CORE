@@ -165,6 +165,9 @@ class ProjectService implements ModelServiceContract
         // Process project's team roles
         $this->processTeamRoles($project, $request->team_roles);
 
+        // Process project's tags
+        $this->processProjectTags($project, $request->tags);
+
         // If this project has tasks
         // if ($project->has_tasks)
         // {
@@ -217,10 +220,33 @@ class ProjectService implements ModelServiceContract
 
         // Process project resources
         $this->processProjectResources($project, $request->resources);
+
+        // Process project tags
+        $this->processProjectTags($project, $request->tags);
         
         // $this->processTeamRoles($project, $request->team_roles);
 
         return $project;
+    }
+
+    private function processProjectTags(Project $project, $encodedTags)
+    {
+        $tagNames = json_decode($encodedTags);
+        if (is_array($tagNames) && count($tagNames))
+        {
+            $tag_ids = [];
+
+            foreach ($tagNames as $name)
+            {
+                $tag = Tags::findOrCreateByName($name);
+                if ($tag)
+                {
+                    $tag_ids[] = $tag->id;
+                }
+            }
+
+            $project->tags()->sync($tag_ids);
+        }
     }
 
     private function processProjectResources(Project $project, $encodedResources)

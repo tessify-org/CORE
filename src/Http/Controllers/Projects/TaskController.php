@@ -3,6 +3,7 @@
 namespace Tessify\Core\Http\Controllers\Projects;
 
 use Auth;
+use Tags;
 use Tasks;
 use Skills;
 use Projects;
@@ -71,12 +72,14 @@ class TaskController extends Controller
             "skills" => Skills::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
+            "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category" => old("task_category"),
                 "title" => old("title"),
                 "description" => old("description"),
+                "tags" => old("tags"),
                 "complexity" => old("complexity"),
                 "estimated_hours" => old("estimated_hours"),
                 "required_skills" => old("required_skills"),
@@ -111,6 +114,7 @@ class TaskController extends Controller
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
+            "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
                 "task_status_id" => old("task_status_id"),
@@ -118,6 +122,7 @@ class TaskController extends Controller
                 "task_category" => old("task_category"),
                 "title" => old("title"),
                 "description" => old("description"),
+                "tags" => old("tags"),
                 "complexity" => old("complexity"),
                 "estimated_hours" => old("estimated_hours"),
                 "realized_hours" => old("realized_hours"),
