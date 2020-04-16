@@ -57,11 +57,7 @@ class UserEventSubscriber
 
     public function handleTaskUnfollowed($event)
     {
-        // Create an activity feed entry for all the user's followers
-        foreach ($event->user->followers as $subscriber)
-        {
-            FeedActivities::create("user_unfollowed_task", $event->task, $event->user);
-        }
+        
     }
 
     public function handleProjectCreated($event)

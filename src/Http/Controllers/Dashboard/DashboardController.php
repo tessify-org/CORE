@@ -6,6 +6,7 @@ use Auth;
 use Users;
 use Tasks;
 use Projects;
+use FeedActivities;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -48,6 +49,7 @@ class DashboardController extends Controller
             "subscribedProjects" => $this->prepareSubscriptionData("projects", $subscribedProjects),
             "subscribedMinistries" => $this->prepareSubscriptionData("ministries", $subscribedMinistries),
             "subscribedOrganizations" => $this->prepareSubscriptionData("organizations", $subscribedOrganizations),
+            "feedActivities" => FeedActivities::getFeed(),
         ]);
     }
 

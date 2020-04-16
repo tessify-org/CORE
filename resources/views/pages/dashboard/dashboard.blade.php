@@ -68,7 +68,10 @@
                         <h4 class="content-card__description">@lang("tessify-core::dashboard.feed_description")</h4>
                         <div class="content-card mb elevation-1">
                             <div class="content-card__content">
-                                @lang("tessify-core::dashboard.feed_empty")
+                                <dashboard-activity-feed
+                                    :entries="{{ $feedActivities->toJson() }}"
+                                    no-records-text="@lang('tessify-core::dashboard.feed_empty')">
+                                </dashboard-activity-feed>
                             </div>
                         </div>
 
