@@ -114,4 +114,9 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, "taggable");
+    }
 }

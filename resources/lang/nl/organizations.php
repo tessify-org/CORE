@@ -20,5 +20,9 @@ return [
     "view_description" => "Beschrijving",
     "view_website" => "Website",
     "view_last_update" => "Laatste gewijzigd op",
+    "view_subscribe" => "Volgen",
+    "view_unsubscribe" => "Niet meer volgen",
+    "view_subscribed" => "Je volgt nu deze organisatie!",
+    "view_unsubscribed" => "Je volgt deze organisatie niet meer",
 
 ];

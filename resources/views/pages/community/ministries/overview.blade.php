@@ -12,6 +12,9 @@
             <h1 class="page-title centered">@lang("tessify-core::ministries.title")</h1>
             <h2 class="page-subtitle centered">@lang("tessify-core::ministries.subtitle")</h2>
 
+            <!-- Feedback -->
+            @include("tessify-core::partials.feedback")
+            
             <!-- Overview -->
             @if ($ministries->count())
                 <div class="card-grid">

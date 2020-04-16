@@ -61,6 +61,26 @@
                             </div>
                         </div>
 
+                        <!-- Tags -->
+                        <div class="content-box elevation-1">
+                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_tags")</h3>
+                            @if ($project->tags()->count())
+                                <div id="project-tags">
+                                    @foreach ($project->tags as $tag)
+                                        <div class="project-tag__wrapper">
+                                            <div class="project-tag">
+                                                {{ $tag->name }}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div id="no-project-tags">
+                                    @lang("tessify-core::projects.view_no_tags")
+                                </div>
+                            @endif
+                        </div>
+
                         <!-- Resources -->
                         @if ($resources->count())
                             <div class="content-box elevation-1">

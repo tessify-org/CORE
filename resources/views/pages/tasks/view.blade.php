@@ -24,7 +24,7 @@
                             @lang("tessify-core::tasks.view_subscribe")
                         </v-btn>
                     @else
-                        <v-btn depressed dark color="red" href="{{ route('tasks.unsubscribe', ['slug' => $task->slug]) }}">
+                        <v-btn depressed href="{{ route('tasks.unsubscribe', ['slug' => $task->slug]) }}">
                             <i class="fas fa-times-circle"></i>
                             @lang("tessify-core::tasks.view_unsubscribe")
                         </v-btn>
@@ -238,7 +238,7 @@
                     </div> -->
 
                     <!-- Details -->
-                    <div class="details elevation-1 mb-0">
+                    <div class="details elevation-1">
                         <div class="detail">
                             <div class="key">@lang("tessify-core::tasks.view_status")</div>
                             <div class="val">{{ $task->status->label }}</div>
@@ -285,6 +285,26 @@
                             <div class="key">@lang("tessify-core::tasks.view_updated_at")</div>
                             <div class="val">{{ $task->updated_at->format("d-m-Y") }}</div>
                         </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="content-box elevation-1">
+                        <h3 class="content-subtitle">@lang("tessify-core::tasks.view_tags")</h3>
+                        @if ($task->tags()->count())
+                            <div id="task-tags">
+                                @foreach ($task->tags as $tag)
+                                    <div class="task-tag__wrapper">
+                                        <div class="task-tag">
+                                            {{ $tag->name }}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div id="no-task-tags">
+                                @lang("tessify-core::tasks.view_no_tags")
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Controls -->

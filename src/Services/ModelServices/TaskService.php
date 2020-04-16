@@ -4,6 +4,7 @@ namespace Tessify\Core\Services\ModelServices;
 
 use DB;
 use Auth;
+use Tags;
 use Users;
 use Skills;
 use Projects;
@@ -64,6 +65,7 @@ class TaskService implements ModelServiceContract
         $instance->outstanding_reports = TaskProgressReports::getAllOutstandingForTask($instance);
         $instance->has_outstanding_reports = count($instance->outstanding_reports) > 0;
         $instance->has_unread_reviews = $this->hasUnreadReviews($instance->outstanding_reports);
+        $instance->tags = Tags::getAllForTask($instance);
         
         // Return instance
         return $instance;

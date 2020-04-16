@@ -66,6 +66,8 @@ return [
     "view_no_assigned_users" => "No assigned users yet",
     "view_created_at" => "Created at",
     "view_updated_at" => "Last update",
+    "view_tags" => "Tags",
+    "view_no_tags" => "No tags have been associated with this task",
     
     "view_cta_completed_title" => "Task has been completed!",
     "view_cta_completed_text" => "Thank you to everyone who contributed!",

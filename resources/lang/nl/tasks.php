@@ -65,6 +65,8 @@ return [
     "view_no_assigned_users" => "Geen gebruikers aangesteld",
     "view_created_at" => "Aangemaakt op",
     "view_updated_at" => "Laatse update",
+    "view_tags" => "Tags",
+    "view_no_tags" => "Er zijn nog geen tags geassocieerd met dit werkpakket",
 
     "view_cta_completed_title" => "Werkpakket is voltooid!",
     "view_cta_completed_text" => "We willen iedereen die hier aan heeft bijgedragen bedanken!",

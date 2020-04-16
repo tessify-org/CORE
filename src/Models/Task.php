@@ -104,4 +104,9 @@ class Task extends Model
     {
         return $this->hasMany(\Tessify\Core\Models\CompletedTask::class);
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, "taggable");
+    }
 }

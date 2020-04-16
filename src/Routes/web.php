@@ -217,14 +217,18 @@ Route::group(["middleware" => "auth"], function() {
         Route::group(["prefix" => "ministeries"], function() {
             Route::get("/", "Community\MinistryController@getOverview")->name("ministries");
             Route::get("{slug}", "Community\MinistryController@getView")->name("ministries.view");
+            Route::get("{slug}/volgen", "Community\MinistryController@getSubscribe")->name("ministries.subscribe");
+            Route::get("{slug}/niet-meer-volgen", "Community\MinistryController@getUnsubscribe")->name("ministries.unsubscribe");
         });
 
         // Organizations
         Route::group(["prefix" => "organisaties"], function() {
             Route::get("/", "Community\OrganizationController@getOverview")->name("organizations");
             Route::get("{slug}", "Community\OrganizationController@getView")->name("organizations.view");
+            Route::get("{slug}/volgen", "Community\OrganizationController@getSubscribe")->name("organizations.subscribe");
+            Route::get("{slug}/niet-meer-volgen", "Community\OrganizationController@getUnsubscribe")->name("organizations.unsubscribe");
         });
-
+        
         // Groups
         // Forum
         // Blogs

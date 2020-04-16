@@ -83,6 +83,8 @@ return [
     "view_subscribed" => "Je volgt nu dit project",
     "view_unsubscribe" => "Stop met volgen",
     "view_unsubscribed" => "Je bent gestopt met het volgen van dit project",
+    "view_tags" => "Tags",
+    "view_no_tags" => "Er zijn nog geen tags geassocieerd met dit project",
     
     //
     // Create project

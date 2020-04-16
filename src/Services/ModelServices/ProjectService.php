@@ -3,6 +3,7 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
+use Tags;
 use Dates;
 use Users;
 use Tasks;
@@ -71,6 +72,9 @@ class ProjectService implements ModelServiceContract
 
         // Load project's tasks
         $instance->tasks = Tasks::getAllForProject($instance);
+
+        // Load project's tags
+        $instance->tags = Tags::getAllForProject($instance);
 
         // Format the dates
         $instance->formatted_starts_at = is_null($instance->starts_at) ? null : $instance->starts_at->format("d-m-Y");

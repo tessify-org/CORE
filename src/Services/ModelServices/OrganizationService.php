@@ -72,7 +72,7 @@ class OrganizationService implements ModelServiceContract
     {
         foreach ($this->getAll() as $organization)
         {
-            if ($organization->name == $slug)
+            if ($organization->slug == $slug)
             {
                 return $organization;
             }

@@ -83,6 +83,8 @@ return [
     "view_subscribed" => "You are now following this project",
     "view_unsubscribe" => "Unfollow",
     "view_unsubscribed" => "You have stopped following this project",
+    "view_tags" => "Tags",
+    "view_no_tags" => "No tags have been associated with this project yet.",
 
     //
     // Create project

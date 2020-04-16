@@ -90,19 +90,28 @@
                                         <!-- Members -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('memberlist') }}">
-                                                @lang("tessify-core::layouts.members_link")
+                                                <span class="dropdown-link__icon"><i class="fas fa-users"></i></span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("tessify-core::layouts.members_link")
+                                                </span>
                                             </a>
                                         </li>
                                         <!-- Ministries -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('ministries') }}">
-                                                @lang("tessify-core::layouts.ministries_link")
+                                                <span class="dropdown-link__icon"><i class="fas fa-chess-rook"></i></span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("tessify-core::layouts.ministries_link")
+                                                </span>
                                             </a>
                                         </li>
                                         <!-- Organizations -->
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('organizations') }}">
-                                                @lang("tessify-core::layouts.organizations_link")
+                                                <span class="dropdown-link__icon"><i class="fas fa-building"></i></span>
+                                                <span class="dropdown-link__text">
+                                                    @lang("tessify-core::layouts.organizations_link")
+                                                </span>
                                             </a>
                                         </li>
                                     </ul>

@@ -43,6 +43,7 @@ use Tessify\Core\Services\ModelServices\CompletedTaskService;
 use Tessify\Core\Services\ModelServices\ViewEmailRequestService;
 use Tessify\Core\Services\ModelServices\NewsletterService;
 use Tessify\Core\Services\ModelServices\ProjectPhaseService;
+use Tessify\Core\Services\ModelServices\TagService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -249,6 +250,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("newsletters", function() {
             return new NewsletterService;
+        });
+
+        $this->app->singleton("tags", function() {
+            return new TagService;
         });
 
         //

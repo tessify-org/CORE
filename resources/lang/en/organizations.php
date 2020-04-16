@@ -20,5 +20,9 @@ return [
     "view_description" => "Description",
     "view_website" => "Website",
     "view_last_update" => "Last updated at",
+    "view_subscribe" => "Follow",
+    "view_unsubscribe" => "Unfollow",
+    "view_subscribed" => "You're following this organization",
+    "view_unsubscribed" => "You're no longer following this organization",
 
 ];
