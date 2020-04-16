@@ -73,7 +73,8 @@
                 "ViewEmailRequests": "Tessify\\Core\\Facades\\ViewEmailRequestsFacade",
                 "Newsletters": "Tessify\\Core\\Facades\\NewslettersFacade",
                 "Search": "Tessify\\Core\\Facades\\SearchFacade",
-                "Tags": "Tessify\\Core\\Facades\\TagsFacade"
+                "Tags": "Tessify\\Core\\Facades\\TagsFacade",
+                "FeedActivities": "Tessify\\Core\\Facades\\FeedActivitiesFacade"
             }
         },
         "branch-alias": {

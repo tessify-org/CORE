@@ -20,6 +20,15 @@ use App\Models\User;
 use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Traits\ModelServiceGetters;
+use Tessify\Core\Events\Tasks\TaskCreated;
+use Tessify\Core\Events\Tasks\TaskUpdated;
+use Tessify\Core\Events\Tasks\TaskDeleted;
+use Tessify\Core\Events\Tasks\TaskProgressReported;
+use Tessify\Core\Events\Tasks\TaskAssigned;
+use Tessify\Core\Events\Tasks\TaskUnassigned;
+use Tessify\Core\Events\Tasks\TaskCompleted;
+use Tessify\Core\Events\Users\UserCreatedTask;
+use Tessify\Core\Events\Users\UserUpdatedTask;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;
@@ -184,10 +193,13 @@ class TaskService implements ModelServiceContract
 
     public function createFromRequest(CreateTaskRequest $request)
     {
+        // Grab the "open" task status
         $open = TaskStatuses::findByName("open");
 
+        // Grab the selected category by it's name
         $category = TaskCategories::findOrCreateByName($request->task_category);
 
+        // Create the task
         $task = Task::create([
             "project_id" => $request->project_id,
             "author_id" => Auth::user()->id,
@@ -201,16 +213,24 @@ class TaskService implements ModelServiceContract
             "urgency" => $request->urgency
         ]);
         
+        // Process task's skills & tags
         $this->processTaskSkills($task, $request->required_skills);
         $this->processTaskTags($task, $request->tags);
+
+        // Fire events
+        event(new TaskCreated($task));
+        event(new UserCreatedTask(auth()->user(), $task));
         
+        // Return the created task
         return $task;
     }
 
     public function updateFromRequest(Task $task, UpdateTaskRequest $request)
     {
+        // Grab (or create) the selected task category
         $category = TaskCategories::findOrCreateByName($request->task_category);
 
+        // Update the task's properties
         $task->task_category_id = $category->id;
         $task->project_id = $request->project_id;
         $task->task_status_id = $request->task_status_id;
@@ -222,10 +242,16 @@ class TaskService implements ModelServiceContract
         $task->realized_hours = is_null($request->realized_hours) ? 0 : $request->realized_hours;
         $task->urgency = $request->urgency;
         $task->save();
-        
+
+        // Update the task's relationships
         $this->processTaskSkills($task, $request->required_skills);
         $this->processTaskTags($task, $request->tags);
-        
+
+        // Fire events
+        event(new TaskUpdated($task));
+        event(new UserUpdatedTask(auth()->user(), $task));
+
+        // Return the updated task
         return $task;
     }
     
@@ -404,6 +430,9 @@ class TaskService implements ModelServiceContract
         // That way we know which users completed the task so rewards can be rewarded
         // before detaching all users from the completed task
         
+        // Fire events
+        event(new TaskCompleted($task));
+
         // Return the task
         return $task;
     }

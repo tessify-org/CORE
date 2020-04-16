@@ -44,6 +44,7 @@ use Tessify\Core\Services\ModelServices\ViewEmailRequestService;
 use Tessify\Core\Services\ModelServices\NewsletterService;
 use Tessify\Core\Services\ModelServices\ProjectPhaseService;
 use Tessify\Core\Services\ModelServices\TagService;
+use Tessify\Core\Services\ModelServices\FeedActivityService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -254,6 +255,10 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("tags", function() {
             return new TagService;
+        });
+
+        $this->app->singleton("feed-activities", function() {
+            return new FeedActivityService;
         });
 
         //

@@ -16,8 +16,8 @@ use ProjectStatuses;
 use ProjectResources;
 use ProjectCategories;
 use App\Http\Controllers\Controller;
-use Tessify\Core\Events\Projects\ProjectCreated;
-use Tessify\Core\Events\Projects\ProjectCompleted;
+use Tessify\Core\Events\User\UserFollowsProject;
+use Tessify\Core\Events\User\UserUnfollowsProject;
 use Tessify\Core\Http\Requests\Projects\CreateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\UpdateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\DeleteProjectRequest;
@@ -26,11 +26,13 @@ class ProjectController extends Controller
 {
     public function getGetStarted()
     {
-        return view("tessify-core::pages.projects.get-started", []);
+        // Render the get started page
+        return view("tessify-core::pages.projects.get-started");
     }
 
     public function getOverview()
     {
+        // Render the project overview page
         return view("tessify-core::pages.projects.overview", [
             "projects" => Projects::getAllPreloaded(),
             "statuses" => ProjectStatuses::getAll(),
@@ -40,6 +42,7 @@ class ProjectController extends Controller
 
     public function getView($slug)
     {
+        // Grab the project we want to view
         $project = Projects::findPreloadedBySlug($slug);
         if (!$project)
         {
@@ -47,6 +50,7 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Render the view project page
         return view("tessify-core::pages.projects.view", [
             "project" => $project,
             "user" => Users::current(),
@@ -58,6 +62,7 @@ class ProjectController extends Controller
 
     public function getCreate()
     {
+        // Render the create project page
         return view("tessify-core::pages.projects.create", [
             "phases" => ProjectPhases::getAll(),
             "ministries" => Ministries::getAll(),
@@ -131,16 +136,17 @@ class ProjectController extends Controller
 
     public function postCreate(CreateProjectRequest $request)
     {
+        // Create the project
         $project = Projects::createFromRequest($request);
 
-        event(new ProjectCreated($project));
-
+        // Flash message & redirect to project view
         flash(__("tessify-core::projects.project_created"))->success();
         return redirect()->route("projects.view", $project->slug);
     }
 
     public function getEdit($slug)
     {
+        // Grab the project we want to update
         $project = Projects::findPreloadedBySlug($slug);
         if (!$project)
         {   
@@ -148,6 +154,7 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Render the update project page
         return view("tessify-core::pages.projects.edit", [
             "project" => $project,
             "phases" => ProjectPhases::getAll(),
@@ -222,6 +229,7 @@ class ProjectController extends Controller
 
     public function postEdit(UpdateProjectRequest $request, $slug)
     {
+        // Grab the project we want to update
         $project = Projects::findBySlug($slug);
         if (!$project)
         {   
@@ -229,14 +237,17 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Update the project
         $project = Projects::updateFromRequest($project, $request);
 
+        // Flash message & redirect to project view
         flash(__("tessify-core::general.saved_changes"))->success();
         return redirect()->route("projects.view", $project->slug);
     }
 
     public function getDelete($slug)
     {
+        // Grab the project we want to delete
         $project = Projects::findBySlug($slug);
         if (!$project)
         {   
@@ -244,6 +255,7 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Render the delete project page
         return view("tessify-core::pages.projects.delete", [
             "project" => $project,
         ]);
@@ -251,6 +263,7 @@ class ProjectController extends Controller
 
     public function postDelete(DeleteProjectRequest $request, $slug)
     {
+        // Grab the project we want to delete
         $project = Projects::findBySlug($slug);
         if (!$project)
         {   
@@ -258,14 +271,21 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Fire events (before actually deleting the project so data is still available; maybe implement soft-deletes to ensure it's always available)
+        event(new UserDeletedProject(auth()->user(), $project));
+        event(new ProjectDeleted(auth()->user(), $project));
+
+        // Delete the project
         $project->delete();
 
+        // Flash message & redirect to overview
         flash(__("tessify-core::projects.project_deleted"))->success();
         return redirect()->route("projects");
     }
 
     public function getSubscribe($slug)
     {
+        // Grab the project we want to subscribe to
         $project = Projects::findBySlug($slug);
         if (!$project)
         {   
@@ -273,14 +293,20 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Subscribe user to the project
         Auth::user()->subscribe($project);
 
+        // Fire event
+        event(new UserFollowsProject(auth()->user(), $project));
+
+        // Flash message & redirect to view
         flash(__("tessify-core::projects.view_subscribed"))->success();
         return redirect()->route("projects.view", $slug);
     }
 
     public function getUnsubscribe($slug)
     {
+        // Grab the project we want to unsubscribe from
         $project = Projects::findBySlug($slug);
         if (!$project)
         {   
@@ -288,8 +314,13 @@ class ProjectController extends Controller
             return redirect()->route("projects");
         }
 
+        // Unsubscribe current user from the project
         Auth::user()->unsubscribe($project);
 
+        // Fire event
+        event(new UserUnfollowsProject(auth()->user(), $project));
+
+        // Flash message & redirect to view
         flash(__("tessify-core::projects.view_subscribed"))->success();
         return redirect()->route("projects.view", $slug);
     }

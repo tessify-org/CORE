@@ -13,12 +13,12 @@ use TaskCategories;
 use TaskSeniorities;
 use TaskProgressReports;
 use TaskProgressReportReviews;
+
 use App\Http\Controllers\Controller;
-use Tessify\Core\Events\Tasks\TaskCreated;
-use Tessify\Core\Events\Tasks\TaskAssigned;
-use Tessify\Core\Events\Tasks\TaskCompleted;
-use Tessify\Core\Events\Tasks\TaskUnassigned;
-use Tessify\Core\Events\Tasks\TaskProgressReported;
+
+use Tessify\Core\Events\Users\UserFollowsTask;
+use Tessify\Core\Events\Users\UserUnfollowsTask;
+
 use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\DeleteTaskRequest;
@@ -30,6 +30,7 @@ class TaskController extends Controller
 {
     public function getOverview()
     {
+        // Render the task overview page
         return view("tessify-core::pages.tasks.overview", [
             "tasks" => Tasks::getAllPreloaded(),
             "skills" => Skills::getAll(),
@@ -41,13 +42,15 @@ class TaskController extends Controller
 
     public function getView($slug)
     {
+        // Grab the task we want to view
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-        
+
+        // Render the view task page
         return view("tessify-core::pages.tasks.view", [
             "task" => $task,
         ]);
@@ -55,6 +58,7 @@ class TaskController extends Controller
     
     public function getCreate($slug = null)
     {
+        // Grab the parent project if a slug was provided
         $project = null;
         if (!is_null($slug))
         {
@@ -66,6 +70,7 @@ class TaskController extends Controller
             }
         }
 
+        // Render the create task page
         return view("tessify-core::pages.tasks.create", [
             "project" => $project,
             "projects" => Projects::getAllForUser(),
@@ -133,10 +138,10 @@ class TaskController extends Controller
 
     public function postCreate(CreateTaskRequest $request)
     {
+        // Create the task
         $task = Tasks::createFromRequest($request);
 
-        event(new TaskCreated($task));
-
+        // Flash message && redirect to view task page
         flash(__("tessify-core::tasks.created"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
@@ -318,6 +323,7 @@ class TaskController extends Controller
 
     public function getSubscribe($slug)
     {
+        // Grab the task we want to subscribe to
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -325,14 +331,20 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Subscribe to the user to the task
         Auth::user()->subscribe($task);
 
+        // Fire events
+        event(new UserFollowsTask(auth()->user(), $task));
+
+        // Flash message & redirect to the view task page
         flash(__("tessify-core::tasks.view_subscribed"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
     public function getUnsubscribe($slug)
     {
+        // Grab the task we want to unsubscribe from
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -340,14 +352,20 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Unsubscribe the user from the task
         Auth::user()->unsubscribe($task);
 
+        // Fire events
+        event(new UserUnfollowsTask(auth()->user(), $task));
+
+        // Flash message & redirect to the view page
         flash(__("tessify-core::tasks.view_unsubscribed"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
     public function getReportProgress($slug)
     {
+        // Grab the task we want to report progress on
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -355,6 +373,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Render the report progress page
         return view("tessify-core::pages.tasks.report-progress", [
             "task" => $task,
             "oldInput" => collect([
@@ -366,6 +385,7 @@ class TaskController extends Controller
 
     public function postReportProgress(ReportProgressRequest $request, $slug)
     {
+        // Grab the task we want to report progress on
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -373,16 +393,20 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Create the progress report
         $report = TaskProgressReports::createFromRequest($task, $request);
 
+        // Fire events
         event(new TaskProgressReported($task));
 
+        // Flash message & redirect to the view progress report page
         flash(__("tessify-core::tasks.report_progress_success"))->success();
         return redirect()->route("tasks.progress-report", ["slug" => $task->slug, "uuid" => $report->uuid]);
     }
 
     public function getProgressReport($slug, $uuid)
     {
+        // Grab the task to which the report belongs
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -390,6 +414,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Grab the progress report
         $report = TaskProgressReports::findPreloadedByUuid($uuid);
         if (!$report)
         {
@@ -397,11 +422,14 @@ class TaskController extends Controller
             return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
+        // If this task is assigned to the current user
         if ($task->is_assigned)
         {
+            // Mark the reviews this progress report may contain as read
             TaskProgressReports::markReviewsAsRead($report);
         }
 
+        // Render the view progress report page
         return view("tessify-core::pages.tasks.progress-report", [
             "task" => $task,
             "report" => $report,
@@ -410,6 +438,7 @@ class TaskController extends Controller
 
     public function getReviewProgressReport($slug, $uuid)
     {
+        // Grab the task the progress report we want to review belongs to
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -417,6 +446,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Grab the progress report we want to review
         $report = TaskProgressReports::findByUuid($uuid);
         if (!$report)
         {
@@ -424,6 +454,7 @@ class TaskController extends Controller
             return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
+        // Render the review progress report page
         return view("tessify-core::pages.tasks.review-progress-report", [
             "task" => $task,
             "report" => $report,
@@ -436,6 +467,7 @@ class TaskController extends Controller
 
     public function postReviewProgressReport(ReviewProgressReportRequest $request, $slug, $uuid)
     {
+        // Grab the task the progress report we want to review belongs to
         $task = Tasks::findPreloadedBySlug($slug);
         if (!$task)
         {
@@ -443,6 +475,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
+        // Grab the progress report we want to review
         $report = TaskProgressReports::findByUuid($uuid);
         if (!$report)
         {
@@ -450,25 +483,28 @@ class TaskController extends Controller
             return redirect()->route("tasks.view", ["slug" => $slug]);
         }
 
+        // Create the progress report review
         $review = TaskProgressReportReviews::createFromRequest($report, $request);
 
+        // Flash message & redirect to the view progress report page
         flash(__("tessify-core::tasks.reviewed_progress_report"))->success();
         return redirect()->route("tasks.progress-report", ["slug" => $slug, "uuid" => $report->uuid]);
     }
 
     public function getComplete($slug)
     {
+        // Grab the task we want to complete
         $task = Tasks::findBySlug($slug);
         if (!$task)
         {
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-        
+
+        // Complete the task
         Tasks::complete($task);
 
-        event(new TaskCompleted($task));
-
+        // Flash message & redirect to the view task page
         flash(__("tessify-core::tasks.completed"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }

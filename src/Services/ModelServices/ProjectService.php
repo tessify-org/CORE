@@ -24,6 +24,13 @@ use Tessify\Core\Models\TeamRole;
 use Tessify\Core\Models\TeamMemberApplication;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
+use Tessify\Core\Events\User\UserCreatedProject;
+use Tessify\Core\Events\User\UserUpdatedProject;
+use Tessify\Core\Events\User\UserDeletedProject;
+use Tessify\Core\Events\Projects\ProjectCreated;
+use Tessify\Core\Events\Projects\ProjectUpdated;
+use Tessify\Core\Events\Projects\ProjectDeleted;
+use Tessify\Core\Events\Projects\ProjectCompleted;
 use Tessify\Core\Http\Requests\Projects\CreateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\UpdateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\Applications\ApplyForTeamRoleRequest;
@@ -168,12 +175,9 @@ class ProjectService implements ModelServiceContract
         // Process project's tags
         $this->processProjectTags($project, $request->tags);
 
-        // If this project has tasks
-        // if ($project->has_tasks)
-        // {
-        //     // Create default task columns
-        //     $this->createDefaultTaskColumnsForProject($project);
-        // }
+        // Fire off events
+        event(new ProjectCreated($project));
+        event(new UserCreatedProject(auth()->user(), $project));
 
         // Return the created project
         return $project;
@@ -181,6 +185,10 @@ class ProjectService implements ModelServiceContract
     
     public function updateFromRequest(Project $project, UpdateProjectRequest $request)
     {
+        // Grab the current status of the project before updating it
+        // so we can make a comparison later on and see if it was opened or closed
+        $currentStatus = $project->status;
+
         // Parse dates
         $starts_at = Dates::parse($request->starts_at, "-")->format("Y-m-d");
         $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
@@ -224,8 +232,15 @@ class ProjectService implements ModelServiceContract
         // Process project tags
         $this->processProjectTags($project, $request->tags);
         
-        // $this->processTeamRoles($project, $request->team_roles);
+        // Fire off events
+        event(new ProjectUpdated($project));
+        event(new UserUpdatedProject(auth()->user(), $project));
+        if ($currentStatus->name == "open" && $project->status->name == "closed")
+        {
+            event(new ProjectCompleted($project));
+        }
 
+        // Return the updated project
         return $project;
     }
 
