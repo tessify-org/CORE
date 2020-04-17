@@ -24,6 +24,7 @@ return [
     "forgot_password" => "Wachtwoord vergeten",
     "reset_password" => "Wachtwoord resetten",
     "search" => "Zoeken",
+    "tags" => "Tags",
     "memberlist" => "Ledenlijst",
     "settings" => "Instellingen",
     "profile" => "Profiel van :name",

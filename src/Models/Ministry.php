@@ -46,4 +46,9 @@ class Ministry extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Project::class);
+    }
 }

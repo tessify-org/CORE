@@ -25,6 +25,7 @@
             <search-results
                 api-endpoint="{{ route('api.search.post') }}"
                 search-query="{{ $query }}"
+                tag-overview-href="{{ route('tags') }}"
                 search-placeholder-text="@lang('tessify-core::search.search_placeholder')"
                 no-results-text="@lang('tessify-core::search.no_results')"
                 enter-query-text="@lang('tessify-core::search.enter_query')"
@@ -35,6 +36,13 @@
                 organization-type-text="@lang('tessify-core::search.organization_type')"
                 results-text="@lang('tessify-core::search.results')">
             </search-results>
+
+            <!-- Footer actions -->
+            <div id="search-footer">
+                <v-btn text href="{{ route('tags') }}">
+                    @lang("tessify-core::search.view_tags")
+                </v-btn>
+            </div>
 
         </div>
     </div>

@@ -21,4 +21,6 @@ return [
 
     "results" => "resultaten gevonden",
 
+    "view_tags" => "Bekijk beschikbare tags",
+
 ];

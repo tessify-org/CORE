@@ -39,45 +39,72 @@
                     @include("tessify-core::partials.feedback")
 
                     <!-- Content -->
-                    <div class="content-card elevation-1">
-                        <div class="details">
-                            <!-- Ministry -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_ministry")</div>
-                                <div class="val">
-                                    <a href="{{ route('ministries.view', $organization->ministry->id) }}">
-                                        {{ $organization->ministry->name }}
-                                    </a>
-                                </div> 
+                    <div class="content-card elevation-1 mb">
+                        <div class="content-card__content">
+                            <h3 class="content-subtitle">@lang("tessify-core::ministries.view_details")</h3>
+                            <div class="details no-padding mb-0">
+                                <!-- Ministry -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_ministry")</div>
+                                    <div class="val">
+                                        <a href="{{ route('ministries.view', $organization->ministry->slug) }}">
+                                            {{ $organization->ministry->name }}
+                                        </a>
+                                    </div> 
+                                </div>
+                                <!-- Name -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_name")</div>
+                                    <div class="val">{{ $organization->name }}</div> 
+                                </div>
+                                <!-- Abbreviation -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_abbreviation")</div>
+                                    <div class="val">{{ $organization->abbreviation }}</div> 
+                                </div>
+                                <!-- Description -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_description")</div>
+                                    <div class="val">{{ $organization->description }}</div> 
+                                </div>
+                                <!-- Website -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_website")</div>
+                                    <div class="val">
+                                        <a href="{{ $organization->website_url }}" target="_blank">
+                                            {{ $organization->website_url }}
+                                        </a>
+                                    </div> 
+                                </div>
+                                <!-- Last updated on -->
+                                <div class="detail">
+                                    <div class="key">@lang("tessify-core::organizations.view_last_update")</div>
+                                    <div class="val">{{ $organization->updated_at->format("d-m-Y H:m:s") }}</div> 
+                                </div>
                             </div>
-                            <!-- Name -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_name")</div>
-                                <div class="val">{{ $organization->name }}</div> 
-                            </div>
-                            <!-- Abbreviation -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_abbreviation")</div>
-                                <div class="val">{{ $organization->abbreviation }}</div> 
-                            </div>
-                            <!-- Description -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_description")</div>
-                                <div class="val">{{ $organization->description }}</div> 
-                            </div>
-                            <!-- Website -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_website")</div>
-                                <div class="val">
-                                    <a href="{{ $organization->website_url }}" target="_blank">
-                                        {{ $organization->website_url }}
-                                    </a>
-                                </div> 
-                            </div>
-                            <!-- Last updated on -->
-                            <div class="detail">
-                                <div class="key">@lang("tessify-core::organizations.view_last_update")</div>
-                                <div class="val">{{ $organization->updated_at->format("d-m-Y H:m:s") }}</div> 
+                        </div>
+                    </div>
+
+                    <!-- Department -->
+                    <div class="content-card elevation-1 mb">
+                        <div class="content-card__content">
+                            <h3 class="content-subtitle">@lang("tessify-core::organizations.view_departments")</h3>
+                            <div id="organization-departments">
+                                @if ($organization->departments->count())
+                                    <div id="departments">
+                                        @foreach ($organization->departments as $department)
+                                            <div class="department-wrapper">
+                                                <div class="department">
+                                                    <div class="department-name">{{ $department->name }}</div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div id="no-departments">
+                                        @lang("tessify-core::organizations.view_no_departments")
+                                    </div>  
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -205,6 +205,10 @@ Route::group(["middleware" => "auth"], function() {
     Route::group(["prefix" => "zoeken"], function() {
         Route::get("/", "System\SearchController@getSearch")->name("search");
         Route::post("/", "System\SearchController@postSearch")->name("search.post");
+        Route::group(["prefix" => "tags"], function() {
+            Route::get("/", "System\TagController@getOverview")->name("tags");
+            Route::get("{slug}", "System\TagController@getView")->name("tags.view");
+        });
     });
 
     // Community

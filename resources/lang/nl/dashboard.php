@@ -34,7 +34,7 @@ return [
     "feed_empty" => "Je feed is momenteel leeg",
 
     "tasks_title" => "Mijn werkpakketten",
-    "tasks_description" => "De werkpakketten waar jij voor staat ingeschreven.",
+    "tasks_description" => "De werkpakketten waar je voor staat ingeschreven.",
     "tasks_empty" => "Je hebt geen openstaande werkpakketten",
     
     "projects_title" => "Mijn projecten",
@@ -43,7 +43,7 @@ return [
     
     "following_title" => "Je volgt momenteel",
     "following_users" => "Gebruikers",
-    "following_users_dialog_title" => "Gebruikers die jij volgt",
+    "following_users_dialog_title" => "Gebruikers die je volgt",
     "following_users_dialog_no_records" => "Je volgt nog geen gebruikers.",
     "following_ministries" => "Ministeries",
     "following_ministries_dialog_title" => "Ministeries die je volgt",

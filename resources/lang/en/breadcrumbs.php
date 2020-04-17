@@ -24,6 +24,7 @@ return [
     "forgot_password" => "Forgot password",
     "reset_password" => "Reset password",
     "search" => "Search",
+    "tags" => "Tags",
     "memberlist" => "Memberlist",
     "settings" => "Settings",
     "profile" => "Profile of :name",

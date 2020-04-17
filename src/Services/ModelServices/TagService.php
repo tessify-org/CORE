@@ -83,4 +83,17 @@ class TagService implements ModelServiceContract
 
         return Tag::create(["name" => $name]);
     }
+    
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $tag)
+        {
+            if ($tag->slug == $slug)
+            {
+                return $tag;
+            }
+        }
+
+        return false;
+    }
 }
