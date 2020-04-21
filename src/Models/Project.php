@@ -119,4 +119,14 @@ class Project extends Model
     {
         return $this->morphToMany(Tag::class, "taggable");
     }
+
+    public function reviewRequests()
+    {
+        return $this->morphMany(ReviewRequest::class, "reviewrequestable");
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, "reviewable");
+    }
 }

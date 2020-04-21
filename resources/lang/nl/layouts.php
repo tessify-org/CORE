@@ -20,6 +20,7 @@ return [
     "projects_link" => "Projecten",
     "members_link" => "Leden",
     "profile_link" => "Mijn Profiel",
+    "reviews_link" => "Mijn reviews",
     "edit_profile_link" => "Profiel aanpassen",
     "messages_link" => "Berichten",
     "notifications_link" => "Notificaties",

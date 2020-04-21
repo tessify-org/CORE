@@ -20,6 +20,7 @@ return [
     "projects_link" => "Projects",
     "members_link" => "Memberlist",
     "profile_link" => "My Profile",
+    "reviews_link" => "My reviews",
     "edit_profile_link" => "Update profile",
     "messages_link" => "Members",
     "notifications_link" => "Notifications",

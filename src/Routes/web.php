@@ -241,6 +241,40 @@ Route::group(["middleware" => "auth"], function() {
 
     });
 
+    // Reviews
+    Route::group(["prefix" => "reviews"], function() {
+
+        // Requests
+        Route::group(["prefix" => "verzoeken"], function() {
+
+            // Accept request
+            Route::get("{uuid}/accepteren", "Reviews\ReviewRequestController@getAccept")->name("reviews.requests.accept");
+
+            // Reject request
+            Route::get("{uuid}/afwijzen", "Reviews\ReviewRequestController@getReject")->name("reviews.requests.reject");
+
+        });
+        
+        // My reviews
+        Route::get("/", "Reviews\ReviewController@getOverview")->name("reviews");
+
+        // Write review
+        Route::get("schrijven/{target}/{slug}", "Reviews\ReviewController@getCreate")->name("reviews.write");
+        Route::post("schrijven/{target}/{slug}", "Reviews\ReviewController@postCreate")->name("reviews.write.post");
+
+        // Update review
+        Route::get("aanpassen/{uuid}", "Reviews\ReviewController@getUpdate")->name("reviews.update");
+        Route::post("aanpassen/{uuid}", "Reviews\ReviewController@postUpdate")->name("reviews.update.post");
+
+        // Delete review
+        Route::get("verwijderen/{uuid}", "Reviews\ReviewController@getDelete")->name("reviews.delete");
+        Route::post("verwijderen/{uuid}", "Reviews\ReviewController@postDelete")->name("reviews.delete.post");
+        
+        // View review
+        Route::get("{uuid}", "Reviews\ReviewController@getView")->name("reviews.view");
+
+    });
+
 });
 
 // Admin panel

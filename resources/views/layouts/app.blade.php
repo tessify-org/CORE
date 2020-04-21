@@ -132,12 +132,12 @@
                                                 <span class="dropdown-link__text">@lang("tessify-core::layouts.profile_link")</span>
                                             </a>
                                         </li>
-                                        <!-- <li class="dropdown-link__wrapper">
-                                            <a class="dropdown-link" href="{{ route('profile.update') }}">
-                                                <span class="dropdown-link__icon"><i class="fas fa-user-edit"></i></span>
-                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.edit_profile_link")</span>
+                                        <li class="dropdown-link__wrapper">
+                                            <a class="dropdown-link" href="{{ route('reviews') }}">
+                                                <span class="dropdown-link__icon"><i class="fas fa-scroll"></i></span>
+                                                <span class="dropdown-link__text">@lang("tessify-core::layouts.reviews_link")</span>
                                             </a>
-                                        </li> -->
+                                        </li>
                                         <li class="dropdown-link__wrapper">
                                             <a class="dropdown-link" href="{{ route('messages') }}">
                                                 <span class="dropdown-link__icon"><i class="fas fa-envelope"></i></span>

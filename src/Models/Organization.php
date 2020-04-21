@@ -63,4 +63,14 @@ class Organization extends Model
     {
         return $this->hasMany(Assigment::class);
     }
+
+    public function reviewRequests()
+    {
+        return $this->morphMany(ReviewRequest::class, "reviewrequestable");
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, "reviewable");
+    }
 }

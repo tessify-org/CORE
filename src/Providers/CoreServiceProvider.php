@@ -45,6 +45,8 @@ use Tessify\Core\Services\ModelServices\NewsletterService;
 use Tessify\Core\Services\ModelServices\ProjectPhaseService;
 use Tessify\Core\Services\ModelServices\TagService;
 use Tessify\Core\Services\ModelServices\FeedActivityService;
+use Tessify\Core\Services\ModelServices\ReviewRequestService;
+use Tessify\Core\Services\ModelServices\ReviewService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -259,6 +261,14 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("feed-activities", function() {
             return new FeedActivityService;
+        });
+
+        $this->app->singleton("review-requests", function() {
+            return new ReviewRequestService;
+        });
+
+        $this->app->singleton("reviews", function() {
+            return new ReviewService;
         });
 
         //

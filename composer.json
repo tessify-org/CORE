@@ -74,7 +74,9 @@
                 "Newsletters": "Tessify\\Core\\Facades\\NewslettersFacade",
                 "Search": "Tessify\\Core\\Facades\\SearchFacade",
                 "Tags": "Tessify\\Core\\Facades\\TagsFacade",
-                "FeedActivities": "Tessify\\Core\\Facades\\FeedActivitiesFacade"
+                "FeedActivities": "Tessify\\Core\\Facades\\FeedActivitiesFacade",
+                "ReviewRequests": "Tessify\\Core\\Facades\\ReviewRequestsFacade",
+                "Reviews": "Tessify\\Core\\Facades\\ReviewsFacade"
             }
         },
         "branch-alias": {
