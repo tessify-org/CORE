@@ -145,4 +145,49 @@ class ReviewRequestService implements ModelServiceContract
 
         return $reviewRequest;
     }
+
+    public function completeOutstandingRequestFor($type, $slug)
+    {
+        $className = $this->convertTypeToClassName($type, $slug);
+        if ($className)
+        {
+            $target = $className::where("slug", $slug)->first();
+            if ($target)
+            {
+                $requests = ReviewRequest::where("user_id", auth()->user()->id)
+                                         ->where("reviewrequestable_type", $className)
+                                         ->where("reviewrequestable_id", $target->id)
+                                         ->where("status", "open")
+                                         ->get();
+                
+                if ($requests->count())
+                {
+                    foreach ($requests as $request)
+                    {
+                        $this->flagAsFulfilled($request);
+                    }
+                }
+            }
+        }
+    }
+
+    private function convertTypeToClassName($type)
+    {
+        switch ($type)
+        {
+            case "user":
+                return "Tessify\\Core\\Models\\User";
+            break;
+
+            case "task":
+                return "Tessify\\Core\\Models\\Task";
+            break;
+
+            case "project":
+                return "Tessify\\Core\\Models\\Project";
+            break;
+        }
+
+        return false;
+    }
 }

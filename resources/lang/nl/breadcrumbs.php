@@ -68,6 +68,8 @@ return [
     "reviews" => "Mijn reviews",
     "review" => "Mijn review",
     "review_create" => "Review schrijven",
+    "review_created" => "Review is geplaatst!",
+    "review_created_text" => "Bedankt dat je de tijd hebt genomen voor het schrijven van een review!",
     "review_update" => "Review aanpassen",
     "review_delete" => "Review verwijderen",
     "community" => "Community",

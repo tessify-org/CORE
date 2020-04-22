@@ -69,6 +69,8 @@ return [
     "reviews" => "My reviews",
     "review" => "My review",
     "review_create" => "Write new review",
+    "review_created_text" => "Thanks for taking the time to write a review.",
+    "review_created" => "Review has been written",
     "review_update" => "Update review",
     "review_delete" => "Delete review",
     "community" => "Community",

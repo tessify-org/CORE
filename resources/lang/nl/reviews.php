@@ -13,9 +13,12 @@
 return [
 
     "not_found" => "Review kon niet worden gevonden",
+    "target_not_found" => "Doelwit kon niet worden gevonden",
+
     "created" => "Review is geplaatst!",
     "updated" => "Wijzigingen zijn opgeslagen!",
     "deleted" => "Review is verwijderd!",
+
     "type_user" => "Gebruiker",
     "type_task" => "Werkpakket",
     "type_project" => "Project",
@@ -34,16 +37,29 @@ return [
     "overview_requests_reject" => "Afwijzen",
     
     "view_title" => "Mijn review",
+    "view_rating" => "Beoordeling",
+    "view_message" => "Verantwoording",
+    "view_back" => "Terug naar mijn reviews",
+    "view_update" => "Aanpassen",
+    "view_delete" => "Verwijderen",
 
     "create_title" => "Review schrijven",
     "create_cancel" => "Ga terug",
     "create_submit" => "Review plaatsen",
 
+    "created_title" => "Review is geplaatst",
+    "created_text" => "Bedankt dat je de tijd hebt genomen om een review te schrijven.",
+
     "update_title" => "Review aanpassen",
     "update_cancel" => "Annuleren",
     "update_submit" => "Wijzigingen opslaan",
+
+    "form_rating" => "Beoordeling",
+    "form_message" => "Bericht",
+    "form_message_hint" => "Verklaar je beoordeling; hoe heb jij de samenwerking en alles wat daarbij kwam kijken ervaren?",
     
     "delete_title" => "Review verwijderen",
+    "delete_text" => "Weet je zeker dat je deze review wilt verwijderen?",
     "delete_cancel" => "Nee, ga terug",
     "delete_submit" => "Ja, verwijder mijn review",
 

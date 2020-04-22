@@ -259,8 +259,8 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("/", "Reviews\ReviewController@getOverview")->name("reviews");
 
         // Write review
-        Route::get("schrijven/{target}/{slug}", "Reviews\ReviewController@getCreate")->name("reviews.write");
-        Route::post("schrijven/{target}/{slug}", "Reviews\ReviewController@postCreate")->name("reviews.write.post");
+        Route::get("schrijven/{type}/{slug}", "Reviews\ReviewController@getCreate")->name("reviews.create");
+        Route::post("schrijven/{type}/{slug}", "Reviews\ReviewController@postCreate")->name("reviews.create.post");
 
         // Update review
         Route::get("aanpassen/{uuid}", "Reviews\ReviewController@getUpdate")->name("reviews.update");

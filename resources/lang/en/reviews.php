@@ -12,10 +12,13 @@
 
 return [
 
-    "not_found" => "Review kon niet worden gevonden",
+    "not_found" => "Review could not be found",
+    "target_not_found" => "Target could not be found",
+
     "created" => "Review has been placed!",
     "updated" => "Changes have been saved!",
     "deleted" => "Review has been deleted!",
+    
     "type_user" => "User",
     "type_task" => "Task",
     "type_project" => "Project",
@@ -34,16 +37,29 @@ return [
     "overview_requests_reject" => "Reject",
     
     "view_title" => "My review",
+    "view_rating" => "Rating",
+    "view_message" => "Statement",
+    "view_back" => "Back to my reviews",
+    "view_update" => "Update",
+    "view_delete" => "Delete",
 
     "create_title" => "Write a review",
     "create_cancel" => "Cancel",
     "create_submit" => "Post review",
 
+    "created_title" => "Review has been posted",
+    "created_text" => "Thanks for taking the time to write a review.",
+
     "update_title" => "Update review",
     "update_cancel" => "Cancel",
     "update_submit" => "Save changes",
     
+    "form_rating" => "Rating",
+    "form_message" => "Message",
+    "form_message_hint" => "Explain your rating; how have you experienced the cooperation and everything involved?",
+
     "delete_title" => "Delete review",
+    "delete_text" => "Are you sure you want to delete this review?",
     "delete_cancel" => "No, go back",
     "delete_submit" => "Yes, delete this review",
 
