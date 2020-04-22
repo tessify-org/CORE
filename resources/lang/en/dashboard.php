@@ -28,6 +28,10 @@ return [
     "ql_description" => "Easy access to different sections",
     "ql_create_project" => "Add a new project to the platform",
     "ql_create_task" => "Add a new task to the platform",
+    "ql_notifications" => "Unread notifications (:num)",
+    "ql_messages" => "Unread messages (:num)",
+    "ql_email_requests" => "Email requests (:num)",
+    "ql_review_requests" => "Review requests (:num)",
 
     "feed_title" => "My feed",
     "feed_description" => "The latest updates on everything you follow.",

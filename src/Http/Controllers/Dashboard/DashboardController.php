@@ -6,7 +6,11 @@ use Auth;
 use Users;
 use Tasks;
 use Projects;
+use Messages;
+use Notifications;
 use FeedActivities;
+use ReviewRequests;
+use ViewEmailRequests;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -28,7 +32,7 @@ class DashboardController extends Controller
             $greeting = __("tessify-core::dashboard.greeting_night", ["name" => $user->formattedName]);
         }
         
-        // Subscriptions & following
+        // Subscriptions & followings
         $followings = $user->followings;
         $subscribedMinistries = $user->subscriptions()->withType("Tessify\\Core\\Models\\Ministry")->get();
         $subscribedOrganizations = $user->subscriptions()->withType("Tessify\\Core\\Models\\Organization")->get();
@@ -50,6 +54,10 @@ class DashboardController extends Controller
             "subscribedMinistries" => $this->prepareSubscriptionData("ministries", $subscribedMinistries),
             "subscribedOrganizations" => $this->prepareSubscriptionData("organizations", $subscribedOrganizations),
             "feedActivities" => FeedActivities::getFeed(),
+            "numUnreadMessages" => Messages::numUnread(),
+            "numUnreadNotifications" => Notifications::numUnread(),
+            "numEmailRequests" => ViewEmailRequests::numRequests(),
+            "numReviewRequests" => ReviewRequests::numRequests(),
         ]);
     }
 

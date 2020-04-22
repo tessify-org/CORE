@@ -79,8 +79,10 @@ class ReviewRequestService implements ModelServiceContract
         return false;
     }
 
-    public function getMyRequests()
+    public function getMyRequests(User $user = null)
     {
+        if (is_null($user)) $user = auth()->user();
+        
         $out = [];
 
         foreach ($this->getAllPreloaded() as $request)
@@ -92,6 +94,11 @@ class ReviewRequestService implements ModelServiceContract
         }
 
         return collect($out);
+    }
+
+    public function numRequests(User $user = null)
+    {
+        return $this->getMyRequests($user)->count();
     }
 
     public function createForUser(User $user, $reason, User $targetUser = null)

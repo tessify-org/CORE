@@ -26,8 +26,12 @@ return [
 
     "ql_title" => "Snelle toegang",
     "ql_description" => "Tot verschillende features",
-    "ql_create_project" => "Project toevoegen aan het platform",
-    "ql_create_task" => "Werkpakket toevoegen aan het platform",
+    "ql_create_project" => "Project toevoegen",
+    "ql_create_task" => "Werkpakket toevoegen",
+    "ql_notifications" => "Ongelezen notificaties (:num)",
+    "ql_messages" => "Ongelezen berichten (:num)",
+    "ql_email_requests" => "Email verzoeken (:num)",
+    "ql_review_requests" => "Review verzoeken (:num)",
 
     "feed_title" => "Mijn feed",
     "feed_description" => "De laatste updates van alles wat je volgt.",

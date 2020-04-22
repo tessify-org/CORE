@@ -67,15 +67,47 @@
                         <h3 class="content-card__title">@lang("tessify-core::dashboard.ql_title")</h3>
                         <h4 class="content-card__description">@lang("tessify-core::dashboard.ql_description")</h4>
                         <div id="dashboard-quick-links">
-                            <div class="quick-link">
-                                <v-btn color="primary" block large href="{{ route('projects.create') }}">
-                                    @lang("tessify-core::dashboard.ql_create_project")
-                                </v-btn>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="{{ route('projects.create') }}">
+                                        @lang("tessify-core::dashboard.ql_create_project")
+                                    </v-btn>
+                                </div>
                             </div>
-                            <div class="quick-link">
-                                <v-btn color="primary" block large href="{{ route('tasks.create') }}">
-                                    @lang("tessify-core::dashboard.ql_create_task")
-                                </v-btn>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="{{ route('tasks.create') }}">
+                                        @lang("tessify-core::dashboard.ql_create_task")
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="{{ route('notifications') }}" @if ($numUnreadNotifications == 0) disabled @endif>
+                                        @lang("tessify-core::dashboard.ql_notifications", ["num" => $numUnreadNotifications])
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="{{ route('messages') }}" @if ($numUnreadMessages == 0) disabled @endif>
+                                        @lang("tessify-core::dashboard.ql_messages", ["num" => $numUnreadMessages])
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="{{ route('reviews') }}" @if ($numReviewRequests == 0) disabled @endif>
+                                        @lang("tessify-core::dashboard.ql_review_requests", ["num" => $numReviewRequests])
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div class="quick-link__wrapper">
+                                <div class="quick-link">
+                                    <v-btn color="primary" block large href="#" @if ($numEmailRequests == 0) disabled @endif>
+                                        @lang("tessify-core::dashboard.ql_email_requests", ["num" => $numEmailRequests])
+                                    </v-btn>
+                                </div>
                             </div>
                         </div>
 

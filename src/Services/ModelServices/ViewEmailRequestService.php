@@ -108,4 +108,26 @@ class ViewEmailRequestService implements ModelServiceContract
         
         return $request ? true : false;
     }
+
+    public function openRequests(User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        $out = [];  
+
+        foreach ($this->getAll() as $request)
+        {
+            if ($request->user_id == $user->id && $request->status == "open")
+            {
+                $out[] = $request;
+            }
+        }
+            
+        return collect($out);
+    }
+
+    public function numRequests(User $user = null)
+    {
+        return $this->openRequests($user)->count();
+    }
 }
