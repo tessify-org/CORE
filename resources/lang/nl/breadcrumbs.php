@@ -75,6 +75,7 @@ return [
     "community" => "Community",
     "ministries" => "Ministeries",
     "organizations" => "Organisaties",
+    "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Administratie dashboard",
     "admin_users" => "Beheer gebruikers",
     "admin_users_create" => "Nieuwe gebruiker toevoegen",

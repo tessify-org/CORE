@@ -363,6 +363,11 @@ Route::group(["prefix" => "api"], function() {
 
 });
 
+// Static pages
+Route::get("internet-explorer", "System\StaticPageController@getDontUseInternetExplorer")->name("system.dont-use-ie");
+
+
+
 // Tests
 Route::get("test-flash-notification", function() {
     flash("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut faucibus ullamcorper diam nec vulputate.")->success();

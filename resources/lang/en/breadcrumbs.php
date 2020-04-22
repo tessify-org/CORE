@@ -76,6 +76,7 @@ return [
     "community" => "Community",
     "ministries" => "Ministries",
     "organizations" => "Organizations",
+    "dont_use_ie" => "Internet Explorer",
     "admin_dashboard" => "Admin dashboard",
     "admin_users" => "Manage users",
     "admin_users_create" => "Create a new user",
