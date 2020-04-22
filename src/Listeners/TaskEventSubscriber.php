@@ -5,6 +5,7 @@ namespace Tessify\Core\Listeners;
 use Tasks;
 use Reputation;
 use FeedActivities;
+use ReviewRequests;
 
 class TaskEventSubscriber
 {
@@ -62,17 +63,24 @@ class TaskEventSubscriber
 
     public function handleTaskCompleted($event)
     {
-        // Create an activity feed entry for all the project's subscribers
+        // Loop through all of the task's subscribed users
         foreach ($event->task->subscribers as $subscriber)
         {
-            FeedActivities::create("task_completed", $event->task, auth()->user());
+            // Create an activity feed entry for all the project's subscribers
+            FeedActivities::create("task_completed", $event->task, $subscriber);
         }
 
-        // Award all assigned users the "task completed" reputation reward
+        // Loop through all of the task's assigned users
         foreach ($event->task->users as $user)
         {
-            $points = Reputation::determinePoints($event->task->urgency);
+            // Ask the task's author to review each assigned user
+            ReviewRequests::createForUser($user, "review_task_assigned_user", $event->task->author);
 
+            // Ask each assigned user to review the task (owner)
+            ReviewRequests::createForTask($event->task, "review_task", $user);
+
+            // Award all assigned users the "task completed" reputation reward
+            $points = Reputation::determinePoints($event->task->urgency);
             Reputation::givePoints($points, "completed_task", $event->task, auth()->user());
         }
 

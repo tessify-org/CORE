@@ -18,6 +18,9 @@ use App\Http\Controllers\Controller;
 
 use Tessify\Core\Events\Users\UserFollowsTask;
 use Tessify\Core\Events\Users\UserUnfollowsTask;
+use Tessify\Core\Events\Tasks\TaskAssigned;
+use Tessify\Core\Events\Tasks\TaskUnassigned;
+use Tessify\Core\Events\Tasks\TaskProgressReported;
 
 use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;

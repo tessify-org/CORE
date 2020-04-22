@@ -4,6 +4,7 @@ namespace Tessify\Core\Listeners;
 
 use Reputation;
 use FeedActivities;
+use ReviewRequests;
 
 class ProjectEventSubscriber
 {
@@ -44,13 +45,27 @@ class ProjectEventSubscriber
 
     public function handleProjectCompleted($event)
     {
-        // Create an activity feed entry for all the project's subscribers
+        // Loop through all of the project's subscribed users
         foreach ($event->project->subscribers as $subscriber)
         {
-            FeedActivites::create("project_completed", $event->project, $event->user);
+            // Create an activity feed entry for all the project's subscribers
+            FeedActivites::create("project_completed", $event->project, $subscriber);
         }
 
-        // Award reputation points
+        // Loop through all of the project's team members
+        foreach ($event->project->teamMembers as $teamMember)
+        {
+            // Ask all of the team members to review the project (owner)
+            ReviewRequests::createForProject($event->project, "review_project", $teamMember->user);
+            
+            // Ask the project's author to review each team member
+            ReviewRequests::createForUser($teamMember->user, "review_project_team_member", $event->project->author);
+            
+            // Award each team member reputation points
+            Reputation::givePoints(1000, "completed_project", $event->project);
+        }
+        
+        // Award the project author reputation points
         Reputation::givePoints(1000, "completed_project", $event->project);
     }
 }
