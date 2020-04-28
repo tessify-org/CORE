@@ -114,7 +114,7 @@
                                     <div class="detail">
                                         <div class="key">@lang("tessify-core::profiles.profile_email")</div>
                                         <div class="val">
-                                            @if ($can_view_email)
+                                            @if ($is_mine || $can_view_email)
                                                 {{ $user->email }}
                                             @else
                                                 <div id="email-field">
