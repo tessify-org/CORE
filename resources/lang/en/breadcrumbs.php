@@ -83,5 +83,7 @@ return [
     "admin_users_edit" => "Update user",
     "admin_users_delete" => "Delete user",
     "admin_users_ban" => "Ban user",
+    "admin_settings" => "Settings",
+    "admin_settings_auth" => "Authentication",
 
 ];

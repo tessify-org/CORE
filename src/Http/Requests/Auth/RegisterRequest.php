@@ -3,6 +3,7 @@
 namespace Tessify\Core\Http\Requests\Auth;
 
 use Auth;
+use Tessify\Core\Rules\WhitelistedEmailDomain;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +29,7 @@ class RegisterRequest extends FormRequest
         return [
             "first_name" => "required",
             "last_name" => "required",
-            "email" => "required|email|unique:users,email",
+            "email" => ["required", "email", "unique:users,email", new WhitelistedEmailDomain],
             "password" => "required|confirmed",
             "password_confirmation" => "required",
         ];

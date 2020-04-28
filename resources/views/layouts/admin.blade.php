@@ -31,19 +31,25 @@
                             <!-- Dashboard -->
                             <li class="topnav-link__wrapper">
                                 <a class="topnav-link" href="{{ route('admin.dashboard') }}">
-                                    Dashboard
+                                    @lang("tessify-core::admin.link_dashboard")
                                 </a>
                             </li>
                             <!-- Manage users -->
                             <li class="topnav-link__wrapper">
                                 <a class="topnav-link" href="{{ route('admin.users') }}">
-                                    Manage users
+                                    @lang("tessify-core::admin.link_manage_users")
+                                </a>
+                            </li>
+                            <!-- Settings -->
+                            <li class="topnav-link__wrapper">
+                                <a class="topnav-link" href="{{ route('admin.settings') }}">
+                                    @lang("tessify-core::admin.link_settings")
                                 </a>
                             </li>
                             <!-- Back to frontend -->
                             <li class="topnav-link__wrapper">
                                 <a class="topnav-link" href="{{ route('home') }}">
-                                    Terug naar de voorkant
+                                    @lang("tessify-core::admin.link_to_frontend")
                                 </a>
                             </li>
                         </ul>
@@ -56,27 +62,21 @@
 
             <!-- Mobile navigation -->
             <mobile-navigation>
-                @if (Auth::check())
-                    <a class="sidemenu-link" href="{{ route('admin.dashboard') }}">
-                        <span class="sidemenu-link__text">Dashboard</div>
-                    </a>
-                    <!-- <a class="sidemenu-link" href="{{ route('admin.users') }}">
-                        <span class="sidemenu-link__text">Manage users</span>
-                    </a> -->
-                    <a class="sidemenu-link" href="{{ route('home') }}">
-                        <span class="sidemenu-link__text">Naar de frontend</div>
-                    </a>
-                    <a class="sidemenu-link" href="{{ route('auth.logout') }}">
-                        <span class="sidemenu-link__text">Uitloggen</div>
-                    </a>
-                @else
-                    <a class="sidemenu-link" href="{{ route('auth.login') }}">
-                        <span class="sidemenu-link__text">Login</div>
-                    </a>
-                    <a class="sidemenu-link" href="{{ route('auth.register') }}">
-                        <span class="sidemenu-link__text">Registeren</div>
-                    </a>
-                @endif
+                <a class="sidemenu-link" href="{{ route('admin.dashboard') }}">
+                    <span class="sidemenu-link__text">@lang("tessify-core::admin.link_dashboard")</div>
+                </a>
+                <a class="sidemenu-link" href="{{ route('admin.users') }}">
+                    <span class="sidemenu-link__text">@lang("tessify-core::admin.link_manage_users")</span>
+                </a>
+                <a class="sidemenu-link" href="{{ route('admin.settings') }}">
+                    <span class="sidemenu-link__text">@lang("tessify-core::admin.link_settings")</span>
+                </a>
+                <a class="sidemenu-link" href="{{ route('home') }}">
+                    <span class="sidemenu-link__text">@lang("tessify-core::admin.link_to_frontend")</div>
+                </a>
+                <a class="sidemenu-link" href="{{ route('auth.logout') }}">
+                    <span class="sidemenu-link__text">@lang("tessify-core::admin.link_logout")</div>
+                </a>
             </mobile-navigation>
             
             <!-- Breadcrumbs -->

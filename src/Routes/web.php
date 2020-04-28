@@ -300,6 +300,18 @@ Route::group(["prefix" => "admin", "middleware" => ["can:access-admin-panel"]], 
         Route::get("{id}/unflag-as-checked", "Admin\UserController@getFlagAsUnchecked")->name("admin.users.unflag-as-checked");
     });
 
+    // Settings
+    Route::group(["prefix" => "instellingen"], function() {
+
+        // Overview
+        Route::get("/", "Admin\SettingsController@getOverview")->name("admin.settings");
+
+        // Authentication settings
+        Route::get("authentication", "Admin\SettingsController@getAuthSettings")->name("admin.settings.auth");
+        Route::post("authentication", "Admin\SettingsController@postAuthSettings")->name("admin.settings.auth.post");
+
+    });
+
 });
 
 // Api endpoints
@@ -365,8 +377,6 @@ Route::group(["prefix" => "api"], function() {
 
 // Static pages
 Route::get("internet-explorer", "System\StaticPageController@getDontUseInternetExplorer")->name("system.dont-use-ie");
-
-
 
 // Tests
 Route::get("test-flash-notification", function() {

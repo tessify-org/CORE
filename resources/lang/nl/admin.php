@@ -9,6 +9,28 @@
 return [
     
     //
+    // Navigation
+    //
+
+    "link_dashboard" => "Dashboard",
+    "link_manage_users" => "Gebruikers beheren",
+    "link_settings" => "Instellingen",
+    "link_to_frontend" => "Terug naar de voorkant",
+    "link_logout" => "Uitloggen",
+
+    //
+    // Manage settings
+    //
+
+    "settings_overview_title" => "Instellingen",
+    "settings_overview_auth" => "Authenticatie",
+
+    "settings_auth_title" => "Authenticatie instellingen",
+    
+    "settings_auth_back" => "Terug naar instellingen",
+    "settings_auth_submit" => "Wijzigingen opslaan",
+
+    //
     // Manage users
     //
 

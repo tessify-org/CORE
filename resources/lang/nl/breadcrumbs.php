@@ -82,5 +82,7 @@ return [
     "admin_users_edit" => "Gebruiker aanpassen",
     "admin_users_delete" => "Gebruiker verwijderen",
     "admin_users_ban" => "Gebruiker verbannen",
+    "admin_settings" => "Instellingen",
+    "admin_settings_auth" => "Authenticatie",
 
 ];

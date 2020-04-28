@@ -56,6 +56,7 @@ return [
     'register_submit' => 'Create your account!',
     'register_go_to_login' => 'Already have an account? Go to login.',
     'register_success' => 'Thanks for your registration! You\'ve been automatically logged in.',
+    'register_invalid_email_domain' => 'The provided email domain is currently not allowed.',
 
     //
     // Forgot password page

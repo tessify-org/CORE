@@ -56,6 +56,7 @@ return [
     'register_submit' => 'Registreer je account!',
     'register_go_to_login' => 'Heb je al een account? Ga naar inloggen',
     'register_success' => 'Bedankt voor je registratie! Je bent automatisch ingelogd.',
+    'register_invalid_email_domain' => 'Je kunt momenteel alleen met een e-mailadres van de overheid registeren.',
 
     //
     // Forgot password page

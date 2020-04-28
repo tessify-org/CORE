@@ -9,6 +9,29 @@
 return [
     
     //
+    // Navigation
+    //
+
+    "link_dashboard" => "Dashboard",
+    "link_manage_users" => "Manage users",
+    "link_settings" => "Settings",
+    "link_to_frontend" => "Back to the frontend",
+    "link_logout" => "Logout",
+
+    //
+    // Manage settings
+    //
+
+    "settings_overview_title" => "Settings",
+    "settings_overview_auth" => "Authentication",
+    
+    "settings_auth_title" => "Authentication settings",
+
+    "settings_auth_back" => "Back to overview",
+    "settings_auth_submit" => "Save changes",
+    "settings_auth_saved" => "Settings have been saved!",
+
+    //
     // Manage users
     //
 
