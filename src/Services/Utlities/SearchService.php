@@ -196,12 +196,12 @@ class SearchService
                         
                         case "ministry":
                             $entry = Ministries::find($hit["_id"]);
-                            $entry->view_href = "#";
+                            $entry->view_href = route("ministries.view", $entry->slug);
                         break;
                         
                         case "organization":
                             $entry = Organizations::find($hit["_id"]);
-                            $entry->view_href = "#";
+                            $entry->view_href = route("organizations.view", $entry->slug);
                         break;
                     }
 

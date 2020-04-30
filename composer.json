@@ -77,7 +77,9 @@
                 "FeedActivities": "Tessify\\Core\\Facades\\FeedActivitiesFacade",
                 "ReviewRequests": "Tessify\\Core\\Facades\\ReviewRequestsFacade",
                 "Reviews": "Tessify\\Core\\Facades\\ReviewsFacade",
-                "WhitelistedDomains": "Tessify\\Core\\Facades\\WhitelistedDomainsFacade"
+                "WhitelistedDomains": "Tessify\\Core\\Facades\\WhitelistedDomainsFacade",
+                "Faqs": "Tessify\\Core\\Facades\\FaqsFacade",
+                "FaqCategories": "Tessify\\Core\\Facades\\FaqCategoriesFacade"
             }
         },
         "branch-alias": {

@@ -48,6 +48,8 @@ use Tessify\Core\Services\ModelServices\FeedActivityService;
 use Tessify\Core\Services\ModelServices\ReviewRequestService;
 use Tessify\Core\Services\ModelServices\ReviewService;
 use Tessify\Core\Services\ModelServices\WhitelistedDomainService;
+use Tessify\Core\Services\ModelServices\FaqService;
+use Tessify\Core\Services\ModelServices\FaqCategoryService;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -274,6 +276,14 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton("whitelisted-domains", function() {
             return new WhitelistedDomainService;
+        });
+
+        $this->app->singleton("faqs", function() {
+            return new FaqService;
+        });
+
+        $this->app->singleton("faq-categories", function() {
+            return new FaqCategoryService;
         });
 
         //
