@@ -126,6 +126,7 @@ return [
     "create_form_tags" => "Tags",
     "create_back" => "Back to task overview",
     "create_submit" => "Save task",
+    "required_skills_title" => "Required skills",
     "required_skills_no_records" => "No skills found",
     "required_skills_add_button" => "Add required skill",
     "required_skills_view_title" => "Required skill",
@@ -156,6 +157,16 @@ return [
     "edit_title" => "Update task",
     "edit_back" => "Cancel",
     "edited" => "Task has been updated!",
+
+    // Create & Edit form
+
+    "form_general_title" => "General information",
+    "form_general_description" => "Describe the task as best as you can.",
+    "form_ownership_title" => "Ownership",
+    "form_ownership_description" => "What entities own this task?",
+    "form_ministry" => "Ministry",
+    "form_organization" => "Organization",
+    "form_department" => "Department",
 
     //
     // Delete

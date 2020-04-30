@@ -8,6 +8,9 @@ use Tags;
 use Users;
 use Skills;
 use Projects;
+use Ministries;
+use Organizations;
+use OrganizationDepartments;
 use CompletedTasks;
 use TaskStatuses;
 use TaskCategories;
@@ -65,6 +68,9 @@ class TaskService implements ModelServiceContract
 
         // Preload relationships
         $instance->author = Users::findPreloaded($instance->author_id);
+        $instance->ministry = Ministries::findForTask($instance);
+        $instance->organization = Organizations::findForTask($instance);
+        $instance->department = OrganizationDepartments::findForTask($instance);
         $instance->status = TaskStatuses::findForTask($instance);
         $instance->category = TaskCategories::findForTask($instance);
         $instance->seniority = TaskSeniorities::findForTask($instance);
@@ -199,8 +205,8 @@ class TaskService implements ModelServiceContract
         // Grab the selected category by it's name
         $category = TaskCategories::findOrCreateByName($request->task_category);
 
-        // Create the task
-        $task = Task::create([
+        // Compose the task data (with static properties)
+        $data = [
             "project_id" => $request->project_id,
             "author_id" => Auth::user()->id,
             "task_status_id" => $open->id,
@@ -211,7 +217,27 @@ class TaskService implements ModelServiceContract
             "complexity" => $request->complexity,
             "estimated_hours" => $request->estimated_hours,
             "urgency" => $request->urgency
-        ]);
+        ];
+
+        // Process ownerships relationships
+        if ($request->has("ministry_id") && intval($request->ministry_id) > 0) {
+            $data["ministry_id"] = $request->ministry_id;
+            if ($request->has("organization_id") && intval($request->organization_id) > 0) {
+                $organization = Organizations::find($request->organization_id);
+                if ($organization) {
+                    $data["organization_id"] = $request->organization_id;
+                    if ($request->has("department") && $request->department != "") {
+                        $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                        if ($department) {
+                            $data["organization_department_id"] = $department->id;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Create the task
+        $task = Task::create($data);
         
         // Process task's skills & tags
         $this->processTaskSkills($task, $request->required_skills);
@@ -229,6 +255,33 @@ class TaskService implements ModelServiceContract
     {
         // Grab (or create) the selected task category
         $category = TaskCategories::findOrCreateByName($request->task_category);
+        
+        // Process ownerships relationships
+        if ($request->has("ministry_id") && intval($request->ministry_id) > 0) {
+            $task->ministry_id = $request->ministry_id;
+            $organization = Organizations::find($request->organization_id);
+            if ($request->has("organization_id") && intval($reqeust->organization_id) > 0 && $organization) {
+                $task->organization_id = $request->organization_id;
+                if ($request->has("department") && $request->department != "") {
+                    $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                    if ($department)
+                    {
+                        $task->organization_department_id = $department->id;
+                    } else {
+                        $task->organizaiton_department_id = null;
+                    }
+                } else {
+                    $task->organizaiton_department_id = null;
+                }
+            } else {
+                $task->organization_id = null;
+                $task->organization_department_id = null;
+            }
+        } else {
+            $task->ministry_id = null;
+            $task->organization_id = null;
+            $task->organization_department_id = null;
+        }
 
         // Update the task's properties
         $task->task_category_id = $category->id;

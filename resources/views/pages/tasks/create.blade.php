@@ -24,6 +24,9 @@
                 <task-form
                     :project="{{ is_null($project) ? json_encode(null) : $project->toJson() }}"
                     :skills="{{ $skills->toJson() }}"
+                    :ministries="{{ $ministries->toJson() }}"
+                    :organizations="{{ $organizations->toJson() }}"
+                    :departments="{{ $departments->toJson() }}"
                     :errors="{{ $errors->toJson() }}"
                     :old-input="{{ $oldInput->toJson() }}"
                     :projects="{{ $projects->toJson() }}"

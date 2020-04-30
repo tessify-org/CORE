@@ -125,6 +125,7 @@ return [
     "create_form_tags" => "Tags",
     "create_back" => "Terug naar werkpakketten",
     "create_submit" => "Werkpakket opslaan!",
+    "required_skills_title" => "Vereiste skills",
     "required_skills_no_records" => "Geen vaardigheden gevonden",
     "required_skills_add_button" => "Vereiste vaardigheid toevoegen",
     "required_skills_view_title" => "Vereiste vaardigheid",
@@ -155,6 +156,16 @@ return [
     "edit_title" => "Werkpakket aanpassen",
     "edit_back" => "Annuleren",
     "edited" => "Werkpakket aangepast!",
+
+    // Create & Edit form
+
+    "form_general_title" => "Algemene informatie",
+    "form_general_description" => "Beschrijf het werkpakket zo duidelijk mogelijk.",
+    "form_ownership_title" => "Eigenaarschap",
+    "form_ownership_description" => "Welke entiteiten zijn eigenaar van dit werkpakket?",
+    "form_ministry" => "Ministerie",
+    "form_organization" => "Organisatie",
+    "form_department" => "Departement",
 
     //
     // Delete

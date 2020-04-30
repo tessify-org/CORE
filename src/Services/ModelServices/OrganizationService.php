@@ -6,6 +6,7 @@ use Ministries;
 use OrganizationTypes;
 use OrganizationLocations;
 use OrganizationDepartments;
+use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Ministry;
 use Tessify\Core\Models\Organization;
@@ -93,5 +94,16 @@ class OrganizationService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function findForTask(Task $task)
+    {
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->id == $task->organization_id)
+            {
+                return $organization;
+            }
+        }
     }
 }

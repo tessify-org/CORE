@@ -8,6 +8,9 @@ use Tasks;
 use Skills;
 use Projects;
 use Reputation;
+use Ministries;
+use Organizations;
+use OrganizationDepartments;
 use TaskStatuses;
 use TaskCategories;
 use TaskSeniorities;
@@ -80,9 +83,15 @@ class TaskController extends Controller
             "skills" => Skills::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
+            "ministries" => Ministries::getAll(),
+            "organizations" => Organizations::getAll(),
+            "departments" => OrganizationDepartments::getAll(),
             "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
+                "ministry_id" => old("ministry_id"),
+                "organization_id" => old("organization_id"),
+                "department" => old("department"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category" => old("task_category"),
                 "title" => old("title"),
@@ -95,6 +104,13 @@ class TaskController extends Controller
                 "tags" => old("tags"),
             ]),
             "strings" => collect([
+                "general_title" => __("tessify-core::tasks.form_general_title"),
+                "general_description" => __("tessify-core::tasks.form_general_description"),
+                "ownership_title" => __("tessify-core::tasks.form_ownership_title"),
+                "ownership_description" => __("tessify-core::tasks.form_ownership_description"),
+                "ministry" => __("tessify-core::tasks.form_ministry"),
+                "organization" => __("tessify-core::tasks.form_organization"),
+                "department" => __("tessify-core::tasks.form_department"),
                 "status" => __("tessify-core::tasks.create_form_status"),
                 "project" => __("tessify-core::tasks.create_form_project"),
                 "category" => __("tessify-core::tasks.create_form_category"),
@@ -116,11 +132,14 @@ class TaskController extends Controller
                 "back" => __("tessify-core::tasks.create_back"),
                 "submit" => __("tessify-core::tasks.create_submit"),
                 "required_skills_strings" => [
+                    "title" => __("tessify-core::tasks.required_skills_title"),
                     "no_records" => __("tessify-core::tasks.required_skills_no_records"),
                     "add_button" => __("tessify-core::tasks.required_skills_add_button"),
                     "view_title" => __("tessify-core::tasks.required_skills_view_title"),
                     "view_required_mastery" => __("tessify-core::tasks.required_skills_view_required_mastery"),
                     "view_description" => __("tessify-core::tasks.required_skills_view_description"),
+                    "view_edit" => __("tessify-core::tasks.required_skills_view_edit"),
+                    "view_delete" => __("tessify-core::tasks.required_skills_view_delete"),
                     "form_skill" => __("tessify-core::tasks.required_skills_form_skill"),
                     "form_required_mastery" => __("tessify-core::tasks.required_skills_form_required_mastery"),
                     "form_description" => __("tessify-core::tasks.required_skills_form_description"),
@@ -168,6 +187,9 @@ class TaskController extends Controller
             "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
+                "ministry_id" => old("ministry_id"),
+                "organization_id" => old("organization_id"),
+                "department" => old("department"),
                 "task_status_id" => old("task_status_id"),
                 "task_seniority_id" => old("task_seniority_id"),
                 "task_category" => old("task_category"),
@@ -182,6 +204,13 @@ class TaskController extends Controller
                 "tags" => old("tags"),
             ]),
             "strings" => collect([
+                "general_title" => __("tessify-core::tasks.form_general_title"),
+                "general_description" => __("tessify-core::tasks.form_general_description"),
+                "ownership_title" => __("tessify-core::tasks.form_ownership_title"),
+                "ownership_description" => __("tessify-core::tasks.form_ownership_description"),
+                "ministry" => __("tessify-core::tasks.form_ministry"),
+                "organization" => __("tessify-core::tasks.form_organization"),
+                "department" => __("tessify-core::tasks.form_department"),
                 "status" => __("tessify-core::tasks.create_form_status"),
                 "project" => __("tessify-core::tasks.create_form_project"),
                 "category" => __("tessify-core::tasks.create_form_category"),
@@ -203,11 +232,14 @@ class TaskController extends Controller
                 "back" => __("tessify-core::tasks.create_back"),
                 "submit" => __("tessify-core::tasks.create_submit"),
                 "required_skills_strings" => [
+                    "title" => __("tessify-core::tasks.required_skills_title"),
                     "no_records" => __("tessify-core::tasks.required_skills_no_records"),
                     "add_button" => __("tessify-core::tasks.required_skills_add_button"),
                     "view_title" => __("tessify-core::tasks.required_skills_view_title"),
                     "view_required_mastery" => __("tessify-core::tasks.required_skills_view_required_mastery"),
                     "view_description" => __("tessify-core::tasks.required_skills_view_description"),
+                    "view_edit" => __("tessify-core::tasks.required_skills_view_edit"),
+                    "view_delete" => __("tessify-core::tasks.required_skills_view_delete"),
                     "form_skill" => __("tessify-core::tasks.required_skills_form_skill"),
                     "form_required_mastery" => __("tessify-core::tasks.required_skills_form_required_mastery"),
                     "form_description" => __("tessify-core::tasks.required_skills_form_description"),

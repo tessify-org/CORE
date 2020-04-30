@@ -3,6 +3,7 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Organizations;
+use Tessify\Core\Models\Task;
 use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Ministry;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -52,6 +53,19 @@ class MinistryService implements ModelServiceContract
             if ($ministry->id === $project->ministry_id)
             {
                 return $ministry;
+            }
+        }
+
+        return false;
+    }
+
+    public function findForTask(Task $task)
+    {
+        foreach ($this->getAll() as $ministry)
+        {
+            if ($ministry->id == $task->ministry_id)
+            {
+                return $task;
             }
         }
 
