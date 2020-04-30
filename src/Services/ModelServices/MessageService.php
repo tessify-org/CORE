@@ -10,6 +10,7 @@ use Tessify\Core\Models\ViewEmailRequest;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Messages\SendMessageRequest;
+use Tessify\Core\Http\Requests\Admin\Users\SendMessageRequest as AdminSendMessageRequest;
 
 class MessageService implements ModelServiceContract
 {
@@ -133,6 +134,16 @@ class MessageService implements ModelServiceContract
             "sender_id" => $user->id,
             "receiver_id" => $receiver->id,
             "reply_to_id" => is_null($replyTo) ? 0 : $replyTo->id,
+            "subject" => $request->subject,
+            "message" => $request->message,
+        ]);
+    }
+
+    public function sendMessageFromAdminRequest(User $user, AdminSendMessageRequest $request)
+    {
+        return Message::create([
+            "sender_id" => auth()->user()->id,
+            "receiver_id" => $user->id,
             "subject" => $request->subject,
             "message" => $request->message,
         ]);

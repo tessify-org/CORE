@@ -15,6 +15,7 @@
             <div id="admin-users-view">
                 <div id="admin-users-view__left">
 
+                    <!-- Details -->
                     <div class="content-card elevation-1">
                         <div class="details">
                             <!-- ID -->
@@ -122,6 +123,7 @@
                 </div>
                 <div id="admin-users-view__right">
 
+                    <!-- Actions -->
                     <div id="admin-users-view__actions">
                         <!-- Flag as checked -->
                         @if ($user->has_been_checked)
@@ -157,7 +159,16 @@
                                 @lang("tessify-core::admin.users_view_ban")
                             </v-btn>
                         @endif
-
+                        <!-- Change password -->
+                        <v-btn block color="primary" dark href="{{ route('admin.users.change-password', $user->id) }}">
+                            <i class="fas fa-key"></i>
+                            @lang("tessify-core::admin.users_view_change_password")
+                        </v-btn>
+                        <!-- Send message -->
+                        <v-btn block color="primary" dark href="{{ route('admin.users.send-message', $user->id) }}">
+                            <i class="fas fa-paper-plane"></i>
+                            @lang("tessify-core::admin.users_view_send_message")
+                        </v-btn>
                     </div>
                 </div>
             </div>

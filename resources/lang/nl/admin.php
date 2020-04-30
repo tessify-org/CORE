@@ -70,6 +70,8 @@ return [
     "users_view_unflag_as_checked" => "Markeren als ongecontroleerd",
     "users_view_unban" => "Verbanning opheffen",
     "users_view_ban" => "Verban gebruiker",
+    "users_view_change_password" => "Wachtwoord veranderen",
+    "users_view_send_message" => "Bericht versturen",
     "users_view_go_back" => "Terug naar overzicht",
 
     // Create
@@ -110,5 +112,24 @@ return [
     "users_ban_temporary" => "Tijdelijke ban",
     "users_ban_permanent" => "Permanente ban",
     "users_ban_submit" => "Verban gebruiker",
+  
+    // Change password
+
+    "users_change_password_title" => "Wachtwoord veranderen",
+    "users_change_password_new_password" => "Nieuwe wachtwoord",
+    "users_change_password_confirm_new_password" => "Bevestig nieuwe wachtwoord",
+    "users_change_password_back" => "Ga terug naar gebruiker",
+    "users_change_password_submit" => "Wachtwoord veranderen",
+    "users_password_changes" => "Wachtwoord is veranderd!",
+
+    // Send message
+
+    "users_send_message_title" => "Bericht versturen naar gebruiker",
+    "users_send_message_user" => "Gebruiker",
+    "users_send_message_subject" => "Onderwerp",
+    "users_send_message_message" => "Bericht",
+    "users_send_message_back" => "Ga terug naar gebruiker",
+    "users_send_message_submit" => "Bericht versturen",
+    "users_message_sent" => "Bericht is verstuurd!",
 
 ];

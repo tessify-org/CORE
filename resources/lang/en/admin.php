@@ -71,6 +71,8 @@ return [
     "users_view_unflag_as_checked" => "Flag as unchecked",
     "users_view_unban" => "Unban user",
     "users_view_ban" => "Ban user",
+    "users_view_change_password" => "Change password",
+    "users_view_send_message" => "Send message",
     "users_view_go_back" => "Back to overview",
     
     // Create
@@ -111,5 +113,24 @@ return [
     "users_ban_temporary" => "Temporary ban",
     "users_ban_permanent" => "Permanent ban",
     "users_ban_submit" => "Ban user",
-    
+  
+    // Change password
+
+    "users_change_password_title" => "Change password",
+    "users_change_password_new_password" => "New password",
+    "users_change_password_confirm_new_password" => "Confirm new password",
+    "users_change_password_back" => "Go back to user",
+    "users_change_password_submit" => "Change password",
+    "users_password_changed" => "User's password has been changed!",
+
+    // Send message
+
+    "users_send_message_title" => "Send user a message",
+    "users_send_message_user" => "User",
+    "users_send_message_subject" => "Subject",
+    "users_send_message_message" => "Message",
+    "users_send_message_back" => "Go back to user",
+    "users_send_message_submit" => "Send message",
+    "users_message_sent" => "Message has been sent to the user",
+
 ];

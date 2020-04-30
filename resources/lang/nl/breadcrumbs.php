@@ -82,6 +82,8 @@ return [
     "admin_users_edit" => "Gebruiker aanpassen",
     "admin_users_delete" => "Gebruiker verwijderen",
     "admin_users_ban" => "Gebruiker verbannen",
+    "admin_users_change_password" => "Wachtwoord van gebruiker veranderen",
+    "admin_users_send_message" => "Bericht versturen naar gebruiker",
     "admin_settings" => "Instellingen",
     "admin_settings_auth" => "Authenticatie",
 

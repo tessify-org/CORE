@@ -3,11 +3,14 @@
 namespace Tessify\Core\Http\Controllers\Admin;
 
 use Users;
+use Messages;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Admin\Users\BanUserRequest;
 use Tessify\Core\Http\Requests\Admin\Users\CreateUserRequest;
 use Tessify\Core\Http\Requests\Admin\Users\UpdateUserRequest;
 use Tessify\Core\Http\Requests\Admin\Users\DeleteUserRequest;
+use Tessify\Core\Http\Requests\Admin\Users\SendMessageRequest;
+use Tessify\Core\Http\Requests\Admin\Users\ChangePasswordRequest;
 
 class UserController extends Controller
 {
@@ -216,5 +219,77 @@ class UserController extends Controller
 
         flash(__("tessify-core::admin.user_unflagged_as_checked"))->success();
         return redirect()->route("admin.users.view", $user->id);
+    }
+
+    public function getChangePassword($id)
+    {
+        $user = Users::findPreloaded($id);
+        if (!$user)
+        {
+            flash(__("tessify-core::admin.user_not_found"))->error();
+            return redirect()->route("admin.users");
+        }
+
+        return view("tessify-core::pages.admin.users.change-password", [
+            "user" => $user,
+            "strings" => collect([
+                "new_password" => __("tessify-core::admin.users_change_password_new_password"),
+                "confirm_new_password" => __("tessify-core::admin.users_change_password_confirm_new_password"),
+            ])
+        ]);
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request, $id)
+    {
+        $user = Users::find($id);
+        if (!$user)
+        {
+            flash(__("tessify-core::admin.user_not_found"))->error();
+            return redirect()->route("admin.users");
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        flash(__("tessify-core::admin.users_password_changed"))->success();
+        return redirect()->route("admin.users.view", $id);
+    }
+
+    public function getSendMessage($id)
+    {
+        $user = Users::findPreloaded($id);
+        if (!$user)
+        {
+            flash(__("tessify-core::admin.user_not_found"))->error();
+            return redirect()->route("admin.users");
+        }
+
+        return view("tessify-core::pages.admin.users.send-message", [
+            "user" => $user,
+            "strings" => collect([
+                "user" => __("tessify-core::admin.users_send_message_user"),
+                "subject" => __("tessify-core::admin.users_send_message_subject"),
+                "message" => __("tessify-core::admin.users_send_message_message"),
+            ]),
+            "oldInput" => collect([
+                "subject" => old("subject"),
+                "message" => old("message"),
+            ]),
+        ]);
+    }
+
+    public function postSendMessage(SendMessageRequest $request, $id)
+    {
+        $user = Users::findPreloaded($id);
+        if (!$user)
+        {
+            flash(__("tessify-core::admin.user_not_found"))->error();
+            return redirect()->route("admin.users");
+        }
+
+        Messages::sendMessageFromAdminRequest($user, $request);
+
+        flash(__("tessify-core::admin.users_message_sent"))->success();
+        return redirect()->route("admin.users.view", $id);
     }
 }

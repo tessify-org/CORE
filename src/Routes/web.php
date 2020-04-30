@@ -285,19 +285,34 @@ Route::group(["prefix" => "admin", "middleware" => ["can:access-admin-panel"]], 
 
     // Manage users
     Route::group(["prefix" => "gebruikers-beheren"], function() {
+        // Overview
         Route::get("/", "Admin\UserController@getOverview")->name("admin.users");
+        // Create
         Route::get("create", "Admin\UserController@getCreate")->name("admin.users.create");
         Route::post("create", "Admin\UserController@postCreate")->name("admin.users.create.post");
+        // View
         Route::get("{id}", "Admin\UserController@getView")->name("admin.users.view");
+        // Update
         Route::get("{id}/edit", "Admin\UserController@getEdit")->name("admin.users.edit");
         Route::post("{id}/edit", "Admin\UserController@postEdit")->name("admin.users.edit.post");
+        // Delete
         Route::get("{id}/delete", "Admin\UserController@getDelete")->name("admin.users.delete");
         Route::post("{id}/delete", "Admin\UserController@postDelete")->name("admin.users.delete.post");
+        // Ban
         Route::get("{id}/ban", "Admin\UserController@getBan")->name("admin.users.ban");
         Route::post("{id}/ban", "Admin\UserController@postBan")->name("admin.users.ban.post");
+        // Unban
         Route::get("{id}/unban", "Admin\UserController@getUnban")->name("admin.users.unban");
+        // Flag as checked
         Route::get("{id}/flag-as-checked", "Admin\UserController@getFlagAsChecked")->name("admin.users.flag-as-checked");
+        // Flag as unchecked
         Route::get("{id}/unflag-as-checked", "Admin\UserController@getFlagAsUnchecked")->name("admin.users.unflag-as-checked");
+        // Change password
+        Route::get("{id}/change-password", "Admin\UserController@getChangePassword")->name("admin.users.change-password");
+        Route::post("{id}/change-password", "Admin\UserController@postChangePassword")->name("admin.users.change-password.post");
+        // Send message
+        Route::get("{id}/send-message", "Admin\UserController@getSendMessage")->name("admin.users.send-message");
+        Route::post("{id}/send-message", "Admin\UserController@postSendMessage")->name("admin.users.send-message.post");
     });
 
     // Settings
