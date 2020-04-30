@@ -277,7 +277,7 @@ class UserController extends Controller
             ]),
         ]);
     }
-
+    
     public function postSendMessage(SendMessageRequest $request, $id)
     {
         $user = Users::findPreloaded($id);

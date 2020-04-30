@@ -106,6 +106,17 @@ return [
     // Create & update project form
     //
 
+    "form_optional" => "Optioneel",
+
+    "form_general_title" => "Algemene informatie",
+    "form_general_description" => "Beschrijf je project zo duidelijk mogelijk.",
+    "form_status_title" => "Huidige staat",
+    "form_status_description" => "In welke staat bevindt het project zich?",
+    "form_ownership_title" => "Eigenaarschap",
+    "form_ownership_description" => "Welke entiteiten zijn eigenaar van dit project?",
+    "form_formatting_title" => "Opmaak",
+    "form_formatting_description" => "Make your project stand out",
+
     "form_title" => "Titel",
     "form_title_hint" => "Geef je project een naam!",
     "form_slogan" => "Kopregel",
@@ -122,8 +133,11 @@ return [
     "form_has_deadline" => "Heeft een deadline",
     "form_start_date" => "Start datum",
     "form_deadline" => "Deadline",
+    "form_has_budget" => "Heeft een budget",
     "form_budget" => "Budget",
     "form_ministry" => "Ministerie",
+    "form_organization" => "Organisatie",
+    "form_department" => "Departement",
     "form_project_code" => "Project code",
     "form_project_phase" => "Project fase",
     "form_tags" => "Tags",

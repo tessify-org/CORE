@@ -21,6 +21,8 @@ class Project extends Model
         "project_status_id",
         "project_phase_id",
         "ministry_id",
+        "organization_id",
+        "organization_department_id",
         "work_method_id",
         "title",
         "slogan",
@@ -63,6 +65,16 @@ class Project extends Model
     public function ministry()
     {
         return $this->belongsTo(Ministry::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
+    public function organizationDepartment()
+    {
+        return $this->belongsTo(OrganizationDepartment::class);
     }
 
     public function category()

@@ -73,4 +73,9 @@ class Organization extends Model
     {
         return $this->morphMany(Review::class, "reviewable");
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

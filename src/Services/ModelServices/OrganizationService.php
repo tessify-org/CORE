@@ -6,6 +6,7 @@ use Ministries;
 use OrganizationTypes;
 use OrganizationLocations;
 use OrganizationDepartments;
+use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Ministry;
 use Tessify\Core\Models\Organization;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -73,6 +74,19 @@ class OrganizationService implements ModelServiceContract
         foreach ($this->getAll() as $organization)
         {
             if ($organization->slug == $slug)
+            {
+                return $organization;
+            }
+        }
+
+        return false;
+    }
+
+    public function findForProject(Project $project)
+    {
+        foreach ($this->getAll() as $organization)
+        {
+            if ($organization->id == $project->organization_id)
             {
                 return $organization;
             }

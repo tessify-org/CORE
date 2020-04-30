@@ -12,6 +12,9 @@ use Uploader;
 use TeamRoles;
 use TeamMembers;
 use WorkMethods;
+use Ministries;
+use Organizations;
+use OrganizationDepartments;
 use ProjectPhases;
 use ProjectStatuses;
 use ProjectResources;
@@ -83,6 +86,11 @@ class ProjectService implements ModelServiceContract
         // Load project's tags
         $instance->tags = Tags::getAllForProject($instance);
 
+        // Load ownership relationships
+        $instance->ministry = Ministries::findForProject($instance);
+        $instance->organization = Organizations::findForProject($instance);
+        $instance->department = OrganizationDepartments::findForProject($instance);
+
         // Format the dates
         $instance->formatted_starts_at = is_null($instance->starts_at) ? null : $instance->starts_at->format("d-m-Y");
         $instance->formatted_ends_at = is_null($instance->ends_at) ? null : $instance->ends_at->format("d-m-Y");
@@ -123,7 +131,7 @@ class ProjectService implements ModelServiceContract
     }
 
     public function createFromRequest(CreateProjectRequest $request)
-    {        
+    {
         // Parse dates to Carbon objects
         $starts_at = Dates::parse($request->starts_at, "-")->format("Y-m-d");
         $ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
@@ -144,8 +152,6 @@ class ProjectService implements ModelServiceContract
             "project_status_id" => $request->project_status_id,
             "project_category_id" => $category->id,
             "project_phase_id" => $phase_id,
-            "ministry_id" => $request->ministry_id,
-            "work_method_id" => $request->work_method_id,
             "title" => $request->title,
             "slogan" => $request->slogan,
             "description" => $request->description,
@@ -156,6 +162,22 @@ class ProjectService implements ModelServiceContract
             "project_code" => $request->project_code,
             "budget" => $request->budget,
         ];
+
+        // Process ownership relationships
+        if ($request->has("ministry_id") && intval($request->ministry_id) > 0)
+        {
+            $data["ministry_id"] = $request->ministry_id;
+            if ($request->has("organization_id") && intval($request->organization_id) > 0)
+            {
+                $data["organization_id"] = $request->organization_id;
+                if ($request->has("department") && $request->department !== "") 
+                {
+                    $organization = Organizations::find($request->organization_id);
+                    $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                    $data["organization_department_id"] = $department->id;
+                }
+            }
+        }
 
         // Process optional header image
         if ($request->hasFile("header_image"))
@@ -203,12 +225,42 @@ class ProjectService implements ModelServiceContract
             $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
         }
 
+
+        $ministry = Ministries::find($request->ministry_id);
+        if ($ministry)
+        {
+            $project->ministry_id = $ministry->id;
+            $organization = Organizations::find($request->organization_id);
+            if ($organization)
+            {
+                $project->organization_id = $organization->id;
+                if ($request->department === "")
+                {
+                    $project->organization_department_id = null;
+                }
+                else
+                {
+                    $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
+                    $project->organization_department_id = $department->id;
+                }
+            }
+            else
+            {
+                $project->organization_id = null;
+                $project->organization_department_id = null;
+            }
+        }
+        else
+        {
+            $project->ministry_id = null;
+            $project->organization_id = null;
+            $project->organization_department_id = null;
+        }
+
         // Update project
         $project->project_status_id = $request->project_status_id;
         $project->project_category_id = $category->id;
         $project->project_phase_id = $phase_id;
-        $project->work_method_id = $request->work_method_id;
-        $project->ministry_id = $request->ministry_id;
         $project->title = $request->title;
         $project->slogan = $request->slogan;
         $project->description = $request->description;

@@ -26,4 +26,9 @@ class OrganizationDepartment extends Model
     {
         return $this->hasMany(Assignment::class);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

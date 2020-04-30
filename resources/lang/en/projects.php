@@ -106,6 +106,17 @@ return [
     // Create & update project form
     //
 
+    "form_optional" => "Optional",
+
+    "form_general_title" => "General information",
+    "form_general_description" => "Try to describe your project the best you can.",
+    "form_status_title" => "Current state",
+    "form_status_description" => "What's the current state of the project?",
+    "form_ownership_title" => "Ownership",
+    "form_ownership_description" => "What entities own this project?",
+    "form_formatting_title" => "Formatting",
+    "form_formatting_description" => "Make your project stand out",
+
     "form_title" => "Title",
     "form_title_hint" => "Name your project",
     "form_slogan" => "Slogan",
@@ -119,11 +130,14 @@ return [
     "form_work_method" => "Work method",
     "form_status" => "Status",
     "form_has_tasks" => "Has tasks",
-    "form_has_deadline" => "Has deadline",
+    "form_has_deadline" => "Has a deadline",
     "form_start_date" => "Start date",
     "form_deadline" => "Deadline",
+    "form_has_budget" => "Has a budget",
     "form_budget" => "Budget",
     "form_ministry" => "Ministry",
+    "form_organization" => "Organization",
+    "form_department" => "Department",
     "form_project_code" => "Project code",
     "form_project_phase" => "Project phase",
     "form_tags" => "Tags",

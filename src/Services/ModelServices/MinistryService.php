@@ -3,6 +3,7 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Organizations;
+use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Ministry;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
@@ -38,6 +39,19 @@ class MinistryService implements ModelServiceContract
             if ($organization->slug == $slug)
             {
                 return $organization;
+            }
+        }
+
+        return false;
+    }
+
+    public function findForProject(Project $project)
+    {
+        foreach ($this->getAll() as $ministry)
+        {
+            if ($ministry->id === $project->ministry_id)
+            {
+                return $ministry;
             }
         }
 

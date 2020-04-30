@@ -2,6 +2,7 @@
 
 namespace Tessify\Core\Services\ModelServices;
 
+use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Organization;
 use Tessify\Core\Models\OrganizationDepartment;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -58,5 +59,18 @@ class OrganizationDepartmentService implements ModelServiceContract
             "organization_id" => $organization->id,
             "name" => $name,
         ]);
+    }
+
+    public function findForProject(Project $project)
+    {
+        foreach ($this->getAll() as $department)
+        {
+            if ($department->id == $project->organization_department_id)
+            {
+                return $department;
+            }
+        }
+        
+        return false;
     }
 }
