@@ -65,7 +65,7 @@ class MinistryService implements ModelServiceContract
         {
             if ($ministry->id == $task->ministry_id)
             {
-                return $task;
+                return $ministry;
             }
         }
 

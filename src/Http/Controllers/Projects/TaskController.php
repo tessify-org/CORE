@@ -184,6 +184,9 @@ class TaskController extends Controller
             "statuses" => TaskStatuses::getAll(),
             "categories" => TaskCategories::getAll(),
             "seniorities" => TaskSeniorities::getAll(),
+            "ministries" => Ministries::getAll(),
+            "organizations" => Organizations::getAll(),
+            "departments" => OrganizationDepartments::getAll(),
             "tags" => Tags::getAll(),
             "oldInput" => collect([
                 "project_id" => old("project_id"),
