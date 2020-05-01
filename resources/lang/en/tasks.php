@@ -45,6 +45,24 @@ return [
     // View
     //
 
+    "view_part_of_project" => "Part of the <strong>:title</strong> project.",
+    "view_invite_friend" => "Invite a friend",
+    "view_ask_question" => "Ask organizer a question",
+    "view_share_task" => "Share this with your network",
+    "view_hours" => "hour",
+    "view_position" => "position",
+    "view_positions" => "positions",
+    "view_urgency" => "Urgency",
+    "view_location" => "The place to be",
+    "view_remote_work_title" => "Work Remotely",
+    "view_remote_work_description" => "You can complete this task remotely, so pick a nice spot and get to it!",
+    "view_ownership" => "Ownership",
+    "view_links" => "Links",
+    "view_status_open" => "Open",
+    "view_status_in_progress" => "In progress",
+    "view_status_completed" => "Completed",
+    "view_no_users" => "No users have signed up yet",
+
     "view_title" => "Task",
     "view_assign_to_self" => "Sign me up!",
     "view_abandon" => "Abandon this task",
@@ -167,6 +185,11 @@ return [
     "form_ministry" => "Ministry",
     "form_organization" => "Organization",
     "form_department" => "Department",
+    "form_formatting_title" => "Design",
+    "form_formatting_description" => "Make your task stand out",
+    "form_header_image" => "Header background image",
+    "form_has_deadline" => "Has deadline",
+    "form_ends_at" => "End date",
 
     //
     // Delete

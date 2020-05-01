@@ -18,7 +18,7 @@
             @include("tessify-core::partials.feedback")
             
             <!-- Form -->
-            <form action="{{ route('tasks.edit.post', ['slug' => $task->slug]) }}" method="post">
+            <form action="{{ route('tasks.edit.post', ['slug' => $task->slug]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
                 <task-form

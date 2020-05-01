@@ -45,6 +45,24 @@ return [
     // View
     //
 
+    "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
+    "view_invite_friend" => "Vriend uitnodigen",
+    "view_ask_question" => "Stel organisator een vraag",
+    "view_share_task" => "Deel dit met je netwerk",
+    "view_hours" => "uur",
+    "view_position" => "positie",
+    "view_positions" => "posities",
+    "view_urgency" => "Urgentie",
+    "view_location" => "The place to be",
+    "view_remote_work_title" => "Werken op afstand",
+    "view_remote_work_description" => "Dit werkpakket kan je op afstand doen, dus zoek een fijne plek op en ga aan de slag!",
+    "view_ownership" => "Eigenaarschap",
+    "view_links" => "Links",
+    "view_status_open" => "Open",
+    "view_status_in_progress" => "In progressie",
+    "view_status_completed" => "Voltooid!",
+    "view_no_users" => "Er zijn nog geen gebruikers ingeschreven",
+
     "view_title" => "Werkpakket",
     "view_assign_to_self" => "Schrijf mij in!",
     "view_abandon" => "Uitschrijven",
@@ -53,7 +71,7 @@ return [
     "view_unsubscribe" => "Niet meer volgen",
     "view_unsubscribed" => "Je volgt deze taak niet meer!",
     "view_description" => "Omschrijving",
-    "view_skills" => "Vereiste skills",
+    "view_skills" => "Vereiste vaardigheden",
     "view_status" => "Status",
     "view_category" => "Categorie",
     "view_seniority" => "Ervaringsniveau",
@@ -125,7 +143,7 @@ return [
     "create_form_tags" => "Tags",
     "create_back" => "Terug naar werkpakketten",
     "create_submit" => "Werkpakket opslaan!",
-    "required_skills_title" => "Vereiste skills",
+    "required_skills_title" => "Vereiste vaardigheden",
     "required_skills_no_records" => "Geen vaardigheden gevonden",
     "required_skills_add_button" => "Vereiste vaardigheid toevoegen",
     "required_skills_view_title" => "Vereiste vaardigheid",
@@ -166,6 +184,11 @@ return [
     "form_ministry" => "Ministerie",
     "form_organization" => "Organisatie",
     "form_department" => "Departement",
+    "form_formatting_title" => "Opmaak",
+    "form_formatting_description" => "Hoe wordt dit werkpakket weergegeven",
+    "form_header_image" => "Header achtergrond plaatje",
+    "form_has_deadline" => "Heeft een deadline",
+    "form_ends_at" => "Einddatum",
 
     //
     // Delete

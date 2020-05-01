@@ -43,7 +43,7 @@ class Project extends Model
         "has_tasks" => "boolean",
         "has_deadline" => "boolean",
     ];
-
+    
     //
     // Slug configuration
     //

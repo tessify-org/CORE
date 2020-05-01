@@ -18,13 +18,11 @@ use TaskProgressReports;
 use TaskProgressReportReviews;
 
 use App\Http\Controllers\Controller;
-
 use Tessify\Core\Events\Users\UserFollowsTask;
 use Tessify\Core\Events\Users\UserUnfollowsTask;
 use Tessify\Core\Events\Tasks\TaskAssigned;
 use Tessify\Core\Events\Tasks\TaskUnassigned;
 use Tessify\Core\Events\Tasks\TaskProgressReported;
-
 use Tessify\Core\Http\Requests\Tasks\CreateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\UpdateTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\DeleteTaskRequest;
@@ -102,12 +100,19 @@ class TaskController extends Controller
                 "required_skills" => old("required_skills"),
                 "urgency" => old("urgency"),
                 "tags" => old("tags"),
+                "ends_at" => old("ends_at"),
+                "has_deadline" => old("has_deadline"),
             ]),
             "strings" => collect([
                 "general_title" => __("tessify-core::tasks.form_general_title"),
                 "general_description" => __("tessify-core::tasks.form_general_description"),
                 "ownership_title" => __("tessify-core::tasks.form_ownership_title"),
                 "ownership_description" => __("tessify-core::tasks.form_ownership_description"),
+                "formatting_title" => __("tessify-core::tasks.form_formatting_title"),
+                "formatting_description" => __("tessify-core::tasks.form_formatting_description"),
+                "header_image" => __("tessify-core::tasks.form_header_image"),
+                "has_deadline" => __("tessify-core::tasks.form_has_deadline"),
+                "ends_at" => __("tessify-core::tasks.form_ends_at"),
                 "ministry" => __("tessify-core::tasks.form_ministry"),
                 "organization" => __("tessify-core::tasks.form_organization"),
                 "department" => __("tessify-core::tasks.form_department"),
@@ -205,12 +210,19 @@ class TaskController extends Controller
                 "required_skills" => old("required_skills"),
                 "urgency" => old("urgency"),
                 "tags" => old("tags"),
+                "ends_at" => old("ends_at"),
+                "has_deadline" => old("has_deadline"),
             ]),
             "strings" => collect([
                 "general_title" => __("tessify-core::tasks.form_general_title"),
                 "general_description" => __("tessify-core::tasks.form_general_description"),
                 "ownership_title" => __("tessify-core::tasks.form_ownership_title"),
                 "ownership_description" => __("tessify-core::tasks.form_ownership_description"),
+                "formatting_title" => __("tessify-core::tasks.form_formatting_title"),
+                "formatting_description" => __("tessify-core::tasks.form_formatting_description"),
+                "header_image" => __("tessify-core::tasks.form_header_image"),
+                "has_deadline" => __("tessify-core::tasks.form_has_deadline"),
+                "ends_at" => __("tessify-core::tasks.form_ends_at"),
                 "ministry" => __("tessify-core::tasks.form_ministry"),
                 "organization" => __("tessify-core::tasks.form_organization"),
                 "department" => __("tessify-core::tasks.form_department"),

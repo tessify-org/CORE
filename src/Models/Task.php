@@ -31,6 +31,15 @@ class Task extends Model
         "realized_hours",
         "num_positions",
         "urgency",
+        "ends_at",
+        "has_deadline",
+        "header_image_url",
+    ];
+    protected $dates = [
+        "ends_at",
+    ];
+    protected $casts = [
+        "has_deadline" => "boolean",
     ];
 
     //

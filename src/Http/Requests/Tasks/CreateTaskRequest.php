@@ -38,6 +38,9 @@ class CreateTaskRequest extends FormRequest
             "urgency" => "required|integer",
             "required_skills" => "nullable",
             "tags" => "nullable",
+            "has_deadline" => "nullable",
+            "ends_at" => "nullable",
+            "header_image" => "nullable|image",
         ];
     }
 }

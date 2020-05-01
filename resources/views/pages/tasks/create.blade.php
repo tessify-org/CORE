@@ -17,7 +17,7 @@
             @include("tessify-core::partials.feedback")
 
             <!-- Open form -->
-            <form action="{{ route('tasks.create.post') }}" method="post">
+            <form action="{{ route('tasks.create.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Render form -->
@@ -38,7 +38,7 @@
                 </task-form>
                 
             </form>
-
+            
         </div>
     </div>
 @stop

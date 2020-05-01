@@ -225,7 +225,7 @@ class ProjectService implements ModelServiceContract
             $phase_id = ProjectPhases::findOrCreateByName($request->project_phase)->id;
         }
 
-
+        // Process ownership relationships
         $ministry = Ministries::find($request->ministry_id);
         if ($ministry)
         {

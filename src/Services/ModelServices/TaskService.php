@@ -6,8 +6,10 @@ use DB;
 use Auth;
 use Tags;
 use Users;
+use Dates;
 use Skills;
 use Projects;
+use Uploader;
 use Ministries;
 use Organizations;
 use OrganizationDepartments;
@@ -82,6 +84,9 @@ class TaskService implements ModelServiceContract
         $instance->has_unread_reviews = $this->hasUnreadReviews($instance->outstanding_reports);
         $instance->tags = Tags::getAllForTask($instance);
         
+        // Preload image
+        $instance->header_image_url = asset($instance->header_image_url);
+
         // Return instance
         return $instance;
     }
@@ -216,8 +221,16 @@ class TaskService implements ModelServiceContract
             "description" => $request->description,
             "complexity" => $request->complexity,
             "estimated_hours" => $request->estimated_hours,
-            "urgency" => $request->urgency
+            "urgency" => $request->urgency,
+            "ends_at" => $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null,
+            "has_deadline" => (bool) $request->has_deadline,
         ];
+
+        // Upload header image if one was uploaded
+        if ($request->hasFile("header_image"))
+        {
+            $data["header_image_url"] = Uploader::upload($request->file("header_image"), "images/tasks/header");
+        }
 
         // Process ownerships relationships
         if ($request->has("ministry_id") && intval($request->ministry_id) > 0) {
@@ -260,18 +273,17 @@ class TaskService implements ModelServiceContract
         if ($request->has("ministry_id") && intval($request->ministry_id) > 0) {
             $task->ministry_id = $request->ministry_id;
             $organization = Organizations::find($request->organization_id);
-            if ($request->has("organization_id") && intval($reqeust->organization_id) > 0 && $organization) {
+            if ($request->has("organization_id") && intval($request->organization_id) > 0 && $organization) {
                 $task->organization_id = $request->organization_id;
                 if ($request->has("department") && $request->department != "") {
                     $department = OrganizationDepartments::findOrCreateByName($organization, $request->department);
-                    if ($department)
-                    {
+                    if ($department) {
                         $task->organization_department_id = $department->id;
                     } else {
-                        $task->organizaiton_department_id = null;
+                        $task->organization_department_id = null;
                     }
                 } else {
-                    $task->organizaiton_department_id = null;
+                    $task->organization_department_id = null;
                 }
             } else {
                 $task->organization_id = null;
@@ -294,6 +306,16 @@ class TaskService implements ModelServiceContract
         $task->estimated_hours = $request->estimated_hours;
         $task->realized_hours = is_null($request->realized_hours) ? 0 : $request->realized_hours;
         $task->urgency = $request->urgency;
+        $task->has_deadline = (bool) $request->has_deadline;
+        $task->ends_at = $request->has("ends_at") ? Dates::parse($request->ends_at, "-")->format("Y-m-d") : null;
+
+        // Upload header image if one was uploaded
+        if ($request->hasFile("header_image"))
+        {
+            $task->header_image_url = Uploader::upload($request->file("header_image"), "images/tasks/header");
+        }
+
+        // Save the changes made
         $task->save();
 
         // Update the task's relationships
