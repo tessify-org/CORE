@@ -121,6 +121,20 @@
                 </aside>
                 <main id="view-task__content">
 
+                    <!-- Progress report -->
+                    @if ($task->status->name != "completed" && $task->assigned_to_user)
+                        <div id="task__report-progress" class="elevation-2">
+                            <div id="report-progress__title">@lang("tessify-core::tasks.view_awaiting_progress_title")</div>
+                            <div id="report-progress__text">@lang("tessify-core::tasks.view_awaiting_progress_text")</div>
+                            <div id="report-progress__actions">
+                                <v-btn color="primary" href="{{ route('tasks.report-progress', $task->slug) }}" depressed>
+                                    <i class="fas fa-parachute-box"></i>
+                                    @lang("tessify-core::tasks.view_awaiting_progress_button")
+                                </v-btn>
+                            </div>
+                        </div>
+                    @endif
+
                     <!-- Task information -->
                     <div id="task" class="elevation-2">
                         <div id="task-header">

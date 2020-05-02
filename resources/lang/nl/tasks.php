@@ -49,6 +49,9 @@ return [
     "view_join_disabled_no_positions" => "Alle posities zijn al vergeven",
     "view_join" => "Schrijf mij in!",
     "view_leave" => "Uitschrijven",
+    "view_awaiting_progress_title" => "Progressie rapporteren",
+    "view_awaiting_progress_text" => "Heb je progressie gemaakt?",
+    "view_awaiting_progress_button" => "Rapporteer je progressie",
 
     "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
     "view_invite_friend" => "Vriend uitnodigen",
@@ -101,10 +104,6 @@ return [
     "view_cta_awaiting_review_title" => "Voortgangsrapportage geplaatst",
     "view_cta_awaiting_review_text" => "Nu wachten we op een beoordeling.",
     "view_cta_awaiting_review_button" => "Bekijk progressie rapport",
-    
-    "view_cta_awaiting_progress_title" => "Progressie rapporteren",
-    "view_cta_awaiting_progress_text" => "Heb je progressie gemaakt?",
-    "view_cta_awaiting_progress_button" => "Rapporteer je progressie",
     
     "view_cta_open_title" => "Werkpakket is open!",
     "view_cta_open_text_singular" => "Heb je interesse in dit werkpakket? Er is nog 1 open positie!",

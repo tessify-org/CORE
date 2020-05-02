@@ -49,6 +49,9 @@ return [
     "view_join_disabled_no_positions" => "All positions have been fulfilled",
     "view_join" => "Sign me up!",
     "view_leave" => "Abandon this task",
+    "view_awaiting_progress_title" => "Reporting progress",
+    "view_awaiting_progress_text" => "Have you made progress?",
+    "view_awaiting_progress_button" => "Report your progress",
 
     "view_part_of_project" => "Part of the <strong>:title</strong> project.",
     "view_invite_friend" => "Invite a friend",
@@ -103,9 +106,6 @@ return [
     "view_cta_awaiting_review_text" => "We're now awaiting your review.",
     "view_cta_awaiting_review_button" => "View progress report",
 
-    "view_cta_awaiting_progress_title" => "Reporting progress",
-    "view_cta_awaiting_progress_text" => "Have you made progress?",
-    "view_cta_awaiting_progress_button" => "Report your progress",
 
     "view_cta_open_title" => "Task is open!",
     "view_cta_open_text_singular" => "Are you interested in this task? There's 1 position still open.",
