@@ -45,6 +45,11 @@ return [
     // View
     //
 
+    "view_join_disabled_completed" => "This task has already been completed",
+    "view_join_disabled_no_positions" => "All positions have been fulfilled",
+    "view_join" => "Sign me up!",
+    "view_leave" => "Abandon this task",
+
     "view_part_of_project" => "Part of the <strong>:title</strong> project.",
     "view_invite_friend" => "Invite a friend",
     "view_ask_question" => "Ask organizer a question",

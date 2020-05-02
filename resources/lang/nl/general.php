@@ -45,6 +45,10 @@ return [
     "delete_confirm" => "Ja, <span class='extra-text'>verwijderen</span>",
 
     "hidden" => "Onzichtbaar",
+
+    "urgency_low" => "Laag",
+    "urgency_normal" => "Normaal",
+    "urgency_high" => "Hoog",
     
     //
     // Emails

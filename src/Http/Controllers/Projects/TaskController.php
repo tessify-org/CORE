@@ -136,6 +136,9 @@ class TaskController extends Controller
                 "tags" => __("tessify-core::tasks.create_form_tags"),
                 "back" => __("tessify-core::tasks.create_back"),
                 "submit" => __("tessify-core::tasks.create_submit"),
+                "urgency_low" => __("tessify-core::general.urgency_low"),
+                "urgency_normal" => __("tessify-core::general.urgency_normal"),
+                "urgency_high" => __("tessify-core::general.urgency_high"),
                 "required_skills_strings" => [
                     "title" => __("tessify-core::tasks.required_skills_title"),
                     "no_records" => __("tessify-core::tasks.required_skills_no_records"),
@@ -246,6 +249,9 @@ class TaskController extends Controller
                 "tags" => __("tessify-core::tasks.create_form_tags"),
                 "back" => __("tessify-core::tasks.create_back"),
                 "submit" => __("tessify-core::tasks.create_submit"),
+                "urgency_low" => __("tessify-core::general.urgency_low"),
+                "urgency_normal" => __("tessify-core::general.urgency_normal"),
+                "urgency_high" => __("tessify-core::general.urgency_high"),
                 "required_skills_strings" => [
                     "title" => __("tessify-core::tasks.required_skills_title"),
                     "no_records" => __("tessify-core::tasks.required_skills_no_records"),
@@ -557,5 +563,29 @@ class TaskController extends Controller
         // Flash message & redirect to the view task page
         flash(__("tessify-core::tasks.completed"))->success();
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
+    }
+
+    public function getInviteFriend($slug)
+    {
+        // Grab the task we want to complete
+        $task = Tasks::findBySlug($slug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("tasks");
+        }
+
+    }
+
+    public function getAskQuestion($slug)
+    {
+        // Grab the task we want to complete
+        $task = Tasks::findBySlug($slug);
+        if (!$task)
+        {
+            flash(__("tessify-core::projects.task_not_found"))->error();
+            return redirect()->route("tasks");
+        }
+
     }
 }

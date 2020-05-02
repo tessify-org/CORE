@@ -199,6 +199,12 @@ Route::group(["middleware" => "auth"], function() {
         // Complete
         Route::get("{slug}/voltooien", "Projects\TaskController@getComplete")->name("tasks.complete");
         
+        // Invite friend
+        Route::get("{slug}/iemand-uitnodingen", "Projects\TaskController@getInviteFriend")->name("tasks.invite");
+
+        // Ask question
+        Route::get("{slug}/vraag-stellen", "Projects\TaskController@getAskQuestion")->name("tasks.ask-question");
+        
     });
 
     // Search

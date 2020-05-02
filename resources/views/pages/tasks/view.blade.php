@@ -8,6 +8,10 @@
     <div class="content-section__wrapper">
         <div class="content-section">
 
+            <!-- Feedback -->
+            @include("tessify-core::partials.feedback")
+
+            <!-- Task page -->
             <div id="view-task">
                 <aside id="view-task__sidebar">
 
@@ -25,20 +29,26 @@
                                         {{ $task->ministry->name }}
                                     </a>
                                 </div>
-                            @endif
+                                @if ($task->organization)
+                                    <div id="ownership-organization">
+                                        <a id="organization-link" href="{{ route('organizations.view', $task->organization->slug) }}">
+                                            {{ $task->organization->name }}
+                                        </a>
+                                    </div>
+                                @endif
                                 
-                            @if ($task->organization)
-                                <div id="ownership-organization">
-                                    <a id="organization-link" href="{{ route('organizations.view', $task->organization->slug) }}">
-                                        {{ $task->organization->name }}
-                                    </a>
-                                </div>
-                            @endif
-                            
-                            @if ($task->organizationDepartment)
-                                <div id="ownership-department">
-                                    <a id="department-link" href="#">
-                                        {{ $task->organizationDepartment->name }}
+                                @if ($task->organizationDepartment)
+                                    <div id="ownership-department">
+                                        <a id="department-link" href="#">
+                                            {{ $task->organizationDepartment->name }}
+                                        </a>
+                                    </div>
+                                @endif
+                            @else
+                                <div id="ownership-author">
+                                    <a href="{{ route('profile', $task->author->slug) }}" id="author">
+                                        <span id="author-avatar" style="background-image: url({{ asset($task->author->avatar_url) }})"></span>
+                                        <span id="author-name">{{ $task->author->formatted_name }}</span>
                                     </a>
                                 </div>
                             @endif
@@ -85,9 +95,12 @@
                         @if (count($task->users))
                             <div id="task-users__list" class="elevation-1">
                                 @foreach ($task->users as $user)
-                                    <div class="task-user">
-
-                                    </div>
+                                    <a class="task-user" href="{{ route('profile', $user->slug) }}">
+                                        <span class="task-user__avatar" style="background-image: url({{ asset($user->avatar_url) }})"></span>
+                                        <span class="task-user__text">
+                                            {{ $user->formatted_name }}
+                                        </span>
+                                    </a>
                                 @endforeach
                             </div>
                         @else
@@ -165,7 +178,15 @@
                                         <!-- Urgency -->
                                         <div class="task-detail">
                                             <div class="task-detail__key">@lang("tessify-core::tasks.view_urgency")</div>
-                                            <div class="task-detail__val">{{ $task->urgency }}</div>
+                                            <div class="task-detail__val">
+                                                @if ($task->urgency == 1)
+                                                    @lang("tessify-core::general.urgency_low")
+                                                @elseif ($task->urgency == 2)
+                                                    @lang("tessify-core::general.urgency_medium")
+                                                @elseif ($task->urgency == 3)
+                                                    @lang("tessify-core::general.urgency_high")
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
 
@@ -174,23 +195,92 @@
                                 
                                     <!-- Join & Leave -->
                                     <div id="primary-action">
+                                        
+                                        <!-- Completed -->
+                                        @if ($task->status->name == "completed")
 
-                                        <v-btn color="primary" href="{{ route('tasks.assign-to-me', $task->slug) }}" depressed block>
-                                            <i class="far fa-thumbs-up"></i>
-                                            @lang("tessify-core::tasks.view_cta_open_button")
-                                        </v-btn>
+                                            <!-- Disabled join button -->
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn color="primary" depressed block disabled v-on="on">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                        @lang("tessify-core::tasks.view_cta_open_button")
+                                                    </v-btn>
+                                                </template>
+                                                <span>@lang("tessify-core::tasks.view_join_disabled_completed")</span>
+                                            </v-tooltip>
+
+                                        <!-- Not completed -->
+                                        @else
+
+                                            <!-- Assigned to the user -->
+                                            @if ($task->assigned_to_user)
+
+                                                <!-- Leave button -->
+                                                <v-btn color="red" href="{{ route('tasks.abandon', $task->slug) }}" depressed block dark>
+                                                    <i class="fas fa-door-open"></i>
+                                                    @lang("tessify-core::tasks.view_leave")
+                                                </v-btn>
+
+                                            <!-- Not assigned to the user & there are available slots -->
+                                            @elseif ($task->has_available_slots)
+                                                
+                                                <!-- Join button -->
+                                                <v-btn color="primary" href="{{ route('tasks.assign-to-me', $task->slug) }}" depressed block>
+                                                    <i class="far fa-thumbs-up"></i>
+                                                    @lang("tessify-core::tasks.view_join")
+                                                </v-btn>
+
+                                            <!-- Not assigned & no available slots -->
+                                            @else
+
+                                                <!-- Disabled join button -->
+                                                <v-tooltip top>
+                                                    <template v-slot:activator="{ on }">
+                                                        <div v-on="on">
+                                                            <v-btn color="primary" depressed block disabled>
+                                                                <i class="far fa-thumbs-up"></i>
+                                                                @lang("tessify-core::tasks.view_cta_open_button")
+                                                            </v-btn>
+                                                        </div>
+                                                    </template>
+                                                    <span>@lang("tessify-core::tasks.view_join_disabled_no_positions")</span>
+                                                </v-tooltip>
+
+                                            @endif
+
+                                        @endif
 
                                     </div>
 
                                     <!-- Follow & Invite -->
                                     <div id="secondary-actions">
                                         <div class="secondary-action">
-                                            <v-btn class="icon-only" small depressed>
-                                                <i class="far fa-eye"></i>
-                                            </v-btn>
+                                            @if (!Auth::user()->hasSubscribed($task))
+                                                <!-- Follow button -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-btn href="{{ route('tasks.subscribe', ['slug' => $task->slug]) }}" class="icon-only" small depressed v-on="on">
+                                                            <i class="far fa-eye"></i>
+                                                        </v-btn>
+                                                    </template>
+                                                    <span>@lang("tessify-core::tasks.view_subscribe")</span>
+                                                </v-tooltip>
+                                            @else
+                                                <!-- Unfollow button -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-btn href="{{ route('tasks.unsubscribe', ['slug' => $task->slug]) }}" class="icon-only" small depressed v-on="on">
+                                                            <i class="fas fa-eye-slash"></i>
+                                                        </v-btn>
+                                                    </template>
+                                                    <span>@lang("tessify-core::tasks.view_unsubscribe")</span>
+                                                </v-tooltip>
+                                            @endif
                                         </div>
                                         <div class="secondary-action">
-                                            <v-btn block href="#" small depressed>
+                                            <!-- Invite friend button -->
+                                            <v-btn block href="{{ route('tasks.invite', $task->slug) }}" small depressed>
                                                 @lang("tessify-core::tasks.view_invite_friend")
                                             </v-btn>
                                         </div>
@@ -198,7 +288,7 @@
 
                                     <!-- Ask question -->
                                     <div id="ask-question">
-                                        <a href="#" id="ask-question__link">
+                                        <a href="{{ route('tasks.ask-question', $task->slug) }}" id="ask-question__link">
                                             @lang("tessify-core::tasks.view_ask_question")
                                         </a>
                                     </div>

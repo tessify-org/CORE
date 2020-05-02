@@ -45,6 +45,11 @@ return [
     // View
     //
 
+    "view_join_disabled_completed" => "Dit werkpakket is al voltooid",
+    "view_join_disabled_no_positions" => "Alle posities zijn al vergeven",
+    "view_join" => "Schrijf mij in!",
+    "view_leave" => "Uitschrijven",
+
     "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
     "view_invite_friend" => "Vriend uitnodigen",
     "view_ask_question" => "Stel organisator een vraag",

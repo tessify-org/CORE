@@ -63,8 +63,8 @@ class TaskService implements ModelServiceContract
         // Add flags to the instance
         $instance->is_owner = $this->userOwnsTask($instance);
         $instance->is_project_owner = $this->userOwnsTaskProject($instance);
-        $instance->is_open = $this->hasAvailableSlots($instance);
-        $instance->is_assigned = $this->assignedToUser($instance);
+        $instance->has_available_slots = $this->hasAvailableSlots($instance);
+        $instance->assigned_to_user = $this->assignedToUser($instance);
         $instance->num_open_positions = $this->numAvailableSlots($instance);
         $instance->completed = $this->hasBeenCompleted($instance);
 

@@ -46,6 +46,10 @@ return [
 
     "hidden" => "Hidden",
 
+    "urgency_low" => "Low",
+    "urgency_normal" => "Normal",
+    "urgency_high" => "High",
+
     //
     // Emails
     //
