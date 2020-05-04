@@ -157,54 +157,66 @@ Route::group(["middleware" => "auth"], function() {
         // Route::post("toevoegen", "Projects\TaskDashboardController@postCreate")->name("tasks.create.post");
 
         // Task dashboard / overview
-        Route::get("/", "Projects\TaskController@getOverview")->name("tasks");
+        Route::get("/", "Tasks\TaskController@getOverview")->name("tasks");
 
         // Create
-        Route::get("toevoegen/{slug?}", "Projects\TaskController@getCreate")->name("tasks.create");
-        Route::post("toevoegen/{slug?}", "Projects\TaskController@postCreate")->name("tasks.create.post");
+        Route::get("toevoegen/{slug?}", "Tasks\TaskController@getCreate")->name("tasks.create");
+        Route::post("toevoegen/{slug?}", "Tasks\TaskController@postCreate")->name("tasks.create.post");
 
         // View
-        Route::get("{slug}", "Projects\TaskController@getView")->name("tasks.view");
+        Route::get("{slug}", "Tasks\TaskController@getView")->name("tasks.view");
+        
+        // View --> Comments
+        Route::get("{slug}/commentaar", "Tasks\TaskController@getComments")->name("tasks.comments");
 
-        // Update
-        Route::get("{slug}/aanpassen", "Projects\TaskController@getEdit")->name("tasks.edit");
-        Route::post("{slug}/aanpassen", "Projects\TaskController@postEdit")->name("tasks.edit.post");
+        // View --> Reviews
+        Route::get("{slug}/recensies", "Tasks\TaskReviewController@getOverview")->name("tasks.reviews");
 
-        // Delete
-        Route::get("{slug}/verwijderen", "Projects\TaskController@getDelete")->name("tasks.delete");
-        Route::post("{slug}/verwijderen", "Projects\TaskController@postDelete")->name("tasks.delete.post");
+        // View --> Reviews --> View
+        Route::get("{slug}/recensie", "Tasks\TaskReviewController@getView")->name("tasks.review");
+
+        // View --> Report progress
+        Route::get("{slug}/voortgang-rapporteren", "Tasks\TaskProgressController@getReportProgress")->name("tasks.report-progress");
+        Route::post("{slug}/voortgang-rapporteren", "Tasks\TaskProgressController@postReportProgress")->name("tasks.report-progress.post");
+        
+        // View --> Progress reports
+        Route::get("{slug}/voortgangsrapporten", "Tasks\TaskProgressController@getOverview")->name("tasks.progress-reports");
+
+        // View --> Progress reports --> Progress report
+        Route::get("{slug}/voortgangsrapport/{uuid}", "Tasks\TaskProgressController@getView")->name("tasks.progress-report");
+
+        // View --> Progress reports --> Progress report --> Review progress report
+        Route::get("{slug}/voortgangsrapport/{uuid}/reviewen", "Tasks\TaskProgressController@getReviewProgressReport")->name("tasks.progress-report.review");
+        Route::post("{slug}/voortgangsrapport/{uuid}/reviewen", "Tasks\TaskProgressController@postReviewProgressReport")->name("tasks.progress-report.review.post");
+
+        // View --> Progress reports --> Progress report --> Complete
+        Route::get("{slug}/voltooien", "Tasks\TaskProgressController@getComplete")->name("tasks.complete");
 
         // Assign to me
-        Route::get("{slug}/aannemen", "Projects\TaskController@getAssignToSelf")->name("tasks.assign-to-me");
+        Route::get("{slug}/aannemen", "Tasks\TaskController@getAssignToSelf")->name("tasks.assign-to-me");
 
         // Abandon
-        Route::get("{slug}/uitschrijven", "Projects\TaskController@getAbandon")->name("tasks.abandon");
-        Route::post("{slug}/uitschrijven", "Projects\TaskController@postAbandon")->name("tasks.abandon.post");
+        Route::get("{slug}/uitschrijven", "Tasks\TaskController@getAbandon")->name("tasks.abandon");
+        Route::post("{slug}/uitschrijven", "Tasks\TaskController@postAbandon")->name("tasks.abandon.post");
 
         // Subscribe & unsubscribe
-        Route::get("{slug}/volgen", "Projects\TaskController@getSubscribe")->name("tasks.subscribe");
-        Route::get("{slug}/niet-meer-volgen", "Projects\TaskController@getUnsubscribe")->name("tasks.unsubscribe");
-
-        // Report progress
-        Route::get("{slug}/voortgang-rapporteren", "Projects\TaskController@getReportProgress")->name("tasks.report-progress");
-        Route::post("{slug}/voortgang-rapporteren", "Projects\TaskController@postReportProgress")->name("tasks.report-progress.post");
-
-        // Progress report
-        Route::get("{slug}/voortgangsrapport/{uuid}", "Projects\TaskController@getProgressReport")->name("tasks.progress-report");
-
-        // Review progress report
-        Route::get("{slug}/voortgangsrapport/{uuid}/reviewen", "Projects\TaskController@getReviewProgressReport")->name("tasks.progress-report.review");
-        Route::post("{slug}/voortgangsrapport/{uuid}/reviewen", "Projects\TaskController@postReviewProgressReport")->name("tasks.progress-report.review.post");
-
-        // Complete
-        Route::get("{slug}/voltooien", "Projects\TaskController@getComplete")->name("tasks.complete");
+        Route::get("{slug}/volgen", "Tasks\TaskController@getSubscribe")->name("tasks.subscribe");
+        Route::get("{slug}/niet-meer-volgen", "Tasks\TaskController@getUnsubscribe")->name("tasks.unsubscribe");
         
-        // Invite friend
-        Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Projects\TaskController@getInviteFriend")->name("tasks.invite");
+        // View --> Invite friend
+        Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Tasks\TaskController@getInviteFriend")->name("tasks.invite");
 
-        // Ask question
-        Route::post("{slug}/vraag-stellen", "Projects\TaskController@postAskQuestion")->name("tasks.ask-question.post");
+        // View --> Ask question
+        Route::post("{slug}/vraag-stellen", "Tasks\TaskController@postAskQuestion")->name("tasks.ask-question.post");
         
+        // Update
+        Route::get("{slug}/aanpassen", "Tasks\TaskController@getEdit")->name("tasks.edit");
+        Route::post("{slug}/aanpassen", "Tasks\TaskController@postEdit")->name("tasks.edit.post");
+
+        // Delete
+        Route::get("{slug}/verwijderen", "Tasks\TaskController@getDelete")->name("tasks.delete");
+        Route::post("{slug}/verwijderen", "Tasks\TaskController@postDelete")->name("tasks.delete.post");
+
     });
 
     // Search

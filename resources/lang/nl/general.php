@@ -49,6 +49,9 @@ return [
     "urgency_low" => "Laag",
     "urgency_normal" => "Normaal",
     "urgency_high" => "Hoog",
+
+    "hours" => "Uren",
+    "hour" => "uur",
     
     //
     // Emails

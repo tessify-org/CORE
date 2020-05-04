@@ -50,6 +50,9 @@ return [
     "urgency_normal" => "Normal",
     "urgency_high" => "High",
 
+    "hours" => "hours",
+    "hour" => "hour",
+
     //
     // Emails
     //

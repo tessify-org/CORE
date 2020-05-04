@@ -3,6 +3,7 @@
 namespace Tessify\Core\Services\ModelServices;
 
 use Auth;
+use Users;
 use Uploader;
 use TaskProgressReportReviews;
 use TaskProgressReportAttachments;
@@ -29,11 +30,15 @@ class TaskProgressReportService implements ModelServiceContract
     
     public function preload($instance)
     {
+        $instance->user = Users::findPreloaded($instance->user_id);
         $instance->reviews = TaskProgressReportReviews::getAllForReport($instance);
         $instance->attachments = TaskProgressReportAttachments::getAllForReport($instance);
 
         $instance->has_unread_reviews = $this->hasUnreadReviews($instance);
         $instance->has_been_reviewed = $this->hasBeenReviewed($instance);
+        
+        $instance->view_href = route("tasks.progress-report", ["slug" => $instance->task->slug, "uuid" => $instance->uuid]);
+        $instance->formatted_date = $instance->created_at->format("d-m-Y H:m:s");
 
         return $instance;
     }

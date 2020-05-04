@@ -197,4 +197,18 @@ class ReviewRequestService implements ModelServiceContract
 
         return false;
     }
+
+    public function hasOutstandingRequestsFor($instance)
+    {
+        foreach ($this->getAll() as $request)
+        {
+            
+            if ($request->reviewrequestable_type == get_class($instance) && $request->reviewrequestable_id == $instance->id && $request->status == "open")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

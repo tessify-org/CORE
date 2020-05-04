@@ -13,6 +13,12 @@
 return [
 
     //
+    // General
+    //
+
+    "back_to_task" => "Terug naar werkpakket",
+
+    //
     // Overview
     //
 
@@ -49,9 +55,15 @@ return [
     "view_join_disabled_no_positions" => "Alle posities zijn al vergeven",
     "view_join" => "Schrijf mij in!",
     "view_leave" => "Uitschrijven",
+
     "view_awaiting_progress_title" => "Progressie rapporteren",
     "view_awaiting_progress_text" => "Heb je progressie gemaakt?",
     "view_awaiting_progress_button" => "Rapporteer je progressie",
+    
+    "view_pending_review_title" => "Recenseer je ervaring",
+    "view_pending_review_text" => "We zijn erg benieuwd hoe je werken aan dit werkpakket hebt ervaren. Tips & tops en wat je dan ook kwijt wilt.",
+    "view_pending_review_button" => "Schrijf recensie",
+    
     "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
     
     "view_invite_friend" => "Vriend uitnodigen",
@@ -80,6 +92,9 @@ return [
     "view_remote_work_description" => "Dit werkpakket kan je op afstand doen, dus zoek een fijne plek op en ga aan de slag!",
     "view_ownership" => "Eigenaarschap",
     "view_links" => "Links",
+    "view_link_reviews" => "Recensies",
+    "view_link_comments" => "Commentaar",
+    "view_link_progress_reports" => "Progressie rapporten",
     "view_status_open" => "Open",
     "view_status_in_progress" => "In progressie",
     "view_status_completed" => "Voltooid!",
@@ -280,5 +295,26 @@ return [
     "review_progress_report_back" => "Terug",
     "review_progress_report_submit" => "Review plaatsen",
     "reviewed_progress_report" => "Review is geplaatst!",
+
+    //
+    // Reviews
+    //
+
+    "review_not_found" => "Review kon niet worden gevonden.",
+    "reviews_title" => "Recensies",
+    "reviews_no_records" => "Er zijn nog geen recensies geschreven voor dit werkpakket.",
+
+    //
+    // Progress reports
+    //
+
+    "progress_reports_title" => "Progressie rapporten",
+    "progress_reports_no_records" => "Er zijn nog geen progressie rapporten gepubliceerd voor dit werkpakket.",
+
+    //
+    // Comments
+    //
+
+    "comments_title" => "Commentaar",
 
 ];

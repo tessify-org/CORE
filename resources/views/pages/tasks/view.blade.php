@@ -15,108 +15,9 @@
             <div id="view-task">
                 <aside id="view-task__sidebar">
 
-                    <!-- Ownership -->
-                    <div id="task-ownership">
-                        <div id="task-ownership__title">@lang("tessify-core::tasks.view_ownership")</div>
-                        <div id="task-ownership__content" class="elevation-1">
-
-                            @if ($task->ministry)
-                                <div id="ownership-ministry">
-                                    <span id="ministry-icon">
-                                        <i class="fas fa-chess-rook"></i>
-                                    </span>
-                                    <a id="ministry-link" href="{{ route('ministries.view', $task->ministry->slug) }}">
-                                        {{ $task->ministry->name }}
-                                    </a>
-                                </div>
-                                @if ($task->organization)
-                                    <div id="ownership-organization">
-                                        <a id="organization-link" href="{{ route('organizations.view', $task->organization->slug) }}">
-                                            {{ $task->organization->name }}
-                                        </a>
-                                    </div>
-                                @endif
-                                
-                                @if ($task->organizationDepartment)
-                                    <div id="ownership-department">
-                                        <a id="department-link" href="#">
-                                            {{ $task->organizationDepartment->name }}
-                                        </a>
-                                    </div>
-                                @endif
-                            @else
-                                <div id="ownership-author">
-                                    <a href="{{ route('profile', $task->author->slug) }}" id="author">
-                                        <span id="author-avatar" style="background-image: url({{ asset($task->author->avatar_url) }})"></span>
-                                        <span id="author-name">{{ $task->author->formatted_name }}</span>
-                                    </a>
-                                </div>
-                            @endif
-
-                        </div>
-                    </div>
-
-                    <!-- Status -->
-                    <div id="task-status__wrapper">
-                        <div id="task-status__title">@lang("tessify-core::tasks.view_status")</div>
-                        @if ($task->status->name == "completed")
-                            <div id="task-status" class="elevation-1 completed">
-                                <div id="task-status__icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div id="task-status__text">
-                                    {{ $task->status->label }}
-                                </div>
-                            </div>
-                        @elseif ($task->status->name == "in_progress")
-                            <div id="task-status" class="elevation-1 in_progress">
-                                <div id="task-status__icon">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <div id="task-status__text">
-                                    {{ $task->status->label }}
-                                </div>
-                            </div>
-                        @elseif ($task->status->name == "open")
-                            <div id="task-status" class="elevation-1 open">
-                                <div id="task-status__icon">
-                                    <i class="fas fa-box-open"></i>
-                                </div>
-                                <div id="task-status__text">
-                                    {{ $task->status->label }}
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-
-                    <!-- Signed up users -->
-                    <div id="task-users">
-                        <div id="task-users__title">@lang("tessify-core::tasks.view_assigned_users")</div>
-                        @if (count($task->users))
-                            <div id="task-users__list" class="elevation-1">
-                                @foreach ($task->users as $user)
-                                    <a class="task-user" href="{{ route('profile', $user->slug) }}">
-                                        <span class="task-user__avatar" style="background-image: url({{ asset($user->avatar_url) }})"></span>
-                                        <span class="task-user__text">
-                                            {{ $user->formatted_name }}
-                                        </span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        @else
-                            <div id="task-users__no-records" class="elevation-1">
-                                @lang("tessify-core::tasks.view_no_users")
-                            </div>
-                        @endif
-                    </div>
-
-                    <!-- Links -->
-                    <!-- <div id="task-links">
-                        <div id="task-links__title">@lang("tessify-core::tasks.view_links")</div>
-                        <div id="task-links__links">
-                            Links go here
-                        </div>
-                    </div> -->
+                    @include("tessify-core::partials.tasks.view-sidebar", [
+                        "task" => $task,
+                    ])
 
                 </aside>
                 <main id="view-task__content">
@@ -135,6 +36,20 @@
                         </div>
                     @endif
 
+                    <!-- Review -->
+                    @if ($userHasPendingReviewRequest)
+                        <div id="task__review" class="elevation-2">
+                            <div id="task__review-title">@lang("tessify-core::tasks.view_pending_review_title")</div>
+                            <div id="task__review-text">@lang("tessify-core::tasks.view_pending_review_text")</div>
+                            <div id="task__review-actions">
+                                <v-btn color="primary" href="{{ route('reviews.create', ['type' => 'task', 'slug' => $task->slug]) }}" depressed>
+                                    <i class="fas fa-feather-alt"></i>
+                                    @lang("tessify-core::tasks.view_pending_review_button")
+                                </v-btn>
+                            </div>
+                        </div>
+                    @endif
+
                     <!-- Task information -->
                     <div id="task" class="elevation-2">
 
@@ -143,6 +58,9 @@
                             <div id="task-header__bg" style="background-image: url({{ asset($task->header_image_url) }})"></div>
                             <div id="task-header__bg-overlay"></div>
                             <div id="task-header__text">
+                                <!-- Title -->
+                                <h1 id="task-title">@lang("tessify-core::tasks.view_title")</h1>
+                                <!-- Project title -->
                                 @if ($task->project)
                                     <h2 id="task-project">{!! __("tessify-core::tasks.view_part_of_project", ["title" => $task->project->title]) !!}</h2>
                                 @endif
@@ -408,8 +326,6 @@
 
                         </div>
                     </div>
-
-                    <!-- Comments (TODO) -->
 
                     <!-- Controls -->
                     <div id="task-page-controls" class="page-controls">

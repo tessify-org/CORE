@@ -30,6 +30,7 @@ class ReviewService implements ModelServiceContract
     
     public function preload($instance)
     {
+        $instance->user = Users::findPreloaded($instance->user_id);
         $instance->view_href = route("reviews.view", $instance->uuid);
         $instance->formatted_date = $instance->created_at->format("d-m-Y H:m:s");
         
@@ -147,5 +148,50 @@ class ReviewService implements ModelServiceContract
 
         // Return the review
         return $review;
+    }
+
+    public function getAllForTask(Task $task)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $review)
+        {
+            if ($review->reviewable_type == get_class($task) && $review->reviewable_id == $task->id)
+            {
+                $out[] = $review;
+            }
+        }
+        
+        return collect($out);
+    }
+
+    public function getAllForProject(Project $project)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $review)
+        {
+            if ($review->reviewable_type == get_class($project) && $review->reviewable_id == $project->id)
+            {
+                $out[] = $review;
+            }
+        }
+
+        return collect($out);
+    }
+
+    public function getAllForUser(User $user)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $review)
+        {
+            if ($review->reviewable_type == get_class($user) && $review->reviewable_id == $user->id)
+            {
+                $out[] = $review;
+            }
+        }
+
+        return collect($out);
     }
 }

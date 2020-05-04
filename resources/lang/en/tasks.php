@@ -13,6 +13,12 @@
 return [
 
     //
+    // General
+    //
+
+    "back_to_task" => "Back to task",
+
+    //
     // Overview
     //
 
@@ -49,9 +55,15 @@ return [
     "view_join_disabled_no_positions" => "All positions have been fulfilled",
     "view_join" => "Sign me up!",
     "view_leave" => "Abandon this task",
+
     "view_awaiting_progress_title" => "Reporting progress",
     "view_awaiting_progress_text" => "Have you made progress?",
     "view_awaiting_progress_button" => "Report your progress",
+    
+    "view_pending_review_title" => "Review your experience",
+    "view_pending_review_text" => "We'd like you to share your experiences working on this task.",
+    "view_pending_review_button" => "Write review",
+    
     "view_part_of_project" => "Part of the <strong>:title</strong> project.",
 
     "view_invite_friend" => "Invite a friend",
@@ -80,6 +92,9 @@ return [
     "view_remote_work_description" => "You can complete this task remotely, so pick a nice spot and get to it!",
     "view_ownership" => "Ownership",
     "view_links" => "Links",
+    "view_link_reviews" => "Reviews",
+    "view_link_comments" => "Comments",
+    "view_link_progress_reports" => "Progress reports",
     "view_status_open" => "Open",
     "view_status_in_progress" => "In progress",
     "view_status_completed" => "Completed",
@@ -281,5 +296,26 @@ return [
     "review_progress_report_back" => "Go back",
     "review_progress_report_submit" => "Place review",
     "reviewed_progress_report" => "Review has been placed!",
+  
+    //
+    // Reviews
+    //
+
+    "review_not_found" => "Review could not be found.",
+    "reviews_title" => "Reviews",
+    "reviews_no_records" => "No reviews have been published yet for this task.",
+
+    //
+    // Progress reports
+    //
     
+    "progress_reports_title" => "Progression reports",
+    "progress_reports_no_records" => "No progress reports have been published yet.",
+
+    //
+    // Comments
+    //
+
+    "comments_title" => "Comments",
+
 ];

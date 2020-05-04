@@ -88,6 +88,11 @@ class TaskService implements ModelServiceContract
         // Preload image
         $instance->header_image_url = asset($instance->header_image_url);
 
+        // Get relationship counts for view task page (sidebar)
+        $instance->num_reviews = $this->getNumReviews($instance);
+        $instance->num_comments = $this->getNumComments($instance);
+        $instance->num_progress_reports = $this->getNumProgressReports($instance);
+
         // Return instance
         return $instance;
     }
@@ -565,5 +570,42 @@ class TaskService implements ModelServiceContract
             $task->task_status_id = $status->id;
             $task->save();
         }
+    }
+
+    public function getNumComments(Task $task)
+    {
+        return $task->comments()->count();
+    }
+
+    public function getNumReviews(Task $task)
+    {
+        // Grab logged in user
+        $user = auth()->user();
+
+        // If the user is the admin or author of the task
+        if ($user->is_admin || $task->author->id == $user->id)
+        {
+            // Return the count of all reviews
+            return $task->reviews->count();
+        }
+        // Otherwise
+        else
+        {
+            // Return the count of all public reviews
+            $out = 0;
+            foreach ($task->reviews as $review)
+            {
+                if ($review->public)
+                {
+                    $out += 1;
+                }
+            }
+            return $out;
+        }
+    }
+
+    public function getNumProgressReports(Task $task)
+    {
+        return $task->progressReports->count();
     }
 }
