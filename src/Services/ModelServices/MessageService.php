@@ -254,4 +254,34 @@ class MessageService implements ModelServiceContract
             ]
         ]);
     }
+
+    public function sendMessage(User $targetUser, string $subject, string $message, User $user = null)
+    {
+        // Grab logged in user if no user was provided
+        if (is_null($user)) $user = auth()->user();
+
+        // Create (and thereby send) the message & return it
+        return Message::create([
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => $subject,
+            "message" => $message,
+        ]);
+    }   
+
+    public function sendCustomMessage(User $targetUser, string $type, string $subject, string $message, array $data = null, User $user = null) 
+    {
+        // Grab logged in user if no user was provided
+        if (is_null($user)) $user = auth()->user();
+
+        // Create (and thereby send) the message & return it
+        return Message::create([
+            "type" => $type,
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => $subject,
+            "message" => $message,
+            "data" => $data,
+        ]);
+    }
 }

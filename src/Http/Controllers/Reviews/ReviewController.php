@@ -59,7 +59,7 @@ class ReviewController extends Controller
                 $target = [
                     "type" => __("tessify-core::reviews.type_task"),
                     "name" => $review->reviewable->title,
-                    "image_url" => asset($review->reviewable->image_url),
+                    "image_url" => asset($review->reviewable->header_image_url),
                 ];
             break;
 
@@ -67,7 +67,7 @@ class ReviewController extends Controller
                 $target = [
                     "type" => __("tessify-core::reviews.type_project"),
                     "name" => $review->reviewable->title,
-                    "image_url" => asset($review->reviewable->image_url),
+                    "image_url" => asset($review->reviewable->header_image_url),
                 ];
             break;
         }

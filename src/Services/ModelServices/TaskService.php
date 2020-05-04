@@ -10,6 +10,7 @@ use Dates;
 use Skills;
 use Projects;
 use Uploader;
+use Messages;
 use Ministries;
 use Organizations;
 use OrganizationDepartments;
@@ -418,20 +419,43 @@ class TaskService implements ModelServiceContract
         return $task;
     }
 
-    public function unassignUser(Task $task, User $user = null)
+    public function unassignUser(Task $task, string $reason = null, User $user = null)
     {
-        if (is_null($user)) $user = Auth::user();
+        // Grab logged in user if no user was provided
+        if (is_null($user)) $user = auth()->user();
 
+        // Detach the user from the task
         $task->users()->detach($user->id);
 
+        // Grab a fresh instance of the task
         $task = Task::find($task->id);
 
-        // dd($this->hasNoAssignedUsers($task), $task->users->count(), $this->hasStatus($task, "in_progress"));
+        // If this task now has no more assigned users while it was in progress
         if ($this->hasNoAssignedUsers($task) and $this->hasStatus($task, "in_progress"))
         {
+            // Revert the status of the task back to open
             $this->updateStatus($task, "open");
         }
 
+        // Send a message to the owner stating what happened
+        $subject = __("tessify-core::tasks.abandon_message_subject", [
+            "user" => $user->formatted_name,
+            "title" => $task->title,
+        ]);
+        $message = __("tessify-core::tasks.abandon_message_text", [
+            "user" => $user->formatted_name,
+            "title" => $task->title,
+            "reason" => is_null($reason) ? 
+                __("tessify-core::tasks.abandon_message_no_reason") : 
+                __("tessify-core::tasks.abandon_message_reason", [
+                    "reason" => $reason,
+                ]),
+        ]);
+        Messages::sendMessage($task->author, $subject, $message);
+        // TODO: Make this a custom message & render the subject & text dynamically based on the user's locale
+        // now the localized message is stored in the database. User won't notice until they switch locales.
+
+        // Return the updated task
         return $task;
     }
 

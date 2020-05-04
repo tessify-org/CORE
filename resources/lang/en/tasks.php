@@ -227,10 +227,16 @@ return [
     "assign_to_self_success" => "Succesfully assigned yourself this task!",
 
     "abandon_title" => "Abandon task",
-    "abandon_text" => "Are you sure you want to abandon this (:title) task?",
+    "abandon_text" => "Are you sure you want to abandon this task?",
+    "abandon_reason" => "Reason",
+    "abandon_reason_placeholder" => "Why are you leaving? This field is optional..",
     "abandon_cancel" => "No, cancel",
     "abandon_confirm" => "Yes, abandon task",
     "abandon_success" => "Succesfully abandoned this task!",
+    "abandon_message_subject" => ":user has left the :title task",
+    "abandon_message_text" => "We're sorry to inform you that :user has left the task.\n:reason",
+    "abandon_message_reason" => "The reason provided: :reason",
+    "abandon_message_no_reason" => "No reason was provided.",
 
     "completed" => "Task has been completed!",
 

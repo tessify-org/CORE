@@ -24,6 +24,8 @@ class AbandonTaskRequest extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            "reason" => "nullable",
+        ];
     }
 }

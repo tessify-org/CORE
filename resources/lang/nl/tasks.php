@@ -226,10 +226,16 @@ return [
     "assign_to_self_success" => "Je hebt de taak aan jezelf toegekend",
 
     "abandon_title" => "Uitschrijven",
-    "abandon_text" => "Weet je zeker dat je jezelf wilt uitschrijven deze (:title) taak?",
+    "abandon_text" => "Weet je zeker dat je jezelf wilt uitschrijven van dit werkpakket?",
+    "abandon_reason" => "Reden",
+    "abandon_reason_placeholder" => "Waarom wil je dit werkpakket verlaten? Dit veld is optioneel.",
     "abandon_cancel" => "Nee, annuleren",
     "abandon_confirm" => "Ja, schrijf mij uit",
     "abandon_success" => "Je hebt jezelf met success uitgeschreven",
+    "abandon_message_subject" => ":user heeft zich uitgeschreven van :title",
+    "abandon_message_text" => "Helaas heeft :user zich uitgeschreven van het werkpakket ':title'.",
+    "abandon_message_reason" => "De opgegeven reden: :reason",
+    "abandon_message_no_reason" => "Er is geen reden opgegeven.",
 
     "completed" => "Werkpakket is voltooid!",
 

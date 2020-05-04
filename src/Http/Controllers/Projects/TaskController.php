@@ -377,8 +377,18 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
-        return view("tessify-core::pages.tasks.unassign-from-self", [
+        return view("tessify-core::pages.tasks.abandon", [
             "task" => $task,
+            "strings" => collect([
+                "text" => __("tessify-core::tasks.abandon_text", ["title" => $task->title]),
+                "reason" => __("tessify-core::tasks.abandon_reason"),
+                "reason_placeholder" => __("tessify-core::tasks.abandon_reason_placeholder"),
+                "cancel" => __("tessify-core::tasks.abandon_cancel"),
+                "submit" => __("tessify-core::tasks.abandon_confirm"),
+            ]),
+            "oldInput" => collect([
+                "reason" => old("reason"),
+            ]),
         ]);
     }
 
@@ -391,7 +401,7 @@ class TaskController extends Controller
             return redirect()->route("tasks");
         }
 
-        $task = Tasks::unassignUser($task);
+        $task = Tasks::unassignUser($task, $request->reason);
         
         event(new TaskUnassigned($task));
 
