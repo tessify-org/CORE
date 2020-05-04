@@ -62,6 +62,14 @@ return [
     "view_invite_friend_dialog_submit" => "Uitnodiging sturen",
 
     "view_ask_question" => "Stel organisator een vraag",
+    "view_ask_question_dialog_title" => "Vraag stellen",
+    "view_ask_question_dialog_text" => "Stuur de organisator een bericht met je vraag.",
+    "view_ask_question_dialog_form_question" => "Vraag",
+    "view_ask_question_dialog_cancel" => "Annuleren",
+    "view_ask_question_dialog_submit" => "Verstuur bericht",
+    "view_ask_question_success_dialog_title" => "Succes!",
+    "view_ask_question_success_dialog_text" => "Je vraag is verstuurd.",
+
     "view_share_task" => "Deel dit met je netwerk",
     "view_hours" => "uur",
     "view_position" => "positie",

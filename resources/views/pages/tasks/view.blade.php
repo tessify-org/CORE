@@ -309,9 +309,12 @@
 
                                     <!-- Ask question -->
                                     <div id="ask-question">
-                                        <a href="{{ route('tasks.ask-question', $task->slug) }}" id="ask-question__link">
-                                            @lang("tessify-core::tasks.view_ask_question")
-                                        </a>
+                                        <task-ask-question-button
+                                            :task="{{ $task->toJson() }}"
+                                            :users="{{ $users->toJson() }}"
+                                            :strings="{{ $askQuestionStrings->toJson() }}"
+                                            endpoint="{{ route('tasks.ask-question.post', $task->slug) }}">
+                                        </task-ask-question-button>
                                     </div>
 
                                     <!-- Share -->

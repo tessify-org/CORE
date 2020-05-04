@@ -112,23 +112,23 @@
                     <!-- Received on -->
                     <div id="message-received-on">{{ $message->created_at->format("d-m-Y H:i:s") }}</div>
 
-                    <!-- Actions -->
-                    <div class="form-controls">
-                        <div class="form-controls__left">
-                            @if ($state == "sender")
-                                <v-btn outlined href="{{ route('messages.outbox') }}">
-                                    <i class="fas fa-arrow-left"></i>
-                                    @lang('tessify-core::messages.read_back_outbox')
-                                </v-btn>
-                            @else
-                                <v-btn outlined href="{{ route('messages') }}">
-                                    <i class="fas fa-arrow-left"></i>
-                                    @lang('tessify-core::messages.read_back_inbox')
-                                </v-btn>
-                            @endif
-                        </div>
+                </div>
+            
+                <!-- Actions -->
+                <div class="form-controls">
+                    <div class="form-controls__left">
+                        @if ($state == "sender")
+                            <v-btn outlined href="{{ route('messages.outbox') }}">
+                                <i class="fas fa-arrow-left"></i>
+                                @lang('tessify-core::messages.read_back_outbox')
+                            </v-btn>
+                        @else
+                            <v-btn outlined href="{{ route('messages') }}">
+                                <i class="fas fa-arrow-left"></i>
+                                @lang('tessify-core::messages.read_back_inbox')
+                            </v-btn>
+                        @endif
                     </div>
-
                 </div>
 
             </div>

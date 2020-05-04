@@ -203,7 +203,7 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Projects\TaskController@getInviteFriend")->name("tasks.invite");
 
         // Ask question
-        Route::post("{slug}/vraag-stellen/{userSlug?}", "Projects\TaskController@getAskQuestion")->name("tasks.ask-question");
+        Route::post("{slug}/vraag-stellen", "Projects\TaskController@postAskQuestion")->name("tasks.ask-question.post");
         
     });
 

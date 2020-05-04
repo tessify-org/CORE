@@ -62,6 +62,14 @@ return [
     "view_invite_friend_dialog_submit" => "Send invitation",
 
     "view_ask_question" => "Ask organizer a question",
+    "view_ask_question_dialog_title" => "Ask a question",
+    "view_ask_question_dialog_text" => "Send the organizer a question. They will receive a message in their inbox.",
+    "view_ask_question_dialog_form_question" => "Question",
+    "view_ask_question_dialog_cancel" => "Cancel",
+    "view_ask_question_dialog_submit" => "Ask question",
+    "view_ask_question_success_dialog_title" => "Success!",
+    "view_ask_question_success_dialog_text" => "Your question has been asked.",
+
     "view_share_task" => "Share this with your network",
     "view_hours" => "hour",
     "view_position" => "position",

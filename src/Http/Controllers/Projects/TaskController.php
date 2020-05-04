@@ -31,6 +31,7 @@ use Tessify\Core\Http\Requests\Tasks\DeleteTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\AbandonTaskRequest;
 use Tessify\Core\Http\Requests\Tasks\ReportProgressRequest;
 use Tessify\Core\Http\Requests\Tasks\ReviewProgressReportRequest;
+use Tessify\Core\Http\Requests\Tasks\AskQuestionRequest;
 
 class TaskController extends Controller
 {
@@ -67,6 +68,16 @@ class TaskController extends Controller
                 "dialog_form_user" => __("tessify-core::tasks.view_invite_friend_dialog_form_user"),
                 "dialog_cancel" => __("tessify-core::tasks.view_invite_friend_dialog_cancel"),
                 "dialog_submit" => __("tessify-core::tasks.view_invite_friend_dialog_submit")
+            ]),
+            "askQuestionStrings" => collect([
+                "button" => __("tessify-core::tasks.view_ask_question"),
+                "dialog_title" => __("tessify-core::tasks.view_ask_question_dialog_title"),
+                "dialog_text" => __("tessify-core::tasks.view_ask_question_dialog_text"),
+                "dialog_form_question" => __("tessify-core::tasks.view_ask_question_dialog_form_question"),
+                "dialog_cancel" => __("tessify-core::tasks.view_ask_question_dialog_cancel"),
+                "dialog_submit" => __("tessify-core::tasks.view_ask_question_dialog_submit"),
+                "success_dialog_title" => __("tessify-core::tasks.view_ask_question_success_dialog_title"),
+                "success_dialog_text" => __("tessify-core::tasks.view_ask_question_success_dialog_text"),
             ])
         ]);
     }
@@ -609,7 +620,7 @@ class TaskController extends Controller
         return redirect()->route("tasks.view", $task->slug);
     }
 
-    public function postAskQuestion(AskQuestionRequest $request, $slug, $userSlug = null)
+    public function postAskQuestion(AskQuestionRequest $request, $slug)
     {
         // Grab the task we want to complete
         $task = Tasks::findBySlug($slug);
@@ -618,27 +629,14 @@ class TaskController extends Controller
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
-        
-        // Make sure we received a target user
-        if (is_null($userSlug))
-        {
-            flash(__("tessify-core::messages.question_failed"))->error();
-            return redirect()->route("tasks.view", $task->slug);
-        }
 
-        // Grab the target user
-        $user = Users::findBySlug($userSlug);
-        if (!$user)
-        {
-            flash(__("tessify-core::messages.question_failed"))->error();
-            return redirect()->route("tasks.view", $task->slug);
-        }
+        // Grab currently logged in user
+        $user = Users::current();
 
         // Send ask question message
-        Messages::sendAskTaskQuestionMessage($user, $task);
+        Messages::sendAskTaskQuestionMessage($user, $task, $request->question);
 
         // Flash message and redirect back to view task page
-        flash(__("tessify-core::messages.question_asked"))->success();
-        return redirect()->route("tasks.view", $task->slug);
+        return response()->json(["status" => "success"]);
     }
 }
