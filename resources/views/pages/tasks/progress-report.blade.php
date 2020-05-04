@@ -9,6 +9,7 @@
         <div class="content-section__wrapper">
             <div class="content-section">
 
+                <!-- Progress report -->
                 <div id="progress-report">
 
                     <!-- Title -->
@@ -50,6 +51,16 @@
                                     @lang("tessify-core::tasks.progress_report_no_attachments")
                                 </div>
                             @endif
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="progress-report__field">
+                            <div class="progress-report__field-label">
+                                @lang("tessify-core::tasks.progress_report_hours_label")
+                            </div>
+                            <div class="progress-report__field-hours">
+                                {{ $report->hours }} @lang("tessify-core::tasks.progress_report_hours")
+                            </div>
                         </div>
 
                         <!-- Status complete -->

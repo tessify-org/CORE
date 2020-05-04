@@ -12,6 +12,7 @@ use Tessify\Core\Models\TaskProgressReportAttachment;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Tasks\ReportProgressRequest;
+use Tessify\Core\Http\Requests\Tasks\UpdateProgressReportRequest;
 
 class TaskProgressReportService implements ModelServiceContract
 {
@@ -129,6 +130,7 @@ class TaskProgressReportService implements ModelServiceContract
             "user_id" => Auth::user()->id,
             "task_id" => $task->id,
             "message" => $request->message,
+            "hours" => $request->hours,
             "completed" => $request->completed == "true" ? true : false,
         ]);
 
@@ -139,6 +141,16 @@ class TaskProgressReportService implements ModelServiceContract
                 "file_url" => Uploader::upload($request->attachment, "files/task_progress_reports"),
             ]);
         }
+
+        return $report;
+    }
+
+    public function updateFromRequest(TaskProgressReport $report, UpdateProgressReportRequest $request)
+    {
+        $report->message = $request->message;
+        $report->hours = $request->hours;
+        $report->completed = $request->completed == "true" ? true : false;
+        $report->save();
 
         return $report;
     }

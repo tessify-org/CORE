@@ -24,13 +24,8 @@
                         <report-task-progress-form
                             :errors="{{ $errors->toJson() }}"
                             :old-input="{{ $oldInput->toJson() }}"
-                            back-href="{{ route('tasks.view', ['slug' => $task->slug]) }}"
-                            back-text="@lang('tessify-core::tasks.report_progress_back')"
-                            submit-text="@lang('tessify-core::tasks.report_progress_submit')"
-                            message-text="@lang('tessify-core::tasks.report_progress_message')"
-                            message-placeholder-text="@lang('tessify-core::tasks.report_progress_message_placeholder')"
-                            attachment-text="@lang('tessify-core::tasks.report_progress_attachment')"
-                            completed-text="@lang('tessify-core::tasks.report_progress_completed')">
+                            :strings="{{ $strings->toJson() }}"
+                            back-href="{{ route('tasks.view', ['slug' => $task->slug]) }}">
                         </report-task-progress-form>
 
                     </form>

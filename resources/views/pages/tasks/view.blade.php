@@ -184,6 +184,12 @@
                                             <div class="task-detail__key">@lang("tessify-core::tasks.view_estimated_hours")</div>
                                             <div class="task-detail__val">{{ $task->estimated_hours }} @lang("tessify-core::tasks.view_hours")</div>
                                         </div>
+                                        @if ($task->status->name == "completed")
+                                            <div class="task-detail">
+                                                <div class="task-detail__key">@lang("tessify-core::tasks.view_realized_hours")</div>
+                                                <div class="task-detail__val">{{ $task->realized_hours }} @lang("tessify-core::tasks.view_hours")</div>
+                                            </div>
+                                        @endif
                                         <!-- Number of available positions -->
                                         <div class="task-detail">
                                             <div class="task-detail__key">@lang("tessify-core::tasks.view_number_positions")</div>

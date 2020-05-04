@@ -5,7 +5,7 @@ namespace Tessify\Core\Http\Requests\Tasks;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReportProgressRequest extends FormRequest
+class UpdateProgressReportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,6 @@ class ReportProgressRequest extends FormRequest
     {
         return [
             "message" => "required",
-            "attachment" => "nullable|file",
             "hours" => "required|integer",
             "completed" => "nullable",
         ];

@@ -14,6 +14,7 @@ class TaskProgressReport extends Model
         "user_id",
         "task_id",
         "message",
+        "hours",
         "completed",
     ];
     protected $casts = [

@@ -487,13 +487,23 @@ class TaskService implements ModelServiceContract
 
     public function complete(Task $task)
     {
+        // Calculate total number of hours spend on this task
+        $totalHours = 0;
+        foreach ($task->progressReports as $report)
+        {
+            $totalHours += $report->hours;
+        }
+        $task->realized_hours = $totalHours;
+
         // Update the task's status to completed
         $completedStatus = TaskStatuses::findByName("completed");
         if ($completedStatus)
         {
             $task->task_status_id = $completedStatus->id;
-            $task->save();
         }
+
+        // Save changes made to the task
+        $task->save();
 
         // Created 'CompletedTask' records for all of the assigned users
         foreach ($task->users as $user)

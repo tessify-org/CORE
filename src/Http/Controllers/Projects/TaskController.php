@@ -456,8 +456,18 @@ class TaskController extends Controller
             "task" => $task,
             "oldInput" => collect([
                 "message" => old("message"),
+                "hours" => old("hours"),
                 "completed" => old("completed"),
-            ])
+            ]),
+            "strings" => collect([
+                "back" => __("tessify-core::tasks.report_progress_back"),
+                "submit" => __("tessify-core::tasks.report_progress_submit"),
+                "message" => __("tessify-core::tasks.report_progress_message"),
+                "message_placeholder" => __("tessify-core::tasks.report_progress_message_placeholder"),
+                "hours" => __("tessify-core::tasks.report_progress_hours"),
+                "attachment" => __("tessify-core::tasks.report_progress_attachment"),
+                "completed" => __("tessify-core::tasks.report_progress_completed"),
+            ]),
         ]);
     }
 

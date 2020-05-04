@@ -244,6 +244,7 @@ return [
     "report_progress_message" => "Message",
     "report_progress_message_placeholder" => "Describe the work you've done and upload any required files.",
     "report_progress_attachment" => "Attachment",
+    "report_progress_hours" => "Hours",
     "report_progress_completed" => "Work is completed",
     "report_progress_success" => "Succesfully reported your progress",
 
@@ -256,6 +257,8 @@ return [
     "progress_report_attachments" => "Attachments",
     "progress_report_attachment" => "Attachment",
     "progress_report_no_attachments" => "No attachments were uploaded",
+    "progress_report_hours_label" => "Hours",
+    "progress_report_hours" => "Hours spent",
     "progress_report_completed" => "Flagged as completed",
     "progress_report_completed_text" => ":user indicated that work has now been completed",
     "progress_report_review" => "Review",
