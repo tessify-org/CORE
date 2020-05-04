@@ -4,9 +4,11 @@ namespace Tessify\Core\Http\Controllers\Projects;
 
 use Auth;
 use Tags;
+use Users;
 use Tasks;
 use Skills;
 use Projects;
+use Messages;
 use Reputation;
 use Ministries;
 use Organizations;
@@ -57,6 +59,15 @@ class TaskController extends Controller
         // Render the view task page
         return view("tessify-core::pages.tasks.view", [
             "task" => $task,
+            "users" => Users::getAllPreloaded(),
+            "inviteButtonStrings" => collect([
+                "button" => __("tessify-core::tasks.view_invite_friend"),
+                "dialog_title" => __("tessify-core::tasks.view_invite_friend_dialog_title"),
+                "dialog_text" => __("tessify-core::tasks.view_invite_friend_dialog_text"),
+                "dialog_form_user" => __("tessify-core::tasks.view_invite_friend_dialog_form_user"),
+                "dialog_cancel" => __("tessify-core::tasks.view_invite_friend_dialog_cancel"),
+                "dialog_submit" => __("tessify-core::tasks.view_invite_friend_dialog_submit")
+            ])
         ]);
     }
     
@@ -565,7 +576,7 @@ class TaskController extends Controller
         return redirect()->route("tasks.view", ["slug" => $task->slug]);
     }
 
-    public function getInviteFriend($slug)
+    public function getInviteFriend($slug, $userSlug = null)
     {
         // Grab the task we want to complete
         $task = Tasks::findBySlug($slug);
@@ -574,10 +585,31 @@ class TaskController extends Controller
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
+        
+        // Make sure we received a target user
+        if (is_null($userSlug))
+        {
+            flash(__("tessify-core::messages.invitation_failed"))->error();
+            return redirect()->route("tasks.view", $task->slug);
+        }
 
+        // Grab the target user
+        $user = Users::findBySlug($userSlug);
+        if (!$user)
+        {
+            flash(__("tessify-core::messages.invitation_failed"))->error();
+            return redirect()->route("tasks.view", $task->slug);
+        }
+
+        // Send invitation message
+        Messages::sendInviteToTaskMessage($user, $task);
+
+        // Flash message and redirect back to view task page
+        flash(__("tessify-core::messages.invitation_sent"))->success();
+        return redirect()->route("tasks.view", $task->slug);
     }
 
-    public function getAskQuestion($slug)
+    public function postAskQuestion(AskQuestionRequest $request, $slug, $userSlug = null)
     {
         // Grab the task we want to complete
         $task = Tasks::findBySlug($slug);
@@ -586,6 +618,27 @@ class TaskController extends Controller
             flash(__("tessify-core::projects.task_not_found"))->error();
             return redirect()->route("tasks");
         }
+        
+        // Make sure we received a target user
+        if (is_null($userSlug))
+        {
+            flash(__("tessify-core::messages.question_failed"))->error();
+            return redirect()->route("tasks.view", $task->slug);
+        }
 
+        // Grab the target user
+        $user = Users::findBySlug($userSlug);
+        if (!$user)
+        {
+            flash(__("tessify-core::messages.question_failed"))->error();
+            return redirect()->route("tasks.view", $task->slug);
+        }
+
+        // Send ask question message
+        Messages::sendAskTaskQuestionMessage($user, $task);
+
+        // Flash message and redirect back to view task page
+        flash(__("tessify-core::messages.question_asked"))->success();
+        return redirect()->route("tasks.view", $task->slug);
     }
 }

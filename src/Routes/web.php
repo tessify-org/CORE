@@ -200,10 +200,10 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/voltooien", "Projects\TaskController@getComplete")->name("tasks.complete");
         
         // Invite friend
-        Route::get("{slug}/iemand-uitnodingen", "Projects\TaskController@getInviteFriend")->name("tasks.invite");
+        Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Projects\TaskController@getInviteFriend")->name("tasks.invite");
 
         // Ask question
-        Route::get("{slug}/vraag-stellen", "Projects\TaskController@getAskQuestion")->name("tasks.ask-question");
+        Route::post("{slug}/vraag-stellen/{userSlug?}", "Projects\TaskController@getAskQuestion")->name("tasks.ask-question");
         
     });
 

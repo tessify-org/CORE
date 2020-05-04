@@ -72,6 +72,35 @@ return [
     "request_action_accept" => "Accept",
     "request_action_deny" => "Reject",
     "request_accepted" => "You have accepted this request.",
-    "request_rejeceted" => "You have rejected this request.",
+    "request_rejected" => "You have rejected this request.",
+
+    //
+    // Invites
+    //
+
+    "project_invite_subject" => "Invitation for project",
+    "project_invite_message" => "You have been invited by :user to join the :project project.",
+    "project_invite_button" => "View project",
+
+    "task_invite_subject" => "Invitiation for task",
+    "task_invite_message" => "You have been invited by :user to join the :task task.",
+    "task_invite_button" => "View task",
+
+    "invitation_sent" => "Invitation has been sent!",
+    "invitation_failed" => "Failed to send invitation.",
+
+
+    //
+    // Questions
+    //
+
+    "ask_project_question_subject" => "Question about project",
+    "ask_project_question_message" => ":user has asked you the following question regarding the <strong>:project</strong> project: ':question'.",
+
+    "ask_task_question_subject" => "Question about task",
+    "ask_task_question_message" => ":user has asked you the following question regarding the <strong>:task</strong> task: ':question'.",
+    
+    "question_asked" => "Question has been asked!",
+    "question_failed" => "Failed to ask question.",
 
 ];

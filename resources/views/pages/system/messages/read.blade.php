@@ -28,6 +28,7 @@
 
                     <!-- Details -->
                     <div id="message-details">
+                        <!-- Receiver / Sender -->
                         @if ($state == "sender")
                             <!-- Sent to -->
                             <div class="message-detail">
@@ -83,6 +84,28 @@
                                     </div>
                                 </div>
                             @endif
+                        @endif
+                        <!-- Invitation to task -->
+                        @if ($message->type == "invite_to_task")
+                            <div id="invitation">
+                                <div id="invitation-action">
+                                    <v-btn large color="primary" href="{{ route('tasks.view', $message->data['task_slug']) }}">
+                                        <i class="fas fa-eye"></i>
+                                        @lang("tessify-core::messages.task_invite_button")
+                                    </v-btn>
+                                </div>
+                            </div>
+                        @endif
+                        <!-- Invitation to project -->
+                        @if ($message->type == "invite_to_project")
+                            <div id="invitation">
+                                <div id="invitation-action">
+                                    <v-btn large color="primary" href="{{ route('projects.view', $message->data['project_slug']) }}">
+                                        <i class="fas fa-eye"></i>
+                                        @lang("tessify-core::messages.project_invite_button")
+                                    </v-btn>
+                                </div>
+                            </div>
                         @endif
                     </div>
 

@@ -52,9 +52,15 @@ return [
     "view_awaiting_progress_title" => "Reporting progress",
     "view_awaiting_progress_text" => "Have you made progress?",
     "view_awaiting_progress_button" => "Report your progress",
-
     "view_part_of_project" => "Part of the <strong>:title</strong> project.",
+
     "view_invite_friend" => "Invite a friend",
+    "view_invite_friend_dialog_title" => "Invite a friend",
+    "view_invite_friend_dialog_text" => "Send your friend or colleague an invitation to join this task.",
+    "view_invite_friend_dialog_form_user" => "User",
+    "view_invite_friend_dialog_cancel" => "Cancel",
+    "view_invite_friend_dialog_submit" => "Send invitation",
+
     "view_ask_question" => "Ask organizer a question",
     "view_share_task" => "Share this with your network",
     "view_hours" => "hour",

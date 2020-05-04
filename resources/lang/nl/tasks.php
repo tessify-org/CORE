@@ -52,9 +52,15 @@ return [
     "view_awaiting_progress_title" => "Progressie rapporteren",
     "view_awaiting_progress_text" => "Heb je progressie gemaakt?",
     "view_awaiting_progress_button" => "Rapporteer je progressie",
-
     "view_part_of_project" => "Onderdeel van het <strong>:title</strong> project.",
+    
     "view_invite_friend" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_title" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_text" => "Stuur een vriend of collega een uitnodiging om zich in te schrijven voor dit werkpakket.",
+    "view_invite_friend_dialog_form_user" => "Gebruiker",
+    "view_invite_friend_dialog_cancel" => "Annuleren",
+    "view_invite_friend_dialog_submit" => "Uitnodiging sturen",
+
     "view_ask_question" => "Stel organisator een vraag",
     "view_share_task" => "Deel dit met je netwerk",
     "view_hours" => "uur",

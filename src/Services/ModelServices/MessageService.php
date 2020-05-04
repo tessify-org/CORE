@@ -5,6 +5,8 @@ namespace Tessify\Core\Services\ModelServices;
 use Auth;
 use Users;
 use App\Models\User;
+use Tessify\Core\Models\Task;
+use Tessify\Core\Models\Project;
 use Tessify\Core\Models\Message;
 use Tessify\Core\Models\ViewEmailRequest;
 use Tessify\Core\Traits\ModelServiceGetters;
@@ -171,6 +173,84 @@ class MessageService implements ModelServiceContract
                 "uuid" => $request->uuid,
                 "request_processed" => false,
                 "request_accepted" => null,
+            ]
+        ]);
+    }
+
+    public function sendInviteToProjectMessage(User $targetUser, Project $targetProject, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        return Message::create([
+            "type" => "invite_to_project",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::messages.project_invite_subject"),
+            "message" => __("tessify-core::messages.project_invite_message", [
+                "user" => $user->formatted_name,
+                "project" => $targetProject->title,
+            ]),
+            "data" => [
+                "project_slug" => $targetProject->slug,
+            ]
+        ]);
+    }
+
+    public function sendInviteToTaskMessage(User $targetUser, Task $targetTask, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+
+        return Message::create([
+            "type" => "invite_to_task",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::messages.task_invite_subject"),
+            "message" => __("tessify-core::messages.task_invite_message", [
+                "user" => $user->formatted_name,
+                "task" => $targetTask->title,
+            ]),
+            "data" => [
+                "task_slug" => $targetTask->slug,
+            ],
+        ]);
+    }
+
+    public function sendAskProjectQuestionMessage(User $targetUser, Project $targetProject, string $question, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+        
+        return Message::create([
+            "type" => "project_question",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::messages.ask_project_question_subject"),
+            "message" => __("tessify-core::messages.ask_project_question_message", [
+                "user" => $user->formatted_name,
+                "project" => $targetProject->title,
+                "question" => $question,
+            ]),
+            "data" => [
+                "project_id" => $targetProject->id,
+            ]
+        ]);
+    }
+
+    public function sendAskTaskQuestionMessage(User $targetUser, Task $targetTask, string $question, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+        
+        return Message::create([
+            "type" => "task_question",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::messages.ask_task_question_subject"),
+            "message" => __("tessify-core::messages.ask_task_question_message", [
+                "user" => $user->formatted_name,
+                "task" => $targetTask->title,
+                "question" => $question
+            ]),
+            "data" => [
+                "task_id" => $targetTask->id,
             ]
         ]);
     }

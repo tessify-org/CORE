@@ -72,6 +72,34 @@ return [
     "request_action_accept" => "Accepteren",
     "request_action_deny" => "Afwijzen",
     "request_accepted" => "Je hebt dit verzoek geaccepteerd.",
-    "request_rejeceted" => "Je hebt dit verzoek afgewezen.",
+    "request_rejected" => "Je hebt dit verzoek afgewezen.",
+
+    //
+    // Invites
+    //
+
+    "project_invite_subject" => "Uitnodiging voor project",
+    "project_invite_message" => "Je bent uitgenodigd door :user om deel te nemen aan het <strong>:project</strong> project.",
+    "project_invite_button" => "Bekijk project",
+
+    "task_invite_subject" => "Uitnodiging voor werkpakket",
+    "task_invite_message" => "Je bent uitgenodigd door :user om deel te nemen aam het <strong>:task</strong> werkpakket.",
+    "task_invite_button" => "Bekijk werkpakket",
+
+    "invitation_sent" => "De uitnodiging is verstuurd!",
+    "invitation_failed" => "Uitnodiging versturen is mislukt.",
+
+    //
+    // Questions
+    //
+
+    "ask_project_question_subject" => "Vraag over project",
+    "ask_project_question_message" => ":user heeft de volgende vraag over het :project project: ':question'.",
+
+    "ask_task_question_subject" => "Vraag over werkpakket",
+    "ask_task_question_message" => ":user heeft de volgende vraag over het :task werkpakket: ':question'.",
+
+    "question_asked" => "De vraag is gesteld!",
+    "question_failed" => "Vraag stellen is mislukt.",
 
 ];

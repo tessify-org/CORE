@@ -137,6 +137,8 @@
 
                     <!-- Task information -->
                     <div id="task" class="elevation-2">
+
+                        <!-- Header -->
                         <div id="task-header">
                             <div id="task-header__bg" style="background-image: url({{ asset($task->header_image_url) }})"></div>
                             <div id="task-header__bg-overlay"></div>
@@ -146,6 +148,8 @@
                                 @endif
                             </div>
                         </div>
+
+                        <!-- Content -->
                         <div id="task-content">
                         
                             <!-- Content header -->
@@ -294,9 +298,12 @@
                                         </div>
                                         <div class="secondary-action">
                                             <!-- Invite friend button -->
-                                            <v-btn block href="{{ route('tasks.invite', $task->slug) }}" small depressed>
-                                                @lang("tessify-core::tasks.view_invite_friend")
-                                            </v-btn>
+                                            <task-invite-button
+                                                :task="{{ $task->toJson() }}"
+                                                :users="{{ $users->toJson() }}"
+                                                :strings="{{ $inviteButtonStrings->toJson() }}"
+                                                endpoint="{{ route('tasks.invite', $task->slug) }}">
+                                            </task-invite-button>
                                         </div>
                                     </div>
 
