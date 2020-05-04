@@ -129,6 +129,14 @@
                             </v-btn>
                         @endif
                     </div>
+                    @if ($state == "receiver")
+                        <div class="form-controls__right">
+                            <v-btn color="primary" href="{{ route('messages.send', $message->uuid) }}">
+                                <i class="fas fa-paper-plane"></i>
+                                @lang("tessify-core::messages.read_reply")
+                            </v-btn>
+                        </div>
+                    @endif
                 </div>
 
             </div>

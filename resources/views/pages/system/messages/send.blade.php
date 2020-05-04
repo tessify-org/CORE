@@ -29,6 +29,7 @@
                                 :users="{{ $users->toJson() }}"
                                 :errors="{{ $errors->toJson() }}"
                                 :old-input="{{ $oldInput->toJson() }}"
+                                :reply-to="{{ !is_null($replyTo) ? $replyTo->toJson() : json_encode(null) }}"
                                 user-text="@lang('tessify-core::messages.send_user')"
                                 subject-text="@lang('tessify-core::messages.send_subject')"
                                 message-text="@lang('tessify-core::messages.send_message')"

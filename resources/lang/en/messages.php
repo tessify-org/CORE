@@ -64,6 +64,7 @@ return [
     "read_message" => "Message",
     "read_back_inbox" => "Back to inbox",
     "read_back_outbox" => "Back to outbox",
+    "read_reply" => "Reply",
 
     //
     // Requests

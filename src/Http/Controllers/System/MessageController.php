@@ -29,7 +29,7 @@ class MessageController extends Controller
         $replyTo = null;
         if (!is_null($uuid))
         {
-            $message = Messages::findByUuid($uuid);
+            $message = Messages::findPreloadedByUuid($uuid);
             if ($message) $replyTo = $message;
         }
 
