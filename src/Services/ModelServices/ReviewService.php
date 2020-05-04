@@ -133,6 +133,7 @@ class ReviewService implements ModelServiceContract
             "reviewable_id" => $target->id,
             "rating" => $request->rating,
             "message" => $request->message,
+            "public" => $request->public === "true" ? true : false,
         ]);
     }
 
@@ -141,6 +142,7 @@ class ReviewService implements ModelServiceContract
         // Update the review
         $review->rating = $review->rating;
         $review->message = $review->message;
+        $review->public = $request->public === "true" ? true : false;
         $review->save();
 
         // Return the review

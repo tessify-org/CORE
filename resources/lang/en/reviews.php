@@ -39,6 +39,7 @@ return [
     "view_title" => "My review",
     "view_rating" => "Rating",
     "view_message" => "Statement",
+    "view_public" => "Publicly shared",
     "view_back" => "Back to my reviews",
     "view_update" => "Update",
     "view_delete" => "Delete",
@@ -57,6 +58,7 @@ return [
     "form_rating" => "Rating",
     "form_message" => "Message",
     "form_message_hint" => "Explain your rating; how have you experienced the cooperation and everything involved?",
+    "form_public" => "Share publicly",
 
     "delete_title" => "Delete review",
     "delete_text" => "Are you sure you want to delete this review?",

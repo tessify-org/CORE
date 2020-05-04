@@ -40,6 +40,18 @@
                         <div id="review-message__label">@lang("tessify-core::reviews.view_message")</div>
                         <div id="review-message__value">{!! nl2br($review->message) !!}</div>
                     </div>
+                    
+                    <!-- Public -->
+                    <div id="review-public">
+                        <div id="review-public__label">@lang("tessify-core::reviews.view_public")</div>
+                        <div id="review-public__value">
+                            @if ($review->public)
+                                @lang("tessify-core::general.yes")
+                            @else
+                                @lang("tessify-core::general.no")
+                            @endif
+                        </div>
+                    </div>
 
                 </div>
 

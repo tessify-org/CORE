@@ -17,6 +17,10 @@ class Review extends Model
         "reviewable_id",
         "rating",
         "message",
+        "public",
+    ];
+    protected $casts = [
+        "public" => "boolean",
     ];
     
     //

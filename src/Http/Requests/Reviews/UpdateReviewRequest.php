@@ -26,6 +26,7 @@ class UpdateReviewRequest extends FormRequest
         return [
             "rating" => "required",
             "message" => "required",
+            "public" => "required",
         ];
     }
 }

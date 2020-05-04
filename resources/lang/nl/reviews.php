@@ -39,6 +39,7 @@ return [
     "view_title" => "Mijn review",
     "view_rating" => "Beoordeling",
     "view_message" => "Verantwoording",
+    "view_public" => "Publiekelijk gedeeld",
     "view_back" => "Terug naar mijn reviews",
     "view_update" => "Aanpassen",
     "view_delete" => "Verwijderen",
@@ -57,6 +58,7 @@ return [
     "form_rating" => "Beoordeling",
     "form_message" => "Bericht",
     "form_message_hint" => "Verklaar je beoordeling; hoe heb jij de samenwerking en alles wat daarbij kwam kijken ervaren?",
+    "form_public" => "Publiekelijk delen",
     
     "delete_title" => "Review verwijderen",
     "delete_text" => "Weet je zeker dat je deze review wilt verwijderen?",

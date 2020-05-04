@@ -97,11 +97,13 @@ class ReviewController extends Controller
             "oldInput" => collect([
                 "rating" => old("rating"),
                 "message" => old("message"),
+                "public" => old("public"),
             ]),
             "strings" => collect([
                 "rating" => __("tessify-core::reviews.form_rating"),
                 "message" => __("tessify-core::reviews.form_message"),
                 "message_hint" => __("tessify-core::reviews.form_message_hint"),
+                "public" => __("tessify-core::reviews.form_public"),
                 "cancel" => __("tessify-core::reviews.create_cancel"),
                 "submit" => __("tessify-core::reviews.create_submit"),
             ]),
@@ -137,10 +139,13 @@ class ReviewController extends Controller
             "oldInput" => collect([
                 "rating" => old("rating"),
                 "message" => old("message"),
+                "public" => old("public"),
             ]),
             "strings" => collect([
                 "rating" => __("tessify-core::reviews.form_rating"),
                 "message" => __("tessify-core::reviews.form_message"),
+                "message_hint" => __("tessify-core::reviews.form_message_hint"),
+                "public" => __("tessify-core::reviews.form_public"),
                 "cancel" => __("tessify-core::reviews.update_cancel"),
                 "submit" => __("tessify-core::reviews.update_submit"),
             ]),

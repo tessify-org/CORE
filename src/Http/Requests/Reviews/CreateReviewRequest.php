@@ -26,6 +26,7 @@ class CreateReviewRequest extends FormRequest
         return [
             "rating" => "required",
             "message" => "required",
+            "public" => "required",
         ];
     }
 }
