@@ -63,7 +63,40 @@ return [
     // View project
     // 
 
+    "view_title" => "Project",
     "view_description" => "Projectomschrijving",
+    "view_join" => "Aanmelden",
+    "view_join_disabled_closed" => "Dit project is gesloten",
+    "view_leave" => "Verlaten",
+    "view_share_project" => "Delen met je netwerk",
+
+    "view_invite_friend" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_title" => "Vriend uitnodigen",
+    "view_invite_friend_dialog_text" => "Stuur een vriend of collega een uitnodiging om zich aan te melden voor dit project.",
+    "view_invite_friend_dialog_form_user" => "Gebruiker",
+    "view_invite_friend_dialog_cancel" => "Annuleren",
+    "view_invite_friend_dialog_submit" => "Uitnodiging sturen",
+
+    "view_ask_question" => "Stel organisator een vraag",
+    "view_ask_question_dialog_title" => "Vraag stellen",
+    "view_ask_question_dialog_text" => "Stuur de organisator een bericht met je vraag.",
+    "view_ask_question_dialog_form_question" => "Vraag",
+    "view_ask_question_dialog_cancel" => "Annuleren",
+    "view_ask_question_dialog_submit" => "Verstuur bericht",
+    "view_ask_question_success_dialog_title" => "Succes!",
+    "view_ask_question_success_dialog_text" => "Je vraag is verstuurd.",
+
+    "view_ownership" => "Eigenaarschap",
+    "view_status" => "Status",
+    "view_team_members" => "Teamleden",
+    "view_no_team_members" => "Dit project heeft nog geen teamleden.",
+    "view_links" => "Links",
+    "view_link_resources" => "Hulpmiddelen",
+    "view_link_roles" => "Team rollen",
+    "view_link_reviews" => "Recensies",
+    "view_link_comments" => "Commentaar",
+
+
     "view_owner" => "Eigenaar",
     "view_details" => "Details",
     "view_resources" => "Bijlagen",
@@ -74,9 +107,9 @@ return [
     "view_end_date" => "Eind datum",
     "view_created_at" => "Toegevoegd op",
     "view_updated_at" => "Laatst geupdate op",
-    "view_status" => "Status",
     "view_ministry" => "Ministerie",
     "view_project_code" => "Project code",
+    "view_deadline" => "Deadline",
     "view_budget" => "Budget",
     "view_actions" => "Acties",
     "view_subscribe" => "Volgen",

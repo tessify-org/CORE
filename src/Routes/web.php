@@ -89,6 +89,21 @@ Route::group(["middleware" => "auth"], function() {
         // View
         Route::get("{slug}", "Projects\ProjectController@getView")->name("projects.view");
 
+        // View --> Ask question
+        Route::post("{slug}/vraag-stellen", "Projects\ProjectController@postAskQuestion")->name("projects.ask-question.post");
+        
+        // View --> Invite friend
+        Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Projects\ProjectController@getInviteFriend")->name("projects.invite");
+        
+        // View --> Resources
+
+        // View --> Team roles
+        
+        // View --> Comments
+
+        // View --> Reviews
+
+
         // Edit
         Route::get("{slug}/aanpassen", "Projects\ProjectController@getEdit")->name("projects.edit");
         Route::post("{slug}/aanpassen", "Projects\ProjectController@postEdit")->name("projects.edit.post");

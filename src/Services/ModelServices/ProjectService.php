@@ -58,32 +58,14 @@ class ProjectService implements ModelServiceContract
 
         // Load the project's resources
         $instance->resources = ProjectResources::getAllPreloadedForProject($instance);
-
-        // Load the project's team roles
         $instance->team_roles = TeamRoles::getAllPreloadedForProject($instance);
-
-        // Load the project's status
         $instance->status = ProjectStatuses::findForProject($instance);
-
-        // Load the project's author
         $instance->author = Users::findAuthorForProject($instance);
-
-        // Load the project's category
         $instance->category = ProjectCategories::findForProject($instance);
-
-        // Load the project's work method
         $instance->work_method = WorkMethods::findForProject($instance);
-
-        // Load project's phase
         $instance->phase = ProjectPhases::findForProject($instance);
-
-        // Load the project's team member applications
         $instance->team_member_applications = TeamMemberApplications::getAllForProject($instance);
-
-        // Load project's tasks
         $instance->tasks = Tasks::getAllForProject($instance);
-
-        // Load project's tags
         $instance->tags = Tags::getAllForProject($instance);
 
         // Load ownership relationships
@@ -99,6 +81,14 @@ class ProjectService implements ModelServiceContract
 
         // View page's href
         $instance->view_href = route("projects.view", $instance->slug);
+
+        // Determine if logged in user is a team member
+        $instance->is_team_member = $this->isTeamMember($instance);
+
+        // Get relationship counts for view task page (sidebar)
+        $instance->num_reviews = $this->getNumReviews($instance);
+        $instance->num_comments = $this->getNumComments($instance);
+        $instance->num_resources = count($instance->resources);
 
         // Return the upgraded project
         return $instance;
@@ -554,5 +544,37 @@ class ProjectService implements ModelServiceContract
             });
 
         return $projects;
+    }
+
+    public function getNumComments(Project $project)
+    {
+        return $project->comments()->count();
+    }
+
+    public function getNumReviews(Project $project)
+    {
+        // Grab logged in user
+        $user = auth()->user();
+
+        // If the user is the admin or author of the project
+        if ($user->is_admin || $project->author->id == $user->id)
+        {
+            // Return the count of all reviews
+            return $project->reviews->count();
+        }
+        // Otherwise
+        else
+        {
+            // Return the count of all public reviews
+            $out = 0;
+            foreach ($project->reviews as $review)
+            {
+                if ($review->public)
+                {
+                    $out += 1;
+                }
+            }
+            return $out;
+        }
     }
 }

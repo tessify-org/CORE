@@ -10,19 +10,21 @@ use Comments;
 use Projects;
 use Reputation;
 use Ministries;
-use Organizations;
-use OrganizationDepartments;
 use WorkMethods;
+use Organizations;
+use ReviewRequests;
 use ProjectPhases;
 use ProjectStatuses;
 use ProjectResources;
 use ProjectCategories;
+use OrganizationDepartments;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Events\User\UserFollowsProject;
 use Tessify\Core\Events\User\UserUnfollowsProject;
 use Tessify\Core\Http\Requests\Projects\CreateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\UpdateProjectRequest;
 use Tessify\Core\Http\Requests\Projects\DeleteProjectRequest;
+use Tessify\Core\Http\Requests\Projects\AskQuestionRequest;
 
 class ProjectController extends Controller
 {
@@ -55,10 +57,32 @@ class ProjectController extends Controller
         // Render the view project page
         return view("tessify-core::pages.projects.view", [
             "project" => $project,
+            "users" => Users::getAllPreloaded(),
+            "userHasPendingReviewRequest" => ReviewRequests::hasOutstandingRequestsFor($project),
+            "inviteButtonStrings" => collect([
+                "button" => __("tessify-core::projects.view_invite_friend"),
+                "dialog_title" => __("tessify-core::projects.view_invite_friend_dialog_title"),
+                "dialog_text" => __("tessify-core::projects.view_invite_friend_dialog_text"),
+                "dialog_form_user" => __("tessify-core::projects.view_invite_friend_dialog_form_user"),
+                "dialog_cancel" => __("tessify-core::projects.view_invite_friend_dialog_cancel"),
+                "dialog_submit" => __("tessify-core::projects.view_invite_friend_dialog_submit")
+            ]),
+            "askQuestionStrings" => collect([
+                "button" => __("tessify-core::projects.view_ask_question"),
+                "dialog_title" => __("tessify-core::projects.view_ask_question_dialog_title"),
+                "dialog_text" => __("tessify-core::projects.view_ask_question_dialog_text"),
+                "dialog_form_question" => __("tessify-core::projects.view_ask_question_dialog_form_question"),
+                "dialog_cancel" => __("tessify-core::projects.view_ask_question_dialog_cancel"),
+                "dialog_submit" => __("tessify-core::projects.view_ask_question_dialog_submit"),
+                "success_dialog_title" => __("tessify-core::projects.view_ask_question_success_dialog_title"),
+                "success_dialog_text" => __("tessify-core::projects.view_ask_question_success_dialog_text"),
+            ]),
+
             "user" => Users::current(),
             "author" => Projects::getAuthor($project),
             "resources" => Projects::getResources($project),
             "comments" => Comments::getAllPreloadedForProject($project),
+            
         ]);
     }
 
@@ -348,5 +372,58 @@ class ProjectController extends Controller
         // Flash message & redirect to view
         flash(__("tessify-core::projects.view_subscribed"))->success();
         return redirect()->route("projects.view", $slug);
+    }
+
+    public function getInviteFriend($slug, $userSlug = null)
+    {
+        // Grab the task we want to complete
+        $project = Projects::findBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+        
+        // Make sure we received a target user
+        if (is_null($userSlug))
+        {
+            flash(__("tessify-core::messages.invitation_failed"))->error();
+            return redirect()->route("projects.view", $project->slug);
+        }
+
+        // Grab the target user
+        $user = Users::findBySlug($userSlug);
+        if (!$user)
+        {
+            flash(__("tessify-core::messages.invitation_failed"))->error();
+            return redirect()->route("projects.view", $project->slug);
+        }
+
+        // Send invitation message
+        Messages::sendInviteToProjectMessage($user, $project);
+
+        // Flash message and redirect back to view task page
+        flash(__("tessify-core::messages.invitation_sent"))->success();
+        return redirect()->route("projects.view", $project->slug);
+    }
+
+    public function postAskQuestion(AskQuestionRequest $request, $slug)
+    {
+        // Grab the task we want to complete
+        $project = Projects::findBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        // Grab currently logged in user
+        $user = Users::current();
+
+        // Send ask question message
+        Messages::sendAskProjectQuestionMessage($user, $project, $request->question);
+
+        // Flash message and redirect back to view task page
+        return response()->json(["status" => "success"]);
     }
 }

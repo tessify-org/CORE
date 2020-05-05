@@ -5,245 +5,246 @@
 @stop
 
 @section("content")
-    <div id="project">
+    <div class="content-section__wrapper">
+        <div class="content-section">
 
-        <!-- Header -->
-        <div id="project-header" style="background-image: url({{ asset($project->header_image_url) }});">
-            <div id="project-header__overlay"></div>
-            <div id="project-header__content" class="content-section">
+            <!-- Feedback -->
+            @include("tessify-core::partials.feedback")
 
-                <div id="project-header__actions">
-                    @if (!Auth::user()->hasSubscribed($project))
-                        <v-btn href="{{ route('projects.subscribe', $project->slug) }}">
-                            <i class="fas fa-check-circle"></i>
-                            @lang("tessify-core::projects.view_subscribe")
-                        </v-btn>
-                    @else
-                        <v-btn href="{{ route('projects.unsubscribe', $project->slug) }}">
-                            <i class="fas fa-times-circle"></i>
-                            @lang("tessify-core::projects.view_unsubscribe")
-                        </v-btn>
-                    @endif
+            <!-- View project -->
+            <div id="view-project">
+                <div id="view-project__sidebar">
+
+                    @include("tessify-core::partials.projects.view-sidebar", [
+                        "project" => $project,
+                    ])
+
                 </div>
+                <div id="view-project__content">
 
-                <div id="project-header__text">
-                    <h1 id="project-header__title">{{ $project->title }}</h1>
-                    <h2 id="project-header__slogan">{{ $project->slogan }}</h2>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Content -->
-        <div id="project-content" class="content-section__wrapper">
-            <div class="content-section pt50">
-
-                <!-- Feedback -->
-                @include("tessify-core::partials.feedback")
-
-                <!-- Navigation -->
-                @include("tessify-core::partials.projects.navigation", [
-                    "page" => "info",
-                    "project" => $project,                    
-                ])
-
-                <!-- Project information -->
-                <div id="project-info">
-
-                    <!-- Main content -->
-                    <div id="project-info__main">
-
-                        <!-- Description -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_description")</h3>
-                            <div id="project-description">
-                                {!! nl2br($project->description) !!}
+                    <!-- Project information -->
+                    <div id="project" class="elevation-2">
+                        <!-- Header -->
+                        <div id="project-header">
+                            <div id="project-header__bg" style="background-image: url({{ asset($project->header_image_url) }})"></div>
+                            <div id="project-header__bg-overlay"></div>
+                            <div id="project-header__text">
+                                <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
+                                <h2 id="project-subtitle">{{ $project->slogan }}</h2>
                             </div>
                         </div>
+                        <!-- Content -->
+                        <div id="project-content">
+                            <!-- Content header -->
+                            <div id="project-content__header">
+                                <div id="project-content__header-left">
+                                    <!-- Project title -->
+                                    <h1 id="project-content__header-title">{{ $project->title }}</h1>
+                                    <!-- Tags -->
+                                    @if (count($project->tags))
+                                        <div id="project-tags" class="tags">
+                                            @foreach ($project->tags as $tag)       
+                                                <div class="tag-wrapper">
+                                                    <div class="tag">
+                                                        {{ $tag->name }}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    <!-- Details -->
+                                    <div id="project-details">
+                                        <!-- Category -->
+                                        <div class="project-detail">
+                                            <div class="project-detail__key">@lang("tessify-core::projects.view_category")</div>
+                                            <div class="project-detail__val">{{ $project->category->label }}</div>
+                                        </div>
+                                        <!-- Deadline -->
+                                        @if ($project->has_deadline)
+                                            <div class="project-detail">
+                                                <div class="project-detail__key">@lang("tessify-core::projects.view_deadline")</div>
+                                                <div class="project-detail__val">{{ $project->ends_at->format("d-m-Y H:m:s") }}</div>
+                                            </div>
+                                        @endif
+                                        <!-- Budget -->
+                                        @if ($project->budget > 0)
+                                            <div class="project-detail">
+                                                <div class="project-detail__key">@lang("tessify-core::projects.view_budget")</div>
+                                                <div class="project-detail__val">&euro; {{ number_format($project->budget, 2) }}</div>
+                                            </div>
+                                        @endif
+                                        <!-- Project code -->
+                                        @if (!is_null($project->project_code))
+                                            <div class="project-detail">
+                                                <div class="project-detail__key">@lang("tessify-core::projects.view_project_code")</div>
+                                                <div class="project-detail__val">{{ $project->project_code }}</div>
+                                            </div>
+                                        @endif
+                                        <!-- -->
+                                        <!-- <div class="project-detail">
+                                            <div class="project-detail__key"></div>
+                                            <div class="project-detail__val"></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div id="project-content__header-right">
+                                    <!-- Join & Leave -->
+                                    <div id="primary-action">
+                                        
+                                        <!-- Project has been closed -->
+                                        @if ($project->status->name == "closed")
 
-                        <!-- Tags -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">@lang("tessify-core::projects.view_tags")</h3>
-                            @if ($project->tags()->count())
-                                <div id="project-tags">
-                                    @foreach ($project->tags as $tag)
-                                        <div class="project-tag__wrapper">
-                                            <div class="project-tag">
-                                                {{ $tag->name }}
+                                            <!-- Disabled join button -->
+                                            <v-tooltip top>
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn color="primary" depressed block disabled v-on="on">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                        @lang("tessify-core::projects.view_join")
+                                                    </v-btn>
+                                                </template>
+                                                <span>@lang("tessify-core::projects.view_join_disabled_closed")</span>
+                                            </v-tooltip>
+
+                                        <!-- Project is open -->
+                                        @else
+
+                                            <!-- User is team member -->
+                                            @if ($project->is_team_member)
+
+                                                <!-- Leave button -->
+                                                <v-btn color="red" href="{{ route('projects.team.leave', $project->slug) }}" depressed block dark>
+                                                    <i class="fas fa-door-open"></i>
+                                                    @lang("tessify-core::projects.view_leave")
+                                                </v-btn>
+
+                                            <!-- User is not a team member -->
+                                            @else
+                                                
+                                                <!-- Join button -->
+                                                <v-btn color="primary" href="{{ route('projects.team.apply', $project->slug) }}" depressed block>
+                                                    <i class="far fa-thumbs-up"></i>
+                                                    @lang("tessify-core::projects.view_join")
+                                                </v-btn>
+
+                                            @endif
+
+                                        @endif
+
+                                    </div>
+                                    <!-- Follow & Invite -->
+                                    <div id="secondary-actions">
+                                        <div class="secondary-action">
+                                            @if (!Auth::user()->hasSubscribed($project))
+                                                <!-- Follow button -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-btn href="{{ route('projects.subscribe', ['slug' => $project->slug]) }}" class="icon-only" small depressed v-on="on">
+                                                            <i class="far fa-eye"></i>
+                                                        </v-btn>
+                                                    </template>
+                                                    <span>@lang("tessify-core::projects.view_subscribe")</span>
+                                                </v-tooltip>
+                                            @else
+                                                <!-- Unfollow button -->
+                                                <v-tooltip bottom>
+                                                    <template v-slot:activator="{ on }">
+                                                        <v-btn href="{{ route('projects.unsubscribe', ['slug' => $project->slug]) }}" class="icon-only" small depressed v-on="on">
+                                                            <i class="fas fa-eye-slash"></i>
+                                                        </v-btn>
+                                                    </template>
+                                                    <span>@lang("tessify-core::projects.view_unsubscribe")</span>
+                                                </v-tooltip>
+                                            @endif
+                                        </div>
+                                        <div class="secondary-action">
+                                            <!-- Invite friend button -->
+                                            <project-invite-button
+                                                :project="{{ $project->toJson() }}"
+                                                :users="{{ $users->toJson() }}"
+                                                :strings="{{ $inviteButtonStrings->toJson() }}"
+                                                endpoint="{{ route('projects.invite', $project->slug) }}">
+                                            </project-invite-button>
+                                        </div>
+                                    </div>
+                                    <!-- Ask question -->
+                                    <div id="ask-question">
+                                        <project-ask-question-button
+                                            :project="{{ $project->toJson() }}"
+                                            :users="{{ $users->toJson() }}"
+                                            :strings="{{ $askQuestionStrings->toJson() }}"
+                                            endpoint="{{ route('projects.ask-question.post', $project->slug) }}">
+                                        </project-ask-question-button>
+                                    </div>
+                                    <!-- Share -->
+                                    <div id="share-project">
+                                        <div id="share-project__text">@lang("tessify-core::projects.view_share_project")</div>
+                                        <div id="share-project__socials">
+                                            <!-- Facebook -->
+                                            <div class="social-wrapper">
+                                                <a class="social" href="#">
+                                                    <i class="fab fa-facebook-square"></i>
+                                                </a>
+                                            </div>
+                                            <!-- Twitter -->
+                                            <div class="social-wrapper">
+                                                <a class="social" href="#">
+                                                    <i class="fab fa-twitter-square"></i>
+                                                </a>
+                                            </div>
+                                            <!-- LinkedIn -->
+                                            <div class="social-wrapper">
+                                                <a class="social" href="#">
+                                                    <i class="fab fa-linkedin"></i>
+                                                </a>
+                                            </div>
+                                            <!-- WhatsApp -->
+                                            <div class="social-wrapper">
+                                                <a class="social" href="#">
+                                                    <i class="fab fa-whatsapp-square"></i>
+                                                </a>
+                                            </div>
+                                            <!-- E-mail -->
+                                            <div class="social-wrapper">
+                                                <a class="social" href="#">
+                                                    <i class="fas fa-envelope-square"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
                                 </div>
-                            @else
-                                <div id="no-project-tags">
-                                    @lang("tessify-core::projects.view_no_tags")
-                                </div>
-                            @endif
-                        </div>
-
-                        <!-- Resources -->
-                        @if ($resources->count())
-                            <div class="content-box elevation-1">
-                                <h3 class="content-subtitle">@lang("tessify-core::projects.view_resources")</h3>
-                                <project-resource-list
-                                    :resources="{{ $resources->toJson() }}"
-                                    empty-text="@lang('tessify-core::projects.view_no_resources')">
-                                </project-resource-list>
                             </div>
-                        @endif
-                        
-                        <!-- Comments -->
-                        <div class="content-box elevation-1">
-                            <comments
-                                :user="{{ $user->toJson() }}"
-                                :comments="{{ $comments->toJson() }}"
-                                per-page="3"
-                                target-type="project"
-                                target-id="{{ $project->id }}"
-                                create-comment-api-endpoint="{{ route('api.comments.create.post') }}"
-                                update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
-                                delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}"
-                                title-text="@lang('tessify-core::comments.title')"
-                                no-comments-text="@lang('tessify-core::comments.no_comments')"
-                                create-title-text="@lang('tessify-core::comments.create_title')"
-                                create-submit-text="@lang('tessify-core::comments.create_submit')"
-                                update-title-text="@lang('tessify-core::comments.update_title')"
-                                update-cancel-text="@lang('tessify-core::comments.update_cancel')"
-                                update-submit-text="@lang('tessify-core::comments.update_submit')"
-                                delete-title-text="@lang('tessify-core::comments.delete_title')"
-                                delete-text="@lang('tessify-core::comments.delete_text')"
-                                delete-cancel-text="@lang('tessify-core::comments.delete_cancel')"
-                                delete-submit-text="@lang('tessify-core::comments.delete_submit')">
-                            </comments>
-                        </div>
+                            <!-- Project description -->
+                            <div id="project-description">
+                                <div id="project-description__title">@lang("tessify-core::projects.view_description")</div>
+                                <div id="project-description__text">
+                                    {!! nl2br($project->description) !!}
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
 
-                    <!-- Sidebar -->
-                    <div id="project-info__sidebar">
-
-                        <!-- Details -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">
-                                @lang("tessify-core::projects.view_details")
-                            </h3>
-                            <div class="details no-padding compact mb-0">
-                                <!-- Status -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_status")</div>
-                                    <div class="val">{{ $project->status->label }}</div>
-                                </div>
-                                <!-- Ministry -->
-                                @if ($project->ministry)
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_ministry")</div>
-                                        <div class="val">{{ $project->ministry->abbreviation }}</div>
-                                    </div>
-                                @endif
-                                <!-- Category -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_category")</div>
-                                    <div class="val">{{ $project->category->label }}</div>
-                                </div>
-                                <!-- Work method -->
-                                @if ($project->workMethod)
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_work_method")</div>
-                                        <div class="val">{{ $project->workMethod->label }}</div>
-                                    </div>
-                                @endif
-                                <!-- Project code -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_project_code")</div>
-                                    <div class="val">{{ $project->project_code }}</div>
-                                </div>
-                                <!-- Budget -->
-                                @if (!is_null($project->budget) && $project->budget > 0)
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_budget")</div>
-                                        <div class="val">&euro;{{ number_format($project->budget, 2) }}</div>
-                                    </div>
-                                @endif
-                                <!-- Start date -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_start_date")</div>
-                                    <div class="val">{{ $project->starts_at->format("d-m-Y") }}</div>
-                                </div>
-                                <!-- Deadline -->
-                                @if ($project->has_deadline and !is_null($project->ends_at))
-                                    <div class="detail">
-                                        <div class="key">@lang("tessify-core::projects.view_end_date")</div>
-                                        <div class="val">{{ $project->ends_at->format("d-m-Y") }}</div>
-                                    </div>
-                                @endif
-                                <!-- Created at -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_created_at")</div>
-                                    <div class="val">{{ $project->created_at->format("d-m-Y") }}</div>
-                                </div>
-                                <!-- Updated at -->
-                                <div class="detail">
-                                    <div class="key">@lang("tessify-core::projects.view_updated_at")</div>
-                                    <div class="val">{{ $project->updated_at->format("d-m-Y") }}</div>
-                                </div>
-                            </div>
+                    <!-- Page controls -->
+                    <div id="project-page-controls" class="page-controls">
+                        <div class="page-controls__right">
+                            @can("update", $project)
+                                <v-btn depressed color="warning" href="{{ route('projects.edit', $project->slug) }}">
+                                    <i class="fas fa-pen-square"></i>
+                                    @lang("tessify-core::general.edit")
+                                </v-btn>
+                            @endcan
+                            @can("delete", $project)
+                                <v-btn depressed color="red" dark href="{{ route('projects.delete', $project->slug) }}">
+                                    <i class="fas fa-trash"></i>
+                                    @lang("tessify-core::general.delete")
+                                </v-btn>
+                            @endcan
                         </div>
-
-                        <!-- Status -->
-                        <div class="content-box elevation-1">
-                            <h3 class="content-subtitle">
-                                @lang("tessify-core::projects.view_owner")
-                            </h3>
-                            <user-pill 
-                                dark
-                                :user="{{ $author->toJson() }}">
-                            </user-pill>
-                        </div>
-
-                        <!-- Actions -->
-                        @canany(["update", "delete"], $project)
-                            <div class="content-box elevation-1">
-                                <h3 class="content-subtitle">
-                                    @lang("tessify-core::projects.view_actions")
-                                </h3>
-                                <div id="project-actions">
-                                    @can("update", $project)
-                                        <v-btn depressed block color="warning" href="{{ route('projects.edit', $project->slug) }}">
-                                            <i class="fas fa-pen-square"></i>
-                                            @lang("tessify-core::general.edit")
-                                        </v-btn>
-                                    @endcan
-                                    @can("delete", $project)
-                                        <v-btn depressed block color="red" dark href="{{ route('projects.delete', $project->slug) }}">
-                                            <i class="fas fa-trash"></i>
-                                            @lang("tessify-core::general.delete")
-                                        </v-btn>
-                                    @endcan
-                                </div>
-                            </div>
-                        @endcanany
-
                     </div>
-
+                
                 </div>
-
-                <!-- Interactive view project -->
-                <!-- <project-view
-                    :project="{{ $project->toJson() }}"
-                    :user="{{ $user->toJson() }}"
-                    :comments="{{ $comments->toJson() }}"
-                    create-comment-api-endpoint=""
-                    update-comment-api-endpoint="{{ route('api.comments.update.post') }}"
-                    delete-comment-api-endpoint="{{ route('api.comments.delete.post') }}"
-                    create-team-member-application-api-endpoint="{{ route('api.team-member-applications.create.post') }}"
-                    update-team-member-application-api-endpoint="{{ route('api.team-member-applications.update.post') }}"
-                    delete-team-member-application-api-endpoint="{{ route('api.team-member-applications.delete.post') }}"
-                    accept-team-member-application-api-endpoint="{{ route('api.team-member-applications.accept.post') }}"
-                    deny-team-member-application-api-endpoint="{{ route('api.team-member-applications.deny.post') }}">
-                </project-view> -->
-
             </div>
+
         </div>
-        
     </div>
 @stop
