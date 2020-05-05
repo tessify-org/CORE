@@ -13,8 +13,9 @@ class ProjectResource extends Model
         "user_id",
         "title",
         "description",
-        "file_url",
+        "file_type",
         "file_size",
+        "file_url",
     ];
 
     //

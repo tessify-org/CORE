@@ -34,6 +34,8 @@ return [
     'task_not_found' => 'Taak kon niet worden gevonden',
 
     'progress_report_not_found' => 'Progressie rapport kon niet worden gevonden',
+
+    'back_to_project' => 'Terug naar project',
     
     //
     // Overview
@@ -95,7 +97,7 @@ return [
     "view_link_roles" => "Team rollen",
     "view_link_reviews" => "Recensies",
     "view_link_comments" => "Commentaar",
-
+    "view_link_tasks" => "Werkpakketten",
 
     "view_owner" => "Eigenaar",
     "view_details" => "Details",
@@ -119,6 +121,52 @@ return [
     "view_tags" => "Tags",
     "view_no_tags" => "Er zijn nog geen tags geassocieerd met dit project",
     
+    //
+    // Tasks
+    //
+
+    "tasks_title" => "Werkpakketten",
+
+    //
+    // Resources
+    //
+
+    "resources_title" => "Hulpmiddelen",
+    "no_resources" => "Dit project heeft nog geen secundaire hulpmiddelen.",
+    "add_resources" => "Hulpmiddelen toevoegen",
+    "back_to_resources" => "Terug naar hulpmiddelen",
+    "resources_view_dialog_title" => "Hulpmiddel",
+    "resources_view_dialog_download" => "Download",
+    "resources_view_dialog_edit" => "Aanpassen",
+    "resources_view_dialog_delete" => "Verwijderen",
+    "resources_edit_dialog_title" => "Hulpmiddel aanpassen",
+    "resources_form_preview" => "Preview",
+    "resources_form_title" => "Titel",
+    "resources_form_description" => "Beschrijving",
+    "resources_edit_dialog_cancel" => "Annuleren",
+    "resources_edit_dialog_submit" => "Wijzigingen opslaan",
+    "resources_delete_dialog_title" => "Hulpmiddel verwijderen",
+    "resources_delete_dialog_text" => "Weet je zeker dat je dit hulpmiddel wilt verwijderen?",
+    "resources_delete_dialog_cancel" => "Nee, annuleren",
+    "resources_delete_dialog_submit" => "Ja, verwijder hulpmiddel",
+    
+    //
+    // Resources --> Upload
+    //
+    
+    "resources_create_title" => "Hulpmiddelen uploaden",
+    "resources_create_upload_title" => "Bestanden uploaden",
+    "resources_create_upload_subtitle" => "Klik hier of sleep bestanden hierin.",
+    "resources_create_back" => "Annuleren",
+    "resources_create_submit" => "Hulpmiddelen opslaan",
+    "resources_create_form_file" => "Bestand URL",
+    "resources_create_form_title" => "Titel",
+    "resources_create_form_description" => "Beschrijving",
+    "resources_create_uploading_title" => "Uploading",
+    "resources_create_uploading_file" => "bestand",
+    "resources_create_uploading_files" => "bestanden",
+    "resources_created" => "Er zijn :count hulpmiddelen toegevoegd aan het project",
+
     //
     // Create project
     //
@@ -287,6 +335,12 @@ return [
     "application_rejected" => "De aanmelding is afgewezen",
     "application_reopened" => "De aanmelding is opnieuw geopend",
 
+    // 
+    // Team roles
+    // 
+
+    "team_roles_title" => "Team rollen",
+
     //    
     // Create role    
     //    
@@ -353,5 +407,19 @@ return [
     "resources_field_delete_dialog_text" => "Weet je zeker dat je dit hulpmiddel wilt verwijderen?",
     "resources_field_delete_dialog_cancel" => "Nee, annuleren",
     "resources_field_delete_dialog_submit" => "Ja, verwijder hulpmiddel",
+
+    //
+    // Reviews
+    //
+
+    "review_not_found" => "Review kon niet worden gevonden.",
+    "reviews_title" => "Recensies",
+    "reviews_no_records" => "Er zijn nog geen recensies geschreven voor dit werkpakket.",
+
+    //
+    // Comments
+    //
+
+    "comments_title" => "Commentaar",
 
 ];

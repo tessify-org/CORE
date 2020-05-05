@@ -34,6 +34,8 @@ return [
     'task_not_found' => 'Task could not be found',
 
     'progress_report_not_found' => 'Progression report could not be found',
+    
+    'back_to_project' => 'Back to project',
 
     //
     // Overview
@@ -95,6 +97,7 @@ return [
     "view_link_roles" => "Team roles",
     "view_link_reviews" => "Reviews",
     "view_link_comments" => "Comments",
+    "view_link_tasks" => "Tasks",
 
     "view_owner" => "Owner",
     "view_details" => "Details",
@@ -117,6 +120,52 @@ return [
     "view_unsubscribed" => "You have stopped following this project",
     "view_tags" => "Tags",
     "view_no_tags" => "No tags have been associated with this project yet.",
+
+    //
+    // Tasks
+    //
+
+    "tasks_title" => "Tasks",
+
+    //
+    // Resources
+    //
+
+    "resources_title" => "Resources",
+    "no_resources" => "This project does not have any secondary resources yet.",
+    "add_resources" => "Add resources",
+    "back_to_resources" => "Back to resources",
+    "resources_view_dialog_title" => "Resource",
+    "resources_view_dialog_download" => "Download",
+    "resources_view_dialog_edit" => "Update",
+    "resources_view_dialog_delete" => "Delete",
+    "resources_edit_dialog_title" => "Update resource",
+    "resources_form_preview" => "Preview",
+    "resources_form_title" => "Title",
+    "resources_form_description" => "Description",
+    "resources_edit_dialog_cancel" => "Cancel",
+    "resources_edit_dialog_submit" => "Save changes",
+    "resources_delete_dialog_title" => "Delete resource",
+    "resources_delete_dialog_text" => "Are you sure you want to delete this resource?",
+    "resources_delete_dialog_cancel" => "No, cancel",
+    "resources_delete_dialog_submit" => "Yes, delete resource",
+    
+    //
+    // Resources --> Upload
+    //
+    
+    "resources_create_title" => "Upload new resources",
+    "resources_create_upload_title" => "Upload files",
+    "resources_create_upload_subtitle" => "Click here or drag files in here.",
+    "resources_create_back" => "Cancel",
+    "resources_create_submit" => "Save resources",
+    "resources_create_form_file" => "File URL",
+    "resources_create_form_title" => "Title",
+    "resources_create_form_description" => "Description",
+    "resources_create_uploading_title" => "Uploading",
+    "resources_create_uploading_file" => "file",
+    "resources_create_uploading_files" => "files",
+    "resources_created" => ":count resources have been added to the project",
 
     //
     // Create project
@@ -286,6 +335,12 @@ return [
     "application_rejected" => "The application has been rejected",
     "application_reopened" => "The application has been reopened",
 
+    // 
+    // Team roles
+    // 
+
+    "team_roles_title" => "Team roles",
+
     //    
     // Create role    
     //    
@@ -353,4 +408,18 @@ return [
     "resources_field_delete_dialog_cancel" => "No, cancel",
     "resources_field_delete_dialog_submit" => "Yes, delete resource",
 
+    //
+    // Reviews
+    //
+
+    "review_not_found" => "Review kon niet worden gevonden.",
+    "reviews_title" => "Recensies",
+    "reviews_no_records" => "Er zijn nog geen recensies geschreven voor dit werkpakket.",
+
+    //
+    // Comments
+    //
+
+    "comments_title" => "Commentaar",
+    
 ];

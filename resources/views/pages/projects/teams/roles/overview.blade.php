@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks", $project) !!}
+    {!! Breadcrumbs::render("projects.team.roles", $project) !!}
 @stop
 
 @section("content")
@@ -17,7 +17,7 @@
 
                     @include("tessify-core::partials.projects.view-sidebar", [
                         "project" => $project,
-                        "page" => "tasks",
+                        "page" => "team-roles",
                     ])
 
                 </aside>
@@ -33,6 +33,12 @@
                                 <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
                                 <h2 id="project-subtitle">{{ $project->slogan }}</h2>
                             </div>
+                            <div id="project-header__actions">
+                                <v-btn outlined href="{{ route('projects.view', $project->slug) }}" color="white">
+                                    <i class="fas fa-arrow-left"></i>
+                                    @lang("tessify-core::projects.back_to_project")
+                                </v-btn>
+                            </div>
                         </div>
                         <!-- Content -->
                         <div id="project-content">
@@ -42,12 +48,11 @@
                                 <div id="project-content__header-left">
                                 
                                     <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.tasks_title")</h1>
-
-                                    Tasks here
+                                    <h1 id="project-title">@lang("tessify-core::projects.team_roles_title")</h1>
 
                                 </div>
                             </div>
+
 
                         </div>
                     </div>

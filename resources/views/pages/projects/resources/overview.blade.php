@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks", $project) !!}
+    {!! Breadcrumbs::render("projects.resources", $project) !!}
 @stop
 
 @section("content")
@@ -17,7 +17,7 @@
 
                     @include("tessify-core::partials.projects.view-sidebar", [
                         "project" => $project,
-                        "page" => "tasks",
+                        "page" => "resources",
                     ])
 
                 </aside>
@@ -33,6 +33,20 @@
                                 <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
                                 <h2 id="project-subtitle">{{ $project->slogan }}</h2>
                             </div>
+                            <div id="project-header__actions">
+                                <div id="project-header__actions-left">
+                                    <v-btn outlined href="{{ route('projects.view', $project->slug) }}" color="white">
+                                        <i class="fas fa-arrow-left"></i>
+                                        @lang("tessify-core::projects.back_to_project")
+                                    </v-btn>
+                                </div>
+                                <div id="project-header__actions-right">
+                                    <v-btn depressed href="{{ route('projects.resources.create', $project->slug) }}" color="primary">
+                                        <i class="fas fa-plus"></i>
+                                        @lang("tessify-core::projects.add_resources")
+                                    </v-btn>
+                                </div>
+                            </div>
                         </div>
                         <!-- Content -->
                         <div id="project-content">
@@ -42,9 +56,15 @@
                                 <div id="project-content__header-left">
                                 
                                     <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.tasks_title")</h1>
+                                    <h1 id="project-title">@lang("tessify-core::projects.resources_title")</h1>
 
-                                    Tasks here
+                                    <project-resource-overview
+                                        :project="{{ $project->toJson() }}"
+                                        :resources="{{ $resources->toJson() }}"
+                                        :strings="{{ $strings->toJson() }}"
+                                        :errors="{{ $errors->toJson() }}"
+                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
+                                    </project-resource-overview>
 
                                 </div>
                             </div>

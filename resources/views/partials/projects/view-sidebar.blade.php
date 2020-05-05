@@ -83,8 +83,17 @@
 <div id="project-links">
     <div id="project-links__title">@lang("tessify-core::projects.view_links")</div>
     <div id="project-links__links" class="elevation-1">
+        <!-- Tasks -->
+        <a class="project-link @if (isset($page) && $page == 'tasks') selected @endif" href="{{ route('projects.tasks', $project->slug) }}">
+            <span class="project-link__icon">
+                <i class="fas fa-medkit"></i>
+            </span>
+            <span class="project-link__text">
+                @lang("tessify-core::projects.view_link_tasks") ({{ $project->num_tasks }})
+            </span>
+        </a>
         <!-- Resources -->
-        <a class="project-link @if (isset($page) && $page == 'resources') selected @endif" href="#">
+        <a class="project-link @if (isset($page) && $page == 'resources') selected @endif" href="{{ route('projects.resources', $project->slug) }}">
             <span class="project-link__icon">
                 <i class="fas fa-medkit"></i>
             </span>
@@ -93,7 +102,7 @@
             </span>
         </a>
         <!-- Team roles -->
-        <a class="project-link @if (isset($page) && $page == 'roles') selected @endif" href="#">
+        <a class="project-link @if (isset($page) && $page == 'team-roles') selected @endif" href="{{ route('projects.team.roles', $project->slug) }}">
             <span class="project-link__icon">
                 <i class="fas fa-user-tag"></i>
             </span>
@@ -102,7 +111,7 @@
             </span>
         </a>
         <!-- Reviews -->
-        <a class="project-link @if (isset($page) && $page === 'reviews') selected @endif" href="#">
+        <a class="project-link @if (isset($page) && $page === 'reviews') selected @endif" href="{{ route('projects.reviews', $project->slug) }}">
             <span class="project-link__icon">
                 <i class="fas fa-scroll"></i>
             </span>
@@ -111,7 +120,7 @@
             </span>
         </a>
         <!-- Comments -->
-        <a class="project-link @if (isset($page) && $page == 'comments') selected @endif" href="#">
+        <a class="project-link @if (isset($page) && $page == 'comments') selected @endif" href="{{ route('projects.comments', $project->slug) }}">
             <span class="project-link__icon">
                 <i class="far fa-comments"></i>
             </span>

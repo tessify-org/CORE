@@ -9,6 +9,8 @@ use Tessify\Core\Models\Project;
 use Tessify\Core\Models\ProjectResource;
 use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
+use Tessify\Core\Http\Requests\Projects\CreateProjectResourcesRequest;
+use Tessify\Core\Http\Requests\Api\Projects\Resources\UploadFilesRequest;
 use Tessify\Core\Http\Requests\Api\Projects\Resources\CreateProjectResourceRequest;
 use Tessify\Core\Http\Requests\Api\Projects\Resources\UpdateProjectResourceRequest;
 
@@ -66,7 +68,7 @@ class ProjectResourceService implements ModelServiceContract
     
     public function updateFromRequest(UpdateProjectResourceRequest $request)
     {
-        $resource = $this->find($request->job_resource_id);
+        $resource = $this->find($request->project_resource_id);
         if ($resource)
         {
             $resource->title = $request->title;
@@ -84,5 +86,51 @@ class ProjectResourceService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function processMultipleUploadsForProject(Project $project, UploadFilesRequest $request)
+    {
+        $out = [];
+
+        $user = auth()->user();
+
+        foreach ($request->file("files") as $file)
+        {
+            $resource = ProjectResource::create([
+                "project_id" => $project->id,
+                "user_id" => $user->id,
+                "file_type" => $file->getClientOriginalExtension(),
+                "file_size" => $file->getSize(),
+                "file_url" => Uploader::upload($file, "files/project/resources/".$project->id),
+            ]);
+
+            $resource->formatted_file_url = asset($resource->file_url);
+
+            $out[] = $resource;
+        }
+        
+        return $out;
+    }
+
+    public function postProcessResourceUploads(CreateProjectResourcesRequest $request)
+    {
+        $out = [];
+
+        $resourceData = json_decode($request->resources);
+        if (is_array($resourceData) && count($resourceData) > 0)
+        {
+            foreach ($resourceData as $entry)
+            {
+                $resource = $this->find($entry->id);
+                
+                $resource->title = isset($entry->title) ? $entry->title : "Untitled resource";
+                $resource->description = isset($entry->description) ? $entry->description : null;
+                $resource->save();
+
+                $out[] = $resource;
+            }
+        }
+
+        return $out;
     }
 }

@@ -40,7 +40,7 @@ class TaskReviewController extends Controller
         }
 
         // Grab the task review we want to view
-        $review = TaskReviews::findByUuid($uuid);
+        $review = Reviews::findByUuid($uuid);
         if (!$review)
         {
             flash(__("tessify-core::tasks.review_not_found"))->error();

@@ -89,6 +89,7 @@ class ProjectService implements ModelServiceContract
         $instance->num_reviews = $this->getNumReviews($instance);
         $instance->num_comments = $this->getNumComments($instance);
         $instance->num_resources = count($instance->resources);
+        $instance->num_tasks = count($instance->tasks);
 
         // Return the upgraded project
         return $instance;

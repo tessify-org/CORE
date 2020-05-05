@@ -17,15 +17,17 @@ class ProjectUpdated
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $project;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Project $project)
+    public function __construct(Project $project, User $user = null)
     {
         $this->project = $project;
+        $this->user = is_null($user) ? auth()->user() : $user;
     }
 
     /**

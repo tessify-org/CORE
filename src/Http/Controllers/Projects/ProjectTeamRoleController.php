@@ -12,6 +12,20 @@ use Tessify\Core\Http\Requests\Projects\Teams\Roles\DeleteTeamRoleRequest;
 
 class ProjectTeamRoleController extends Controller
 {
+    public function getOverview($slug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        return view("tessify-core::pages.projects.teams.roles.overview", [
+            "project" => $project,
+        ]);
+    }
+
     public function getCreate($slug)
     {
         $project = Projects::findPreloadedBySlug($slug);

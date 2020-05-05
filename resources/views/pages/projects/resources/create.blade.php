@@ -1,7 +1,7 @@
 @extends("tessify-core::layouts.app")
 
 @section("breadcrumbs")
-    {!! Breadcrumbs::render("projects.tasks", $project) !!}
+    {!! Breadcrumbs::render("projects.resources", $project) !!}
 @stop
 
 @section("content")
@@ -17,7 +17,7 @@
 
                     @include("tessify-core::partials.projects.view-sidebar", [
                         "project" => $project,
-                        "page" => "tasks",
+                        "page" => "resources",
                     ])
 
                 </aside>
@@ -33,6 +33,12 @@
                                 <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
                                 <h2 id="project-subtitle">{{ $project->slogan }}</h2>
                             </div>
+                            <div id="project-header__actions">
+                                <v-btn outlined href="{{ route('projects.resources', $project->slug) }}" color="white">
+                                    <i class="fas fa-arrow-left"></i>
+                                    @lang("tessify-core::projects.back_to_resources")
+                                </v-btn>
+                            </div>
                         </div>
                         <!-- Content -->
                         <div id="project-content">
@@ -42,9 +48,20 @@
                                 <div id="project-content__header-left">
                                 
                                     <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.tasks_title")</h1>
+                                    <h1 id="project-title">@lang("tessify-core::projects.resources_create_title")</h1>
 
-                                    Tasks here
+                                    <!-- Form -->
+                                    <form action="{{ route('projects.resources.create.post', $project->slug) }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+
+                                        <project-resource-form
+                                            :errors="{{ $errors->toJson() }}"
+                                            :strings="{{ $strings->toJson() }}"
+                                            :api-endpoints="{{ $apiEndpoints->toJson() }}"
+                                            back-href="{{ route('projects.resources', $project->slug) }}">
+                                        </project-resource-form>
+
+                                    </form>
 
                                 </div>
                             </div>

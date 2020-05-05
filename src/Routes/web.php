@@ -95,14 +95,22 @@ Route::group(["middleware" => "auth"], function() {
         // View --> Invite friend
         Route::get("{slug}/iemand-uitnodingen/{userSlug?}", "Projects\ProjectController@getInviteFriend")->name("projects.invite");
         
+        // View --> Tasks
+        Route::get("{slug}/werkpakketten", "Projects\ProjectTaskController@getOverview")->name("projects.tasks");
+
         // View --> Resources
+        Route::get("{slug}/hulpmiddelen", "Projects\ProjectResourceController@getOverview")->name("projects.resources");
+        Route::get("{slug}/hulpmiddelen/uploaden", "Projects\ProjectResourceController@getCreate")->name("projects.resources.create");
+        Route::post("{slug}/hulpmiddelen/uploaden", "Projects\ProjectResourceController@postCreate")->name("projects.resources.create.post");
 
         // View --> Team roles
+        Route::get("{slug}/team-rollen", "Projects\ProjectTeamRoleController@getOverview")->name("projects.team.roles");
         
-        // View --> Comments
-
         // View --> Reviews
+        Route::get("{slug}/recensies", "Projects\ProjectReviewController@getOverview")->name("projects.reviews");
 
+        // View --> Comments
+        Route::get("{slug}/comments", "Projects\ProjectController@getViewComments")->name("projects.comments");
 
         // Edit
         Route::get("{slug}/aanpassen", "Projects\ProjectController@getEdit")->name("projects.edit");
@@ -159,9 +167,6 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/team/aanmeldingen/{uuid}/afwijzen", "Projects\ProjectTeamMemberApplicationController@getReject")->name("projects.team.applications.reject");
         Route::get("{slug}/team/aanmeldingen/{uuid}/heropenen", "Projects\ProjectTeamMemberApplicationController@getReopen")->name("projects.team.applications.reopen");
 
-        // Manage tasks
-        Route::get("{slug}/werkpakketten", "Projects\ProjectTaskController@getOverview")->name("projects.tasks");
-        
     });
 
     // Task overview
@@ -186,9 +191,6 @@ Route::group(["middleware" => "auth"], function() {
 
         // View --> Reviews
         Route::get("{slug}/recensies", "Tasks\TaskReviewController@getOverview")->name("tasks.reviews");
-
-        // View --> Reviews --> View
-        Route::get("{slug}/recensie", "Tasks\TaskReviewController@getView")->name("tasks.review");
 
         // View --> Report progress
         Route::get("{slug}/voortgang-rapporteren", "Tasks\TaskProgressController@getReportProgress")->name("tasks.report-progress");
@@ -370,11 +372,19 @@ Route::group(["prefix" => "api"], function() {
         Route::post("set-active-locale", "Api\LocaleController@postSetActiveLocale")->name("api.locale.set-active.post");
     });
 
-    // Project resources
-    Route::group(["prefix" => "project-resources"], function() {
-        Route::post("create", "Api\ProjectResourceController@postCreateResource")->name("api.projects.resources.create.post");
-        Route::post("update", "Api\ProjectResourceController@postUpdateResource")->name("api.projects.resources.update.post");
-        Route::post("delete", "Api\ProjectResourceController@postDeleteResource")->name("api.projects.resources.delete.post");
+    // Projects
+    Route::group(["prefix" => "projects"], function() {
+
+        // Resources
+        Route::group(["prefix" => "resources"], function() {
+            // Upload files
+            Route::post("{slug}/upload-files", "Api\ProjectResourceController@postUploadFiles")->name("projects.resources.upload.post");
+            // Create, Update & Delete
+            Route::post("create", "Api\ProjectResourceController@postCreateResource")->name("api.projects.resources.create.post");
+            Route::post("update", "Api\ProjectResourceController@postUpdateResource")->name("api.projects.resources.update.post");
+            Route::post("delete", "Api\ProjectResourceController@postDeleteResource")->name("api.projects.resources.delete.post");
+        });
+
     });
 
     // Comments

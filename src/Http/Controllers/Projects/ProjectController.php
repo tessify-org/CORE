@@ -5,6 +5,7 @@ namespace Tessify\Core\Http\Controllers\Projects;
 use Auth;
 use Tags;
 use Users;
+use Tasks;
 use Skills;
 use Comments;
 use Projects;
@@ -83,6 +84,57 @@ class ProjectController extends Controller
             "resources" => Projects::getResources($project),
             "comments" => Comments::getAllPreloadedForProject($project),
             
+        ]);
+    }
+
+    public function getViewRoles($slug)
+    {
+        // Grab the project we want to view
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        // Render the project tasks overview page
+        return view("tessify-core::pages.projects.roles", [
+            "project" => $project,
+            
+        ]);
+    }
+
+    public function getViewComments($slug)
+    {
+        // Grab the project we want to view
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        // Render the task comments page
+        return view("tessify-core::pages.projects.comments", [
+            "project" => $project,
+            "comments" => $project->comments,
+        ]);
+    }
+    
+    public function getViewResources($slug)
+    {
+        // Grab the project we want to view
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        // Render the task comments page
+        return view("tessify-core::pages.projects.resources", [
+            "project" => $project,
+            "resources" => $project->resources,
         ]);
     }
 
