@@ -107,7 +107,7 @@
                 <i class="fas fa-user-tag"></i>
             </span>
             <span class="project-link__text">
-                @lang("tessify-core::projects.view_link_roles")
+                @lang("tessify-core::projects.view_link_roles") ({{ $project->num_team_roles }})
             </span>
         </a>
         <!-- Reviews -->

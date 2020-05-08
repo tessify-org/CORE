@@ -47,10 +47,14 @@
                             <div id="project-content__header">
                                 <div id="project-content__header-left">
                                 
-                                    <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.comments_title")</h1>
-
-                                    Comments here
+                                    <better-comments
+                                        :user="{{ $user->toJson() }}"
+                                        target-type="project"
+                                        target-id="{{ $project->id }}"
+                                        :comments="{{ $comments->toJson() }}"
+                                        :strings="{{ $strings->toJson() }}"
+                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
+                                    </better-comments>
 
                                 </div>
                             </div>

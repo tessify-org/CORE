@@ -23,6 +23,33 @@ class ProjectTeamRoleController extends Controller
 
         return view("tessify-core::pages.projects.teams.roles.overview", [
             "project" => $project,
+            "roles" => collect(TeamRoles::getAllForProject($project)),
+            "strings" => collect([
+                "title" => __("tessify-core::projects.team_roles_title"),
+                "no_records" => __("tessify-core::projects.team_roles_no_records"),
+                "add_button" => __("tessify-core::projects.team_roles_add_button"),
+                "view_title" => __("tessify-core::projects.team_roles_view_title"),
+                "view_edit" => __("tessify-core::projects.team_roles_view_edit"),
+                "view_delete" => __("tessify-core::projects.team_roles_view_delete"),
+                "create_title" => __("tessify-core::projects.team_roles_create_title"),
+                "create_cancel" => __("tessify-core::projects.team_roles_create_cancel"),
+                "create_submit" => __("tessify-core::projects.team_roles_create_submit"),
+                "update_title" => __("tessify-core::projects.team_roles_update_title"),
+                "update_cancel" => __("tessify-core::projects.team_roles_update_cancel"),
+                "update_submit" => __("tessify-core::projects.team_roles_update_submit"),
+                "delete_title" => __("tessify-core::projects.team_roles_delete_title"),
+                "delete_text" => __("tessify-core::projects.team_roles_delete_text"),
+                "delete_cancel" => __("tessify-core::projects.team_roles_delete_cancel"),
+                "delete_submit" => __("tessify-core::projects.team_roles_delete_submit"),
+                "form_name" => __("tessify-core::projects.team_roles_form_name"),
+                "form_description" => __("tessify-core::projects.team_roles_form_description"),
+                "form_positions" => __("tessify-core::projects.team_roles_form_positions"),
+            ]),
+            "apiEndpoints" => collect([
+                "create" => route("api.team-roles.create"),
+                "update" => route("api.team-roles.update"),
+                "delete" => route("api.team-roles.delete"),
+            ]),
         ]);
     }
 

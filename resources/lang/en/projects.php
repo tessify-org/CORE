@@ -126,6 +126,8 @@ return [
     //
 
     "tasks_title" => "Tasks",
+    "tasks_no_records" => "No tasks have been added to this project yet.",
+    "tasks_create" => "Add task",
 
     //
     // Resources
@@ -340,6 +342,24 @@ return [
     // 
 
     "team_roles_title" => "Team roles",
+    "team_roles_no_records" => "No roles have been defined yet.",
+    "team_roles_add_button" => "Add team role",
+    "team_roles_view_title" => "Team role",
+    "team_roles_view_edit" => "Edit",
+    "team_roles_view_delete" => "Delete",
+    "team_roles_create_title" => "Add team role",
+    "team_roles_create_cancel" => "Cancel",
+    "team_roles_create_submit" => "Save",
+    "team_roles_update_title" => "Update team role",
+    "team_roles_update_cancel" => "Cancel",
+    "team_roles_update_submit" => "Save changes",
+    "team_roles_delete_title" => "Delete team role",
+    "team_roles_delete_text" => "Are you sure you want to delete this team role?",
+    "team_roles_delete_cancel" => "No, cancel",
+    "team_roles_delete_submit" => "Yes, delete",
+    "team_roles_form_name" => "Name",
+    "team_roles_form_description" => "Description",
+    "team_roles_form_positions" => "Number of positions",
 
     //    
     // Create role    

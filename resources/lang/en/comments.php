@@ -20,4 +20,7 @@ return [
     "delete_cancel" => "No, cancel",
     "delete_submit" => "Yes, delete",
 
+    "no_comments_task" => "No comments have been placed for this task.",
+    "no_projects_task" => "No comments have been placed for this project."
+
 ];

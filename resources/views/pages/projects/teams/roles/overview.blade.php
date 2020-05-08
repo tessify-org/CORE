@@ -47,8 +47,13 @@
                             <div id="project-content__header">
                                 <div id="project-content__header-left">
                                 
-                                    <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.team_roles_title")</h1>
+                                    <!-- Team roles -->
+                                    <project-team-role-overview
+                                        :project="{{ $project->toJson() }}"
+                                        :roles="{{ $roles->toJson() }}"
+                                        :strings="{{ $strings->toJson() }}"
+                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
+                                    </project-team-role-overview>
 
                                 </div>
                             </div>

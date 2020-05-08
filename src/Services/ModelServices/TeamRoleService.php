@@ -13,6 +13,9 @@ use Tessify\Core\Traits\ModelServiceGetters;
 use Tessify\Core\Contracts\ModelServiceContract;
 use Tessify\Core\Http\Requests\Projects\Teams\Roles\CreateTeamRoleRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\Roles\UpdateTeamRoleRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\CreateTeamRoleRequest as ApiCreateTeamRoleRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\UpdateTeamRoleRequest as ApiUpdateTeamRoleRequest;
+use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\DeleteTeamRoleRequest as ApiDeleteTeamRoleRequest;
 use Tessify\Core\Http\Requests\Api\Projects\TeamRoles\UnassignTeamRoleRequest as ApiUnassignTeamRoleRequest;
 
 class TeamRoleService implements ModelServiceContract
@@ -40,7 +43,7 @@ class TeamRoleService implements ModelServiceContract
         return $instance;
     }
 
-    public function getAllPreloadedForProject(Project $project)
+    public function getAllForProject(Project $project)
     {
         $out = [];
 
@@ -148,6 +151,35 @@ class TeamRoleService implements ModelServiceContract
     public function deleteRole(TeamRole $role)
     {
         $role->teamMembers()->detach();
+        $role->delete();
+    }
+
+    public function createFromApiRequest(ApiCreateTeamRoleRequest $request)
+    {
+        $role = TeamRole::create([
+            "project_id" => $request->project_id,
+            "name" => $request->name,
+            "description" => $request->description,
+            "positions" => $request->positions,
+        ]);
+        
+        return $role;
+    }
+
+    public function updateFromApiRequest(ApiUpdateTeamRoleRequest $request)
+    {
+        $role = $this->find($request->team_role_id);
+        $role->name = $request->name;
+        $role->description = $request->description;
+        $role->positions = $request->positions;
+        $role->save();
+
+        return $role;
+    }
+
+    public function deleteFromApiRequest(ApiDeleteTeamRoleRequest $request)
+    {
+        $role = $this->find($request->team_role_id);
         $role->delete();
     }
 }

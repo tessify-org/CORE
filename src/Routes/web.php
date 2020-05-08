@@ -406,6 +406,9 @@ Route::group(["prefix" => "api"], function() {
     // Team roles
     Route::group(["prefix" => "team-roles"], function() {
         Route::post("unassign", "Api\TeamRoleController@postUnassign")->name("api.team-roles.unassign");
+        Route::post("create", "Api\TeamRoleController@postCreate")->name("api.team-roles.create");
+        Route::post("update", "Api\TeamRoleController@postUpdate")->name("api.team-roles.update");
+        Route::post("delete", "Api\TeamRoleController@postDelete")->name("api.team-roles.delete");
     });
     
     // Assignments

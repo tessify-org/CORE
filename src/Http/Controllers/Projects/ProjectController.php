@@ -78,12 +78,9 @@ class ProjectController extends Controller
                 "success_dialog_title" => __("tessify-core::projects.view_ask_question_success_dialog_title"),
                 "success_dialog_text" => __("tessify-core::projects.view_ask_question_success_dialog_text"),
             ]),
-
             "user" => Users::current(),
             "author" => Projects::getAuthor($project),
             "resources" => Projects::getResources($project),
-            "comments" => Comments::getAllPreloadedForProject($project),
-            
         ]);
     }
 
@@ -116,8 +113,28 @@ class ProjectController extends Controller
 
         // Render the task comments page
         return view("tessify-core::pages.projects.comments", [
+            "user" => Users::current(),
             "project" => $project,
-            "comments" => $project->comments,
+            "comments" => Comments::getAllForProject($project),
+            "strings" => collect([
+                "title" => __("tessify-core::comments.title"),
+                "no_records" => __("tessify-core::comments.no_comments_project"),
+                "create_title" => __("tessify-core::comments.create_title"),
+                "create_submit" => __("tessify-core::comments.create_submit"),
+                "create_cancel" => __("tessify-core::comments.create_cancel"),
+                "update_title" => __("tessify-core::comments.update_title"),
+                "update_cancel" => __("tessify-core::comments.update_cancel"),
+                "update_submit" => __("tessify-core::comments.update_submit"),
+                "delete_title" => __("tessify-core::comments.delete_title"),
+                "delete_text" => __("tessify-core::comments.delete_text"),
+                "delete_cancel" => __("tessify-core::comments.delete_cancel"),
+                "delete_submit" => __("tessify-core::comments.delete_submit"),
+            ]),
+            "apiEndpoints" => collect([
+                "create" => route("api.comments.create.post"),
+                "update" => route("api.comments.update.post"),
+                "delete" => route("api.comments.delete.post"),
+            ]),
         ]);
     }
     

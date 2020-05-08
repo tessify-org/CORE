@@ -38,6 +38,7 @@ return [
     "projects_create" => "Start project",
     "projects_update" => "Update project",
     "projects_delete" => "Delete project",
+    "projects_tasks" => "Tasks",
     "projects_team_roles" => "Team roles",
     "projects_team_view" => "Het team",
     "projects_team_apply" => "Sign up",

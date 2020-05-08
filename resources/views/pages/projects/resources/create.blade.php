@@ -53,7 +53,7 @@
                                     <!-- Form -->
                                     <form action="{{ route('projects.resources.create.post', $project->slug) }}" method="post" enctype="multipart/form-data">
                                         @csrf
-
+                                        
                                         <project-resource-form
                                             :errors="{{ $errors->toJson() }}"
                                             :strings="{{ $strings->toJson() }}"

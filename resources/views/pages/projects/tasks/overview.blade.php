@@ -41,10 +41,12 @@
                             <div id="project-content__header">
                                 <div id="project-content__header-left">
                                 
-                                    <!-- Title -->
-                                    <h1 id="project-title">@lang("tessify-core::projects.tasks_title")</h1>
-
-                                    Tasks here
+                                    <project-task-overview
+                                        :project="{{ $project->toJson() }}"
+                                        :tasks="{{ collect($tasks) }}"
+                                        :strings="{{ $strings->toJson() }}"
+                                        create-href="{{ route('tasks.create', $project->slug) }}">
+                                    </project-task-overview>
 
                                 </div>
                             </div>

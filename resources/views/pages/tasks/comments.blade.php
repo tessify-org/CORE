@@ -51,11 +51,14 @@
                             <div id="task-content__header">
                                 <div id="task-content__header-left">
                                 
-                                    <!-- Title -->
-                                    <h1 id="task-title">@lang("tessify-core::tasks.comments_title")</h1>
-
-                                    <!-- Comments -->
-
+                                    <better-comments
+                                        :user="{{ $user->toJson() }}"
+                                        target-type="task"
+                                        target-id="{{ $task->id }}"
+                                        :comments="{{ $comments->toJson() }}"
+                                        :strings="{{ $strings->toJson() }}"
+                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
+                                    </better-comments>
 
                                 </div>
                             </div>

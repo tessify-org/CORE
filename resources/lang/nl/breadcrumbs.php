@@ -39,6 +39,7 @@ return [
     "projects_create" => "Project starten",
     "projects_update" => "Project aanpassen",
     "projects_delete" => "Project verwijderen",
+    "projects_tasks" => "Werkpakketten",
     "projects_team_roles" => "Team rollen",
     "projects_team_view" => "Het team",
     "projects_team_apply" => "Aanmelden",

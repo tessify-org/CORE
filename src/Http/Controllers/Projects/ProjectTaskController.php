@@ -20,6 +20,11 @@ class ProjectTaskController extends Controller
         return view("tessify-core::pages.projects.tasks.overview", [
             "project" => $project,
             "tasks" => Tasks::getAllForProject($project),
+            "strings" => collect([
+                "title" => __("tessify-core::projects.tasks_title"),
+                "no_records" => __("tessify-core::projects.tasks_no_records"),
+                "create" => __("tessify-core::projects.tasks_create"),
+            ]),
         ]);
     }
 }

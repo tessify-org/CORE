@@ -126,6 +126,8 @@ return [
     //
 
     "tasks_title" => "Werkpakketten",
+    "tasks_no_records" => "Er zijn nog geen werkpakketten toegevoegd aan dit project.",
+    "tasks_create" => "Werkpakket toevoegen",
 
     //
     // Resources
@@ -340,6 +342,24 @@ return [
     // 
 
     "team_roles_title" => "Team rollen",
+    "team_roles_no_records" => "Er zijn nog geen rollen gedefinieerd.",
+    "team_roles_add_button" => "Team rol toevoegen",
+    "team_roles_view_title" => "Team rol",
+    "team_roles_view_edit" => "Aanpassen",
+    "team_roles_view_delete" => "Verwijderen",
+    "team_roles_create_title" => "Team rol toevoegen",
+    "team_roles_create_cancel" => "Annuleren",
+    "team_roles_create_submit" => "Opslaan",
+    "team_roles_update_title" => "Team rol aanpassen",
+    "team_roles_update_cancel" => "Annuleren",
+    "team_roles_update_submit" => "Wijzigingen opslaan",
+    "team_roles_delete_title" => "Team rol verwijderen",
+    "team_roles_delete_text" => "Weet je zeker dat je deze team rol wilt verwijderen?",
+    "team_roles_delete_cancel" => "Nee, annuleren",
+    "team_roles_delete_submit" => "Ja, verwijderen",
+    "team_roles_form_name" => "Naam",
+    "team_roles_form_description" => "Beschrijving",
+    "team_roles_form_positions" => "Aantal posities",
 
     //    
     // Create role    

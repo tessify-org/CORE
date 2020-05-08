@@ -9,7 +9,7 @@ return [
     */
 
     "title" => "Commentaar",
-    "no_comments" => "Geen commentaar geplaatst ",
+    "no_comments" => "Geen commentaar geplaatst.",
     "create_title" => "Commentaar plaatsen",
     "create_submit" => "Plaats commentaar",
     "update_title" => "Commentaar aanpassen",
@@ -19,5 +19,8 @@ return [
     "delete_text" => "Weet je zeker dat je dit commentaar wilt verwijderen?",
     "delete_cancel" => "Nee, annuleren",
     "delete_submit" => "Ja, verwijderen",
+
+    "no_comments_task" => "Er is nog geen commentaar geplaatst voor dit werkpakket.",
+    "no_comments_project" => "Er is nog geen commentaar geplaatst voor dit project.",
 
 ];

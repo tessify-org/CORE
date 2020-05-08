@@ -7,6 +7,7 @@ use Tags;
 use Users;
 use Tasks;
 use Skills;
+use Comments;
 use ReviewRequests;
 use Projects;
 use Messages;
@@ -93,8 +94,28 @@ class TaskController extends Controller
 
         // Render the task comments page
         return view("tessify-core::pages.tasks.comments", [
+            "user" => Users::current(),
             "task" => $task,
-            "comments" => $task->comments,
+            "comments" => Comments::getAllForTask($task),
+            "strings" => collect([
+                "title" => __("tessify-core::comments.title"),
+                "no_records" => __("tessify-core::comments.no_comments_task"),
+                "create_title" => __("tessify-core::comments.create_title"),
+                "create_submit" => __("tessify-core::comments.create_submit"),
+                "create_cancel" => __("tessify-core::comments.create_cancel"),
+                "update_title" => __("tessify-core::comments.update_title"),
+                "update_cancel" => __("tessify-core::comments.update_cancel"),
+                "update_submit" => __("tessify-core::comments.update_submit"),
+                "delete_title" => __("tessify-core::comments.delete_title"),
+                "delete_text" => __("tessify-core::comments.delete_text"),
+                "delete_cancel" => __("tessify-core::comments.delete_cancel"),
+                "delete_submit" => __("tessify-core::comments.delete_submit"),
+            ]),
+            "apiEndpoints" => collect([
+                "create" => route("api.comments.create.post"),
+                "update" => route("api.comments.update.post"),
+                "delete" => route("api.comments.delete.post"),
+            ]),
         ]);
     }
 

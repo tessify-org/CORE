@@ -58,7 +58,7 @@ class ProjectService implements ModelServiceContract
 
         // Load the project's resources
         $instance->resources = ProjectResources::getAllPreloadedForProject($instance);
-        $instance->team_roles = TeamRoles::getAllPreloadedForProject($instance);
+        $instance->team_roles = TeamRoles::getAllForProject($instance);
         $instance->status = ProjectStatuses::findForProject($instance);
         $instance->author = Users::findAuthorForProject($instance);
         $instance->category = ProjectCategories::findForProject($instance);
@@ -90,6 +90,7 @@ class ProjectService implements ModelServiceContract
         $instance->num_comments = $this->getNumComments($instance);
         $instance->num_resources = count($instance->resources);
         $instance->num_tasks = count($instance->tasks);
+        $instance->num_team_roles = count($instance->team_roles);
 
         // Return the upgraded project
         return $instance;

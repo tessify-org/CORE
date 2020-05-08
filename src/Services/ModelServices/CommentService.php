@@ -37,22 +37,6 @@ class CommentService implements ModelServiceContract
         
         return $instance;
     }
-    
-    public function getAllPreloadedForProject(Project $job)
-    {
-        $out = [];
-
-        foreach ($this->getAllPreloaded() as $comment)
-        {
-            if ($comment->commentable_type == "Tessify\Core\\Models\\Project" and $comment->commentable_id == $project->id)
-            {
-                $out[] = $comment;
-            }
-        }
-
-        return collect($out);
-    }
-
     public function getAllPreloadedForUser(User $user)
     {
         $out = [];
@@ -68,7 +52,7 @@ class CommentService implements ModelServiceContract
         return collect($out);
     }
 
-    public function getAllPreloadedForTask(Task $task)
+    public function getAllForTask(Task $task)
     {
         $out = [];
 
@@ -82,6 +66,22 @@ class CommentService implements ModelServiceContract
 
         return collect($out);
     }
+    
+    public function getAllForProject(Project $project)
+    {
+        $out = [];
+
+        foreach ($this->getAllPreloaded() as $comment)
+        {
+            if ($comment->commentable_type == "Tessify\Core\\Models\\Project" and $comment->commentable_id == $project->id)
+            {
+                $out[] = $comment;
+            }
+        }
+
+        return collect($out);
+    }
+
 
     public function createFromApiRequest(CreateCommentRequest $request)
     {
