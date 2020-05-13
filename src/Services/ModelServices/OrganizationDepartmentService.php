@@ -31,6 +31,19 @@ class OrganizationDepartmentService implements ModelServiceContract
         return $instance;
     }
 
+    public function findBySlug($slug)
+    {
+        foreach ($this->getAll() as $department)
+        {
+            if ($department->slug == $slug)
+            {
+                return $department;
+            }
+        }
+        
+        return false;
+    }
+
     public function findAllForOrganization(Organization $organization)
     {
         $out = [];

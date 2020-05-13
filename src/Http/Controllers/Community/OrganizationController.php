@@ -4,6 +4,7 @@ namespace Tessify\Core\Http\Controllers\Community;
 
 use Auth;
 use Organizations;
+use OrganizationDepartments;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Events\Users\UserSusbcribedOrganization;
 use Tessify\Core\Events\Users\UserUnsusbcribedOrganization;
@@ -74,5 +75,30 @@ class OrganizationController extends Controller
         // Flash message & redirect to the view organization page
         flash(__("tessify-core::organizations.view_unsubscribed"))->success();
         return redirect()->route("organizations.view", ["slug" => $organization->slug]);
+    }
+
+    public function getViewDepartment($slug, $departmentSlug)
+    {
+        // Grab the organization we want to view a department of
+        $organization = Organizations::findBySlug($slug);
+        if (!$organization)
+        {
+            flash(__("tessify-core::organizations.not_found"))->error();
+            return redirect()->route("organizations");       
+        }
+
+        // Grab the department we want to view
+        $department = OrganizationDepartments::findBySlug($departmentSlug);
+        if (!$department)
+        {
+            flash(__("tessify-core::organizations.department_not_found"));
+            return redirect()->route("organizations.view", $slug);
+        }
+
+        // Render the view organization department page
+        return view("tessify-core::pages.community.organizations.view-department", [
+            "organization" => $organization,
+            "department" => $department,
+        ]);
     }
 }

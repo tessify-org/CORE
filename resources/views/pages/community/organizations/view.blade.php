@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                    <!-- Department -->
+                    <!-- Departments -->
                     <div class="content-card elevation-1 mb">
                         <div class="content-card__content">
                             <h3 class="content-subtitle">@lang("tessify-core::organizations.view_departments")</h3>
@@ -94,9 +94,9 @@
                                     <div id="departments">
                                         @foreach ($organization->departments as $department)
                                             <div class="department-wrapper">
-                                                <div class="department">
+                                                <a class="department" href="{{ route('organizations.department', ['slug' => $organization->slug, 'departmentSlug' => $department->slug]) }}">
                                                     <div class="department-name">{{ $department->name }}</div>
-                                                </div>
+                                                </a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -109,6 +109,54 @@
                         </div>
                     </div>
                     
+                    <!-- Projects -->
+                    <div class="content-card elevation-1 mb">
+                        <div class="content-card__content">
+                            <h3 class="content-subtitle">@lang("tessify-core::organizations.view_projects")</h3>
+                            <div id="ministry-projects">
+                                @if ($organization->projects->count())
+                                    <div id="projects">
+                                        @foreach ($organization->projects as $project)
+                                            <div class="project-wrapper">
+                                                <a class="project" href="{{ route('projects.view', $project->slug) }}">
+                                                    <div class="project-title">{{ $project->title }}</div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div id="no-projects">
+                                        @lang("tessify-core::organizations.view_no_projects")
+                                    </div>  
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks -->
+                    <div class="content-card elevation-1">
+                        <div class="content-card__content">
+                            <h3 class="content-subtitle">@lang("tessify-core::organizations.view_tasks")</h3>
+                            <div id="ministry-tasks">
+                                @if ($organization->tasks->count())
+                                    <div id="tasks">
+                                        @foreach ($organization->tasks as $task)
+                                            <div class="task-wrapper">
+                                                <a class="task" href="{{ route('tasks.view', $task->slug) }}">
+                                                    <div class="task-title">{{ $task->title }}</div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div id="no-tasks">
+                                        @lang("tessify-core::organizations.view_no_tasks")
+                                    </div>  
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

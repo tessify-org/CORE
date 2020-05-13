@@ -40,7 +40,7 @@
                             <!-- Content header -->
                             <div id="project-content__header">
                                 <div id="project-content__header-left">
-                                
+                                    
                                     <project-task-overview
                                         :project="{{ $project->toJson() }}"
                                         :tasks="{{ collect($tasks) }}"

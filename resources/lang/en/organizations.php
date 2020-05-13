@@ -31,5 +31,19 @@ return [
     "view_no_locations" => "No locations have been added yet for this organization.",
     "view_projects" => "Projects",
     "view_no_projects" => "There are currently no running projects initiated by this organization.",
+    "view_tasks" => "Tasks",
+    "view_no_tasks" => "There are currently no running tasks initiated by this organization.",
+
+    "department_back_to_organization" => "Back to :name",
+    "department_ministry" => "Ministry",
+    "department_organization" => "Organization",
+    "department_name" => "Name",
+    "department_description" => "Description",
+    "department_website" => "Website",
+    "department_last_update" => "Last updated at",
+    "department_projects" => "Projects",
+    "department_no_projects" => "There are currently no running tasks initiated by this department.",
+    "department_tasks" => "Tasks",
+    "department_no_tasks" => "There are currently no running tasks initiated by this department.",
 
 ];

@@ -197,6 +197,8 @@ return [
     "form_status_description" => "What's the current state of the project?",
     "form_ownership_title" => "Ownership",
     "form_ownership_description" => "What entities own this project?",
+    "form_skills_title" => "Required skills",
+    "form_skills_description" => "What skills are required to complete this task?",
     "form_formatting_title" => "Formatting",
     "form_formatting_description" => "Make your project stand out",
 

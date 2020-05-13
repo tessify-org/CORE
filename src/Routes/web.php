@@ -262,16 +262,30 @@ Route::group(["middleware" => "auth"], function() {
 
         // Organizations
         Route::group(["prefix" => "organisaties"], function() {
+            
+            // Overview
             Route::get("/", "Community\OrganizationController@getOverview")->name("organizations");
+
+            // View
             Route::get("{slug}", "Community\OrganizationController@getView")->name("organizations.view");
+
+            // Follow & unfollow
             Route::get("{slug}/volgen", "Community\OrganizationController@getSubscribe")->name("organizations.subscribe");
             Route::get("{slug}/niet-meer-volgen", "Community\OrganizationController@getUnsubscribe")->name("organizations.unsubscribe");
+
+            // Department
+            Route::get("{slug}/departement/{departmentSlug}", "Community\OrganizationController@getViewDepartment")->name("organizations.department");
+                
         });
         
         // Groups
+
         // Forum
+
         // Blogs
+
         // Polls
+
         // etc..
 
     });
