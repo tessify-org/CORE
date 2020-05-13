@@ -19,6 +19,7 @@
                     <h1 class="page-title centered">@lang("tessify-core::projects.overview_title")</h1>
                     <h2 class="page-subtitle centered">@lang("tessify-core::projects.overview_subtitle", ["num_projects" => $projects->count()])</h2>
                     <v-btn color="primary" outlined href="{{ route('projects.create') }}">
+                        <i class="fas fa-plus"></i>
                         @lang("tessify-core::projects.overview_create_cta")
                     </v-btn>
                 </div>
@@ -31,16 +32,20 @@
                 <!-- Feedback -->
                 @include("tessify-core::partials.feedback")
 
-                <!-- Dashboard -->
+                <!-- Projects -->
+                <project-overview
+                    :projects="{{ $projects->toJson() }}"
+                    :strings="{{ $strings->toJson() }}">
+                </project-overview>
+
+                <!-- Dashboard
                 <div id="project-dashboard">
                     <div id="project-dashboard__sidebar">
 
-                        <!-- Search bar -->
                         <project-dashboard-sidebar-search-bar
                             title="@lang('tessify-core::projects.overview_sidebar_search')">
                         </project-dashboard-sidebar-search-bar>
 
-                        <!-- Status -->
                         <project-dashboard-sidebar-statuses
                             :statuses="{{ $statuses->toJson() }}"
                             title="@lang('tessify-core::projects.overview_sidebar_statuses')"
@@ -48,7 +53,6 @@
                             no-records-text="@lang('tessify-core::projects.overview_sidebar_statuses_empty')">
                         </project-dashboard-sidebar-statuses>
                         
-                        <!-- Categories -->
                         <project-dashboard-sidebar-categories
                             :categories="{{ $categories->toJson() }}"
                             title="@lang('tessify-core::projects.overview_sidebar_categories')"
@@ -59,7 +63,6 @@
                     </div>
                     <div id="project-dashboard__content">
 
-                        <!-- Project overview -->
                         <project-dashboard-overview
                             :projects="{{ $projects->toJson() }}"
                             description-text="@lang('tessify-core::projects.overview_description')"
@@ -69,6 +72,7 @@
 
                     </div>
                 </div>
+                -->
                 
             </div>
         </div>

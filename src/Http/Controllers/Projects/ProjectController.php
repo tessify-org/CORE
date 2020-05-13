@@ -42,6 +42,9 @@ class ProjectController extends Controller
             "projects" => Projects::getAllPreloaded(),
             "statuses" => ProjectStatuses::getAll(),
             "categories" => ProjectCategories::getAll(),
+            "strings" => collect([
+                "no_records" => __("tessify-core::projects.overview_no_projects"),
+            ])
         ]);
     }
 
@@ -97,7 +100,6 @@ class ProjectController extends Controller
         // Render the project tasks overview page
         return view("tessify-core::pages.projects.roles", [
             "project" => $project,
-            
         ]);
     }
 
