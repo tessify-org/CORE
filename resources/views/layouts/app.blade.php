@@ -20,6 +20,13 @@
             <div id="topnav__wrapper">
                 <div id="topnav">
 
+                    <!-- BZK Logo -->
+                    @if (!Auth::check() && Request::is('/'))
+                        <div id="topnav-ministry-logo__wrapper">
+                            <div id="topnav-ministry-logo" style="background-image: url({{ asset('storage/images/logos/RO_Logo_online_diap_nl.svg') }})"></div>
+                        </div>
+                    @endif
+
                     <!-- Logo -->
                     <div id="topnav-logo__wrapper">
                         <a id="topnav-logo" href="{{ route('home') }}">
@@ -37,6 +44,7 @@
                         </locale-switcher>
                     </div>
 
+                    <!-- Search button -->
                     <div id="topnav-search__wrapper">
                         <topnav-search-button
                             href="{{ route('search') }}">
