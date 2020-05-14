@@ -24,20 +24,10 @@
                         <login-form
                             :errors="{{ $errors->toJson() }}"
                             :old-input="{{ $oldInput->toJson() }}"
-                            email-text="@lang('tessify-core::auth.login_email')"
-                            password-text="@lang('tessify-core::auth.login_password')"
-                            remember-me-text="@lang('tessify-core::auth.login_remember_me')"
-                            submit-text="@lang('tessify-core::auth.login_submit')"
-                            forgot-password-text="@lang('tessify-core::auth.login_forgot_password')"
+                            :strings="{{ $strings->toJson() }}"
                             forgot-password-href="{{ route('auth.forgot-password') }}"
-                            register-text="@lang('tessify-core::auth.login_register_text')">
+                            register-href="{{ route('auth.register') }}">
                         </login-form>
-
-                        <div id="no-account">
-                            <a href="{{ route('auth.register') }}">
-                                @lang('tessify-core::auth.login_register_text')
-                            </a>
-                        </div>
                         
                     </form>
                 </div>

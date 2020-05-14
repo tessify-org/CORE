@@ -15,7 +15,15 @@ class LoginController extends Controller
         return view("tessify-core::pages.auth.login", [
             "oldInput" => collect([
                 "email" => old("email"),
-            ])
+            ]),
+            "strings" => collect([
+                "email" => __("tessify-core::auth.login_email"),
+                "password" => __("tessify-core::auth.login_password"),
+                "remember_me" => __("tessify-core::auth.login_remember_me"),
+                "submit" => __("tessify-core::auth.login_submit"),
+                "forgot_password" => __("tessify-core::auth.login_forgot_password"),
+                "register" => __("tessify-core::auth.login_register_text"),
+            ]),
         ]);
     }
 
