@@ -35,6 +35,8 @@
                 <!-- Projects -->
                 <project-overview
                     :projects="{{ $projects->toJson() }}"
+                    :statuses="{{ $statuses->toJson() }}"
+                    :categories="{{ $categories->toJson() }}"
                     :strings="{{ $strings->toJson() }}">
                 </project-overview>
 

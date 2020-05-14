@@ -44,6 +44,9 @@ class ProjectController extends Controller
             "categories" => ProjectCategories::getAll(),
             "strings" => collect([
                 "no_records" => __("tessify-core::projects.overview_no_projects"),
+                "search_title" => __("tessify-core::projects.overview_sidebar_search"),
+                "status_title" => __("tessify-core::projects.overview_sidebar_statuses"),
+                "category_title" => __("tessify-core::projects.overview_sidebar_categories"),
             ])
         ]);
     }
