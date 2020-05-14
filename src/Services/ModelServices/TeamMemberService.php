@@ -79,4 +79,19 @@ class TeamMemberService implements ModelServiceContract
         $teamMember->teamRoles()->detach();
         $teamMember->teamRoles()->attach([$request->team_role_id]);
     }
+
+    public function getAllForProject(Project $project)
+    {
+        $out = [];
+
+        foreach ($this->getAll() as $teamMember)
+        {
+            if ($teamMember->project_id == $project->id)
+            {
+                $out[] = $this->preload($teamMember);
+            }
+        }
+        
+        return $out;
+    }
 }

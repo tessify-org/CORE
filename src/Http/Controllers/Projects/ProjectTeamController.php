@@ -13,6 +13,32 @@ use Tessify\Core\Http\Requests\Projects\Teams\Applications\InviteTeamMemberReque
 
 class ProjectTeamController extends Controller
 {
+    public function getOverview($slug)
+    {
+        $project = Projects::findPreloadedBySlug($slug);
+        if (!$project)
+        {
+            flash(__("tessify-core::projects.project_not_found"))->error();
+            return redirect()->route("projects");
+        }
+
+        return view("tessify-core::pages.projects.team.overview", [
+            "project" => $project,
+            "members" => collect(TeamMembers::getAllForProject($project)),
+            "memberOverviewStrings" => collect([
+                "title" => __("tessify-core::projects.team_title"),
+                "no_members" => __("tessify-core::projects.team_no_members"),
+                "user" => __("tessify-core::projects.team_user"),
+                "roles" => __("tessify-core::projects.team_roles"),
+                "invite_user" => __("tessify-core::projects.team_invite"),
+                "view_dialog_title" => __("tessify-core::projects.team_view_dialog_title"),
+                "view_dialog_user" => __("tessify-core::projects.team_view_dialog_user"),
+                "view_dialog_roles" => __("tessify-core::projects.team_view_dialog_roles"),
+                "view_dialog_joined_on" => __("tessify-core::projects.team_view_dialog_joined_on"),
+            ]),
+        ]);
+    }
+
     public function getView($slug)
     {
         $project = Projects::findPreloadedBySlug($slug);

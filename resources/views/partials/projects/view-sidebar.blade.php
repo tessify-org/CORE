@@ -101,6 +101,15 @@
                 @lang("tessify-core::projects.view_link_resources") ({{ $project->num_resources }})
             </span>
         </a>
+        <!-- Team members -->
+        <a class="project-link @if (isset($page) && $page == 'team') selected @endif" href="{{ route('projects.team', $project->slug) }}">
+            <span class="project-link__icon">
+                <i class="fas fa-users"></i>
+            </span>
+            <span class="project-link__text">
+                @lang("tessify-core::projects.view_link_team") ({{ $project->num_team_members }})
+            </span>
+        </a>
         <!-- Team roles -->
         <a class="project-link @if (isset($page) && $page == 'team-roles') selected @endif" href="{{ route('projects.team.roles', $project->slug) }}">
             <span class="project-link__icon">

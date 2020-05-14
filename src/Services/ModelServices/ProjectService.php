@@ -64,6 +64,7 @@ class ProjectService implements ModelServiceContract
         $instance->category = ProjectCategories::findForProject($instance);
         $instance->work_method = WorkMethods::findForProject($instance);
         $instance->phase = ProjectPhases::findForProject($instance);
+        $instance->team_members = TeamMembers::getAllForProject($instance);
         $instance->team_member_applications = TeamMemberApplications::getAllForProject($instance);
         $instance->tasks = Tasks::getAllForProject($instance);
         $instance->tags = Tags::getAllForProject($instance);
@@ -91,6 +92,7 @@ class ProjectService implements ModelServiceContract
         $instance->num_resources = count($instance->resources);
         $instance->num_tasks = count($instance->tasks);
         $instance->num_team_roles = count($instance->team_roles);
+        $instance->num_team_members = count($instance->team_members);
 
         // Return the upgraded project
         return $instance;

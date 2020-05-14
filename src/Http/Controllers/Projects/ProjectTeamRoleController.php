@@ -21,7 +21,7 @@ class ProjectTeamRoleController extends Controller
             return redirect()->route("projects");
         }
 
-        return view("tessify-core::pages.projects.teams.roles.overview", [
+        return view("tessify-core::pages.projects.team.roles.overview", [
             "project" => $project,
             "roles" => collect(TeamRoles::getAllForProject($project)),
             "strings" => collect([

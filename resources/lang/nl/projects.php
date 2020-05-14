@@ -94,6 +94,7 @@ return [
     "view_no_team_members" => "Dit project heeft nog geen teamleden.",
     "view_links" => "Links",
     "view_link_resources" => "Hulpmiddelen",
+    "view_link_team" => "Team leden",
     "view_link_roles" => "Team rollen",
     "view_link_reviews" => "Recensies",
     "view_link_comments" => "Commentaar",
@@ -238,6 +239,17 @@ return [
     //
     // View team
     //
+
+    "team_title" => "Het team",
+    "team_no_members" => "Niemand heeft zich nog aangemeld voor dit project.",
+    "team_user" => "Gebruiker",
+    "team_role" => "Rol",
+    "team_roles" => "Rollen",
+    "team_invite" => "Gebruiker uitnodigen",
+    "team_view_dialog_title" => "Teamlid",
+    "team_view_dialog_user" => "Gebruiker",
+    "team_view_dialog_roles" => "Rollen",
+    "team_view_dialog_joined_on" => "Toegetreden op",
 
     "view_team_outstanding_roles" => "Openstaande team rollen",
     "view_team_outstanding_roles_intro" => "De rollen hieronder zijn nog beschikbaar en zou jij in kunnen vullen! Lorem ipsum bladiebla.",

@@ -94,6 +94,7 @@ return [
     "view_no_team_members" => "This project does not have any team members yet.",
     "view_links" => "Links",
     "view_link_resources" => "Resources",
+    "view_link_team" => "Team members",
     "view_link_roles" => "Team roles",
     "view_link_reviews" => "Reviews",
     "view_link_comments" => "Comments",
@@ -240,6 +241,17 @@ return [
     //
     // View team
     //
+
+    "team_title" => "The team",
+    "team_no_members" => "Nobody has signed up for this project yet.",
+    "team_user" => "User",
+    "team_role" => "Role",
+    "team_roles" => "Roles",
+    "team_invite" => "Invite an user",
+    "team_view_dialog_title" => "Team member",
+    "team_view_dialog_user" => "User",
+    "team_view_dialog_roles" => "Roles",
+    "team_view_dialog_joined_on" => "Joined the team on",
 
     "view_team_outstanding_roles" => "Outstanding roles",
     "view_team_outstanding_roles_intro" => "The roles you see below are still available lorem ipsum dolor sit emet en dan nog wat latijnse woorden.",

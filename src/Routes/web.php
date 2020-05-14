@@ -103,9 +103,12 @@ Route::group(["middleware" => "auth"], function() {
         Route::get("{slug}/hulpmiddelen/uploaden", "Projects\ProjectResourceController@getCreate")->name("projects.resources.create");
         Route::post("{slug}/hulpmiddelen/uploaden", "Projects\ProjectResourceController@postCreate")->name("projects.resources.create.post");
 
+        // View --> Team members
+        Route::get("{slug}/team-leden", "Projects\ProjectTeamController@getOverview")->name("projects.team");
+
         // View --> Team roles
         Route::get("{slug}/team-rollen", "Projects\ProjectTeamRoleController@getOverview")->name("projects.team.roles");
-        
+
         // View --> Reviews
         Route::get("{slug}/recensies", "Projects\ProjectReviewController@getOverview")->name("projects.reviews");
 
@@ -123,9 +126,6 @@ Route::group(["middleware" => "auth"], function() {
         // Subscribe & unsubscribe
         Route::get("{slug}/subscribe", "Projects\ProjectController@getSubscribe")->name("projects.subscribe");
         Route::get("{slug}/unsubscribe", "Projects\ProjectController@getUnsubscribe")->name("projects.unsubscribe");
-
-        // View team
-        Route::get("{slug}/team", "Projects\ProjectTeamController@getView")->name("projects.team.view");
 
         // Apply for team role(s)
         Route::get("{slug}/team/aanmelden", "Projects\ProjectTeamMemberApplicationController@getCreate")->name("projects.team.apply");
