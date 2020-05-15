@@ -32,9 +32,11 @@
                             <div id="task-header__bg-overlay"></div>
                             <div id="task-header__text">
                                 <!-- Page title -->
-                                <h1 id="task-title">@lang("tessify-core::tasks.view_title")</h1>
-                                <!-- Task title -->
-                                <h2 id="task-subtitle">{{ $task->title }}</h2>
+                                <h1 id="task-title">{{ $task->title }}</h1>
+                                <!-- Task project -->
+                                @if ($task->project)
+                                    <h2 id="task-project">{!! __("tessify-core::tasks.view_part_of_project", ["title" => $task->project->title]) !!}</h2>
+                                @endif
                             </div>
                             <div id="task-header__actions">
                                 <v-btn outlined href="{{ route('tasks.view', $task->slug) }}">
