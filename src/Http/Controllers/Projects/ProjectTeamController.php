@@ -5,6 +5,7 @@ namespace Tessify\Core\Http\Controllers\Projects;
 use Users;
 use Projects;
 use TeamMembers;
+use TeamMemberApplications;
 use App\Http\Controllers\Controller;
 use Tessify\Core\Http\Requests\Projects\Teams\LeaveTeamRequest;
 use Tessify\Core\Http\Requests\Projects\Teams\RemoveMemberFromTeamRequest;
@@ -50,9 +51,26 @@ class ProjectTeamController extends Controller
                 "kick_dialog_cancel" => __("tessify-core::projects.team_kick_dialog_cancel"),
                 "kick_dialog_submit" => __("tessify-core::projects.team_kick_dialog_submit"),
             ]),
-            "apiEndpoints" => collect([
+            "memberOverviewApiEndpoints" => collect([
                 "update" => route("api.team-members.update"),
                 "kick" => route("api.team-members.kick"),
+            ]),
+            "applications" => collect(TeamMemberApplications::getAllForProject($project)),
+            "applicationOverviewStrings" => collect([
+                "title" => __("tessify-core::projects.team_applications_title"),
+                "no_records" => __("tessify-core::projects.team_applications_no_records"),
+                "view_dialog_title" => __("tessify-core::projects.team_applications_view_dialog_title"),
+                "view_dialog_user" => __("tessify-core::projects.team_applications_view_dialog_user"),
+                "view_dialog_role" => __("tessify-core::projects.team_applications_view_dialog_role"),
+                "view_dialog_motivation" => __("tessify-core::projects.team_applications_view_dialog_motivation"),
+                "view_dialog_date" => __("tessify-core::projects.team_applications_view_dialog_date"),
+                "view_dialog_back" => __("tessify-core::projects.team_applications_view_dialog_back"),
+                "view_dialog_deny" => __("tessify-core::projects.team_applications_view_dialog_deny"),
+                "view_dialog_accept" => __("tessify-core::projects.team_applications_view_dialog_accept"),
+            ]),
+            "applicationOverviewApiEndpoints" => collect([
+                "accept" => route("api.team-member-applications.accept"),
+                "deny" => route("api.team-member-applications.deny"),
             ]),
         ]);
     }

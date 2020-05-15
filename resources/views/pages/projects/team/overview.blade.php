@@ -40,16 +40,22 @@
                             <!-- Content header -->
                             <div id="project-content__header">
                                 <div id="project-content__header-left">
-                                    
-                                    <!-- Application overview -->
 
                                     <!-- Team member overview -->
                                     <project-team-member-overview
                                         :project="{{ $project->toJson() }}"
                                         :members="{{ $members->toJson() }}"
                                         :strings="{{ $memberOverviewStrings->toJson() }}"
-                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
+                                        :api-endpoints="{{ $memberOverviewApiEndpoints->toJson() }}">
                                     </project-team-member-overview>
+                                    
+                                    <!-- Application overview -->
+                                    <project-team-member-application-overview
+                                        :project="{{ $project->toJson() }}"
+                                        :applications="{{ $applications->toJson() }}"
+                                        :strings="{{ $applicationOverviewStrings->toJson() }}"
+                                        :api-endpoints="{{ $applicationOverviewApiEndpoints->toJson() }}">
+                                    </project-team-member-application-overview>
 
                                 </div>
                             </div>

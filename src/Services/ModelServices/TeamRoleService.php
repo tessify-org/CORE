@@ -173,7 +173,7 @@ class TeamRoleService implements ModelServiceContract
 
         return $role;
     }
-
+    
     public function deleteFromApiRequest(ApiDeleteTeamRoleRequest $request)
     {
         $role = $this->find($request->team_role_id);

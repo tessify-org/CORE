@@ -45,7 +45,7 @@ class TeamMemberApplicationService implements ModelServiceContract
 
         foreach ($this->getAllPreloaded() as $application)
         {
-            if ($application->project_id == $project->id)
+            if ($application->project_id == $project->id && $application->processed == false)
             {
                 $out[] = $application;
             }
@@ -133,7 +133,7 @@ class TeamMemberApplicationService implements ModelServiceContract
         return $application;
     }
 
-    public function apiDeny(ApiDenyReject $request)
+    public function apiDeny(ApiDenyRequest $request)
     {
         $application = $this->find($request->team_member_application_id);
         $application->processed = true;

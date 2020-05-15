@@ -34,20 +34,19 @@ class TeamMemberApplicationController extends Controller
 
     public function postDeleteApplication(DeleteTeamMemberApplicationRequest $request)
     {
-
         return response()->json(["status" => "success"]);
     }
 
     public function postAcceptApplication(AcceptTeamMemberApplicationRequest $request)
     {
-        TeamMemberApplications::accept($request);
+        TeamMemberApplications::apiAccept($request);
 
         return response()->json(["status" => "success"]);
     }
 
     public function postDenyApplication(DenyTeamMemberApplicationRequest $request)
     {
-        TeamMemberApplications::deny($request);
+        TeamMemberApplications::apiDeny($request);
 
         return response()->json(["status" => "success"]);
     }
