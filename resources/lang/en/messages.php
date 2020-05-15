@@ -104,4 +104,12 @@ return [
     "question_asked" => "Question has been asked!",
     "question_failed" => "Failed to ask question.",
 
+    //
+    // Kicked from ..
+    //
+
+    "kicked_from_project_team_subject" => "Kicked from project team",
+    "kicked_from_project_team_message" => "You've been removed from the :project project's team.",
+    "kicked_from_project_team_message_reason" => "You've been removed from the :project project's team. The reason for this is: :reason",
+
 ];

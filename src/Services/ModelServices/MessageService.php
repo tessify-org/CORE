@@ -255,6 +255,25 @@ class MessageService implements ModelServiceContract
         ]);
     }
 
+    public function sendKickedFromProjectTeamMessage(User $targetUser, Project $targetProject, string $reason = null, User $user = null)
+    {
+        if (is_null($user)) $user = auth()->user();
+        
+        return Message::create([
+            "type" => "task_question",
+            "sender_id" => $user->id,
+            "receiver_id" => $targetUser->id,
+            "subject" => __("tessify-core::messages.kicked_from_project_team_subject"),
+            "message" => is_null($reason) ? __("tessify-core::messages.kicked_from_project_team_message", ["project" => $targetProject->title]) : __("tessify-core::messages.kicked_from_project_team_message_reason", [
+                "project" => $targetProject->title,
+                "reason" => $reason,
+            ]),
+            "data" => [
+                "project_id" => $targetProject->id,
+            ]
+        ]);
+    }
+
     public function sendMessage(User $targetUser, string $subject, string $message, User $user = null)
     {
         // Grab logged in user if no user was provided

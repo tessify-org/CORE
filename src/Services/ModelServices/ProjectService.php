@@ -85,6 +85,7 @@ class ProjectService implements ModelServiceContract
 
         // Determine if logged in user is a team member
         $instance->is_team_member = $this->isTeamMember($instance);
+        $instance->is_owner = $this->isOwner($instance);
 
         // Get relationship counts for view task page (sidebar)
         $instance->num_reviews = $this->getNumReviews($instance);
@@ -468,6 +469,13 @@ class ProjectService implements ModelServiceContract
         }
 
         return false;
+    }
+
+    public function isOwner(Project $project)
+    {
+        $user = auth()->user();
+
+        return $user->is_admin or $project->author_id == $user->id;
     }
 
     public function findTeamMember(Project $project, User $user = null)

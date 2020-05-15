@@ -36,6 +36,23 @@ class ProjectTeamController extends Controller
                 "view_dialog_roles" => __("tessify-core::projects.team_view_dialog_roles"),
                 "view_dialog_required_skills" => __("tessify-core::projects.team_view_dialog_required_skills"),
                 "view_dialog_joined_on" => __("tessify-core::projects.team_view_dialog_joined_on"),
+                "view_dialog_update" => __("tessify-core::projects.team_view_dialog_update"),
+                "view_dialog_kick" => __("tessify-core::projects.team_view_dialog_kick"),
+                "update_dialog_title" => __("tessify-core::projects.team_update_dialog_title"),
+                "update_dialog_user" => __("tessify-core::projects.team_update_dialog_user"),
+                "update_dialog_roles" => __("tessify-core::projects.team_update_dialog_roles"),
+                "update_dialog_cancel" => __("tessify-core::projects.team_update_dialog_cancel"),
+                "update_dialog_submit" => __("tessify-core::projects.team_update_dialog_submit"),
+                "kick_dialog_title" => __("tessify-core::projects.team_kick_dialog_title"),
+                "kick_dialog_text" => __("tessify-core::projects.team_kick_dialog_text"),
+                "kick_dialog_reason" => __("tessify-core::projects.team_kick_dialog_reason"),
+                "kick_dialog_reason_hint" => __("tessify-core::projects.team_kick_dialog_reason_hint"),
+                "kick_dialog_cancel" => __("tessify-core::projects.team_kick_dialog_cancel"),
+                "kick_dialog_submit" => __("tessify-core::projects.team_kick_dialog_submit"),
+            ]),
+            "apiEndpoints" => collect([
+                "update" => route("api.team-members.update"),
+                "kick" => route("api.team-members.kick"),
             ]),
         ]);
     }

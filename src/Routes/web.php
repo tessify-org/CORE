@@ -417,6 +417,12 @@ Route::group(["prefix" => "api"], function() {
         Route::post("deny", "Api\TeamMemberApplicationController@postDenyApplication")->name("api.team-member-applications.deny.post");
     });
 
+    // Team members
+    Route::group(["prefix" => "team-members"], function() {
+        Route::post("update", "Api\TeamMemberController@postUpdate")->name("api.team-members.update");
+        Route::post("kick", "Api\TeamMemberController@postKick")->name("api.team-members.kick");
+    });
+
     // Team roles
     Route::group(["prefix" => "team-roles"], function() {
         Route::post("unassign", "Api\TeamRoleController@postUnassign")->name("api.team-roles.unassign");

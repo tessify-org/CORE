@@ -103,4 +103,12 @@ return [
     "question_asked" => "De vraag is gesteld!",
     "question_failed" => "Vraag stellen is mislukt.",
 
+    //
+    // Kicked from ..
+    //
+
+    "kicked_from_project_team_subject" => "Verwijderd uit project team",
+    "kicked_from_project_team_message" => "Je bent verwijderd uit het project team van het project :project.",
+    "kicked_from_project_team_message_reason" => "Je bent verwijderd uit het project team van het project :project. De reden hiervoor is: :reason",
+
 ];

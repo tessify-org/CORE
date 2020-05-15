@@ -47,7 +47,8 @@
                                     <project-team-member-overview
                                         :project="{{ $project->toJson() }}"
                                         :members="{{ $members->toJson() }}"
-                                        :strings="{{ $memberOverviewStrings->toJson() }}">
+                                        :strings="{{ $memberOverviewStrings->toJson() }}"
+                                        :api-endpoints="{{ $apiEndpoints->toJson() }}">
                                     </project-team-member-overview>
 
                                 </div>
