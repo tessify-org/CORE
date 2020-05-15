@@ -34,6 +34,7 @@ class ProjectTeamController extends Controller
                 "view_dialog_title" => __("tessify-core::projects.team_view_dialog_title"),
                 "view_dialog_user" => __("tessify-core::projects.team_view_dialog_user"),
                 "view_dialog_roles" => __("tessify-core::projects.team_view_dialog_roles"),
+                "view_dialog_required_skills" => __("tessify-core::projects.team_view_dialog_required_skills"),
                 "view_dialog_joined_on" => __("tessify-core::projects.team_view_dialog_joined_on"),
             ]),
         ]);

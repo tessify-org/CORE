@@ -252,6 +252,7 @@ return [
     "team_view_dialog_user" => "User",
     "team_view_dialog_roles" => "Roles",
     "team_view_dialog_joined_on" => "Joined the team on",
+    "team_view_dialog_required_skills" => "Required skills",
 
     "view_team_outstanding_roles" => "Outstanding roles",
     "view_team_outstanding_roles_intro" => "The roles you see below are still available lorem ipsum dolor sit emet en dan nog wat latijnse woorden.",

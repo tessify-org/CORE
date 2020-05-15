@@ -34,9 +34,6 @@ class TeamRoleService implements ModelServiceContract
 
     public function preload($instance)
     {
-        // Load role's assigned team member
-        $instance->team_member = $this->getTeamMemberForTeamRole($instance);
-
         // Load role's required skills
         $instance->skills = Skills::getAllForTeamRole($instance);
         
@@ -117,7 +114,7 @@ class TeamRoleService implements ModelServiceContract
         {
             if ($pivot->team_member_id == $teamMember->id)
             {
-                $out[] = $this->find($pivot->team_role_id);
+                $out[] = $this->findPreloaded($pivot->team_role_id);
             }
         }
 

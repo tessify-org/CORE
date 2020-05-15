@@ -14,12 +14,10 @@
             <!-- Task page -->
             <div id="view-project">
                 <aside id="view-project__sidebar">
-
                     @include("tessify-core::partials.projects.view-sidebar", [
                         "project" => $project,
                         "page" => "reviews",
                     ])
-
                 </aside>
                 <main id="view-project__content">
 

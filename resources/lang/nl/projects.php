@@ -250,6 +250,7 @@ return [
     "team_view_dialog_user" => "Gebruiker",
     "team_view_dialog_roles" => "Rollen",
     "team_view_dialog_joined_on" => "Toegetreden op",
+    "team_view_dialog_required_skills" => "Vereiste vaardigheden",
 
     "view_team_outstanding_roles" => "Openstaande team rollen",
     "view_team_outstanding_roles_intro" => "De rollen hieronder zijn nog beschikbaar en zou jij in kunnen vullen! Lorem ipsum bladiebla.",
