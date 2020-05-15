@@ -30,7 +30,7 @@
                             <div id="project-header__bg" style="background-image: url({{ asset($project->header_image_url) }})"></div>
                             <div id="project-header__bg-overlay"></div>
                             <div id="project-header__text">
-                                <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
+                                <h1 id="project-title">{{ $project->title }}</h1>
                                 <h2 id="project-subtitle">{{ $project->slogan }}</h2>
                             </div>
                             <div id="project-header__actions">

@@ -19,7 +19,7 @@
                         "project" => $project,
                         "page" => "team",
                     ])
-
+                    
                 </aside>
                 <main id="view-project__content">
 
@@ -29,9 +29,18 @@
                         <div id="project-header">
                             <div id="project-header__bg" style="background-image: url({{ asset($project->header_image_url) }})"></div>
                             <div id="project-header__bg-overlay"></div>
+                            <!-- Text -->
                             <div id="project-header__text">
-                                <h1 id="project-title">@lang("tessify-core::projects.view_title")</h1>
+                                <!-- Project title & slogan -->
+                                <h1 id="project-title">{{ $project->title }}</h1>
                                 <h2 id="project-subtitle">{{ $project->slogan }}</h2>
+                            </div>
+                            <!-- Back button -->
+                            <div id="project-header__actions">
+                                <v-btn outlined href="{{ route('projects.view', $project->slug) }}" color="white">
+                                    <i class="fas fa-arrow-left"></i>
+                                    @lang("tessify-core::projects.back_to_project")
+                                </v-btn>
                             </div>
                         </div>
                         <!-- Content -->
